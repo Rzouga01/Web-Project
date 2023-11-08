@@ -5,39 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <header>
-        <div class="upbar">
-            <ul type="none">
-                <li id="email">RecoveryButterfly@gmail.com</li>
-                <li class="upbar-elements" id="login"><a href="view/login/login.php">Log In</a></li>
-                <li class="upbar-elements" id="joinUS"><a href="view/register/register.php">Join Us</a></li>
+        <div class="upbar-menu">
+
+            <ul class="upbar" type="none">
+                <li class="upbar-elements"><img src="/assets/logo/logo.png" id="logo" alt="Logo"></li>
+                <li class="upbar-elements" id="title">
+                    RecoveryButterfly
+                </li>
+                <div class="upbar-right">
+                    <li class="upbar-elements" id="joinUS"><a href="view/register/register.php">Join Us</a></li>
+                    <li class="upbar-elements" id="login"><a href="view/login/login.php">Log In</a></li>
+
+                </div>
             </ul>
         </div>
 
         <div class="menu">
-            <ul type="none" class="nav_bar">
-                <span class="menu-elements">
-                    <li><a href="index.html">Home</a></li>
-                </span>
-                <span class="menu-elements">
-                    <li><a href="view/about/about.html">About Us</a></li>
-                </span>
-                <span class="menu-elements">
-                    <li><a href="view/News/news.html">News</a></li>
-                </span>
-                <span class="menu-elements">
-                    <li><a href="view/Feedback/feedback.html">Feedback</a></li>
-                </span>
-                <span class="menu-elements">
-                    <li><a href="view/Contact/contact.html">Contact</a></li>
-                </span>
+            <ul class="nav_bar" type="none">
+                <li class="menu-elements"><a href="index.html">Home</a></li>
+                <li class="menu-elements"><a href="view/about/about.html">About Us</a></li>
+                <li class="menu-elements"><a href="view/News/news.html">News</a></li>
+                <li class="menu-elements"><a href="view/Project/project.php">Projects</a></li>
+                <li class="menu-elements"><a href="view/Feedback/feedback.html">Feedback</a></li>
+                <li class="menu-elements"><a href="view/Contact/contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
+    <section>
+        <div class="mission">
+            <table>
+                <tr>
+                    <td>
+                        <h2>Our Mission</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam aperiam laboriosam eius quam,
+                            error, id
+                            dicta est atque odio rerum ea. Provident consectetur numquam fugit, ab sed ipsum sint
+                            mollitia!</p>
+                    <td><img src="/assets/index/mission.jpg" alt="mission image" id="mission-image"> </td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="vision">
+            <table>
+                <tr>
+                    <td>
+                        <img src="/assets/index/mission.jpg" alt="mission image" id="mission-image">
+                    </td>
+                    <td>
+                        <h2>Our Vision</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam aperiam laboriosam eius quam,
+                            error, id
+                            dicta est atque odio rerum ea. Provident consectetur numquam fugit, ab sed ipsum sint
+                            mollitia!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
 
 
 
