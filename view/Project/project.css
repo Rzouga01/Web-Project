@@ -56,18 +56,22 @@ textarea {
     padding: 10px;
     border: #474747 1px solid;
     border-radius: 5px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
 }
 
 .project-form-elements:hover {
     border: #FFC857 1px solid;
-    border-radius: 25px;
-    transition: 0.5s;
+    border-radius: 50px;
+    transition: 1s;
+
 }
 
 .project-form-elements:focus {
-    border: #FFC857 1px solid;
     border-radius: 25px;
     transition: 0.5s;
+    border: none;
 
 }
 
