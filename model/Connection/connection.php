@@ -1,9 +1,9 @@
 <?php
 
 $servername = 'localhost';
-$username = '';
+$username = 'root';
 $password = '';
-$dbname = '';
+$dbname = 'recoverybutterfly';
 
 try {
 
