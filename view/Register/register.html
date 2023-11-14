@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <section>
+        <div class="signup-form">
+            <form action="#" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="name">First Name :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="text" name="Name" id="Name"
+                                placeholder="First Name">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="last-name">Last Name :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="text" name="last-name" id="last-name"
+                                placeholder="Last Name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="email">Email :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="email" name="email" id="email"
+                                placeholder="Email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="phone-number">Phone Number :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="tel" name="phone-number" id="phone-number"
+                                placeholder="Phone Number">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password">Password :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="password" name="password" id="password"
+                                placeholder="Password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="confirm-password">Confirm Password :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="password" name="confirm-password"
+                                id="confirm-password" placeholder="Confirm Password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="birthdate">Birthdate :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="date" name="birthdate" id="birthdate"
+                                placeholder="Birthdate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="country">Country :</label>
+                        </td>
+                        <td>
+                            <select name="country" class="signup-form-elements" id="country">
+                                <option value="1">Country 1</option>
+                                <option value="2">Country 2</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Gender :</label>
+                        </td>
+                        <td>
+                            <div style="display: flex;">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <div class="form-low">
+                            <td>
+                                <input name="submit" id="submit" type="submit" value="Create">
+                            </td>
+                            <td>
+                                <input name="reset" id="reset" type="reset" value="Reset">
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </section>
+    <script src="project.js"></script>
+</body>
+
+</html>
