@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Type</title>
+    <link rel="stylesheet" href="type.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Project Type</h1>
+    </header>
+
+    <section>
+        <div class="type-form">
+            <fieldset>
+                <legend>Delete Type</legend>
+                <form action="../../model/Type/type_delete.php" method="POST">
+                    <table>
+                        <tr>
+                            <td><label for="type-name">Type Name</label></td>
+                            <td><input type="text" id="type-name" name="type-name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="type-description">Type Description</label></td>
+                            <td>
+                                <textarea id="type-description" name="type-description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Create"></td>
+                            <td><input type="reset" value="Reset"></td>
+                        </tr>
+                    </table>
+                </form>
+            </fieldset>
+        </div>
+
+    </section>
+    <script src="project.js"></script>
+</body>
+
+</html>

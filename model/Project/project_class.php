@@ -13,7 +13,7 @@ class Project
     private $type;
     private $orgID;
 
-    function __construct($name, $description, $goal, $status, $type, $orgID)
+    public function __construct($name, $description, $goal, $status, $type, $orgID)
     {
         $this->name = $name;
         $this->description = $description;
