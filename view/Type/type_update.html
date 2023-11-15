@@ -17,22 +17,26 @@
     <section>
         <div class="type-form">
             <fieldset>
-                <legend>New Project Type</legend>
+                <legend>Update Project Type</legend>
                 <form action="../../model/Type/type_update.php" method="POST">
                     <table>
                         <tr>
-                            <td><label for="type-name">Type Name</label></td>
+                            <td><label for="type-name">Type Name to update</label></td>
                             <td><input type="text" id="type-name" name="type-name"></td>
                         </tr>
                         <tr>
-                            <td><label for="type-description">Type Description</label></td>
+                            <td><label for="type-name-update">Type Name to update</label></td>
+                            <td><input type="text" id="type-name-update" name="type-name-update"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="type-description-update">Type Description</label></td>
                             <td>
-                                <textarea id="type-description" name="type-description"></textarea>
+                                <textarea id="type-description-update" name="type-description-update"></textarea>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input type="submit" value="Create"></td>
+                            <td><input type="submit" value="Update" id="button"></td>
                             <td><input type="reset" value="Reset"></td>
                         </tr>
                     </table>
@@ -41,7 +45,7 @@
         </div>
 
     </section>
-    <script src="project.js"></script>
+    <script src="../../controller/Type/type.js"></script>
 </body>
 
 </html>
