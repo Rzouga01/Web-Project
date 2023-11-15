@@ -1,15 +1,14 @@
 <?php
 
-
 require '../Connection/connection.php';
-require '../Type/type_class.php';
+require 'type_class.php';
 
 
 try {
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-    $type = new Type($_POST['type-name'], $_POST['type-description']);
+    $type = new Type(isset($_POST['type-name']), isset($_POST['type-description']));
 
     $sql = "INSERT INTO type (Type_name, Type_description	) VALUES (?, ?)";
     $statement = $conn->prepare($sql);

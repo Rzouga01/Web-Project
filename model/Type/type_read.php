@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Type</title>
+    <title>Project Read</title>
     <link rel="stylesheet" href="../../view/Type/type.css">
     <link rel="stylesheet" href="../style.css">
 </head>
