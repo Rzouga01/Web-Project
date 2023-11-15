@@ -10,115 +10,91 @@
 </head>
 
 <body>
-
     <section>
         <div class="signup-form">
-            <form action="#" method="post">
+            <form action="../../model/User/user.php" method="post">
                 <table>
                     <tr>
                         <td>
-                            <label for="name">First Name :</label>
+                            <label for="First_Name">First Name :</label>
                         </td>
                         <td>
-                            <input class="signup-form-elements" type="text" name="Name" id="Name"
-                                placeholder="First Name">
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="last-name">Last Name :</label>
-                        </td>
-                        <td>
-                            <input class="signup-form-elements" type="text" name="last-name" id="last-name"
-                                placeholder="Last Name">
+                            <input class="signup-form-elements" type="text" name="First_Name" id="First_Name" placeholder="First Name">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="email">Email :</label>
+                            <label for="Last_Name">Last Name :</label>
                         </td>
                         <td>
-                            <input class="signup-form-elements" type="email" name="email" id="email"
-                                placeholder="Email">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="phone-number">Phone Number :</label>
-                        </td>
-                        <td>
-                            <input class="signup-form-elements" type="tel" name="phone-number" id="phone-number"
-                                placeholder="Phone Number">
+                            <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="password">Password :</label>
+                            <label for="Email">Email :</label>
                         </td>
                         <td>
-                            <input class="signup-form-elements" type="password" name="password" id="password"
-                                placeholder="Password">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="confirm-password">Confirm Password :</label>
-                        </td>
-                        <td>
-                            <input class="signup-form-elements" type="password" name="confirm-password"
-                                id="confirm-password" placeholder="Confirm Password">
+                            <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="birthdate">Birthdate :</label>
+                            <label for="Phone_number">Phone Number :</label>
                         </td>
                         <td>
-                            <input class="signup-form-elements" type="date" name="birthdate" id="birthdate"
-                                placeholder="Birthdate">
+                            <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number" placeholder="Phone Number">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="country">Country :</label>
+                            <label for="Password">Password :</label>
                         </td>
                         <td>
-                            <select name="country" class="signup-form-elements" id="country">
-                                <option value="1">Country 1</option>
-                                <option value="2">Country 2</option>
+                            <input class="signup-form-elements" type="password" name="Password" id="Password" placeholder="Password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Birthdate">Birthdate :</label>
+                        </td>
+                        <td>
+                            <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Country">Country :</label>
+                        </td>
+                        <td>
+                            <select class="signup-form-elements" name="Country" id="Country">
+                                <option value="">Select Country</option>
+                                <option value="Country 1">Country 1</option>
+                                <option value="Country 2">Country 2</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Gender :</label>
+                            <label for="Role">Role :</label>
                         </td>
                         <td>
-                            <div style="display: flex;">
-                                <input type="radio" id="male" name="gender" value="male">
-                                <label for="male">Male</label>
-                                <input type="radio" id="female" name="gender" value="female">
-                                <label for="female">Female</label>
-                            </div>
+                            <select class="signup-form-elements" name="Role" id="Role">
+                                <option value="">Select Role</option>
+                                <option value="Admin">Organisation</option>
+                                <option value="User">User</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <div class="form-low">
-                            <td>
-                                <input name="submit" id="submit" type="submit" value="Create">
-                            </td>
-                            <td>
-                                <input name="reset" id="reset" type="reset" value="Reset">
-                            </td>
-                        </div>
+                        <td colspan="2">
+                            <input type="submit" value="Submit">
+                        </td>
                     </tr>
                 </table>
             </form>
         </div>
-
     </section>
-    <script src="project.js"></script>
 </body>
 
 </html>
