@@ -42,7 +42,7 @@ function update()
         $newName = $_POST['name'];
         $newDescription = $_POST['description'];
 
-        // Use prepared statement to check if the category exists
+        
         $checkSql = "SELECT * FROM category WHERE UPPER(Category_name) = UPPER(?)";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->execute([$name]);
@@ -50,7 +50,7 @@ function update()
         if ($checkStmt->rowCount() == 0) {
             echo "Category doesn't exist";
         } else {
-            // Use prepared statement to update the category
+            
             $updateSql = "UPDATE category SET Category_name = ?, Category_description = ? WHERE UPPER(Category_name) = UPPER(?)";
             $updateStmt = $conn->prepare($updateSql);
             $updateStmt->execute([$newName, $newDescription, $name]);
@@ -81,8 +81,8 @@ function read()
         foreach ($r as $i) {
             echo "<tr>";
             echo "<td>" . $i['ID_Category'] . "</td>";
-            echo "<td>" . $i['Category_name'] . "</td>"; // Corrected column name
-            echo "<td>" . $i['Category_description'] . "</td>"; // Corrected column name
+            echo "<td>" . $i['Category_name'] . "</td>"; 
+            echo "<td>" . $i['Category_description'] . "</td>"; 
             echo "</tr>";
         }
 
@@ -102,7 +102,7 @@ function delete()
 
         $name = $_POST['name'];
 
-        // Use prepared statement to delete a category
+    
         $deleteSql = "DELETE FROM category WHERE UPPER(Category_name) = UPPER(?)";
         $deleteStmt = $conn->prepare($deleteSql);
         $deleteStmt->execute([$name]);
@@ -124,7 +124,7 @@ function create()
         $name = $_POST['name'];
         $description = $_POST['description'];
 
-        // Use prepared statement to check if the category already exists
+        
         $checkSql = "SELECT * FROM category WHERE UPPER(Category_name) = UPPER(?) AND UPPER(Category_description) = UPPER(?)";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->execute([$name, $description]);
@@ -132,7 +132,7 @@ function create()
         if ($checkStmt->rowCount() > 0) {
             echo "Category already exists";
         } else {
-            // Use prepared statement to insert a new category
+            
             $insertSql = "INSERT INTO category (Category_name, Category_description) VALUES (?, ?)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->execute([$name, $description]);
