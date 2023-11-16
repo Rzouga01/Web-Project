@@ -27,33 +27,38 @@ class Category
         $this->description = $description;
     }
 }
+
+
+
 function update()
 {
-
-
     require '../Connection/connection.php';
-
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $name = $_POST['name-update'];
         $newName = $_POST['name'];
         $newDescription = $_POST['description'];
 
-        $checkSql = "SELECT * FROM category WHERE UPPER(Category_name)=UPPER('$name')";
-        $checkResult = $conn->query($checkSql);
+        // Use prepared statement to check if the category exists
+        $checkSql = "SELECT * FROM category WHERE UPPER(Category_name) = UPPER(?)";
+        $checkStmt = $conn->prepare($checkSql);
+        $checkStmt->execute([$name]);
 
-        if ($checkResult->rowCount() == 0) {
-            echo "category doesnt exist";
+        if ($checkStmt->rowCount() == 0) {
+            echo "Category doesn't exist";
         } else {
-            $updateSql = "UPDATE type SET Category_name = '$newName', Category_description = '$newDescription' WHERE UPPER(Category_name) = UPPER('$name')";
-            $conn->exec($updateSql);
+            // Use prepared statement to update the category
+            $updateSql = "UPDATE category SET Category_name = ?, Category_description = ? WHERE UPPER(Category_name) = UPPER(?)";
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->execute([$newName, $newDescription, $name]);
 
-            echo "Category updated";
+            echo "Category updated successfully";
         }
     } catch (PDOException $e) {
-        echo "error " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
 
@@ -61,72 +66,80 @@ function read()
 {
     try {
         require "../Connection/connection.php";
-        require "category_class.php";
-
-
-
-
 
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $s = "SELECT * FROM category";
         $r = $conn->query($s);
+
         echo "<table>";
         echo "<tr>";
         echo "<th> Category id </th>";
         echo "<th> Category name </th>";
         echo "<th> Category description </th>";
         echo "</tr>";
+
         foreach ($r as $i) {
             echo "<tr>";
             echo "<td>" . $i['ID_Category'] . "</td>";
-            echo "<td>" . $i['category_name'] . "</td>";
-            echo "<td>" . $i['Category_description'] . "</td>";
+            echo "<td>" . $i['Category_name'] . "</td>"; // Corrected column name
+            echo "<td>" . $i['Category_description'] . "</td>"; // Corrected column name
             echo "</tr>";
-        };
+        }
+
         echo "</table>";
     } catch (PDOException $e) {
-        echo "" . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
 
 function delete()
 {
-
     try {
         require "../Connection/connection.php";
-        require "category_class.php";
 
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $name = $_POST['name'];
-        $t =  "DELETE FROM category WHERE UPPER(Category_name)=UPPER($name)";
-        $conn->exec($t);
+
+        // Use prepared statement to delete a category
+        $deleteSql = "DELETE FROM category WHERE UPPER(Category_name) = UPPER(?)";
+        $deleteStmt = $conn->prepare($deleteSql);
+        $deleteStmt->execute([$name]);
+
+        echo "Category deleted successfully";
     } catch (PDOException $e) {
-        echo "" . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
-
 
 function create()
 {
     try {
         require "../Connection/connection.php";
-        require "category_class.php";
 
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $name = $_POST['name'];
-        $desc = $_POST['description'];
-        $l = "SELECT * FROM category WHERE UPPER(Category_name)=UPPER($name) AND UPPER(Category_description)=UPPER($description)";
-        $r = $conn->query($l);
-        if ($r->rowCount() > 0) {
-            echo "already used";
+        $description = $_POST['description'];
+
+        // Use prepared statement to check if the category already exists
+        $checkSql = "SELECT * FROM category WHERE UPPER(Category_name) = UPPER(?) AND UPPER(Category_description) = UPPER(?)";
+        $checkStmt = $conn->prepare($checkSql);
+        $checkStmt->execute([$name, $description]);
+
+        if ($checkStmt->rowCount() > 0) {
+            echo "Category already exists";
         } else {
-            $l = "INSERT INTO category (Category_name,Category_description) VALUES (?,?)";
-            $r = $conn->prepare($l);
-            $r->execute([$name, $description]);
+            // Use prepared statement to insert a new category
+            $insertSql = "INSERT INTO category (Category_name, Category_description) VALUES (?, ?)";
+            $insertStmt = $conn->prepare($insertSql);
+            $insertStmt->execute([$name, $description]);
+
+            echo "Category created successfully";
         }
     } catch (PDOException $e) {
-        echo "" . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
