@@ -11,19 +11,9 @@
 
 <body>
     <?php
-
-    require '../Connection/connection.php';
     require 'type_class.php';
+    delete_type();
 
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-    $name = $_POST['type-name'];
-
-    $sql = "DELETE FROM type WHERE UPPER(Type_name) = UPPER('$name')";
-
-    $conn->exec($sql);
-
-    echo "<script>alert('Type Deleted successfully');</script>";
     ?>
 
     <header>

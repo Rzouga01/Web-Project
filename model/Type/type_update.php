@@ -12,34 +12,8 @@
 <body>
     <?php
 
-
-    require '../Connection/connection.php';
     require 'type_class.php';
-
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-        $name = $_POST['type-name'];
-        $newName = $_POST['type-name-update'];
-        $newDescription = $_POST['type-description-update'];
-
-        $checkSql = "SELECT * FROM type WHERE UPPER(Type_name)=UPPER('$name')";
-        $checkResult = $conn->query($checkSql);
-
-        if ($checkResult->rowCount() == 0) {
-            echo "Type does not exist";
-        } else {
-            $updateSql = "UPDATE type SET Type_name = '$newName', Type_description = '$newDescription' WHERE UPPER(Type_name) = UPPER('$name')";
-            $conn->exec($updateSql);
-
-            echo "<script>alert('Type Updated successfully');</script>";
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-
-
-
+    update_type();
     ?>
     <header>
         <h1>Crud Example</h1>

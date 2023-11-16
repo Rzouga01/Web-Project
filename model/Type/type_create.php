@@ -10,34 +10,8 @@
 
 <body>
     <?php
-    require '../Connection/connection.php';
     require 'type_class.php';
-
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-        $type = new Type($_POST['type-name'], $_POST['type-description']);
-
-        $name = htmlspecialchars($type->getName());
-        $description = htmlspecialchars($type->getDescription());
-
-        $testSql = "SELECT * FROM type WHERE UPPER(Type_name) = UPPER(:name) AND UPPER(Type_description) = UPPER(:description)";
-        $testStmt = $conn->prepare($testSql);
-        $testStmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $testStmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $testStmt->execute();
-
-        if ($testStmt->rowCount() > 0) {
-            echo "Type already exists";
-        } else {
-            $insertSql = "INSERT INTO type (Type_name, Type_description) VALUES (?, ?)";
-            $insertStmt = $conn->prepare($insertSql);
-            $insertStmt->execute([$name, $description]);
-            echo "<script>alert('Type created successfully');</script>";
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
+    create_type();
     ?>
 
     <header>
