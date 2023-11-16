@@ -11,7 +11,6 @@
 
 <body>
     <?php
-
     require 'type_class.php';
     update_type();
     ?>
