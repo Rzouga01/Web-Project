@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="reclamation.css">
+    <script src="../../Controller/Reclamation/reclamation.js">
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="upbar-menu">
+
+            <ul class="upbar" type="none">
+                <li class="upbar-elements"><img src="/assets/logo/logo.png" id="logo" alt="Logo"></li>
+                <li class="upbar-elements" id="title">
+                    RecoveryButterfly
+                </li>
+                <div class="upbar-right">
+                    <li class="upbar-elements" id="joinUS"><a href="view/register/register.php">Join Us</a></li>
+                    <li class="upbar-elements" id="login"><a href="view/login/login.php">Log In</a></li>
+
+                </div>
+            </ul>
+        </div>
+
+        <div class="menu">
+            <ul class="nav_bar" type="none">
+                <li class="menu-elements"><a href="/view/index/index.html">Home</a></li>
+                <li class="menu-elements"><a href="/view/about/about.html">About Us</a></li>
+                <li class="menu-elements"><a href="view/News/news.html">News</a></li>
+                <li class="menu-elements"><a href="/view/Project/project.html">Projects</a></li>
+                <li class="menu-elements"><a href="view/Feedback/feedback.html">Feedback</a></li>
+                <li class="menu-elements"><a href="view/Contact/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+        
+        <h1>Formulaire de Réclamation</h1>
+        <form action="../../model/Reclamation/reclamation.php" method="post">
+            <label for="reclamation_text">Texte de la réclamation :</label>
+            <textarea name="reclamation_text" rows="10" ></textarea><br>
+        
+            <input type="submit" value="Soumettre la réclamation">
+        </form>
+</body>
+</html>
