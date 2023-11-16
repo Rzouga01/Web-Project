@@ -1,5 +1,6 @@
 /* Font import and global styles */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
 * {
   margin: 0;
   padding: 0;
@@ -33,6 +34,7 @@ nav {
 .navbar {
   width: 70px;
   transition: width 0.5s;
+  border-radius: 0 20px;
 }
 
 .navbar .nav-item {
@@ -43,22 +45,31 @@ nav {
 
 .navbar:hover {
   width: 280px;
+  border-radius: 0 20px;
+
 }
 
 .navbar:hover .nav-item {
   visibility: visible;
   opacity: 1;
+
 }
 
 
 .logo {
-  display:flex;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+
 }
 
 .logo img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  display: flex;
+  position: relative;
+  right: 10px;
+
 }
 
 .logo span {
@@ -66,6 +77,7 @@ nav {
   padding-left: 10px;
   font-size: 20px;
   text-transform: uppercase;
+
 }
 
 
@@ -84,7 +96,8 @@ a:hover {
   position: absolute;
   bottom: 0;
 }
-.users .card{
+
+.users .card {
   width: 100%;
   margin: 10px;
   background: #fff;
@@ -93,7 +106,8 @@ a:hover {
   padding: 10px;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
-.users .card h3{
+
+.users .card h3 {
   margin: 10px;
   text-transform: capitalize;
 }
