@@ -43,12 +43,12 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                    <li><a href="dashboard_type.php">
-                        <i class="fa fa-list"></i>
+                <li><a href="dashboard_type.php">
+                        <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
-                    <li><a href="dashboard_type.php">
-                        <i class="fa fa-list"></i>
+                <li><a href="dashboard_type.php">
+                        <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
                 <li><a href="">
