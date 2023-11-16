@@ -21,7 +21,7 @@ class ResponseC{
         }
     }
 
-    function afficherResponse(){
+    function afficherResponse($ID_response){
         $sql = "SELECT * FROM response WHERE ID_Response = $ID_response";
         $db = config::getConnexion();
         try {
