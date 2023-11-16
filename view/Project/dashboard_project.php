@@ -86,7 +86,6 @@ require "../../controller/Type/typeC.php";
         </section>
 
         <!-- Edit Modal -->
-        <!-- Edit Modal -->
         <div id="editModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close" onclick="closeEditModal()">&times;</span>
