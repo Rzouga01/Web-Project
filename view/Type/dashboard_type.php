@@ -68,7 +68,7 @@ require "../../controller/Type/typeC.php";
                                 echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"editType(" . $type['ID_Type'] . "," . $type['Type_name'] . "," . $type['Type_description'] . ")\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -85,21 +85,22 @@ require "../../controller/Type/typeC.php";
         </section>
 
         <!-- Edit Modal -->
+        <!-- Edit Modal -->
         <div id="editModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="close" onclick="closeEditModal()">&times;</span>
                 <div class="container">
-                    <form id="editForm" method="post" action="">
-                        <!-- Your existing edit form fields... -->
+                    <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
                         <table>
                             <tr>
-                                <td><label for="type-name">New Name</label></td>
-                                <td><input type="text" id="type-name" name="type-name"></td>
+                                <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
+                                <td><label for="new-type-name">New Name</label></td>
+                                <td><input type="text" id="new-type-name" name="new-type-name"></td>
                             </tr>
                             <tr>
-                                <td><label for="type-description">New Description</label></td>
+                                <td><label for="new-type-description">New Description</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description"></textarea>
+                                    <textarea id="new-type-description" name="new-type-description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -143,7 +144,6 @@ require "../../controller/Type/typeC.php";
             </div>
         </div>
     </div>
-    <script src="type.js"></script>
     <script>
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
@@ -152,29 +152,6 @@ require "../../controller/Type/typeC.php";
             }
         }
 
-        function Delete(id) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_delete.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    location.reload();
-                }
-            };
-            xhttp.send("id=" + id);
-        }
-
-        function createType() {
-            var modal = document.getElementById("AddModal");
-            modal.style.display = "block";
-        }
-
-        function confirmDelete(id) {
-            var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
-            if (userConfirmed) {
-                Delete(id);
-            }
-        }
 
         function Delete(id) {
             var xhttp = new XMLHttpRequest();
@@ -187,6 +164,18 @@ require "../../controller/Type/typeC.php";
             };
             xhttp.send("id=" + id);
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         function createType() {
             var modal = document.getElementById("AddModal");
@@ -201,7 +190,6 @@ require "../../controller/Type/typeC.php";
         function addType() {
             var typeName = document.getElementById("type-name");
             var typeDescription = document.getElementById("type-description");
-            var button_create = document.getElementById("button_create");
 
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
@@ -233,9 +221,62 @@ require "../../controller/Type/typeC.php";
 
 
 
-        function editType(id, name, description) {
 
-            //to finish
+
+
+
+
+        function closeEditModal() {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "none";
+        }
+
+        function openEditModal(id, name, description) {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "block";
+
+
+            document.getElementById("edit-type-id").value = id;
+            var existingTypeName = name;
+            var existingTypeDescription = description;
+
+
+        }
+
+        function editType() {
+
+            var id = document.getElementById("edit-type-id").value;
+
+            var typeName = document.getElementById("new-type-name");
+            var typeDescription = document.getElementById("new-type-description");
+
+
+            if (typeDescription.value === "" || typeDescription.value.length > 20) {
+                alert("Type Description should not be empty and should not exceed 20 characters.");
+                typeDescription.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                typeDescription.style.border = "1px solid green";
+            }
+
+            if (typeName.value === "" || typeName.value.length > 20) {
+                alert("Type Name should not be empty and should not exceed 20 characters.");
+                typeName.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                typeName.style.border = "1px solid green";
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Type/type_update.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    closeEditModal();
+                    location.reload();
+                }
+            };
+            xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(typeName.value) + "&description=" + encodeURIComponent(typeDescription.value));
         }
     </script>
 

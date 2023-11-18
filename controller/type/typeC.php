@@ -57,18 +57,25 @@ class TypeC
 
     function update_type($id, $newName, $newDescription)
     {
-
         $conn = Config::getConnexion();
 
+        // Use prepared statements to prevent SQL injection
+        $checkSql = "SELECT * FROM type WHERE UPPER(ID_Type)=UPPER(:id)";
+        $checkStatement = $conn->prepare($checkSql);
+        $checkStatement->bindParam(':id', $id);
+        $checkStatement->execute();
 
-        $checkSql = "SELECT * FROM type WHERE UPPER(Type_name)=UPPER('$id')";
-        $checkResult = $conn->query($checkSql);
-
-        if ($checkResult->rowCount() == 0) {
+        if ($checkStatement->rowCount() == 0) {
             echo "<script>alert('Type Does Not Exist');</script>";
         } else {
-            $updateSql = "UPDATE type SET Type_name = '$newName', Type_description = '$newDescription' WHERE UPPER(Type_name) = UPPER('$id')";
-            $conn->exec($updateSql);
+            // Use placeholders and bind parameters to prevent SQL injection
+            $updateSql = "UPDATE type SET Type_name = :newName, Type_description = :newDescription WHERE ID_Type = :id";
+            $updateStatement = $conn->prepare($updateSql);
+            $updateStatement->bindParam(':newName', $newName);
+            $updateStatement->bindParam(':newDescription', $newDescription);
+            $updateStatement->bindParam(':id', $id);
+
+            $updateStatement->execute();
 
             echo "<script>alert('Type Updated successfully');</script>";
         }
@@ -80,7 +87,7 @@ class TypeC
         try {
             $conn = Config::getConnexion();
 
-            $sql = "DELETE FROM type WHERE UPPER(ID_Type) = UPPER('$ID')";
+            $sql = "DELETE FROM type WHERE ID_Type = $ID";
 
             $conn->exec($sql);
 
