@@ -666,9 +666,11 @@ section header .text-muted {
 }
 
 .dropdown-menu-dark {
+  text-align: center;
   background-color: var(--dark-color);
 }
 
 .offcanvas.show {
   background-color: var(--dark-color);
 }
+
