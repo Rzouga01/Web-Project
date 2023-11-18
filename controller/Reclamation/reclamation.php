@@ -5,7 +5,7 @@ require '../../model/Reclamation/reclamationC.php';
 
 class ReclamationC{
     public function ajouterReclamation($reclamation){
-        $sql = "INSERT INTO reclamation_tab (ID_Reclamation ,ID_User , Reclamation_text , Reclamation_date , Reclamation_status) 
+        $sql = "INSERT INTO reclamation_tab (ID_Reclamation , Reclamation_text , Reclamation_date , Reclamation_status) 
         VALUES (:ID_Reclamation ,NULL, :Reclamation_text , :Reclamation_date , :Reclamation_status)  " ;
         $db = config::getConnexion();
         try{
@@ -13,7 +13,6 @@ class ReclamationC{
             $query = $db->prepare($sql);
             $query->execute([
                 'ID_Reclamation'=>$reclamation->getID_reclamation(),
-                'ID_User'=>$reclamation->getID_User(),
                 'Reclamation_text'=>$reclamation->getReclamation_text(),
                 'Reclamation_date'=>$reclamation->getReclamation_date()->format('Y-m-d'),
                 'Reclamation_status'=>$reclamation->getReclamation_status(),
@@ -56,7 +55,6 @@ class ReclamationC{
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE reclamation_tab SET 
-                    ID_User = :ID_User, 
                     Reclamation_text = :Reclamation_text, 
                     Reclamation_date = :Reclamation_date, 
                     Reclamation_status = :Reclamation_status,
@@ -64,7 +62,6 @@ class ReclamationC{
             );
             $query->execute([
                 'ID_reclamation' => $ID_reclamation,
-                'ID_User' => $reclamation->getID_User(),
                 'Reclamation_text' => $reclamation->getReclamation_text(),
                 'Reclamation_date' => $reclamation->getReclamation_date()->format('Y/m/d'),
                 'Reclamation_status' => $reclamation->getReclamation_status()
