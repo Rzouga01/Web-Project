@@ -235,7 +235,7 @@ require "../../controller/Type/typeC.php";
 
         function editType(id, name, description) {
 
-
+            //to finish
         }
     </script>
 
