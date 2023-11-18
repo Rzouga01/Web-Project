@@ -5,4 +5,15 @@
 
 button {
     padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px #eee;
+    margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #eee;
+    box-shadow: 0 0 5px #474747;
+    transition: 0.5s;
 }

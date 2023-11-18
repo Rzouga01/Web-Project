@@ -120,9 +120,6 @@ a:hover {
   text-transform: capitalize;
 }
 
-.users .card tr:hover {
-  background-color: #f1f1f1;
-}
 
 .users .card td {
   padding: 30px;
