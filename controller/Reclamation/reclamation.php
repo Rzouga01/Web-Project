@@ -6,7 +6,7 @@ require '../../model/Reclamation/reclamationC.php';
 class ReclamationC{
     public function ajouterReclamation($reclamation){
         $sql = "INSERT INTO reclamation_tab (ID_Reclamation , Reclamation_text , Reclamation_date , Reclamation_status) 
-        VALUES (:ID_Reclamation ,NULL, :Reclamation_text , :Reclamation_date , :Reclamation_status)  " ;
+        VALUES (:ID_Reclamation , :Reclamation_text , :Reclamation_date , :Reclamation_status)  " ;
         $db = config::getConnexion();
         try{
             print_r($reclamation->getReclamation_date()->format('Y-m-d'));
