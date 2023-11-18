@@ -14,15 +14,12 @@ class reclamation
         $this->reclamation_date = date ('Y-m-d');
         $this->status_reclamation = $status_reclamation;
     }
-
     function getID_reclamation(){
         return $this->ID_reclamation;
     }
-
     function getID_User(){
         return $this->ID_User;
     }
-    
     function getReclamation_text(){
         return $this->reclamation_text;
     }
