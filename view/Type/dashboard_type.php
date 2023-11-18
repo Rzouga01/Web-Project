@@ -1,186 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
-require_once realpath(dirname(__DIR__, 2) . '/model/Connection/connection.php');
-require_once '../../model/User/user_class.php';
-require_once '../../model/User/user.php';
-$userCRUD = new UserCRUD($pdo);
-$users = $userCRUD->getAllUsers();
+require "../../controller/Type/typeC.php";
 ?>
-<span style="font-family: verdana, geneva, sans-serif;">
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="dashboard.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="type.css">
+</head>
 
-    <body>
-        <div class="container">
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#" class="logo">
-                            <img src="./../../assets/logo/logo.png" alt="">
-                            <span class="nav-item">Dashboard</span>
-                        </a></li>
-                    <li><a href="#">
-                            <i class="fas fa-home"></i>
-                            <span class="nav-item">Home</span>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fas fa-users"></i>
-                            <span class="nav-item">Users</span>
-                        </a></li>
-
-                    <li><a href="">
-                            <i class="fas fa-cog"></i>
-                            <span class="nav-item">Settings</span>
-                        </a></li>
-
-                    <li><a href="" class="logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-item">Log out</span>
-                        </a></li>
-                </ul>
-            </nav>
-            <section class="main">
-                <div class="users">
-                    <div class="card">
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="../../assets/images/logo.png" alt="">
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <li><a href="../index.html">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a></li>
+                <li><a href="">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
+                <li><a href="">
                         <i class="fas fa-users"></i>
-                        <h3>Users list</h3>
-                        <table class="table table-bordered">
-                            <?php foreach ($users as $user): ?>
-                                <tr>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['ID_USER']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['First_Name']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Last_Name']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Email']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Phone_number']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Birthdate']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Country']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;">
-                                        <?php echo $user['Role']; ?>
-                                    </td>
-                                    <td style="padding: 0 10px;"><a href="#" class="edit-btn">Edit</a></td>
-                                    <td style="padding: 0 10px;">
-                                        <form method="post" action="">
-                                            <input type="hidden" name="delete" value="<?php echo $user['ID_USER']; ?>">
-                                            <button type="submit"
-                                                onclick="return confirmDelete(<?php echo $user['ID_USER']; ?>)">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
-                        <a href="../../view/Register/register.html">Add User</a>
-                    </div>
-                </div>
-            </section>
-            <div id="editModal" class="modal" style="display: none;">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div class="container">
-                    <form id="editForm" method="post" action="">
-                            <div class="row">
-                                <div class="col-50">
-                                    <h3>User Information</h3>
-                                    <label for="edit-First_Name"> First Name</label>
-                                    <input type="text" id="edit-First_Name" name="First_Name">
-                                    <label for="edit-Last_Name"> Last Name</label>
-                                    <input type="text" id="edit-Last_Name" name="Last_Name">
-                                    <label for="edit-Email"> Email</label>
-                                    <input type="email" id="edit-Email" name="Email">
-                                    <label for="edit-Phone_number">Phone Number :</label>
-                                    <input type="text" id="edit-Phone_number" name="Phone_number"
-                                        placeholder="Phone Number">
-                                    <label for="edit-Password">Password :</label>
-                                    <input type="password" id="edit-Password" name="Password" placeholder="Password">
-                                    <label for="edit-Birthdate">Birthdate :</label>
-                                    <input type="date" id="edit-Birthdate" name="Birthdate">
-                                    <label for="edit-Country">Country :</label>
-                                    <select name="Country" id="edit-Country">
-                                        <option value="">Select Country</option>
-                                        <option value="Country 1">Country 1</option>
-                                        <option value="Country 2">Country 2</option>
-                                    </select>
-                                    <label for="edit-Role">Role :</label>
-                                    <select name="Role" id="edit-Role">
-                                        <option value="">Select Role</option>
-                                        <option value="Admin">Organisation</option>
-                                        <option value="User">User</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <input type="submit" value="Update" class="btn">
-                        </form>
-                    </div>
+                        <span class="nav-item">Users</span>
+                    </a></li>
+                <li><a href="dashboard_type.php">
+                        <i class="fa fa-list"></i>
+                        <span class="nav-item">Types</span>
+                    </a></li>
+                <li><a href="">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-item">Settings</span>
+                    </a></li>
+                <li><a href="" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="users">
+                <div class="card">
+                    <i class="fa fa-list"></i>
+                    <h3>Type list</h3>
+                    <table class="table table-bordered">
+                        <?php
+                        $Type = new TypeC();
+                        $types = $Type->read_type();
+
+                        if (!empty($types) && (is_iterable($types) || is_object($types))) {
+                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
+                            foreach ($types as $type) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
+                                echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
+                                echo "<td>";
+                                echo "<button onclick=\"editType(" . $type['ID_Type'] . "," . $type['Type_name'] . "," . $type['Type_description'] . ")\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        if (empty($types)) {
+                            echo "<tr><td colspan='4'>No types found</td></tr>";
+                        }
+                        ?>
+                    </table>
+                    <button onclick="createType()">Add a Type</button>
                 </div>
             </div>
-    </body>
+        </section>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="container">
+                    <form id="editForm" method="post" action="">
+                        <!-- Your existing edit form fields... -->
+                        <table>
+                            <tr>
+                                <td><label for="type-name">New Name</label></td>
+                                <td><input type="text" id="type-name" name="type-name"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="type-description">New Description</label></td>
+                                <td>
+                                    <textarea id="type-description" name="type-description"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="Update" id="button_update"></td>
+                                <td><input type="reset" value="Reset"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Modal -->
+        <div id="AddModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddModal()">&times;</span>
+                <div class="container">
+                    <form id="AddForm" onsubmit="event.preventDefault(); addType();">
+                        <table>
+                            <tr>
+                                <td><label for="type-name">Type Name</label></td>
+                                <td><input type="text" id="type-name" name="type-name"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="type-description">Type Description</label></td>
+                                <td>
+                                    <textarea id="type-description" name="type-description"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Create" id="button_create">
+                                    <input type="reset" value="Reset">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="type.js"></script>
     <script>
         function confirmDelete(id) {
-    return confirm('Are you sure you want to delete user with ID ' + id + '?');
-        }
-
-        var modal = document.getElementById("editModal");
-        var span = document.getElementsByClassName("close")[0];
-
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
+            if (userConfirmed) {
+                Delete(id);
             }
         }
 
-        document.querySelectorAll('.edit-btn').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                var row = e.target.parentNode.parentNode;
-                document.getElementById('edit-First_Name').value = row.children[1].innerText;
-                document.getElementById('edit-Last_Name').value = row.children[2].innerText;
-                document.getElementById('edit-Email').value = row.children[3].innerText;
-                document.getElementById('edit-Phone_number').value = row.children[4].innerText;
-                document.getElementById('edit-Birthdate').value = row.children[5].innerText;
-                modal.style.display = "block";
-            });
-        });
-        document.getElementById('edit-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            fetch('../../model/User/user.php', {
-                method: 'POST',
-                body: formData
-            }).then(function (response) {
-                return response.text();
-            }).then(function (data) {
-                console.log(data);
-            }).catch(function (error) {
-                console.error(error);
-            });
-        });
+        function Delete(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Type/type_delete.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    location.reload();
+                }
+            };
+            xhttp.send("id=" + id);
+        }
+
+        function createType() {
+            var modal = document.getElementById("AddModal");
+            modal.style.display = "block";
+        }
+
+        function confirmDelete(id) {
+            var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
+            if (userConfirmed) {
+                Delete(id);
+            }
+        }
+
+        function Delete(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Type/type_delete.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    location.reload();
+                }
+            };
+            xhttp.send("id=" + id);
+        }
+
+        function createType() {
+            var modal = document.getElementById("AddModal");
+            modal.style.display = "block";
+        }
+
+        function closeAddModal() {
+            var modal = document.getElementById("AddModal");
+            modal.style.display = "none";
+        }
+
+        function addType() {
+            var typeName = document.getElementById("type-name");
+            var typeDescription = document.getElementById("type-description");
+            var button_create = document.getElementById("button_create");
+
+            if (typeDescription.value === "" || typeDescription.value.length > 20) {
+                alert("Type Description should not be empty and should not exceed 20 characters.");
+                typeDescription.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                typeDescription.style.border = "1px solid green";
+            }
+
+            if (typeName.value === "" || typeName.value.length > 20) {
+                alert("Type Name should not be empty and should not exceed 20 characters.");
+                typeName.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                typeName.style.border = "1px solid green";
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Type/type_create.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    closeAddModal();
+                    location.reload();
+                }
+            };
+            xhttp.send("type-name=" + encodeURIComponent(typeName.value) + "&type-description=" + encodeURIComponent(typeDescription.value));
+        }
+
+
+
+        function editType(id, name, description) {
+
+
+        }
     </script>
 
-    </html>
-</span>
+</body>
+
+</html>
+</script>
+
+</body>
+
+</html>

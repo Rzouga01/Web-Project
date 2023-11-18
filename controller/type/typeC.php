@@ -5,15 +5,12 @@ require '../../database/connect.php';
 require '../../model/Type/type_class.php';
 
 
-class Type_description
+class TypeC
 {
 
-    function create_type($type)
+    function create_type($name, $description)
     {
         $conn = Config::getConnexion();
-
-        $name = htmlspecialchars($type->getName());
-        $description = htmlspecialchars($type->getDescription());
 
         $testSql = "SELECT * FROM type WHERE UPPER(Type_name) = UPPER(:name) AND UPPER(Type_description) = UPPER(:description)";
         $testStmt = $conn->prepare($testSql);
@@ -22,53 +19,55 @@ class Type_description
         $testStmt->execute();
 
         if ($testStmt->rowCount() > 0) {
-            echo "Type already exists";
+            return "Type already exists";
         } else {
-            $insertSql = "INSERT INTO type (Type_name, Type_description) VALUES (?, ?)";
+            $insertSql = "INSERT INTO type (Type_name, Type_description) VALUES (:name, :description)";
             $insertStmt = $conn->prepare($insertSql);
-            $insertStmt->execute([$name, $description]);
-            echo "<script>alert('Type created successfully');</script>";
+            $insertStmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $insertStmt->bindParam(':description', $description, PDO::PARAM_STR);
+
+            if ($insertStmt->execute()) {
+                return "Type created successfully";
+            } else {
+                return "Error creating type";
+            }
         }
     }
 
     function read_type()
     {
-
         $conn = Config::getConnexion();
+        $types = [];
 
         $r = $conn->query("SELECT * FROM type");
-        echo "<table>";
-        echo "<tr>";
-        echo "<th>ID</th>";
-        echo "<th>Name</th>";
-        echo "<th>Description</th>";
-        echo "</tr>";
+
         foreach ($r as $row) {
-            echo "<tr>";
-            echo "<td>" . $row['ID_Type'] . "</td>";
-            echo "<td>" . $row['Type_name'] . "</td>";
-            echo "<td>" . $row['Type_description'] . "</td>";
-            echo "</tr>";
+            $type = [
+                'ID_Type' => $row['ID_Type'],
+                'Type_name' => $row['Type_name'],
+                'Type_description' => $row['Type_description']
+            ];
+            $types[] = $type;
         }
-        echo "</table>";
+
+        return $types;
     }
 
 
 
-
-    function update_type($name, $newName, $newDescription)
+    function update_type($id, $newName, $newDescription)
     {
 
         $conn = Config::getConnexion();
 
 
-        $checkSql = "SELECT * FROM type WHERE UPPER(Type_name)=UPPER('$name')";
+        $checkSql = "SELECT * FROM type WHERE UPPER(Type_name)=UPPER('$id')";
         $checkResult = $conn->query($checkSql);
 
         if ($checkResult->rowCount() == 0) {
             echo "<script>alert('Type Does Not Exist');</script>";
         } else {
-            $updateSql = "UPDATE type SET Type_name = '$newName', Type_description = '$newDescription' WHERE UPPER(Type_name) = UPPER('$name')";
+            $updateSql = "UPDATE type SET Type_name = '$newName', Type_description = '$newDescription' WHERE UPPER(Type_name) = UPPER('$id')";
             $conn->exec($updateSql);
 
             echo "<script>alert('Type Updated successfully');</script>";
@@ -76,12 +75,12 @@ class Type_description
     }
 
 
-    function delete_type($name)
+    function delete_type($ID)
     {
         try {
             $conn = Config::getConnexion();
 
-            $sql = "DELETE FROM type WHERE UPPER(Type_name) = UPPER('$name')";
+            $sql = "DELETE FROM type WHERE UPPER(ID_Type) = UPPER('$ID')";
 
             $conn->exec($sql);
 
