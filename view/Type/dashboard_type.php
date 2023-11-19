@@ -82,6 +82,7 @@ require "../../controller/Type/typeC.php";
                     <button onclick="createType()">Add a Type</button>
                 </div>
             </div>
+
         </section>
 
         <!-- Edit Modal -->

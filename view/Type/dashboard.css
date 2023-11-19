@@ -28,7 +28,11 @@ body {
 
 .container {
   display: flex;
+
 }
+
+
+
 
 
 nav {
@@ -113,6 +117,7 @@ a:hover {
   border-radius: 20px;
   padding: 10px;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+
 }
 
 .users .card h3 {
