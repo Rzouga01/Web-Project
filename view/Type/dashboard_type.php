@@ -100,7 +100,7 @@ require "../../controller/Type/typeC.php";
                             <tr>
                                 <td><label for="new-type-description">New Description</label></td>
                                 <td>
-                                    <textarea id="new-type-description" name="new-type-description"></textarea>
+                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -128,7 +128,7 @@ require "../../controller/Type/typeC.php";
                             <tr>
                                 <td><label for="type-description">Type Description</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description"></textarea>
+                                    <textarea id="type-description" name="type-description" class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -145,6 +145,7 @@ require "../../controller/Type/typeC.php";
         </div>
     </div>
     <script>
+        // DELETE TYPE MODAL
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -168,15 +169,7 @@ require "../../controller/Type/typeC.php";
 
 
 
-
-
-
-
-
-
-
-
-
+        // ADD TYPE MODAL
         function createType() {
             var modal = document.getElementById("AddModal");
             modal.style.display = "block";
@@ -223,9 +216,7 @@ require "../../controller/Type/typeC.php";
 
 
 
-
-
-
+        // EDIT TYPE MODAL
         function closeEditModal() {
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
