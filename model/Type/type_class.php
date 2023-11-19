@@ -29,10 +29,3 @@ class Type
         $this->description = $description;
     }
 }
-
-
-
-
-
-
-
