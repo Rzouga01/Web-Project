@@ -40,7 +40,7 @@ require "../../controller/Type/typeC.php";
                         <span class="nav-item">Types</span>
                     </a></li>
                 <li><a href="../Project/dashboard_project.php">
-                        <i class="fa fa-list"></i>
+                        <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
                 <li><a href="dashboard_type.php">
@@ -70,7 +70,7 @@ require "../../controller/Type/typeC.php";
             <div class="users">
                 <div class="card">
                     <i class="fa fa-list"></i>
-                    <h3>Type list</h3>
+                    <h3>Types List</h3>
                     <table class="table table-bordered">
                         <?php
                         $Type = new TypeC();

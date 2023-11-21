@@ -40,7 +40,7 @@ require "../../controller/Project/ProjectC.php";
                         <span class="nav-item">Types</span>
                     </a></li>
                 <li><a href="dashboard_project.php">
-                        <i class="fa fa-list"></i>
+                        <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
                 <li><a href="dashboard_type.php">
@@ -66,24 +66,25 @@ require "../../controller/Project/ProjectC.php";
             <div class="users">
                 <div class="card">
                     <i class="fa fa-list"></i>
-                    <h3>Type list</h3>
+                    <h3>Projects List</h3>
                     <table class="table table-bordered">
                         <?php
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
+                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th><th>Actions</th></tr>";
                             foreach ($projects as $project) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Start_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Percentage']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Org_id']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Type_id']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Percentage']) . "%"  . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
                                 echo "<td>";
                                 echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
@@ -96,7 +97,7 @@ require "../../controller/Project/ProjectC.php";
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Type</button>
+                    <button onclick="createType()">Add a Project</button>
                 </div>
             </div>
 

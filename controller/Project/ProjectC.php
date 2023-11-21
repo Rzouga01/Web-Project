@@ -62,12 +62,12 @@ class ProjectC
                 'ID_Project' => $row['ID_Project'],
                 'Project_name' => $row['Project_name'],
                 'Project_description' => $row['Project_description'],
-                'Start_date' => $row['Start_date'],
+                'start_date' => $row['start_date'],
                 'Goal' => $row['Goal'],
                 'Current_amount' => $row['Current_amount'],
                 'Percentage' => $row['Percentage'],
-                'Org_id' => $row['Org_id'],
-                'Type_id' => $row['Type_id']
+                'ID_Org' => $row['ID_Org'],
+                'ID_Type' => $row['ID_Type']
             ];
             $projects[] = $Project;
         }
