@@ -35,11 +35,11 @@ require "../../controller/Project/ProjectC.php";
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Type//dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="../Project/dashboard_project.php">
+                <li><a href="dashboard_project.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
@@ -85,8 +85,8 @@ require "../../controller/Project/ProjectC.php";
                                 echo "<td>" . htmlspecialchars($project['Org_id']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Type_id']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
-                                echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
+                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "')\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
