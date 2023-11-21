@@ -51,6 +51,10 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
+                    <li><a href="dashboard_type.php">
+                        <i class="fa fa-comments"></i>
+                        <span class="nav-item">Feedback</span>
+                    </a></li>
                 <li><a href="">
                         <i class="fas fa-cog"></i>
                         <span class="nav-item">Settings</span>
