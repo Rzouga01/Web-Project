@@ -23,7 +23,7 @@ class ReclamationC{
         }
     }
 
-    function afficherReclamation(){
+    function afficherReclamation( $ID_reclamation ){
         $sql = "SELECT * FROM reclamation_tab WHERE ID_Reclamation = $ID_reclamation ";
         $db = config::getConnexion();
         try {
