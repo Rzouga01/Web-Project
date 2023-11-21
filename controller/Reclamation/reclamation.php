@@ -3,55 +3,61 @@
 require '../../database/config.php';
 require '../../model/Reclamation/reclamationC.php';
 
-class ReclamationC{
-    public function ajouterReclamation($reclamation){
+class ReclamationC
+{
+    public function ajouterReclamation($reclamation)
+    {
         $sql = "INSERT INTO reclamation_tab (ID_Reclamation , Reclamation_text , Reclamation_date , Reclamation_status) 
-        VALUES (:ID_Reclamation , :Reclamation_text , :Reclamation_date , :Reclamation_status)  " ;
+        VALUES (:ID_Reclamation , :Reclamation_text , :Reclamation_date , :Reclamation_status)  ";
         $db = config::getConnexion();
-        try{
+        try {
             print_r($reclamation->getReclamation_date()->format('Y-m-d'));
             $query = $db->prepare($sql);
             $query->execute([
-                'ID_Reclamation'=>$reclamation->getID_reclamation(),
-                'Reclamation_text'=>$reclamation->getReclamation_text(),
-                'Reclamation_date'=>$reclamation->getReclamation_date()->format('Y-m-d'),
-                'Reclamation_status'=>$reclamation->getReclamation_status(),
+                'ID_Reclamation' => $reclamation->getID_reclamation(),
+                'Reclamation_text' => $reclamation->getReclamation_text(),
+                'Reclamation_date' => $reclamation->getReclamation_date()->format('Y-m-d'),
+                'Reclamation_status' => $reclamation->getReclamation_status(),
 
             ]);
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             echo 'Erreur: ' . $e->getMessage();
         }
     }
 
-    function afficherReclamation( $ID_reclamation ){
+<<<<<<< HEAD
+=======
+    function afficherReclamation($ID_reclamation)
+    {
+>>>>>>> 875c2bf4990869f02f57d38a023d54b03c062bd6
         $sql = "SELECT * FROM reclamation_tab WHERE ID_Reclamation = $ID_reclamation ";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
-            $query -> execute();
+            $query->execute();
             $reclamation = $query->fetch();
             return $reclamation;
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             die('Erreur:' . $e->getMessage());
         }
-
     }
 
-    function supprimerReclamation($ID_reclamation){
+    function supprimerReclamation($ID_reclamation)
+    {
         $sql = "DELETE FROM reclamation_tab WHERE ID_Reclamation = $ID_reclamation";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        $req->bindValue(':ID_reclamation',$ID_reclamation);
-        try{
+        $req->bindValue(':ID_reclamation', $ID_reclamation);
+        try {
             $req->execute();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             die('Erreur:' . $e->getMessage());
         }
     }
-    
-    function modifierReclamation($reclamation,$ID_reclamation)
+
+    function modifierReclamation($reclamation, $ID_reclamation)
     {
-        try{
+        try {
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE reclamation_tab SET 
@@ -66,9 +72,9 @@ class ReclamationC{
                 'Reclamation_date' => $reclamation->getReclamation_date()->format('Y/m/d'),
                 'Reclamation_status' => $reclamation->getReclamation_status()
             ]);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $e->getMessage();
-    }
+        }
     }
 
     //cette fonction permet d'afficher la liste des reclamations dans la base de données
@@ -83,13 +89,4 @@ class ReclamationC{
             die('Erreur:' . $e->getMessage());
         }
     }
-
-
-    
-    
-    
 }
-
-
-
-?>
