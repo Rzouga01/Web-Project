@@ -3,16 +3,14 @@
 require '../../database/connect.php';
 require '../../model/Project/project_class.php';
 
-
 class ProjectC
 {
-
-    function create_project($project_name, $project_description, $start_date, $goal, $current_amount, $percentage, $org_id, $type_id)
+    public function create_project($project_name, $project_description, $start_date, $goal, $current_amount, $percentage, $org_id, $type_id)
     {
         $conn = Config::getConnexion();
 
-        $testSql = "SELECT * FROM project WHERE UPPER(Project_name) = UPPER($project_name) 
-        AND UPPER(Project_description) = UPPER($project_description) 
+        $testSql = "SELECT * FROM project WHERE UPPER(Project_name) = UPPER(:project_name) 
+        AND UPPER(Project_description) = UPPER(:project_description) 
         AND UPPER(Start_date) = UPPER(:start_date) 
         AND UPPER(Goal) = UPPER(:goal) 
         AND UPPER(Current_amount) = UPPER(:current_amount) 
@@ -20,11 +18,21 @@ class ProjectC
         AND UPPER(Org_id) = UPPER(:org_id) 
         AND UPPER(Type_id) = UPPER(:type_id)";
         $testStmt = $conn->prepare($testSql);
+        $testStmt->bindParam(':project_name', $project_name, PDO::PARAM_STR);
+        $testStmt->bindParam(':project_description', $project_description, PDO::PARAM_STR);
+        $testStmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
+        $testStmt->bindParam(':goal', $goal, PDO::PARAM_STR);
+        $testStmt->bindParam(':current_amount', $current_amount, PDO::PARAM_STR);
+        $testStmt->bindParam(':percentage', $percentage, PDO::PARAM_STR);
+        $testStmt->bindParam(':org_id', $org_id, PDO::PARAM_STR);
+        $testStmt->bindParam(':type_id', $type_id, PDO::PARAM_STR);
+        $testStmt->execute();
 
         if ($testStmt->rowCount() > 0) {
             return "Project already exists";
         } else {
-            $insertSql = "INSERT INTO project (Project_name, Project_description, Start_date, Goal, Current_amount, Percentage, Org_id, Type_id) VALUES (:project_name, :project_description, :start_date, :goal, :current_amount, :percentage, :org_id, :type_id)";
+            $insertSql = "INSERT INTO project (Project_name, Project_description, Start_date, Goal, Current_amount, Percentage, Org_id, Type_id) 
+                VALUES (:project_name, :project_description, :start_date, :goal, :current_amount, :percentage, :org_id, :type_id)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->bindParam(':project_name', $project_name, PDO::PARAM_STR);
             $insertStmt->bindParam(':project_description', $project_description, PDO::PARAM_STR);
@@ -43,11 +51,10 @@ class ProjectC
         }
     }
 
-    function read_project()
+    public function read_project()
     {
         $conn = Config::getConnexion();
         $projects = [];
-
 
         $r = $conn->query("SELECT * FROM project");
         foreach ($r as $row) {
@@ -55,30 +62,30 @@ class ProjectC
                 'ID_Project' => $row['ID_Project'],
                 'Project_name' => $row['Project_name'],
                 'Project_description' => $row['Project_description'],
-                'Start_date' => $row['start_date'],
+                'Start_date' => $row['Start_date'],
                 'Goal' => $row['Goal'],
                 'Current_amount' => $row['Current_amount'],
                 'Percentage' => $row['Percentage'],
                 'Org_id' => $row['Org_id'],
                 'Type_id' => $row['Type_id']
             ];
+            $projects[] = $Project;
         }
-        $projects[] = $Project;
 
         return $projects;
     }
 
-
-
-    function delete($ID)
+    public function delete($ID)
     {
         try {
             $conn = Config::getConnexion();
-            $sql = "DELETE FROM project WHERE ID_Project = $ID";
-            $conn->exec($sql);
-            echo "<script>alert('Project deleted successfully');</script>";
+            $sql = "DELETE FROM project WHERE ID_Project = :ID";
+            $deleteStmt = $conn->prepare($sql);
+            $deleteStmt->bindParam(':ID', $ID, PDO::PARAM_INT);
+            $deleteStmt->execute();
+            return "Project deleted successfully";
         } catch (PDOException $e) {
-            echo $sql . '<br>' . $e->getMessage();
+            return "Error deleting project: " . $e->getMessage();
         }
     }
 }

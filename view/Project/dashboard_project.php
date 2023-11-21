@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require "../../controller/Type/typeC.php";
+require "../../controller/Project/ProjectC.php";
 ?>
 
 <head>
@@ -39,7 +39,7 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Project/dashboard_project.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
@@ -69,16 +69,21 @@ require "../../controller/Type/typeC.php";
                     <h3>Type list</h3>
                     <table class="table table-bordered">
                         <?php
-                        $Type = new TypeC();
-                        $types = $Type->read_type();
+                        $projectC = new ProjectC();
+                        $projects = $projectC->read_project();
 
-                        if (!empty($types) && (is_iterable($types) || is_object($types))) {
+                        if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
                             echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
-                            foreach ($types as $type) {
+                            foreach ($projects as $project) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Start_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Percentage']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Org_id']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Type_id']) . "</td>";
                                 echo "<td>";
                                 echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
@@ -86,8 +91,8 @@ require "../../controller/Type/typeC.php";
                                 echo "</tr>";
                             }
                         }
-                        if (empty($types)) {
-                            echo "<tr><td colspan='4'>No types found</td></tr>";
+                        if (empty($projects)) {
+                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
                         }
                         ?>
                     </table>
