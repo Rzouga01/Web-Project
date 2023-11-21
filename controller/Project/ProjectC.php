@@ -75,3 +75,6 @@ class ProjectC
         }
     }
 }
+
+$project = new ProjectC();
+$project->create_project("a", "a", "2022-09-28", "1", "5", "10", "1", "5");
