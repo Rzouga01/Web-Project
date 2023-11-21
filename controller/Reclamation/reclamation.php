@@ -25,11 +25,8 @@ class ReclamationC
         }
     }
 
-<<<<<<< HEAD
-=======
     function afficherReclamation($ID_reclamation)
     {
->>>>>>> 875c2bf4990869f02f57d38a023d54b03c062bd6
         $sql = "SELECT * FROM reclamation_tab WHERE ID_Reclamation = $ID_reclamation ";
         $db = config::getConnexion();
         try {
