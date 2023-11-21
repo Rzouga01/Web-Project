@@ -11,7 +11,14 @@ class ProjectC
     {
         $conn = Config::getConnexion();
 
-        $testSql = "SELECT * FROM project WHERE UPPER(Project_name) = UPPER($project_name) AND UPPER(Project_description) = UPPER($project_description) AND UPPER(Start_date) = UPPER(:start_date) AND UPPER(Goal) = UPPER(:goal) AND UPPER(Current_amount) = UPPER(:current_amount) AND UPPER(Percentage) = UPPER(:percentage) AND UPPER(Org_id) = UPPER(:org_id) AND UPPER(Type_id) = UPPER(:type_id)";
+        $testSql = "SELECT * FROM project WHERE UPPER(Project_name) = UPPER($project_name) 
+        AND UPPER(Project_description) = UPPER($project_description) 
+        AND UPPER(Start_date) = UPPER(:start_date) 
+        AND UPPER(Goal) = UPPER(:goal) 
+        AND UPPER(Current_amount) = UPPER(:current_amount) 
+        AND UPPER(Percentage) = UPPER(:percentage) 
+        AND UPPER(Org_id) = UPPER(:org_id) 
+        AND UPPER(Type_id) = UPPER(:type_id)";
         $testStmt = $conn->prepare($testSql);
 
         if ($testStmt->rowCount() > 0) {
@@ -75,6 +82,3 @@ class ProjectC
         }
     }
 }
-
-$project = new ProjectC();
-$project->create_project("a", "a", "2022-09-28", "1", "5", "10", "1", "5");
