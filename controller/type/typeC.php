@@ -20,7 +20,7 @@ class TypeC
 
         if ($testStmt->rowCount() > 0) {
             return "Type already exists";
-        } else {
+        } else {    
             $insertSql = "INSERT INTO type (Type_name, Type_description) VALUES (:name, :description)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->bindParam(':name', $name, PDO::PARAM_STR);

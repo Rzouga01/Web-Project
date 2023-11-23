@@ -43,7 +43,7 @@ require "../../controller/Project/ProjectC.php";
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Reclamation/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
@@ -91,8 +91,7 @@ require "../../controller/Project/ProjectC.php";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-                        }
-                        if (empty($projects)) {
+                        } else {
                             echo "<tr><td colspan='4'>No Projects found</td></tr>";
                         }
                         ?>
@@ -140,15 +139,33 @@ require "../../controller/Project/ProjectC.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="type-name">Type Name</label></td>
-                                <td><input type="text" id="type-name" name="type-name"></td>
+                                <td><label for="project-name">Project Name</label></td>
+                                <td><input type="text" id="project-name" name="project-name"></td>
                             </tr>
                             <tr>
-                                <td><label for="type-description">Type Description</label></td>
+                                <td><label for="project-description">Project Description</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                    <textarea id="project-description" name="project-description" class="description"></textarea>
                                 </td>
                             </tr>
+                            <tr>
+                                <td><label for="project-date">Start Date</label></td>
+                                <td><input type="date" id="project-date" name="project-date"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="project-goal">Goal Amount</label></td>
+                                <td><input type="number" id="project-goal" name="project-goal" value=0></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <select>
+                                        <?php  ?>
+                                        <option value="1">test 1</option>
+                                        <option value="2">test 2</option>
+                                    </select>
+                                </td>
                             <tr>
                                 <td></td>
                                 <td>
@@ -205,7 +222,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -213,7 +230,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
@@ -263,7 +280,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -271,7 +288,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
