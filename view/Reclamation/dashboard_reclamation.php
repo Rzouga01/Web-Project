@@ -90,8 +90,7 @@ require "../../controller/Reclamation/reclamation.php";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-                        }
-                        if (empty($reclamations)) {
+                        } else {
                             echo "<tr><td colspan='4'>No reclamations found</td></tr>";
                         }
                         ?>
