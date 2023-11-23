@@ -9,7 +9,7 @@ require "../../controller/Reclamation/reclamation.php";
     <meta charset="UTF-8" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="reclamation.css">
+    <link rel="stylesheet" href="../dashboard.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@ require "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Project/dashboard_project.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
@@ -75,7 +75,7 @@ require "../../controller/Reclamation/reclamation.php";
                         $reclamation = new ReclamationC();
                         $reclamations = $reclamation->listReclamation();
 
-                        if (!empty($reclamations)&&(is_iterable($reclamations) || is_object($reclamations))) {
+                        if (!empty($reclamations) && (is_iterable($reclamations) || is_object($reclamations))) {
                             echo "<tr><th>ID</th><th>ID User</th><th>Text</th><th>Date</th><th>Status</th><th>Actions</th></tr>";
                             foreach ($reclamations as $reclamation) {
                                 echo "<tr>";
@@ -90,8 +90,7 @@ require "../../controller/Reclamation/reclamation.php";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-                        }
-                        else{
+                        } else {
                             echo "<tr><td colspan='4'>No Reclamations found</td></tr>";
                         }
                         ?>
@@ -130,8 +129,8 @@ require "../../controller/Reclamation/reclamation.php";
                 </div>
             </div>
         </div>
-         <!-- Add Modal -->
-         <div id="AddModal" class="modal" style="display: none;">
+        <!-- Add Modal -->
+        <div id="AddModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close" onclick="closeAddModal()">&times;</span>
                 <div class="container">

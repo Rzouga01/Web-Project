@@ -23,17 +23,12 @@
 
 body {
   background: #dfe9f5;
+  font-family: "Poppins", sans-serif;
 }
-
 
 .container {
   display: flex;
-
 }
-
-
-
-
 
 nav {
   position: relative;
@@ -54,26 +49,25 @@ nav {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+
 }
 
 .navbar:hover {
   width: 280px;
   border-radius: 0 20px;
-
 }
 
 .navbar:hover .nav-item {
   visibility: visible;
   opacity: 1;
+  transition: opacity 0.5s linear;
 
 }
-
 
 .logo {
   display: flex;
   align-items: center;
   padding: 20px;
-
 }
 
 .logo img {
@@ -82,7 +76,17 @@ nav {
   display: flex;
   position: relative;
   right: 10px;
+}
 
+.navbar {
+  width: 70px;
+  transition: width 0.5s;
+  border-radius: 0;
+}
+
+.navbar:hover {
+  width: 280px;
+  border-radius: 0 20px;
 }
 
 .logo span {
@@ -90,24 +94,123 @@ nav {
   padding-left: 10px;
   font-size: 20px;
   text-transform: uppercase;
-
 }
 
 a {
   color: rgb(85, 83, 83);
   font-size: 20px;
   display: block;
+  transition: opacity 0.5s linear;
   padding: 20px;
 }
 
 a:hover {
-  background: #eee;
+  background-color: #F4BE37;
 }
 
-.logout {
-  position: absolute;
-  bottom: 0;
+
+.navbar:hover .nav-item {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  right: 10px;
+}
+
+.navbar {
+  width: 70px;
+  transition: width 0.5s;
+  border-radius: 0;
+  overflow: hidden;
+
+}
+
+.navbar:hover {
+  width: 280px;
+  border-radius: 0 20px;
+}
+
+.navbar .nav-item {
+  visibility: hidden;
+
+  opacity: 0;
+
+  transition: opacity 0.5s linear;
+}
+
+.navbar:hover .nav-item {
+  visibility: visible;
+  opacity: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  right: 10px;
+}
+
+.logo span {
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+a {
+  color: rgb(85, 83, 83);
+  font-size: 20px;
+  display: block;
+  transition: opacity 0.5s linear;
+  padding: 20px;
+}
+
+a:hover {
+  background-color: #F4BE37;
+}
+
+.users .card {
+  width: 100%;
+  margin: 10px;
+  background: #fff;
+}
+
+.logo span {
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+a {
+  color: rgb(85, 83, 83);
+  font-size: 20px;
+  display: block;
+  transition: opacity 0.5s linear;
+  padding: 20px;
+}
+
+
+
 
 .users .card {
   width: 100%;
@@ -116,7 +219,7 @@ a:hover {
   text-align: center;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+
 
 }
 
@@ -140,13 +243,17 @@ a:hover {
   z-index: 1000;
   width: 80%;
   max-width: 600px;
-  background-color: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+  /* Updated box shadow */
   border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+  /* Ensure no overflow issues */
 }
 
 .modal-content {
   padding: 20px;
+  width: 100%;
 }
 
 .container {
@@ -155,8 +262,12 @@ a:hover {
 }
 
 .close {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
+  color: var(--dark-color);
+  font-size: 20px;
 }
 
 /* Form Styles */
@@ -166,13 +277,13 @@ a:hover {
   padding: 10px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  border: 1px solid #CCCCCC;
 }
 
 .modal-content input[type="submit"] {
-  background-color: #eee;
+  background-color: var(--accent-color);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -181,10 +292,7 @@ a:hover {
   width: 100%;
 }
 
-.modal-content input[type="submit"]:hover {
-  background-color: #FFC857;
-}
-
+/* Button styles */
 button {
   padding: 10px;
   border-radius: 10px;
@@ -207,6 +315,4 @@ button:hover {
   padding: 10px;
   width: 100%;
   height: 100px;
-
-
 }

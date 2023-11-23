@@ -21,7 +21,7 @@ class Project
         $this->start_date = date("Y-m-d");
         $this->goal = $goal;
         $this->current_amount = 0;
-        $this->percentage = 0.00;
+        $this->percentage = ($this->current_amount * 100) / $this->goal;
         $this->org_id = $org_id;
         $this->type_id = $type_id;
     }
