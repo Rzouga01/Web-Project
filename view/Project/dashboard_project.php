@@ -8,9 +8,9 @@ require "../../controller/Project/ProjectC.php";
 <head>
     <meta charset="UTF-8" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="type.css">
+    <link rel="stylesheet" href="project.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ require "../../controller/Project/ProjectC.php";
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="../Type//dashboard_type.php">
+                <li><a href="../Type/dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
@@ -47,15 +47,19 @@ require "../../controller/Project/ProjectC.php";
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="#">
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="">
-                        <i class="fas fa-cog"></i>
-                        <span class="nav-item">Settings</span>
+                <li><a href="#">
+                        <i class="fa fa-comments"></i>
+                        <span class="nav-item">Feedback</span>
                     </a></li>
-                <li><a href="" class="logout">
+                <li><a href="../Category/dashboard_category.php">
+                        <i class="fa fa-archive"></i>
+                        <span class="nav-item">Category</span>
+                    </a></li>
+                <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
                     </a></li>
@@ -65,7 +69,7 @@ require "../../controller/Project/ProjectC.php";
         <section class="main">
             <div class="users">
                 <div class="card">
-                    <i class="fa fa-list"></i>
+                    <i class="fa fa-database"></i>
                     <h3>Projects List</h3>
                     <table class="table table-bordered">
                         <?php
@@ -81,8 +85,20 @@ require "../../controller/Project/ProjectC.php";
                                 echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Percentage']) . "%"  . "</td>";
+                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
+                        ?>
+                                <td class="progress-bar-container">
+                                    <div class="full-bar">
+                                        <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']); ?>%;"></div>
+                                    </div>
+                                    <p><?php echo htmlspecialchars($project['Percentage']); ?>%
+                                    </p>
+
+                                </td>
+
+                        <?php
+
+
                                 echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
                                 echo "<td>";

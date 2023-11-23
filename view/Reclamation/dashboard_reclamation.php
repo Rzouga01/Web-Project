@@ -9,7 +9,7 @@ require "../../controller/Reclamation/reclamation.php";
     <meta charset="UTF-8" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="reclamation.css">
+    <link rel="stylesheet" href="../dashboard.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@ require "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Project/dashboard_project.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
@@ -75,7 +75,7 @@ require "../../controller/Reclamation/reclamation.php";
                         $reclamation = new ReclamationC();
                         $reclamations = $reclamation->listReclamation();
 
-                        if (!empty($reclamations)&&(is_iterable($reclamations) || is_object($reclamations))) {
+                        if (!empty($reclamations) && (is_iterable($reclamations) || is_object($reclamations))) {
                             echo "<tr><th>ID</th><th>ID User</th><th>Text</th><th>Date</th><th>Status</th><th>Actions</th></tr>";
                             foreach ($reclamations as $reclamation) {
                                 echo "<tr>";
@@ -90,8 +90,7 @@ require "../../controller/Reclamation/reclamation.php";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-                        }
-                        else{
+                        } else {
                             echo "<tr><td colspan='4'>No Reclamations found</td></tr>";
                         }
                         ?>
@@ -130,22 +129,34 @@ require "../../controller/Reclamation/reclamation.php";
                 </div>
             </div>
         </div>
-         <!-- Add Modal -->
-         <div id="AddModal" class="modal" style="display: none;">
+        <!-- Add Modal -->
+        <div id="AddModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close" onclick="closeAddModal()">&times;</span>
                 <div class="container">
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="type-name">Type Name</label></td>
-                                <td><input type="text" id="type-name" name="type-name"></td>
+                                <td><label for="ID-reclamation">ID-reclamation</label></td>
+                                <td><input type="text" id="ID-reclamation" name="ID-reclamation"></td>
                             </tr>
                             <tr>
-                                <td><label for="type-description">Type Description</label></td>
+                                <td><label for="ID-User">ID-User</label></td>
+                                <td><input type="text" id="ID-User" name="ID-User"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="reclamation-text">Reclamation-text</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                    <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td><label for="Reclamation-date">Reclamation-date</label></td>
+                                <td><input type="reclamation-date" id="reclamation-date" name="reclamation-date"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="Reclamation-status">Reclamation-status</label></td>
+                                <td><input type="reclamation-status" id="reclamation-status" name="reclamation-status"></td>
                             </tr>
                             <tr>
                                 <td></td>

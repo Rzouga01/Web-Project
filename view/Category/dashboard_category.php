@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require "../../controller/Type/typeC.php";
+require "../../controller/Category/categoryC.php";
 ?>
 
 <head>
@@ -30,11 +30,11 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="../User/user_dashboard.php">
+                <li><a href="">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Type/dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
@@ -54,7 +54,7 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
-                <li><a href="../Category/dashboard_category.php">
+                <li><a href="dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
@@ -68,32 +68,32 @@ require "../../controller/Type/typeC.php";
         <section class="main">
             <div class="users">
                 <div class="card">
-                    <i class="fa fa-list"></i>
-                    <h3>Types List</h3>
+                    <i class="fa fa-archive"></i>
+                    <h3>Categories List</h3>
                     <table class="table table-bordered">
                         <?php
-                        $Type = new TypeC();
-                        $types = $Type->read_type();
+                        $category = new CategoryC();
+                        $categories = $category->read();
 
-                        if (!empty($types) && (is_iterable($types) || is_object($types))) {
+                        if (!empty($categories) && (is_iterable($categories) || is_object($categories))) {
                             echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
-                            foreach ($types as $type) {
+                            foreach ($categories as $category) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($category['ID_Category']) . "</td>";
+                                echo "<td>" . htmlspecialchars($category['Category_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($category['Category_description']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
-                                echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
+                                echo "<button onclick=\"openEditModal(" . $category['ID_Category'] . ", '" . $category['Category_name'] . "', '" . $category['Category_description'] . "')\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $category['ID_Category'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No types found</td></tr>";
+                            echo "<tr><td colspan='4'>No Categories found</td></tr>";
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Type</button>
+                    <button onclick="createType()">Add a Category</button>
                 </div>
             </div>
 
@@ -171,7 +171,7 @@ require "../../controller/Type/typeC.php";
 
         function Delete(id) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_delete.php", true);
+            xhttp.open("POST", "../../controller/Category/category_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -200,23 +200,23 @@ require "../../controller/Type/typeC.php";
             var typeDescription = document.getElementById("type-description");
 
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
-                alert("Type Description should not be empty and should not exceed 20 characters.");
+                alert("Category Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
 
             if (typeName.value === "" || typeName.value.length > 20) {
-                alert("Type Name should not be empty and should not exceed 20 characters.");
+                alert("Category Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_create.php", true);
+            xhttp.open("POST", "../../controller/Category/category_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -258,7 +258,7 @@ require "../../controller/Type/typeC.php";
 
 
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
-                alert("Type Description should not be empty and should not exceed 20 characters.");
+                alert("Category Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
                 return; // Exit the function if conditions are not met
             } else {
@@ -266,7 +266,7 @@ require "../../controller/Type/typeC.php";
             }
 
             if (typeName.value === "" || typeName.value.length > 20) {
-                alert("Type Name should not be empty and should not exceed 20 characters.");
+                alert("Category Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
                 return; // Exit the function if conditions are not met
             } else {
@@ -274,7 +274,7 @@ require "../../controller/Type/typeC.php";
             }
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_update.php", true);
+            xhttp.open("POST", "../../controller/Category/category_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
