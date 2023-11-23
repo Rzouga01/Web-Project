@@ -89,8 +89,7 @@ require "../../controller/Type/typeC.php";
                                 echo "</td>";
                                 echo "</tr>";
                             }
-                        }
-                        if (empty($types)) {
+                        } else {
                             echo "<tr><td colspan='4'>No types found</td></tr>";
                         }
                         ?>
