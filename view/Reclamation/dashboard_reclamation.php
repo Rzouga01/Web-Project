@@ -75,7 +75,7 @@ require "../../controller/Reclamation/reclamation.php";
                         $reclamation = new ReclamationC();
                         $reclamations = $reclamation->listReclamation();
 
-                        if ((is_iterable($reclamations) || is_object($reclamations))) {
+                        if (!empty($reclamations)&&(is_iterable($reclamations) || is_object($reclamations))) {
                             echo "<tr><th>ID</th><th>ID User</th><th>Text</th><th>Date</th><th>Status</th><th>Actions</th></tr>";
                             foreach ($reclamations as $reclamation) {
                                 echo "<tr>";
@@ -91,8 +91,8 @@ require "../../controller/Reclamation/reclamation.php";
                                 echo "</tr>";
                             }
                         }
-                        if (empty($reclamations)) {
-                            echo "<tr><td colspan='4'>No reclamations found</td></tr>";
+                        else{
+                            echo "<tr><td colspan='4'>No Reclamations found</td></tr>";
                         }
                         ?>
                     </table>
@@ -130,3 +130,33 @@ require "../../controller/Reclamation/reclamation.php";
                 </div>
             </div>
         </div>
+         <!-- Add Modal -->
+         <div id="AddModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddModal()">&times;</span>
+                <div class="container">
+                    <form id="AddForm" onsubmit="event.preventDefault(); addType();">
+                        <table>
+                            <tr>
+                                <td><label for="type-name">Type Name</label></td>
+                                <td><input type="text" id="type-name" name="type-name"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="type-description">Type Description</label></td>
+                                <td>
+                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Create" id="button_create">
+                                    <input type="reset" value="Reset">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
