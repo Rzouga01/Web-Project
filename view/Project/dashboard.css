@@ -244,7 +244,6 @@ a:hover {
   z-index: 1000;
   width: 80%;
   max-width: 600px;
-  background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 }
@@ -276,7 +275,7 @@ a:hover {
 }
 
 .modal-content input[type="submit"] {
-  background-color: #eee;
+  background-color: #FFC857;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -285,9 +284,6 @@ a:hover {
   width: 100%;
 }
 
-.modal-content input[type="submit"]:hover {
-  background-color: #FFC857;
-}
 
 button {
   padding: 10px;
