@@ -3,7 +3,7 @@
 
 <?php
 require "../../controller/Reclamation/reclamation.php";
-require "../../model/Reclamation/reclamationC.php";
+require_once "../../model/Reclamation/reclamationC.php";
 ?>
 
 <head>
@@ -86,8 +86,8 @@ require "../../model/Reclamation/reclamationC.php";
                                 echo "<td>" . htmlspecialchars($reclamation['Reclamation_date']) . "</td>";
                                 echo "<td>" . htmlspecialchars($reclamation['Reclamation_status']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $reclamation['ID_Reclamation'] . ", '" . $reclamation['ID_User'] . "', '" . $reclamation['Reclamation_text'] . "','" . $reclamation['Reclamation_date'] . "','" . $reclamation['Reclamation_status'] . "')\">Edit</button>";
-                                echo "<button onclick=\"Delete(" . $reclamation['ID_Reclamation'] . ")\">Delete</button>";
+                                echo "<button onclick=\"openEditModal(" . $reclamation['ID_Reclamation'] . ", '" . $reclamation['Reclamation_text'] . "','" . $reclamation['Reclamation_date'] . "','" . $reclamation['Reclamation_status'] . "')\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $reclamation['ID_Reclamation'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
@@ -96,13 +96,13 @@ require "../../model/Reclamation/reclamationC.php";
                         }
                         ?>
                     </table>
-                    <button onclick="createReclamation()">Add a reclamation</button>
+                    <button onclick="createType()">Add a Reclamation</button>
                 </div>
             </div>
 
         </section>
         <!-- Edit Modal -->
-        <!-- Edit Modal -->
+
         <div id="editModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close" onclick="closeEditModal()">&times;</span>
@@ -111,8 +111,9 @@ require "../../model/Reclamation/reclamationC.php";
                         <table>
                             <tr>
                                 <input type="hidden" id="edit-ID-reclamation" name="edit-ID-reclamation" value="">
-                                <td><label for="new-reclamation">new reclamation</label></td>
-                                <td><input type="text" id="new reclamation" name="new reclamation"></td>
+                                <input type="hidden" id="edit-ID-user" name="edit-ID-user" value="">
+                                <input type="hidden" id="edit-date-reclamation" name="edit-date-reclamation" value="">
+                                <input type="hidden" id="edit-status-reclamation" name="edit-status-reclamation" value="">
                             </tr>
                             <tr>
                                 <td><label for="new-reclamation-text">new reclamation</label></td>
@@ -138,7 +139,7 @@ require "../../model/Reclamation/reclamationC.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="reclamation-text">Reclamation-text</label></td>
+                                <td><label for="reclamation-text">Reclamation text</label></td>
                                 <td>
                                     <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
                                 </td>
@@ -157,20 +158,30 @@ require "../../model/Reclamation/reclamationC.php";
         </div>
     </div>
     <script>
-       
+        function confirmDelete(id) {
+            var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
+            if (userConfirmed) {
+                Delete(id);
+            }
+        }
 
 
         function Delete(id) {
-            <?php
-            $rec= new ReclamationC();
-            $rec->supprimerReclamation(?>id<?php);
-           ?>
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Reclamation/reclamation_delete.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    location.reload();
+                }
+            };
+            xhttp.send("id=" + id);
         }
 
 
 
 
-        // ADD TYPE MODAL
+
         function createType() {
             var modal = document.getElementById("AddModal");
             modal.style.display = "block";
@@ -181,69 +192,78 @@ require "../../model/Reclamation/reclamationC.php";
             modal.style.display = "none";
         }
 
-        function addReclamation() {
-            
-            var reclamation-text = document.getElementById("reclamation-text");
+        function addType() {
+            var Text = document.getElementById("reclamation-text");
 
-            if (reclamation-text.value === "" || reclamation-text.value.length > 20) {
-                alert("reclamation-text should not be empty and should not exceed 20 characters.");
-                reclamation-text.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+            if (Text.value === "" || Text.value.length > 20) {
+                alert("Text should not be empty and should not exceed 20 characters.");
+                Text.style.border = "1px solid red";
+                console.log(Text.value)
+                return;
             } else {
-                reclamation-text.style.border = "1px solid green";
-                <?php
-                $Typerec= new Reclamation(1,$_POST["reclamation-text"]);
-                $Rec = new ReclamationC();
-                $Rec->ajouterReclamation($Typerec); 
-                ?>
+                Text.style.border = "1px solid green";
             }
 
-           
 
-           
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Reclamation/reclamation_create.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    closeAddModal();
+                    location.reload();
+                }
+            };
+            xhttp.send("text=" + encodeURIComponent(Text.value));
         }
 
 
 
 
 
-        // EDIT TYPE MODAL
         function closeEditModal() {
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
         }
 
-        function openEditModal(id, name, description) {
+        function openEditModal(id, text, date, status) {
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
 
-            document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
+            document.getElementById("edit-ID-reclamation").value = id;
+            document.getElementById("edit-date-reclamation").value = date;
+            document.getElementById("edit-status-reclamation").value = status;
 
 
         }
 
         function editType() {
 
-            var id = document.getElementById("edit-type-id").value;
+            var id = document.getElementById("edit-ID-reclamation").value;
 
-            var typeName = document.getElementById("new-type-name");
-            var typeDescription = document.getElementById("new-type-description");
 
-            if (reclamation-text.value === "" || reclamation-text.value.length > 20) {
-                alert("reclamation-text should not be empty and should not exceed 20 characters.");
-                reclamation-text.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+            var text = document.getElementById("new-reclamation-text");
+
+            var date = document.getElementById("edit-date-reclamation").value;
+
+            var status = document.getElementById("edit-status-reclamation").value;
+
+
+
+
+            if (text.value === "" || text.value.length > 20) {
+                alert("Text Description should not be empty and should not exceed 20 characters.");
+                text.style.border = "1px solid red";
+                return;
             } else {
-                reclamation-text.style.border = "1px solid green";
+                text.style.border = "1px solid green";
             }
 
-           
+
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_update.php", true);
+            xhttp.open("POST", "../../controller/Reclamation/reclamation_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -251,14 +271,14 @@ require "../../model/Reclamation/reclamationC.php";
                     location.reload();
                 }
             };
-            xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(typeName.value) + "&description=" + encodeURIComponent(typeDescription.value));
+            xhttp.send("id=" + encodeURIComponent(id) + "&text=" + encodeURIComponent(text.value) + "&date=" + encodeURIComponent(date) + "&status=" + encodeURIComponent(status));;
         }
     </script>
 
 </body>
 
 </html>
-</script>
+
 
 </body>
 

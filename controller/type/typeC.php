@@ -20,7 +20,7 @@ class TypeC
 
         if ($testStmt->rowCount() > 0) {
             return "Type already exists";
-        } else {    
+        } else {
             $insertSql = "INSERT INTO type (Type_name, Type_description) VALUES (:name, :description)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->bindParam(':name', $name, PDO::PARAM_STR);
@@ -59,7 +59,6 @@ class TypeC
     {
         $conn = Config::getConnexion();
 
-        // Use prepared statements to prevent SQL injection
         $checkSql = "SELECT * FROM type WHERE UPPER(ID_Type)=UPPER(:id)";
         $checkStatement = $conn->prepare($checkSql);
         $checkStatement->bindParam(':id', $id);
@@ -68,7 +67,7 @@ class TypeC
         if ($checkStatement->rowCount() == 0) {
             echo "<script>alert('Type Does Not Exist');</script>";
         } else {
-            // Use placeholders and bind parameters to prevent SQL injection
+
             $updateSql = "UPDATE type SET Type_name = :newName, Type_description = :newDescription WHERE ID_Type = :id";
             $updateStatement = $conn->prepare($updateSql);
             $updateStatement->bindParam(':newName', $newName);
