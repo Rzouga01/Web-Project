@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require "../../controller/Type/typeC.php";
+require "../../controller/Project/ProjectC.php";
 ?>
 
 <head>
@@ -35,12 +35,12 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Type//dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
-                        <i class="fa fa-list"></i>
+                <li><a href="dashboard_project.php">
+                        <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
                 <li><a href="dashboard_type.php">
@@ -66,32 +66,38 @@ require "../../controller/Type/typeC.php";
             <div class="users">
                 <div class="card">
                     <i class="fa fa-list"></i>
-                    <h3>Type list</h3>
+                    <h3>Projects List</h3>
                     <table class="table table-bordered">
                         <?php
-                        $Type = new TypeC();
-                        $types = $Type->read_type();
+                        $projectC = new ProjectC();
+                        $projects = $projectC->read_project();
 
-                        if (!empty($types) && (is_iterable($types) || is_object($types))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
-                            foreach ($types as $type) {
+                        if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
+                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th><th>Actions</th></tr>";
+                            foreach ($projects as $project) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Percentage']) . "%"  . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
-                                echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
+                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "')\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
                         }
-                        if (empty($types)) {
-                            echo "<tr><td colspan='4'>No types found</td></tr>";
+                        if (empty($projects)) {
+                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Type</button>
+                    <button onclick="createType()">Add a Project</button>
                 </div>
             </div>
 

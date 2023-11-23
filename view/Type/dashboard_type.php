@@ -35,12 +35,12 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Type/dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
-                        <i class="fa fa-list"></i>
+                <li><a href="../Project/dashboard_project.php">
+                        <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
                 <li><a href="dashboard_type.php">
@@ -51,7 +51,7 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                    <li><a href="dashboard_type.php">
+                <li><a href="dashboard_type.php">
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
@@ -70,7 +70,7 @@ require "../../controller/Type/typeC.php";
             <div class="users">
                 <div class="card">
                     <i class="fa fa-list"></i>
-                    <h3>Type list</h3>
+                    <h3>Types List</h3>
                     <table class="table table-bordered">
                         <?php
                         $Type = new TypeC();
