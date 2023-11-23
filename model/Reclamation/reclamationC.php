@@ -1,21 +1,16 @@
 <?php
 class reclamation
 {
-    private $ID_reclamation;
     private $ID_User;
     private $reclamation_text;
     private $reclamation_date;
     private $status_reclamation;
 
-    function __construct($ID_reclamation , $ID_User , $reclamation_text , $reclamation_date , $status_reclamation){
-        $this->ID_reclamation = $ID_reclamation;
+    function __construct( $ID_User , $reclamation_text ){
         $this->ID_User = $ID_User;
         $this->reclamation_text = $reclamation_text;
         $this->reclamation_date = date ('Y-m-d');
-        $this->status_reclamation = $status_reclamation;
-    }
-    function getID_reclamation(){
-        return $this->ID_reclamation;
+        $this->status_reclamation = 0;
     }
     function getID_User(){
         return $this->ID_User;

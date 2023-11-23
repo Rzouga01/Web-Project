@@ -3,6 +3,7 @@
 
 <?php
 require "../../controller/Reclamation/reclamation.php";
+require "../../model/Reclamation/reclamationC.php";
 ?>
 
 <head>
@@ -86,7 +87,7 @@ require "../../controller/Reclamation/reclamation.php";
                                 echo "<td>" . htmlspecialchars($reclamation['Reclamation_status']) . "</td>";
                                 echo "<td>";
                                 echo "<button onclick=\"openEditModal(" . $reclamation['ID_Reclamation'] . ", '" . $reclamation['ID_User'] . "', '" . $reclamation['Reclamation_text'] . "','" . $reclamation['Reclamation_date'] . "','" . $reclamation['Reclamation_status'] . "')\">Edit</button>";
-                                echo "<button onclick=\"confirmDelete(" . $reclamation['ID_Reclamation'] . ")\">Delete</button>";
+                                echo "<button onclick=\"Delete(" . $reclamation['ID_Reclamation'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
@@ -137,26 +138,10 @@ require "../../controller/Reclamation/reclamation.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="ID-reclamation">ID-reclamation</label></td>
-                                <td><input type="text" id="ID-reclamation" name="ID-reclamation"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="ID-User">ID-User</label></td>
-                                <td><input type="text" id="ID-User" name="ID-User"></td>
-                            </tr>
-                            <tr>
                                 <td><label for="reclamation-text">Reclamation-text</label></td>
                                 <td>
                                     <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td><label for="Reclamation-date">Reclamation-date</label></td>
-                                <td><input type="reclamation-date" id="reclamation-date" name="reclamation-date"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="Reclamation-status">Reclamation-status</label></td>
-                                <td><input type="reclamation-status" id="reclamation-status" name="reclamation-status"></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -171,3 +156,110 @@ require "../../controller/Reclamation/reclamation.php";
             </div>
         </div>
     </div>
+    <script>
+       
+
+
+        function Delete(id) {
+            <?php
+            $rec= new ReclamationC();
+            $rec->supprimerReclamation(?>id<?php);
+           ?>
+        }
+
+
+
+
+        // ADD TYPE MODAL
+        function createType() {
+            var modal = document.getElementById("AddModal");
+            modal.style.display = "block";
+        }
+
+        function closeAddModal() {
+            var modal = document.getElementById("AddModal");
+            modal.style.display = "none";
+        }
+
+        function addReclamation() {
+            
+            var reclamation-text = document.getElementById("reclamation-text");
+
+            if (reclamation-text.value === "" || reclamation-text.value.length > 20) {
+                alert("reclamation-text should not be empty and should not exceed 20 characters.");
+                reclamation-text.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                reclamation-text.style.border = "1px solid green";
+                <?php
+                $Typerec= new Reclamation(1,$_POST["reclamation-text"]);
+                $Rec = new ReclamationC();
+                $Rec->ajouterReclamation($Typerec); 
+                ?>
+            }
+
+           
+
+           
+        }
+
+
+
+
+
+        // EDIT TYPE MODAL
+        function closeEditModal() {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "none";
+        }
+
+        function openEditModal(id, name, description) {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "block";
+
+
+            document.getElementById("edit-type-id").value = id;
+            var existingTypeName = name;
+            var existingTypeDescription = description;
+
+
+        }
+
+        function editType() {
+
+            var id = document.getElementById("edit-type-id").value;
+
+            var typeName = document.getElementById("new-type-name");
+            var typeDescription = document.getElementById("new-type-description");
+
+            if (reclamation-text.value === "" || reclamation-text.value.length > 20) {
+                alert("reclamation-text should not be empty and should not exceed 20 characters.");
+                reclamation-text.style.border = "1px solid red";
+                return; // Exit the function if conditions are not met
+            } else {
+                reclamation-text.style.border = "1px solid green";
+            }
+
+           
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Type/type_update.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    closeEditModal();
+                    location.reload();
+                }
+            };
+            xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(typeName.value) + "&description=" + encodeURIComponent(typeDescription.value));
+        }
+    </script>
+
+</body>
+
+</html>
+</script>
+
+</body>
+
+</html>
