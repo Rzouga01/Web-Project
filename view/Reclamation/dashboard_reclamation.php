@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require "../../controller/Type/reclamation.php";
+require "../../controller/Reclamation/reclamation.php";
 ?>
 
 <head>
@@ -34,7 +34,7 @@ require "../../controller/Type/reclamation.php";
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Type/dashboard_type.php">
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Types</span>
                     </a></li>
@@ -42,7 +42,7 @@ require "../../controller/Type/reclamation.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
@@ -50,7 +50,7 @@ require "../../controller/Type/reclamation.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                    <li><a href="dashboard_type.php">
+                <li><a href="dashboard_type.php">
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
@@ -71,12 +71,12 @@ require "../../controller/Type/reclamation.php";
                     <i class="fa fa-list"></i>
                     <h3>reclamation list</h3>
                     <table class="table table-bordered">
-                    <?php
+                        <?php
                         $reclamation = new ReclamationC();
-                        $reclamations = $reclamation->afficherReclamation($ID_reclamation);
+                        $reclamations = $reclamation->listReclamation();
 
-                        if (!empty(reclamations) && (is_iterable($reclamations) || is_object($reclamations))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
+                        if ((is_iterable($reclamations) || is_object($reclamations))) {
+                            echo "<tr><th>ID</th><th>ID User</th><th>Text</th><th>Date</th><th>Status</th><th>Actions</th></tr>";
                             foreach ($reclamations as $reclamation) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($reclamation['ID_Reclamation']) . "</td>";
@@ -101,7 +101,7 @@ require "../../controller/Type/reclamation.php";
             </div>
 
         </section>
-         <!-- Edit Modal -->
+        <!-- Edit Modal -->
         <!-- Edit Modal -->
         <div id="editModal" class="modal" style="display: none;">
             <div class="modal-content">

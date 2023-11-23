@@ -43,7 +43,7 @@ require "../../controller/Project/ProjectC.php";
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="dashboard_type.php">
+                <li><a href="../Reclamation/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
@@ -205,7 +205,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; 
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -213,7 +213,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; 
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
@@ -263,7 +263,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; 
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -271,7 +271,7 @@ require "../../controller/Project/ProjectC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; 
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
