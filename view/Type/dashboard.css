@@ -23,10 +23,10 @@
 
 body {
   background: #dfe9f5;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
   display: flex;
 }
 
@@ -49,6 +49,7 @@ nav {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+
 }
 
 .navbar:hover {
@@ -60,6 +61,7 @@ nav {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.5s linear;
+
 }
 
 .logo {
@@ -184,7 +186,6 @@ a {
 
 a:hover {
   background-color: #F4BE37;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
 .users .card {
@@ -208,9 +209,7 @@ a {
   padding: 20px;
 }
 
-a:hover {
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-}
+
 
 
 .users .card {
@@ -220,7 +219,7 @@ a:hover {
   text-align: center;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+
 
 }
 
@@ -244,7 +243,7 @@ a:hover {
   z-index: 1000;
   width: 80%;
   max-width: 600px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
   /* Updated box shadow */
   border-radius: 8px;
   background-color: #fff;
