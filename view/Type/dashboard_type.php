@@ -160,7 +160,6 @@ require "../../controller/Type/typeC.php";
         </div>
     </div>
     <script>
-        // DELETE TYPE MODAL
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -184,7 +183,7 @@ require "../../controller/Type/typeC.php";
 
 
 
-        // ADD TYPE MODAL
+
         function createType() {
             var modal = document.getElementById("AddModal");
             modal.style.display = "block";
@@ -202,7 +201,7 @@ require "../../controller/Type/typeC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -210,7 +209,7 @@ require "../../controller/Type/typeC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
@@ -231,7 +230,6 @@ require "../../controller/Type/typeC.php";
 
 
 
-        // EDIT TYPE MODAL
         function closeEditModal() {
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
@@ -260,7 +258,7 @@ require "../../controller/Type/typeC.php";
             if (typeDescription.value === "" || typeDescription.value.length > 20) {
                 alert("Type Description should not be empty and should not exceed 20 characters.");
                 typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeDescription.style.border = "1px solid green";
             }
@@ -268,7 +266,7 @@ require "../../controller/Type/typeC.php";
             if (typeName.value === "" || typeName.value.length > 20) {
                 alert("Type Name should not be empty and should not exceed 20 characters.");
                 typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                return;
             } else {
                 typeName.style.border = "1px solid green";
             }
