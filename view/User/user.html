@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" href="user.css">
+
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#" method="post" id="signup-form">
+                <h1>Create Account</h1>
+                <input class="signup-form-elements" type="text" name="First_Name" id="First_Name"
+                    placeholder="First Name">
+                <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
+                <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
+                <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number"
+                    placeholder="Phone Number">
+                <input class="signup-form-elements" type="password" name="Password" id="Password"
+                    placeholder="Password">
+                <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
+                <div class="select">
+                    <select class="signup-form-elements" name="Country" id="Country">
+                        <option value="">Country</option>
+                        <option value="Country 1">Country 1</option>
+                        <option value="Country 2">Country 2</option>
+                    </select>
+                    <select class="signup-form-elements" name="Role" id="Role">
+                        <option value="">Role</option>
+                        <option value="Admin">Organisation</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+                <input type="submit" value="Sign up">
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Welcome !</h1>
+                    <p>Get started by entering your details below. Let's begin this journey together!</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/controller/User/user.js">
+    </script>
+</body>
+
+</html>

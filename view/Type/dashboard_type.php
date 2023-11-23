@@ -31,7 +31,7 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="">
+                <li><a href="../User/user_dashboard.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
