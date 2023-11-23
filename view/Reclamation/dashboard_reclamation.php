@@ -138,14 +138,26 @@ require "../../controller/Reclamation/reclamation.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="type-name">Type Name</label></td>
-                                <td><input type="text" id="type-name" name="type-name"></td>
+                                <td><label for="ID-reclamation">ID-reclamation</label></td>
+                                <td><input type="text" id="ID-reclamation" name="ID-reclamation"></td>
                             </tr>
                             <tr>
-                                <td><label for="type-description">Type Description</label></td>
+                                <td><label for="ID-User">ID-User</label></td>
+                                <td><input type="text" id="ID-User" name="ID-User"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="reclamation-text">Reclamation-text</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                    <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td><label for="Reclamation-date">Reclamation-date</label></td>
+                                <td><input type="reclamation-date" id="reclamation-date" name="reclamation-date"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="Reclamation-status">Reclamation-status</label></td>
+                                <td><input type="reclamation-status" id="reclamation-status" name="reclamation-status"></td>
                             </tr>
                             <tr>
                                 <td></td>
