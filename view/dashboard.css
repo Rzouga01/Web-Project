@@ -48,15 +48,17 @@ nav {
 }
 
 .navbar:hover {
-  width: 280px;
+  width: 250px;
   border-radius: 0 20px;
+
 }
 
 .navbar .nav-item {
   visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.5s linear;
+  opacity: 1;
 }
+
+
 
 .navbar:hover .nav-item {
   visibility: visible;
@@ -94,6 +96,9 @@ a {
 
 a:hover {
   background-color: #F4BE37;
+  color: #fff;
+  transition: 0.5s;
+
 }
 
 /* Users Styles */
