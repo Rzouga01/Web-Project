@@ -237,12 +237,14 @@ require "../../controller/Type/typeC.php";
 
         function openEditModal(id, name, description) {
             var modal = document.getElementById("editModal");
+            var existingTypeDescription = document.getElementById("new-type-description");
+            var existingTypeName = document.getElementById("new-type-name");
             modal.style.display = "block";
 
 
             document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
+            existingTypeName.value = name;
+            existingTypeDescription.value = description;
 
 
         }

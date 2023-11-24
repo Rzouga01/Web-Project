@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require_once "../../controller/Project/ProjectC.php";
+require_once "../../controller/Project/projectC.php";
 require_once "../../controller/Type/TypeC.php";
 ?>
 
@@ -138,7 +138,6 @@ require_once "../../controller/Type/TypeC.php";
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
                             </tr>
@@ -273,7 +272,7 @@ require_once "../../controller/Type/TypeC.php";
             }
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_create.php", true);
+            xhttp.open("POST", "../../controller/Project/project_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
