@@ -137,11 +137,11 @@ require "../../controller/Category/categoryC.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="type-name">Type Name</label></td>
+                                <td><label for="type-name">Category Name</label></td>
                                 <td><input type="text" id="type-name" name="type-name"></td>
                             </tr>
                             <tr>
-                                <td><label for="type-description">Type Description</label></td>
+                                <td><label for="type-description">Category Description</label></td>
                                 <td>
                                     <textarea id="type-description" name="type-description" class="description"></textarea>
                                 </td>
