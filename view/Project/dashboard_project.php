@@ -262,7 +262,6 @@ require_once "../../controller/Type/TypeC.php";
         </div>
     </div>
     <script>
-        // DELETE TYPE MODAL
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -286,7 +285,7 @@ require_once "../../controller/Type/TypeC.php";
 
 
 
-        // ADD TYPE MODAL
+
         function create() {
             var modal = document.getElementById("AddModal");
             modal.style.display = "block";
@@ -349,7 +348,7 @@ require_once "../../controller/Type/TypeC.php";
             }
 
 
-            // Validate and set default value for "Type" dropdown
+
             if (!projectType.value) {
                 alert("Please select a Type.");
                 projectType.style.border = "1px solid red";
@@ -358,7 +357,7 @@ require_once "../../controller/Type/TypeC.php";
                 projectType.style.border = "1px solid green";
             }
 
-            // Validate and set default value for "Organization" dropdown
+
             if (!projectOrganization.value) {
                 alert("Please select an Organization.");
                 projectOrganization.style.border = "1px solid red";
@@ -385,7 +384,7 @@ require_once "../../controller/Type/TypeC.php";
                 "&project-description=" +
                 encodeURIComponent(projectDescription.value) +
                 "&project-date=" +
-                encodeURIComponent(formattedDate) + // Use the formatted date here
+                encodeURIComponent(formattedDate) +
                 "&project-current=" +
                 encodeURIComponent(projectCurrentAmount.value) +
                 "&project-goal=" +
@@ -401,7 +400,7 @@ require_once "../../controller/Type/TypeC.php";
 
 
 
-        // EDIT TYPE MODAL
+
         function closeEditModal() {
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
@@ -414,7 +413,7 @@ require_once "../../controller/Type/TypeC.php";
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
-            // Corrected the element ID for project-id-update
+
             document.getElementById("project-id-update").value = id;
             document.getElementById("project-name-update").value = name;
             document.getElementById("project-description-update").value = description;
@@ -429,7 +428,7 @@ require_once "../../controller/Type/TypeC.php";
             document.getElementById("project-current-update").value = current;
             document.getElementById("project-goal-update").value = goal;
 
-            // Assuming "project-type-update" is the id of your type select element
+
             var typeSelect = document.getElementById("project-type-update");
             for (var i = 0; i < typeSelect.options.length; i++) {
                 if (typeSelect.options[i].value == type) {
@@ -438,7 +437,7 @@ require_once "../../controller/Type/TypeC.php";
                 }
             }
 
-            // Assuming "project-organization-update" is the id of your organization select element
+
             var orgSelect = document.getElementById("project-organization-update");
             for (var j = 0; j < orgSelect.options.length; j++) {
                 if (orgSelect.options[j].value == organization) {
@@ -462,7 +461,7 @@ require_once "../../controller/Type/TypeC.php";
             var projectType = document.getElementById("project-type-update").value;
             var projectOrganization = document.getElementById("project-organization-update").value;
 
-            // Validate input
+
             if (projectName === "" || projectName.length > 20) {
                 alert("Project Name should not be empty and should not exceed 20 characters.");
                 return;
@@ -472,15 +471,13 @@ require_once "../../controller/Type/TypeC.php";
                 alert("Project Description should not be empty and should not exceed 20 characters.");
                 return;
             }
-
-            // Validate date
             var projectDateValue = new Date(projectDate);
             if (isNaN(projectDateValue.getTime()) || projectDateValue < Date.now()) {
                 alert("Invalid or empty Project Date. Please select a valid date.");
                 return;
             }
 
-            // Validate numeric fields
+
             if (isNaN(projectCurrentAmount) || projectCurrentAmount < 0 || projectCurrentAmount === "") {
                 alert("Current Amount should be a non-negative number and should not be empty.");
                 return;
@@ -491,7 +488,7 @@ require_once "../../controller/Type/TypeC.php";
                 return;
             }
 
-            // Validate dropdowns
+
             if (!projectType) {
                 alert("Please select a Type.");
                 return;
@@ -502,19 +499,18 @@ require_once "../../controller/Type/TypeC.php";
                 return;
             }
 
-            // Make the AJAX request
+
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Project/project_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Close the modal and reload the page
+
                     closeEditModal();
                     location.reload();
                 }
             };
 
-            // Send the data to the server
             xhttp.send(
                 "project-name-update=" + encodeURIComponent(projectName) +
                 "&project-description-update=" + encodeURIComponent(projectDescription) +
@@ -523,7 +519,7 @@ require_once "../../controller/Type/TypeC.php";
                 "&project-goal-update=" + encodeURIComponent(projectGoal) +
                 "&project-type-update=" + encodeURIComponent(projectType) +
                 "&project-organization-update=" + encodeURIComponent(projectOrganization) +
-                "&project-id-update=" + encodeURIComponent(id) // Add this line for the project ID
+                "&project-id-update=" + encodeURIComponent(id)
             );
         }
     </script>
