@@ -45,24 +45,23 @@ nav {
   border-radius: 0;
   overflow: hidden;
   display: flex;
+  border-radius: 0 20px 20px 0;
 }
 
 .navbar:hover {
-  width: 250px;
-  border-radius: 0 20px;
+  width: 225px;
+
 
 }
 
 .navbar .nav-item {
   visibility: hidden;
-  opacity: 1;
 }
 
 
 
 .navbar:hover .nav-item {
   visibility: visible;
-  opacity: 1;
 }
 
 .logo {
@@ -90,14 +89,13 @@ a {
   color: rgb(85, 83, 83);
   font-size: 20px;
   display: block;
-  transition: opacity 0.5s linear;
   padding: 20px;
 }
 
-a:hover {
+a:not(.logo):hover {
   background-color: #F4BE37;
   color: #fff;
-  transition: 0.5s;
+  transition: 0.2s;
 
 }
 

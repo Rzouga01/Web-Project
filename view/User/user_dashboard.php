@@ -98,7 +98,7 @@ require_once "../../model/User/userC.php";
                             }
                             ?>
                         </table>
-                        <a onclick="openAddUserModal()">Add User</a>
+                        <button onclick="openAddUserModal()">Add User</button>
                     </div>
                 </div>
             </section>
