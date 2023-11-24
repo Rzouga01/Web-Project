@@ -94,11 +94,10 @@ require_once "../../controller/Type/TypeC.php";
                                     <div class="full-bar">
                                         <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%; ;"></div>
                                     </div>
-                                    <p><?php echo htmlspecialchars($project['Percentage']); ?>%</p>
+                                    <p><?php echo number_format($project['Percentage'], 2);; ?>%</p>
                                 </td>
 
                         <?php
-
 
                                 echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
@@ -181,11 +180,12 @@ require_once "../../controller/Type/TypeC.php";
                                     <label for="project-type">Type</label>
                                 </td>
                                 <td>
-                                    <select name="project-type" id="type">
+                                    <select name="project-type" id="project-type">
                                         <?php
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
                                         foreach ($types as $type) {
+                                            $selected = ($type == $types[0]) ? 'selected' : '';
                                             echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
                                         }
                                         ?>
@@ -198,8 +198,7 @@ require_once "../../controller/Type/TypeC.php";
                                 </td>
                                 <td>
                                     <select name="project-organization" id="project-organization">
-                                        <option value="1">test 1</option>
-                                        <option value="2">test 2</option>
+                                        <option value="1" selected>Organization test</option>
                                     </select>
                                 </td>
                             <tr>
@@ -227,7 +226,7 @@ require_once "../../controller/Type/TypeC.php";
 
         function Delete(id) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_delete.php", true);
+            xhttp.open("POST", "../../controller/Project/project_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -252,24 +251,58 @@ require_once "../../controller/Type/TypeC.php";
         }
 
         function add() {
-            var typeName = document.getElementById("type-name");
-            var typeDescription = document.getElementById("type-description");
+            var projectName = document.getElementById("project-name");
+            var projectDescription = document.getElementById("project-description");
+            var projectDate = document.getElementById("project-date");
+            var projectCurrentAmount = document.getElementById("project-current");
+            var projectGoal = document.getElementById("project-goal");
+            var projectType = document.getElementById("project-type");
+            var projectOrganization = document.getElementById("project-organization");
 
-            if (typeDescription.value === "" || typeDescription.value.length > 20) {
-                alert("Type Description should not be empty and should not exceed 20 characters.");
-                typeDescription.style.border = "1px solid red";
+            if (projectName.value === "" || projectName.value.length > 20) {
+                alert("Project Name should not be empty and should not exceed 20 characters.");
+                projectName.style.border = "1px solid red";
                 return;
             } else {
-                typeDescription.style.border = "1px solid green";
+                projectName.style.border = "1px solid green";
             }
 
-            if (typeName.value === "" || typeName.value.length > 20) {
-                alert("Type Name should not be empty and should not exceed 20 characters.");
-                typeName.style.border = "1px solid red";
+            if (projectDescription.value === "" || projectDescription.value.length > 20) {
+                alert("Project Description should not be empty and should not exceed 20 characters.");
+                projectDescription.style.border = "1px solid red";
                 return;
             } else {
-                typeName.style.border = "1px solid green";
+                projectDescription.style.border = "1px solid green";
             }
+
+            var projectDateValue = new Date(projectDate.value);
+
+            if (projectDateValue < Date.now() || projectDate.value === "") {
+                alert("Project Date should not be empty and higher than today.");
+                projectDate.style.border = "1px solid red";
+                return;
+            } else {
+                projectDate.style.border = "1px solid green";
+            }
+
+            if (projectCurrentAmount.value < 0 || projectCurrentAmount.value == "") {
+                alert("Current Amount  should not be Negative and should not be empty.");
+                projectCurrentAmount.style.border = "1px solid red";
+                return;
+            } else {
+                projectCurrentAmount.style.border = "1px solid green";
+            }
+
+            if (projectGoal.value < 0 || projectGoal.value == "") {
+                alert("Project Goal  should not be Negative and should not be empty.");
+                projectGoal.style.border = "1px solid red";
+                return;
+            } else {
+                projectGoal.style.border = "1px solid green";
+            }
+
+
+            var formattedDate = new Date(projectDate.value).toISOString().slice(0, 19).replace("T", " ");
 
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Project/project_create.php", true);
@@ -280,7 +313,22 @@ require_once "../../controller/Type/TypeC.php";
                     location.reload();
                 }
             };
-            xhttp.send("type-name=" + encodeURIComponent(typeName.value) + "&type-description=" + encodeURIComponent(typeDescription.value));
+            xhttp.send(
+                "project-name=" +
+                encodeURIComponent(projectName.value) +
+                "&project-description=" +
+                encodeURIComponent(projectDescription.value) +
+                "&project-date=" +
+                encodeURIComponent(formattedDate) + // Use the formatted date here
+                "&project-current=" +
+                encodeURIComponent(projectCurrentAmount.value) +
+                "&project-goal=" +
+                encodeURIComponent(projectGoal.value) +
+                "&project-type=" +
+                encodeURIComponent(projectType.value) +
+                "&project-organization=" +
+                encodeURIComponent(projectOrganization.value)
+            );
         }
 
 

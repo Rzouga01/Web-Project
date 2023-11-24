@@ -44,6 +44,7 @@ nav {
   transition: width 0.5s;
   border-radius: 0;
   overflow: hidden;
+  display: flex;
 }
 
 .navbar:hover {
@@ -96,6 +97,8 @@ a:hover {
 }
 
 /* Users Styles */
+
+
 .users .card {
   width: 100%;
   margin: 10px;
@@ -109,6 +112,7 @@ a:hover {
 .users .card h3 {
   margin: 10px;
   text-transform: capitalize;
+
 }
 
 .users .card td {
@@ -128,17 +132,14 @@ a:hover {
   border-radius: 8px;
   background-color: #fff;
   overflow: hidden;
-  box-shadow: 0 0 20px black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
 
 }
 
 .modal-content {
   padding: 20px;
   width: 100%;
-
-
-
-  /* Make the content width 100% of the modal */
 }
 
 /* Form Styles */
