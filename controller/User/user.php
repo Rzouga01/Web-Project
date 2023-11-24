@@ -6,25 +6,24 @@ class UserCRUD
 {
     public function create_user($user)
     {
-        $cnx = Config::getConnexion();
-        $insert = $cnx->prepare("INSERT INTO user (ID_USER, First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $result = $insert->execute([
-            $user->getID_USER(),
-            $user->getFirst_Name(),
-            $user->getLast_Name(),
-            $user->getPassword(),
-            $user->getPhone_number(),
-            $user->getBirthdate(),
-            $user->getCountry(),
-            $user->getEmail(),
-            $user->getRole()
-        ]);
+     $cnx = Config::getConnexion();
+    $insert = $cnx->prepare("INSERT INTO user (First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $result = $insert->execute([
+        $user->getFirst_Name(),
+        $user->getLast_Name(),
+        $user->getPassword(),
+        $user->getPhone_number(),
+        $user->getBirthdate(),
+        $user->getCountry(),
+        $user->getEmail(),
+        $user->getRole()
+    ]);
+    $user->setID_USER($cnx->lastInsertId());
 
         if (!$result) {
             error_log(print_r($insert->errorInfo(), true));
             return "Error creating user";
         }
-
         return "User created successfully";
     }
 
