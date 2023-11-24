@@ -19,7 +19,7 @@ require_once "../../model/User/userC.php";
             <nav class="navbar">
                 <ul>
                     <li>
-                        <a href="#" class="logo">
+                        <a href="../index.html" class="logo">
                             <img src="../../assets/images/logo.png" alt="">
                             <span class="nav-item">Dashboard</span>
                         </a>
@@ -32,7 +32,7 @@ require_once "../../model/User/userC.php";
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
                         </a></li>
-                    <li><a href="../User/user_dashboard.php">
+                    <li><a href="user_dashboard.php">
                             <i class="fas fa-users"></i>
                             <span class="nav-item">Users</span>
                         </a></li>
@@ -44,23 +44,23 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-database"></i>
                             <span class="nav-item">Project</span>
                         </a></li>
-                    <li><a href="../Reclamation/dashboard_reclamation.php">
+                    <li><a href="dashboard_reclamation.php">
                             <i class="fa fa-exclamation-triangle"></i>
                             <span class="nav-item">Reclamation</span>
                         </a></li>
-                    <li><a href="dashboard_type.php">
+                    <li><a href="#">
                             <i class="fa fa-envelope-open"></i>
                             <span class="nav-item">Response</span>
                         </a></li>
-                    <li><a href="dashboard_type.php">
+                    <li><a href="#">
                             <i class="fa fa-comments"></i>
                             <span class="nav-item">Feedback</span>
                         </a></li>
-                    <li><a href="">
-                            <i class="fas fa-cog"></i>
-                            <span class="nav-item">Settings</span>
+                    <li><a href="../Category/dashboard_category.php">
+                            <i class="fa fa-archive"></i>
+                            <span class="nav-item">Category</span>
                         </a></li>
-                    <li><a href="" class="logout">
+                    <li><a href="#" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>

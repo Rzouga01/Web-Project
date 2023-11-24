@@ -19,7 +19,7 @@ require_once "../../controller/Type/TypeC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="#" class="logo">
+                    <a href="../index.html" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
@@ -32,7 +32,7 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="">
+                <li><a href="../User/user_dashboard.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>

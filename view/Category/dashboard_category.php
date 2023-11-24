@@ -17,7 +17,7 @@ require "../../controller/Category/categoryC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="#" class="logo">
+                    <a href="../index.html" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
@@ -30,7 +30,7 @@ require "../../controller/Category/categoryC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="">
+                <li><a href="../User/user_dashboard.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
@@ -42,7 +42,7 @@ require "../../controller/Category/categoryC.php";
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="../Reclamation/dashboard_reclamation.php">
+                <li><a href="dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
