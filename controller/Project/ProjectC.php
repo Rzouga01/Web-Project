@@ -89,34 +89,40 @@ class ProjectC
     }
 
 
-    public function update($project)
+    public function update($id, $project)
     {
-        $conn = Config::getConnexion();
+        try {
+            $conn = Config::getConnexion();
 
-        $id = $project->getID_Project();
-        $name = $project->getProject_name();
-        $description = $project->getProject_description();
-        $start_date = $project->getStart_date();
-        $goal = $project->getGoal();
-        $current_amount = $project->getCurrent_amount();
-        $percentage = $project->getPercentage();
-        $org_id = $project->getOrg_id();
-        $type_id = $project->getType_id();
-        $sql = "UPDATE project SET Project_name=:name, Project_description=:description, start_date=:start_date, Goal=:goal, Current_amount=:current_amount, Percentage=:percentage, ID_Org=:org_id, ID_Type=:type_id WHERE ID_Project=:id";
-        $updateStmt = $conn->prepare($sql);
-        $updateStmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $updateStmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $updateStmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $updateStmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
-        $updateStmt->bindParam(':goal', $goal, PDO::PARAM_INT);
-        $updateStmt->bindParam(':current_amount', $current_amount, PDO::PARAM_INT);
-        $updateStmt->bindParam(':percentage', $percentage, PDO::PARAM_STR);
-        $updateStmt->bindParam(':org_id', $org_id, PDO::PARAM_INT);
-        $updateStmt->bindParam(':type_id', $type_id, PDO::PARAM_INT);
-        if ($updateStmt->execute()) {
-            return "Project updated successfully";
-        } else {
-            return "Error updating project";
+            $id = $id;
+            $name = $project->getProject_name();
+            $description = $project->getProject_description();
+            $start_date = $project->getStart_date();
+            $goal = $project->getGoal();
+            $current_amount = $project->getCurrent_amount();
+            $percentage = $project->getPercentage();
+            $org_id = $project->getOrg_id();
+            $type_id = $project->getType_id();
+            $sql = "UPDATE project SET Project_name=:name, Project_description=:description, start_date=:start_date, Goal=:goal, Current_amount=:current_amount, Percentage=:percentage, ID_Org=:org_id, ID_Type=:type_id WHERE ID_Project=:id";
+            $updateStmt = $conn->prepare($sql);
+            $updateStmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $updateStmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $updateStmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $updateStmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
+            $updateStmt->bindParam(':goal', $goal, PDO::PARAM_INT);
+            $updateStmt->bindParam(':current_amount', $current_amount, PDO::PARAM_INT);
+            $updateStmt->bindParam(':percentage', $percentage, PDO::PARAM_STR);
+            $updateStmt->bindParam(':org_id', $org_id, PDO::PARAM_INT);
+            $updateStmt->bindParam(':type_id', $type_id, PDO::PARAM_INT);
+
+            if ($updateStmt->execute()) {
+                return "Project updated successfully";
+            } else {
+                return "Error updating project";
+            }
+        } catch (PDOException $e) {
+            // Log or handle the exception as needed
+            return "Error: " . $e->getMessage();
         }
     }
 }

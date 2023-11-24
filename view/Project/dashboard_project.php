@@ -516,14 +516,14 @@ require_once "../../controller/Type/TypeC.php";
 
             // Send the data to the server
             xhttp.send(
-                "id=" + encodeURIComponent(id) +
-                "&name=" + encodeURIComponent(projectName) +
-                "&description=" + encodeURIComponent(projectDescription) +
-                "&date=" + encodeURIComponent(projectDate) +
-                "&current=" + encodeURIComponent(projectCurrentAmount) +
-                "&goal=" + encodeURIComponent(projectGoal) +
-                "&type=" + encodeURIComponent(projectType) +
-                "&organization=" + encodeURIComponent(projectOrganization)
+                "project-name-update=" + encodeURIComponent(projectName) +
+                "&project-description-update=" + encodeURIComponent(projectDescription) +
+                "&project-date-update=" + encodeURIComponent(projectDate) +
+                "&project-current-update=" + encodeURIComponent(projectCurrentAmount) +
+                "&project-goal-update=" + encodeURIComponent(projectGoal) +
+                "&project-type-update=" + encodeURIComponent(projectType) +
+                "&project-organization-update=" + encodeURIComponent(projectOrganization) +
+                "&project-id-update=" + encodeURIComponent(id) // Add this line for the project ID
             );
         }
     </script>
