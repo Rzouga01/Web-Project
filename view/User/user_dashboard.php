@@ -157,7 +157,6 @@ require_once "../../model/User/userC.php";
                                 </tr>
 
                                 <tr>
-                                    <td> </td>
                                     <td>
                                         <input type="submit" value="Save Changes" id="button_save">
                                     </td>
@@ -222,7 +221,6 @@ require_once "../../model/User/userC.php";
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
                                     <td>
                                         <input type="submit" value="Create" id="button_create">
                                     </td>

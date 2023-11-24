@@ -124,23 +124,67 @@ require_once "../../controller/Type/TypeC.php";
                 <span class="close" onclick="closeEditModal()">&times;</span>
                 <div class="container">
                     <form id="editForm" method="post" onsubmit="event.preventDefault();edit()">
-                        <table>
+                        <<table>
                             <tr>
-                                <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
-                                <td><label for="new-type-name">New Name</label></td>
-                                <td><input type="text" id="new-type-name" name="new-type-name"></td>
+
+                                <input type="hidden" id="edit-type-id" name="project-id">
                             </tr>
                             <tr>
-                                <td><label for="new-type-description">New Description</label></td>
+                                <td><label for="project-name">Project Name</label></td>
+                                <td><input type="text" id="project-name" name="project-name"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="project-description">Project Description</label></td>
                                 <td>
-                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
+                                    <textarea id="project-description" name="project-description" class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
+                                <td><label for="project-date">Start Date</label></td>
+                                <td><input type="date" id="project-date" name="project-date"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="project-current">Current Amount</label></td>
+                                <td><input type="number" id="project-current" name="project-current" value=0></td>
+                            </tr>
+                            <tr>
+                                <td><label for="project-goal">Goal Amount</label></td>
+                                <td><input type="number" id="project-goal" name="project-goal" value=0></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="project-type">Type</label>
+                                </td>
+                                <td>
+                                    <select name="project-type" id="project-type">
+                                        <?php
+                                        $typeC = new TypeC();
+                                        $types = $typeC->read_type();
+                                        foreach ($types as $type) {
+                                            $selected = ($type == $types[0]) ? 'selected' : '';
+                                            echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            <tr>
+                            <tr>
+                                <td>
+                                    <label for="project-organization">Organization</label>
+                                </td>
+                                <td>
+                                    <select name="project-organization" id="project-organization">
+                                        <option value="1" selected>Organization test</option>
+                                    </select>
+                                </td>
+                            <tr>
+                                <td></td>
+                                <td>
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
+                                </td>
                             </tr>
-                        </table>
+                            </table>
                     </form>
                 </div>
             </div>
@@ -202,11 +246,13 @@ require_once "../../controller/Type/TypeC.php";
                                     </select>
                                 </td>
                             <tr>
-                                <td></td>
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
+                                </td>
+                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
+
                             </tr>
                         </table>
                     </form>

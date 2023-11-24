@@ -147,9 +147,10 @@ require "../../controller/Type/typeC.php";
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
+                                </td>
+                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
                             </tr>
