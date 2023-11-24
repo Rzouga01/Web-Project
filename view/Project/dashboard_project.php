@@ -124,39 +124,39 @@ require_once "../../controller/Type/TypeC.php";
                 <span class="close" onclick="closeEditModal()">&times;</span>
                 <div class="container">
                     <form id="editForm" method="post" onsubmit="event.preventDefault();edit()">
-                        <<table>
+                        <table>
                             <tr>
 
-                                <input type="hidden" id="edit-type-id" name="project-id">
+                                <input type="hidden" id="project-id-update" name="project-id-update">
                             </tr>
                             <tr>
-                                <td><label for="project-name">Project Name</label></td>
-                                <td><input type="text" id="project-name" name="project-name"></td>
+                                <td><label for="project-name-update">Project Name</label></td>
+                                <td><input type="text" id="project-name-update" name="project-name-update"></td>
                             </tr>
                             <tr>
-                                <td><label for="project-description">Project Description</label></td>
+                                <td><label for="project-description-update">Project Description</label></td>
                                 <td>
-                                    <textarea id="project-description" name="project-description" class="description"></textarea>
+                                    <textarea id="project-description-update" name="project-description-update" class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="project-date">Start Date</label></td>
-                                <td><input type="date" id="project-date" name="project-date"></td>
+                                <td><label for="project-date-update">Start Date</label></td>
+                                <td><input type="date" id="project-date-update" name="project-date-update"></td>
                             </tr>
                             <tr>
-                                <td><label for="project-current">Current Amount</label></td>
-                                <td><input type="number" id="project-current" name="project-current" value=0></td>
+                                <td><label for="project-current-update">Current Amount</label></td>
+                                <td><input type="number" id="project-current-update" name="project-current-update" value=0></td>
                             </tr>
                             <tr>
-                                <td><label for="project-goal">Goal Amount</label></td>
-                                <td><input type="number" id="project-goal" name="project-goal" value=0></td>
+                                <td><label for="project-goal-update">Goal Amount</label></td>
+                                <td><input type="number" id="project-goal-update" name="project-goal-update" value=0></td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="project-type">Type</label>
                                 </td>
                                 <td>
-                                    <select name="project-type" id="project-type">
+                                    <select name="project-type-update" id="project-type-update">
                                         <?php
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
@@ -170,10 +170,10 @@ require_once "../../controller/Type/TypeC.php";
                             <tr>
                             <tr>
                                 <td>
-                                    <label for="project-organization">Organization</label>
+                                    <label for="project-organization-update">Organization</label>
                                 </td>
                                 <td>
-                                    <select name="project-organization" id="project-organization">
+                                    <select name="project-organization-update" id="project-organization-update">
                                         <option value="1" selected>Organization test</option>
                                     </select>
                                 </td>
@@ -181,7 +181,7 @@ require_once "../../controller/Type/TypeC.php";
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
                             </tr>
-                            </table>
+                        </table>
                     </form>
                 </div>
             </div>
@@ -384,15 +384,49 @@ require_once "../../controller/Type/TypeC.php";
             modal.style.display = "none";
         }
 
-        function openEditModal(id, name, description) {
+        function openEditModal(id, name, description, date, current, goal, type, organization) {
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
+            document.getElementById("project-id-update").value = id;
+            document.getElementById("project-name-update").value = name;
+            document.getElementById("project-description-update").value = description;
 
 
+            var formattedDate = new Date(date);
+            var yyyy = formattedDate.getFullYear();
+            var mm = String(formattedDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+            var dd = String(formattedDate.getDate()).padStart(2, '0');
+
+            var formattedDateString = `${yyyy}-${mm}-${dd}`;
+
+            document.getElementById("project-date-update").value = formattedDateString;
 
 
+            document.getElementById("project-current-update").value = current;
+            document.getElementById("project-goal-update").value = goal;
+
+
+            var typeSelect = document.getElementById("project-type-update");
+            for (var i = 0; i < typeSelect.options.length; i++) {
+                if (typeSelect.options[i].value == type) {
+                    typeSelect.options[i].selected = true;
+                    break;
+                }
+            }
+
+            // Assuming "project-organization" is the id of your organization select element
+            var orgSelect = document.getElementById("project-organization-update");
+            for (var j = 0; j < orgSelect.options.length; j++) {
+                if (orgSelect.options[j].value == organization) {
+                    orgSelect.options[j].selected = true;
+                    break;
+                }
+            }
         }
+
+
+
 
         function edit() {
 
@@ -430,11 +464,6 @@ require_once "../../controller/Type/TypeC.php";
             xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(typeName.value) + "&description=" + encodeURIComponent(typeDescription.value));
         }
     </script>
-
-</body>
-
-</html>
-
 
 </body>
 
