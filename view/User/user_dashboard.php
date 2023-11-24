@@ -126,6 +126,16 @@ require_once "../../model/User/userC.php";
                                     <td><input type="text" id="edit-Phone_number" name="Phone_number"></td>
                                 </tr>
                                 <tr>
+                                    <td><label for="edit-Password">Password</label></td>
+                                    <td>
+                                        <input type="text" name="Password" id="edit-Password">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="edit-Birthdate">Birthdate</label></td>
+                                    <td><input type="date" id="edit-Birthdate" name="Birthdate"></td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <label for="Edit-country">Country</label>
                                         <select name="Country" id="Edit-country">
@@ -182,6 +192,16 @@ require_once "../../model/User/userC.php";
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td><label for="add-Password">Password</label></td>
+                                    <td>
+                                        <input type="text" name="Password" id="add-Password">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="add-Birthdate">Birthdate</label></td>
+                                    <td><input type="date" id="add-Birthdate" name="Birthdate"></td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <label for="add-country">Country</label>
                                         <select name="Country" id="add-country">
@@ -214,43 +234,50 @@ require_once "../../model/User/userC.php";
             </div>
             <script>
                 function addUser() {
-                    var firstName = document.getElementById("add-First_Name");
-                    var lastName = document.getElementById("add-Last_Name");
-                    var email = document.getElementById("add-Email");
-                    var phoneNumber = document.getElementById("add-Phone_number");
-                    var country = document.getElementById("add-country");
-                    var role = document.getElementById("add-role");
+                    var firstName = document.getElementById("add-First_Name").value;
+                    var lastName = document.getElementById("add-Last_Name").value;
+                    var email = document.getElementById("add-Email").value;
+                    var password = document.getElementById('add-Password').value;
+                    var phoneNumber = document.getElementById("add-Phone_number").value;
+                    var birthdate = document.getElementById("add-Birthdate").value;
+                    var country = document.getElementById("add-country").value;
+                    var role = document.getElementById("add-role").value;
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
-                            closeAddModal();
                             location.reload();
                         }
                     };
-                    xhttp.send("firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
+                    xhttp.send("First_Name=" + encodeURIComponent(firstName) + "&Last_Name=" + encodeURIComponent(lastName) + "&Email=" + encodeURIComponent(email) + "&Password=" + encodeURIComponent(password) + "&Phone_number=" + encodeURIComponent(phoneNumber) + "&Birthdate=" + encodeURIComponent(birthdate) + "&Country=" + encodeURIComponent(country) + "&Role=" + encodeURIComponent(role));
                 }
 
                 function editUser() {
-                    var id = document.getElementById("edit-ID_USER").value;
+                    var id = document.getElementById("edit-ID_USER");
                     var firstName = document.getElementById("edit-First_Name");
                     var lastName = document.getElementById("edit-Last_Name");
                     var email = document.getElementById("edit-Email");
+                    var password = document.getElementById("edit-Password");
                     var phoneNumber = document.getElementById("edit-Phone_number");
+                    var birthdate = document.getElementById("edit-Birthdate");
                     var country = document.getElementById("edit-Country");
                     var role = document.getElementById("edit-Role");
 
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.open("POST", "../../controller/User/userUpdate.php", true);
-                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            closeEditModal();
-                            location.reload();
-                        }
-                    };
-                    xhttp.send("id=" + encodeURIComponent(id) + "&firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
+                    if (id && firstName && lastName && email && password && phoneNumber && birthdate && country && role) {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.open("POST", "../../controller/User/userUpdate.php", true);
+                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xhttp.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                closeEditModal();
+                                location.reload();
+                            }
+                        };
+                        xhttp.send("id=" + encodeURIComponent(id.value) + "&firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
+                    } else {
+                        console.log('One or more elements do not exist');
+                    }
                 }
                 function deleteUser(id) {
                     var confirmation = confirm('Are you sure you want to delete user with ID ' + id + '?');
