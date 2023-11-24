@@ -453,39 +453,78 @@ require_once "../../controller/Type/TypeC.php";
 
 
         function edit() {
+            var id = document.getElementById("project-id-update").value;
+            var projectName = document.getElementById("project-name-update").value;
+            var projectDescription = document.getElementById("project-description-update").value;
+            var projectDate = document.getElementById("project-date-update").value;
+            var projectCurrentAmount = document.getElementById("project-current-update").value;
+            var projectGoal = document.getElementById("project-goal-update").value;
+            var projectType = document.getElementById("project-type-update").value;
+            var projectOrganization = document.getElementById("project-organization-update").value;
 
-            var id = document.getElementById("edit-type-id").value;
-
-            var typeName = document.getElementById("new-type-name");
-            var typeDescription = document.getElementById("new-type-description");
-
-
-            if (typeDescription.value === "" || typeDescription.value.length > 20) {
-                alert("Type Description should not be empty and should not exceed 20 characters.");
-                typeDescription.style.border = "1px solid red";
+            // Validate input
+            if (projectName === "" || projectName.length > 20) {
+                alert("Project Name should not be empty and should not exceed 20 characters.");
                 return;
-            } else {
-                typeDescription.style.border = "1px solid green";
             }
 
-            if (typeName.value === "" || typeName.value.length > 20) {
-                alert("Type Name should not be empty and should not exceed 20 characters.");
-                typeName.style.border = "1px solid red";
+            if (projectDescription === "" || projectDescription.length > 20) {
+                alert("Project Description should not be empty and should not exceed 20 characters.");
                 return;
-            } else {
-                typeName.style.border = "1px solid green";
             }
 
+            // Validate date
+            var projectDateValue = new Date(projectDate);
+            if (isNaN(projectDateValue.getTime()) || projectDateValue < Date.now()) {
+                alert("Invalid or empty Project Date. Please select a valid date.");
+                return;
+            }
+
+            // Validate numeric fields
+            if (isNaN(projectCurrentAmount) || projectCurrentAmount < 0 || projectCurrentAmount === "") {
+                alert("Current Amount should be a non-negative number and should not be empty.");
+                return;
+            }
+
+            if (isNaN(projectGoal) || projectGoal < 0 || projectGoal === "") {
+                alert("Project Goal should be a non-negative number and should not be empty.");
+                return;
+            }
+
+            // Validate dropdowns
+            if (!projectType) {
+                alert("Please select a Type.");
+                return;
+            }
+
+            if (!projectOrganization) {
+                alert("Please select an Organization.");
+                return;
+            }
+
+            // Make the AJAX request
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Type/type_update.php", true);
+            xhttp.open("POST", "../../controller/Project/project_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    // Close the modal and reload the page
                     closeEditModal();
                     location.reload();
                 }
             };
-            xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(typeName.value) + "&description=" + encodeURIComponent(typeDescription.value));
+
+            // Send the data to the server
+            xhttp.send(
+                "id=" + encodeURIComponent(id) +
+                "&name=" + encodeURIComponent(projectName) +
+                "&description=" + encodeURIComponent(projectDescription) +
+                "&date=" + encodeURIComponent(projectDate) +
+                "&current=" + encodeURIComponent(projectCurrentAmount) +
+                "&goal=" + encodeURIComponent(projectGoal) +
+                "&type=" + encodeURIComponent(projectType) +
+                "&organization=" + encodeURIComponent(projectOrganization)
+            );
         }
     </script>
 
