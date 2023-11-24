@@ -1,6 +1,6 @@
 <?php
 
-require '../../database/config.php';
+require '../../database/connect.php';
 require '../../model/Reclamation/reclamationC.php';
 
 class ReclamationC

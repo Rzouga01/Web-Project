@@ -6,13 +6,7 @@
   border: 1px solid #ccc;
 }
 
-
-
 .progress-bar {
   height: 100%;
-
-  background-color: #FFC857;
-  border: 1px solid black;
-  border-radius: 5px 5px 5px 5px;
-
+  background: linear-gradient(to right, #32CD32, #00BFFF);
 }

@@ -245,7 +245,7 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function () {
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             location.reload();
                         }
@@ -268,7 +268,7 @@ require_once "../../model/User/userC.php";
                         var xhttp = new XMLHttpRequest();
                         xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function () {
+                        xhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 closeEditModal();
                                 location.reload();
@@ -279,13 +279,14 @@ require_once "../../model/User/userC.php";
                         console.log('One or more elements do not exist');
                     }
                 }
+
                 function deleteUser(id) {
                     var confirmation = confirm('Are you sure you want to delete user with ID ' + id + '?');
                     if (confirmation) {
                         var xhttp = new XMLHttpRequest();
                         xhttp.open("POST", "../../controller/User/userDelete.php", true);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function () {
+                        xhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 location.reload();
                             }
@@ -297,11 +298,11 @@ require_once "../../model/User/userC.php";
                 var span = document.getElementsByClassName("close")[0];
 
 
-                span.onclick = function () {
+                span.onclick = function() {
                     modal.style.display = "none";
                 };
 
-                window.onclick = function (event) {
+                window.onclick = function(event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }
@@ -328,10 +329,12 @@ require_once "../../model/User/userC.php";
                         console.error('Modal not found');
                     }
                 }
+
                 function closeEditModal() {
                     var modal = document.getElementById("editModal");
                     modal.style.display = "none";
                 }
+
                 function openAddUserModal() {
                     var modal = document.getElementById("addModal");
                     document.getElementById('add-First_Name').value = '';
@@ -340,6 +343,7 @@ require_once "../../model/User/userC.php";
                     document.getElementById('add-Phone_number').value = '';
                     addModal.style.display = "block";
                 }
+
                 function closeAddModal() {
                     var modal = document.getElementById("addModal");
                     if (modal) {
@@ -348,8 +352,6 @@ require_once "../../model/User/userC.php";
                         console.error("Modal element not found or is null");
                     }
                 }
-
-
             </script>
     </body>
 

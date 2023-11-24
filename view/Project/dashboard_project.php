@@ -2,7 +2,8 @@
 <html lang="en">
 
 <?php
-require "../../controller/Project/ProjectC.php";
+require_once "../../controller/Project/ProjectC.php";
+require_once "../../controller/Type/TypeC.php";
 ?>
 
 <head>
@@ -73,12 +74,14 @@ require "../../controller/Project/ProjectC.php";
                     <h3>Projects List</h3>
                     <table class="table table-bordered">
                         <?php
+
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
                             echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th><th>Actions</th></tr>";
                             foreach ($projects as $project) {
+
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
@@ -89,11 +92,9 @@ require "../../controller/Project/ProjectC.php";
                         ?>
                                 <td class="progress-bar-container">
                                     <div class="full-bar">
-                                        <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']); ?>%;"></div>
+                                        <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%; ;"></div>
                                     </div>
-                                    <p><?php echo htmlspecialchars($project['Percentage']); ?>%
-                                    </p>
-
+                                    <p><?php echo htmlspecialchars($project['Percentage']); ?>%</p>
                                 </td>
 
                         <?php
@@ -112,7 +113,7 @@ require "../../controller/Project/ProjectC.php";
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Project</button>
+                    <button onclick="create()">Add a Project</button>
                 </div>
             </div>
 
@@ -123,7 +124,7 @@ require "../../controller/Project/ProjectC.php";
             <div class="modal-content">
                 <span class="close" onclick="closeEditModal()">&times;</span>
                 <div class="container">
-                    <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
+                    <form id="editForm" method="post" onsubmit="event.preventDefault();edit()">
                         <table>
                             <tr>
                                 <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
@@ -152,7 +153,7 @@ require "../../controller/Project/ProjectC.php";
             <div class="modal-content">
                 <span class="close" onclick="closeAddModal()">&times;</span>
                 <div class="container">
-                    <form id="AddForm" onsubmit="event.preventDefault(); addType();">
+                    <form id="AddForm" onsubmit="event.preventDefault(); add();">
                         <table>
                             <tr>
                                 <td><label for="project-name">Project Name</label></td>
@@ -169,15 +170,35 @@ require "../../controller/Project/ProjectC.php";
                                 <td><input type="date" id="project-date" name="project-date"></td>
                             </tr>
                             <tr>
+                                <td><label for="project-current">Current Amount</label></td>
+                                <td><input type="number" id="project-current" name="project-current" value=0></td>
+                            </tr>
+                            <tr>
                                 <td><label for="project-goal">Goal Amount</label></td>
                                 <td><input type="number" id="project-goal" name="project-goal" value=0></td>
                             </tr>
                             <tr>
                                 <td>
+                                    <label for="project-type">Type</label>
                                 </td>
                                 <td>
-                                    <select>
-                                        <?php  ?>
+                                    <select name="project-type" id="type">
+                                        <?php
+                                        $typeC = new TypeC();
+                                        $types = $typeC->read_type();
+                                        foreach ($types as $type) {
+                                            echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            <tr>
+                            <tr>
+                                <td>
+                                    <label for="project-organization">Organization</label>
+                                </td>
+                                <td>
+                                    <select name="project-organization" id="project-organization">
                                         <option value="1">test 1</option>
                                         <option value="2">test 2</option>
                                     </select>
@@ -221,7 +242,7 @@ require "../../controller/Project/ProjectC.php";
 
 
         // ADD TYPE MODAL
-        function createType() {
+        function create() {
             var modal = document.getElementById("AddModal");
             modal.style.display = "block";
         }
@@ -231,7 +252,7 @@ require "../../controller/Project/ProjectC.php";
             modal.style.display = "none";
         }
 
-        function addType() {
+        function add() {
             var typeName = document.getElementById("type-name");
             var typeDescription = document.getElementById("type-description");
 
@@ -285,7 +306,7 @@ require "../../controller/Project/ProjectC.php";
 
         }
 
-        function editType() {
+        function edit() {
 
             var id = document.getElementById("edit-type-id").value;
 
@@ -325,7 +346,7 @@ require "../../controller/Project/ProjectC.php";
 </body>
 
 </html>
-</script>
+
 
 </body>
 

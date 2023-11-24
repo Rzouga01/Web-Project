@@ -1,5 +1,5 @@
 <?php
-require 'typeC.php';
+require_once 'typeC.php';
 
 $TypeC = new TypeC();
 
