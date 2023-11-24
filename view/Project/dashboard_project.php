@@ -102,7 +102,7 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "', '" . $project['start_date'] . $project['Goal'] . "', '" . $project['Current_amount'] . $project['Percentage'] . $project['ID_Org'] . "', '" . $project['ID_Type'] . "')\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "', '" . $project['start_date'] .  "', '" . $project['Current_amount'] . "', '" . $project['Goal'] . "', '" .  $project['ID_Type'] . "', '" .  $project['ID_Org'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -161,8 +161,10 @@ require_once "../../controller/Type/TypeC.php";
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
                                         foreach ($types as $type) {
-                                            $selected = ($type == $types[0]) ? 'selected' : '';
-                                            echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                            if ($type == $types[0])
+                                                echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
+                                            else
+                                                echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -226,8 +228,10 @@ require_once "../../controller/Type/TypeC.php";
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
                                         foreach ($types as $type) {
-                                            $selected = ($type == $types[0]) ? 'selected' : '';
-                                            echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                            if ($type == $types[0])
+                                                echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
+                                            else
+                                                echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -345,6 +349,25 @@ require_once "../../controller/Type/TypeC.php";
             }
 
 
+            // Validate and set default value for "Type" dropdown
+            if (!projectType.value) {
+                alert("Please select a Type.");
+                projectType.style.border = "1px solid red";
+                return;
+            } else {
+                projectType.style.border = "1px solid green";
+            }
+
+            // Validate and set default value for "Organization" dropdown
+            if (!projectOrganization.value) {
+                alert("Please select an Organization.");
+                projectOrganization.style.border = "1px solid red";
+                return;
+            } else {
+                projectOrganization.style.border = "1px solid green";
+            }
+
+
             var formattedDate = new Date(projectDate.value).toISOString().slice(0, 19).replace("T", " ");
 
             var xhttp = new XMLHttpRequest();
@@ -384,29 +407,29 @@ require_once "../../controller/Type/TypeC.php";
             modal.style.display = "none";
         }
 
+
+
+
         function openEditModal(id, name, description, date, current, goal, type, organization) {
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
+            // Corrected the element ID for project-id-update
             document.getElementById("project-id-update").value = id;
             document.getElementById("project-name-update").value = name;
             document.getElementById("project-description-update").value = description;
 
-
             var formattedDate = new Date(date);
             var yyyy = formattedDate.getFullYear();
-            var mm = String(formattedDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+            var mm = String(formattedDate.getMonth() + 1).padStart(2, '0');
             var dd = String(formattedDate.getDate()).padStart(2, '0');
-
             var formattedDateString = `${yyyy}-${mm}-${dd}`;
 
             document.getElementById("project-date-update").value = formattedDateString;
-
-
             document.getElementById("project-current-update").value = current;
             document.getElementById("project-goal-update").value = goal;
 
-
+            // Assuming "project-type-update" is the id of your type select element
             var typeSelect = document.getElementById("project-type-update");
             for (var i = 0; i < typeSelect.options.length; i++) {
                 if (typeSelect.options[i].value == type) {
@@ -415,7 +438,7 @@ require_once "../../controller/Type/TypeC.php";
                 }
             }
 
-            // Assuming "project-organization" is the id of your organization select element
+            // Assuming "project-organization-update" is the id of your organization select element
             var orgSelect = document.getElementById("project-organization-update");
             for (var j = 0; j < orgSelect.options.length; j++) {
                 if (orgSelect.options[j].value == organization) {
@@ -424,6 +447,7 @@ require_once "../../controller/Type/TypeC.php";
                 }
             }
         }
+
 
 
 
