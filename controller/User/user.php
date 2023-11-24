@@ -19,7 +19,13 @@ class UserCRUD
             $user->getEmail(),
             $user->getRole()
         ]);
-        return $result ? "User created successfully" : "Error creating user";
+
+        if (!$result) {
+            error_log(print_r($insert->errorInfo(), true));
+            return "Error creating user";
+        }
+
+        return "User created successfully";
     }
 
     public function getAllUsers()

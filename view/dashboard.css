@@ -241,14 +241,12 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  width: 80%;
+  width: 100%;
+  height: 60%;
   max-width: 600px;
-
-  /* Updated box shadow */
-  border-radius: 8px;
+  border-radius: 8px; 
   background-color: #fff;
   overflow: hidden;
-  /* Ensure no overflow issues */
 }
 
 .modal-content {
