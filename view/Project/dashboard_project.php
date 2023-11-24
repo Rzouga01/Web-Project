@@ -102,7 +102,7 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "')\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "', '" . $project['start_date'] . $project['Goal'] . "', '" . $project['Current_amount'] . $project['Percentage'] . $project['ID_Org'] . "', '" . $project['ID_Type'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -178,11 +178,8 @@ require_once "../../controller/Type/TypeC.php";
                                     </select>
                                 </td>
                             <tr>
-                                <td></td>
-                                <td>
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
-                                </td>
                             </tr>
                             </table>
                     </form>
@@ -392,9 +389,7 @@ require_once "../../controller/Type/TypeC.php";
             modal.style.display = "block";
 
 
-            document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
+
 
 
         }
