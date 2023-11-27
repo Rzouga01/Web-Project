@@ -43,7 +43,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="../Reclamation/dashboard_reclamation.php">
+                <li><a href="dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
