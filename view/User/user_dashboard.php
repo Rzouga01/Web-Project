@@ -75,7 +75,7 @@ require_once "../../model/User/userC.php";
                             <?php
                             $user = new UserCRUD();
                             $users = $user->getAllUsers();
-                            if (!empty($users) && (is_iterable($users))) {
+                            if (!empty($users)) {
                                 echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th></tr>";
                                 foreach ($users as $user) {
                                     echo "<tr>";
@@ -88,8 +88,8 @@ require_once "../../model/User/userC.php";
                                     echo "<td>" . htmlspecialchars($user['Country']) . "</td>";
                                     echo "<td>" . htmlspecialchars($user['Role']) . "</td>";
                                     echo "<td>";
-                                    echo "<button onclick=\"openEditUserModal('" . $user['ID_USER'] . "', '" . $user['First_Name'] . "', '" . $user['Last_Name'] . "', '" . $user['Email'] . "', '" . $user['Phone_number'] . "')\">Edit</button>";
-                                    echo "<button onclick=\"deleteUser(" . $user['ID_USER'] . ")\">Delete</button>";
+                                    echo "<button onclick='openEditUserModal(\"{$user['ID_USER']}\", \"{$user['First_Name']}\", \"{$user['Last_Name']}\", \"{$user['Email']}\", \"{$user['Phone_number']}\", \"{$user['Password']}\", \"{$user['Birthdate']}\", \"{$user['Country']}\", \"{$user['Role']}\")'>Edit</button>";
+                                    echo "<button onclick='deleteUser(\"{$user['ID_USER']}\")'>Delete</button>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -243,13 +243,28 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function() {
+                    xhttp.onreadystatechange = function () {
                         if (this.readyState == 4 && this.status == 200) {
                             location.reload();
                         }
                     };
                     xhttp.send("First_Name=" + encodeURIComponent(firstName) + "&Last_Name=" + encodeURIComponent(lastName) + "&Email=" + encodeURIComponent(email) + "&Password=" + encodeURIComponent(password) + "&Phone_number=" + encodeURIComponent(phoneNumber) + "&Birthdate=" + encodeURIComponent(birthdate) + "&Country=" + encodeURIComponent(country) + "&Role=" + encodeURIComponent(role));
                 }
+                function deleteUser(id) {
+                    if (confirm("Are you sure you want to delete this user?")) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", '../../controller/User/userDelete.php', true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                console.log('user deleted');
+                                location.reload();
+                            }
+                        }
+                        xhr.send("id=" + id);
+                    }
+                }
+
 
                 function editUser() {
                     var id = document.getElementById("edit-ID_USER");
@@ -266,68 +281,59 @@ require_once "../../model/User/userC.php";
                         var xhttp = new XMLHttpRequest();
                         xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function() {
+                        xhttp.onreadystatechange = function () {
                             if (this.readyState == 4 && this.status == 200) {
                                 closeEditModal();
                                 location.reload();
                             }
                         };
-                        xhttp.send("id=" + encodeURIComponent(id.value) + "&firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
+                        xhttp.send("id=" + encodeURIComponent(id.value) + "&firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&password=" + encodeURIComponent(password.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&birthdate=" + encodeURIComponent(birthdate.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
                     } else {
                         console.log('One or more elements do not exist');
                     }
                 }
 
-                function deleteUser(id) {
-                    var confirmation = confirm('Are you sure you want to delete user with ID ' + id + '?');
-                    if (confirmation) {
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.open("POST", "../../controller/User/userDelete.php", true);
-                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                location.reload();
-                            }
-                        };
-                        xhttp.send("id=" + id);
-                    }
-                }
+
                 var modal = document.getElementById("editModal");
                 var span = document.getElementsByClassName("close")[0];
 
 
-                span.onclick = function() {
+                span.onclick = function () {
                     modal.style.display = "none";
                 };
 
-                window.onclick = function(event) {
+                window.onclick = function (event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }
                 };
 
-                function openEditUserModal(id, firstName, lastName, email, phoneNumber) {
-                    console.log('Function called');
+
+                function openEditUserModal(userID, firstName, lastName, email, phoneNumber, password, birthdate, country, role) {
                     var modal = document.getElementById("editModal");
-                    var elements = ['edit-First_Name', 'edit-Last_Name', 'edit-Email', 'edit-Phone_number', 'edit-ID_USER'];
-                    var values = [firstName, lastName, email, phoneNumber, id];
-
-                    for (var i = 0; i < elements.length; i++) {
-                        var element = document.getElementById(elements[i]);
-                        if (element) {
-                            element.value = values[i];
-                        } else {
-                            console.error('Element with id ' + elements[i] + ' not found');
-                        }
-                    }
-
                     if (modal) {
+                        var id = document.getElementById('edit-ID_USER');
+                        var firstNameElem = document.getElementById('edit-First_Name');
+                        var lastNameElem = document.getElementById('edit-Last_Name');
+                        var emailElem = document.getElementById('edit-Email');
+                        var phoneNumberElem = document.getElementById('edit-Phone_number');
+                        var passwordElem = document.getElementById('edit-Password');
+                        var birthdateElem = document.getElementById('edit-Birthdate');
+                        var countryElem = document.getElementById('edit-Country');
+                        var roleElem = document.getElementById('edit-Role');
+                        console.log(userID);
+                        if (id) id.value = userID;
+                        if (firstNameElem) firstNameElem.value = firstName;
+                        if (lastNameElem) lastNameElem.value = lastName;
+                        if (emailElem) emailElem.value = email;
+                        if (phoneNumberElem) phoneNumberElem.value = phoneNumber;
+                        if (passwordElem) passwordElem.value = password;
+                        if (birthdateElem) birthdateElem.value = birthdate;
+                        if (countryElem) countryElem.value = country;
+                        if (roleElem) roleElem.value = role;
                         modal.style.display = "block";
-                    } else {
-                        console.error('Modal not found');
                     }
                 }
-
                 function closeEditModal() {
                     var modal = document.getElementById("editModal");
                     modal.style.display = "none";
