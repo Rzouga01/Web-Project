@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <?php
@@ -43,7 +43,7 @@ require_once "../../model/Reponse/reponseC.php";
                         <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="dashboard_reclamation.php">
+                <li><a href="../Reclamtion/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
@@ -73,7 +73,7 @@ require_once "../../model/Reponse/reponseC.php";
                     <table class="table table-bordered">
                         <?php
                         $response = new ResponseC();
-                        $reponses = $response->listResponse();
+                        $responses = $response->listResponse();
 
                         if (!empty($response) && (is_iterable($responses) || is_object($responses))) {
                             echo "<tr><th>ID</th><th>ID Reclamation</th><th>Text</th><th>Date</th><th>Actions</th></tr>";

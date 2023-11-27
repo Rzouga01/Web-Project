@@ -1,6 +1,6 @@
 <?php
 
-require '../../database/config.php';
+require_once '../../database/connect.php';
 require '../../model/Reponse/reponseC.php';
 
 class ResponseC{
