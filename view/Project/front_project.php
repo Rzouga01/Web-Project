@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<?php
-require "../controller/type/typeC.php";
-
-?>
-
 <head>
     <title>RecoveryButterfly</title>
 
@@ -16,47 +10,77 @@ require "../controller/type/typeC.php";
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="TemplatesJungle">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link href="plugins/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../css/vendor.css">
+    <link href="../plugins/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="js/modernizr.js"></script>
+    <script src="../js/modernizr.js"></script>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
 
+    <header class="site-header position-fixed py-1 text-white">
+        <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
 
-    <table>
+            <div class="container-fluid">
 
-        <?php
-        require_once "../controller/type/typeC.php";
+                <a class="navbar-brand" href="index.html"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
-        $Type = new TypeC();
-        $types = $Type->read_type();
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-        if (!empty($types) && (is_iterable($types) || is_object($types))) {
-            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
-            foreach ($types as $type) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
-                echo "<td>" . htmlspecialchars($type['Type_name']) . "</td>";
-                echo "<td>" . htmlspecialchars($type['Type_description']) . "</td>";
-                echo "<td>";
-                echo "<button onclick=\"openEditModal(" . $type['ID_Type'] . ", '" . $type['Type_name'] . "', '" . $type['Type_description'] . "')\">Edit</button>";
-                echo "<button onclick=\"confirmDelete(" . $type['ID_Type'] . ")\">Delete</button>";
-                echo "</td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='4'>No types found</td></tr>";
-        }
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="#Home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="#events">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="#latest-stories">Stories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a href="../view//Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    </li>
+                                    <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
+                                    </li>
+                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                                    <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
+                                    <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-lg rounded-pill" href="../User/user.html">Join Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="#">Login</a>
+                            </li>
+                        </ul>
 
-        ?>
-    </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
 
 
     <footer class="padding-large text-white bg-dark">
