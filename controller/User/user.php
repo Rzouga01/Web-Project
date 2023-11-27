@@ -75,19 +75,14 @@ class UserCRUD
         ]);
         return $query->rowCount() > 0 ? "User updated successfully" : "Error updating user";
     }
-
+    
     public function delete_user($id)
     {
-        try {
-            $cnx = Config::getConnexion();
-            $sql = "DELETE FROM user WHERE ID_USER = :id";
-            $deleteStmt = $cnx->prepare($sql);
-            $deleteStmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $deleteStmt->execute();
-            return "User deleted successfully";
-        } catch (PDOException $e) {
-            return "Error deleting user: " . $e->getMessage();
-        }
+        $cnx = Config::getConnexion();
+        $delete = $cnx->prepare("DELETE FROM user WHERE ID_USER = ?");
+        $delete->execute([$id]);
+        return $delete->rowCount() > 0 ? "User deleted successfully" : "Error deleting user";
     }
+  
   
 }
