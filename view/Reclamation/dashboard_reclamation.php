@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require "../../controller/Reclamation/reclamation.php";
+require_once "../../controller/Reclamation/reclamation.php";
 require_once "../../model/Reclamation/reclamationC.php";
 ?>
 

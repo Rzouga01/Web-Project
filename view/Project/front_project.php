@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once "../../controller/Project/ProjectC.php";
+?>
 
 <head>
     <title>RecoveryButterfly</title>
@@ -19,11 +22,18 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/modernizr.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
-
-    <header class="site-header position-fixed py-1 text-white">
+    <div id="overlayer">
+        <span class="loader">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+        </span>
+    </div>
+    <header class="site-header position-fixed py-1 text-white" style="background: #092035;">
         <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
 
             <div class="container-fluid">
@@ -83,6 +93,59 @@
     </header>
 
 
+    <section id="Home" class="padding-large jarallax">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <table>
+                        <?php
+                        $projectC = new ProjectC();
+                        $projects = $projectC->read_project();
+
+                        if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
+                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th></tr>";
+                            foreach ($projects as $project) {
+
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
+                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
+                        ?>
+
+                                <td class="progress-bar-container">
+                                    <div class="bar">
+                                        <div class="full-bar">
+                                            <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%; ;"></div>
+                                        </div>
+                                        <p id="number"><?php echo number_format($project['Percentage'], 2);; ?>%</p>
+                                    </div>
+                                </td>
+
+
+                        <?php
+
+                                echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
+                                echo "<td>";
+
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
     <footer class="padding-large text-white bg-dark">
         <div class="container">
             <div class="row">
@@ -134,11 +197,11 @@
         </div>
     </footer>
 
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="plugins/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../plugins/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
 
