@@ -14,13 +14,13 @@ class Project
     private $type_id;
 
 
-    function __construct($project_name, $project_description, $start_date, $goal, $current_amount, $percentage, $org_id, $type_id)
+    function __construct($project_name, $project_description, $start_date, $goal, $current_amount, $org_id, $type_id)
     {
         $this->project_name = $project_name;
         $this->project_description = $project_description;
-        $this->start_date = date("Y-m-d");
+        $this->start_date = $start_date;
         $this->goal = $goal;
-        $this->current_amount = 0;
+        $this->current_amount = $current_amount;
         $this->percentage = ($this->current_amount * 100) / $this->goal;
         $this->org_id = $org_id;
         $this->type_id = $type_id;

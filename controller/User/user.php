@@ -6,20 +6,25 @@ class UserCRUD
 {
     public function create_user($user)
     {
-        $cnx = Config::getConnexion();
-        $insert = $cnx->prepare("INSERT INTO user (ID_USER, First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $result = $insert->execute([
-            $user->getID_USER(),
-            $user->getFirst_Name(),
-            $user->getLast_Name(),
-            $user->getPassword(),
-            $user->getPhone_number(),
-            $user->getBirthdate(),
-            $user->getCountry(),
-            $user->getEmail(),
-            $user->getRole()
-        ]);
-        return $result ? "User created successfully" : "Error creating user";
+     $cnx = Config::getConnexion();
+    $insert = $cnx->prepare("INSERT INTO user (First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $result = $insert->execute([
+        $user->getFirst_Name(),
+        $user->getLast_Name(),
+        $user->getPassword(),
+        $user->getPhone_number(),
+        $user->getBirthdate(),
+        $user->getCountry(),
+        $user->getEmail(),
+        $user->getRole()
+    ]);
+    $user->setID_USER($cnx->lastInsertId());
+
+        if (!$result) {
+            error_log(print_r($insert->errorInfo(), true));
+            return "Error creating user";
+        }
+        return "User created successfully";
     }
 
     public function getAllUsers()
@@ -70,19 +75,14 @@ class UserCRUD
         ]);
         return $query->rowCount() > 0 ? "User updated successfully" : "Error updating user";
     }
-
+    
     public function delete_user($id)
     {
-        try {
-            $cnx = Config::getConnexion();
-            $sql = "DELETE FROM user WHERE ID_USER = :id";
-            $deleteStmt = $cnx->prepare($sql);
-            $deleteStmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $deleteStmt->execute();
-            return "User deleted successfully";
-        } catch (PDOException $e) {
-            return "Error deleting user: " . $e->getMessage();
-        }
+        $cnx = Config::getConnexion();
+        $delete = $cnx->prepare("DELETE FROM user WHERE ID_USER = ?");
+        $delete->execute([$id]);
+        return $delete->rowCount() > 0 ? "User deleted successfully" : "Error deleting user";
     }
+  
   
 }

@@ -4,11 +4,12 @@ class UserClass
     private $ID_USER;
     private $First_Name;
     private $Last_Name;
+    private $Email;
     private $Password;
     private $Phone_number;
     private $Birthdate;
     private $Country;
-    private $Email;
+
     private $Role;
 
     public function __construct($ID_USER, $First_Name, $Last_Name, $Email, $Phone_number, $Password, $Birthdate, $Country, $Role)
@@ -27,6 +28,10 @@ class UserClass
     public function getID_USER()
     {
         return $this->ID_USER;
+    }
+    public function setID_USER($ID_USER)
+    {
+        $this->ID_USER = $ID_USER;
     }
 
     public function getFirst_Name()
@@ -68,5 +73,5 @@ class UserClass
     {
         return $this->Role;
     }
-    
+
 }
