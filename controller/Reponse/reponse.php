@@ -5,16 +5,15 @@ require '../../model/Reponse/reponseC.php';
 
 class ResponseC{
     public function ajouterResponse($response){
-        $sql = "INSERT TO response (ID_Response,Response_text,Response_date)
-        VALUES(:ID_Response , :Response_text , :Response_date) ";
+        $sql = "INSERT TO response (ID_Reclamation,Response_text,Response_date)
+        VALUES(:ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
         try{
-            print_r($response->getResponse_date()->format('Y-m-d'));
             $query = $db->prepare($sql);
             $query->execute([
-                'ID_Response'=>$response->getID_response(),
+                'ID_Reclamation'=>$response->getID_reclamation(),
                 'Response_text'=>$response->getResponse_text(),
-                'Response_date'=>$response->getResponse_date()->format('Y-m-d'),
+                'Response_date'=>$response->getResponse_date(),
             ]);
         }catch (Exception $e) {
             echo 'Erreur: ' . $e->getMessage();
@@ -38,7 +37,6 @@ class ResponseC{
         $sql = "DELETE FROM response WHERE ID_Response = $ID_response";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        $req->bindValue(':ID_Response',$ID_response);
         try{
             $req->execute();
         }catch (Exception $e) {
@@ -46,7 +44,7 @@ class ResponseC{
         }
     }
 
-    function modifierResponse($response,$ID_response)
+    function modifierResponse($ID_Response,$Response_text,$Response_date)
     {
         try{
             $db = config::getConnexion();
@@ -58,8 +56,8 @@ class ResponseC{
             );
             $query->execute([
                 'ID_response' => $ID_response,
-                'Response_text' => $response->getResponse_text(),
-                'Response_date' => $response->getResponse_date()->format('Y/m/d'),
+                'Response_text' => $Response_text,
+                'Response_date' => $Response_date,
             ]);
         }catch (Exception $e){
             $e->getMessage();
@@ -69,14 +67,22 @@ class ResponseC{
      //cette fonction permet d'afficher la liste des reponses dans la base de données
      function listResponse()
      {
-         $sql = "SELECT * FROM response";
-         $db = config::getConnexion();
-         try {
-             $liste = $db->query($sql);
-             return $liste;
-         } catch (Exception $e) {
-             die('Erreur:' . $e->getMessage());
-         }
+        $conn = Config::getConnexion();
+        $Reps = [];
+
+        $r = $conn->query("SELECT * FROM response");
+
+        foreach ($r as $row) {
+            $Rep = [
+                'ID_Response' => $row['ID_Response'],
+                'ID_Reclamation' => $row['ID_Reclamation'],
+                'Response_text' => $row['Response_text'],
+                'Response_date' => $row['Response_date'],
+            ];
+            $Reps[] = $Rep;
+        }
+
+        return $Reps;
      }
 }
 
