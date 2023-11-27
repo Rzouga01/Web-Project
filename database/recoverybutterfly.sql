@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 02:51 PM
+-- Generation Time: Nov 27, 2023 at 10:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,14 @@ CREATE TABLE `category` (
   `Category_name` varchar(20) NOT NULL,
   `Category_description` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`ID_Category`, `Category_name`, `Category_description`) VALUES
+(4, 'eazeza', 'azeaze'),
+(5, 'test', 'rearaerea');
 
 -- --------------------------------------------------------
 
@@ -88,6 +96,13 @@ CREATE TABLE `organization` (
   `Org_description` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `organization`
+--
+
+INSERT INTO `organization` (`ID_USER`, `ID_Org`, `Org_name`, `Org_description`) VALUES
+(1, 1, 'gdfg', 'fdgfdgdf');
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +141,7 @@ CREATE TABLE `product` (
   `Product_name` varchar(20) NOT NULL,
   `Product_price` float NOT NULL,
   `Product_description` varchar(20) NOT NULL,
+  `image_link` varchar(50) NOT NULL,
   `ID_Category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -146,6 +162,14 @@ CREATE TABLE `project` (
   `ID_Org` int(11) NOT NULL,
   `ID_Type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`ID_Project`, `Project_name`, `Project_description`, `start_date`, `Goal`, `Current_amount`, `Percentage`, `ID_Org`, `ID_Type`) VALUES
+(20, 'zaea', 'eazeaze', '2023-12-07', 100, 75, 75, 1, 1),
+(21, 'azeza', 'aeraer', '2023-12-05', 50, 10, 20, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +210,14 @@ CREATE TABLE `type` (
   `Type_description` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`ID_Type`, `Type_name`, `Type_description`) VALUES
+(1, 'Education', 'Educational Projects'),
+(2, 'Healthcare', 'Healthcare Projects');
+
 -- --------------------------------------------------------
 
 --
@@ -203,6 +235,14 @@ CREATE TABLE `user` (
   `Email` varchar(20) NOT NULL,
   `Role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID_USER`, `First_Name`, `Last_Name`, `Password`, `Phone_number`, `Birthdate`, `Country`, `Email`, `Role`) VALUES
+(1, 'aer', 'earae', 'earae', 321312, '2023-11-01', 'aezea', 'eazeaze', 1),
+(2, 'aa', 'aze', '', 0, '2023-11-24', '', 'atfastr@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -328,7 +368,7 @@ ALTER TABLE `volunteer`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID_Category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `donation`
@@ -352,7 +392,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `organization`
 --
 ALTER TABLE `organization`
-  MODIFY `ID_Org` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `participants`
@@ -376,13 +416,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `reclamation_tab`
 --
 ALTER TABLE `reclamation_tab`
-  MODIFY `ID_Reclamation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `response`
@@ -394,13 +434,13 @@ ALTER TABLE `response`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `ID_Type` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `volunteer`
