@@ -17,7 +17,7 @@ require "../../controller/Type/typeC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="#" class="logo">
+                    <a href="../index.html" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
@@ -147,9 +147,10 @@ require "../../controller/Type/typeC.php";
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
+                                </td>
+                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
                             </tr>
@@ -237,12 +238,14 @@ require "../../controller/Type/typeC.php";
 
         function openEditModal(id, name, description) {
             var modal = document.getElementById("editModal");
+            var existingTypeDescription = document.getElementById("new-type-description");
+            var existingTypeName = document.getElementById("new-type-name");
             modal.style.display = "block";
 
 
             document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
+            existingTypeName.value = name;
+            existingTypeDescription.value = description;
 
 
         }

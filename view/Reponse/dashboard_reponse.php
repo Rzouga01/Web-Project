@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-require_once "../../controller/Reclamation/reclamation.php";
-require_once "../../model/Reclamation/reclamationC.php";
+require "../../controller/Reponse/reponse.php";
+require_once "../../model/Reponse/reponseC.php";
 ?>
 
 <head>
@@ -18,7 +18,7 @@ require_once "../../model/Reclamation/reclamationC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="../index.html" class="logo">
+                    <a href="#" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
@@ -31,7 +31,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="../User/user_dashboard.php">
+                <li><a href="">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
@@ -40,67 +40,64 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <span class="nav-item">Types</span>
                     </a></li>
                 <li><a href="../Project/dashboard_project.php">
-                        <i class="fa fa-database"></i>
+                        <i class="fa fa-list"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="../Reclamation/dashboard_reclamation.php">
+                <li><a href="../Reclamtion/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
-                <li><a href="../Reponse/dashboard_reponse.php">
+                <li><a href="dashboard_reponse.php">
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="dashboard_type.php">
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
-                <li><a href="../Category/dashboard_category.php">
-                        <i class="fa fa-archive"></i>
-                        <span class="nav-item">Category</span>
+                <li><a href="">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-item">Settings</span>
                     </a></li>
-                <li><a href="#" class="logout">
+                <li><a href="" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
                     </a></li>
             </ul>
         </nav>
-
         <section class="main">
             <div class="users">
                 <div class="card">
                     <i class="fa fa-list"></i>
-                    <h3>reclamation list</h3>
+                    <h3>response list</h3>
                     <table class="table table-bordered">
                         <?php
-                        $reclamation = new ReclamationC();
-                        $reclamations = $reclamation->listReclamation();
+                        $response = new ResponseC();
+                        $responses = $response->listResponse();
 
-                        if (!empty($reclamations) && (is_iterable($reclamations) || is_object($reclamations))) {
-                            echo "<tr><th>ID</th><th>ID User</th><th>Text</th><th>Date</th><th>Status</th><th>Actions</th></tr>";
-                            foreach ($reclamations as $reclamation) {
+                        if (!empty($response) && (is_iterable($responses) || is_object($responses))) {
+                            echo "<tr><th>ID</th><th>ID Reclamation</th><th>Text</th><th>Date</th><th>Actions</th></tr>";
+                            foreach ($responses as $response) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($reclamation['ID_Reclamation']) . "</td>";
-                                echo "<td>" . htmlspecialchars($reclamation['ID_User']) . "</td>";
-                                echo "<td>" . htmlspecialchars($reclamation['Reclamation_text']) . "</td>";
-                                echo "<td>" . htmlspecialchars($reclamation['Reclamation_date']) . "</td>";
-                                echo "<td>" . htmlspecialchars($reclamation['Reclamation_status']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['ID_Response']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['ID_Reclamation']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $reclamation['ID_Reclamation'] . ", '" . $reclamation['Reclamation_text'] . "','" . $reclamation['Reclamation_date'] . "','" . $reclamation['Reclamation_status'] . "')\">Edit</button>";
-                                echo "<button onclick=\"confirmDelete(" . $reclamation['ID_Reclamation'] . ")\">Delete</button>";
+                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] .")\">Edit</button>";
+                                echo "<button onclick=\"confirmDelete(" . $response['ID_Response'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No Reclamations found</td></tr>";
+                            echo "<tr><td colspan='4'>No Responses found</td></tr>";
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Reclamation</button>
+                    <button onclick="createType()">Add a Response</button>
                 </div>
             </div>
-
-        </section>
+            </section>
         <!-- Edit Modal -->
 
         <div id="editModal" class="modal" style="display: none;">
@@ -110,15 +107,14 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
                         <table>
                             <tr>
+                                <input type="hidden" id="edit-ID-response" name="edit-ID-response" value="">
                                 <input type="hidden" id="edit-ID-reclamation" name="edit-ID-reclamation" value="">
-                                <input type="hidden" id="edit-ID-user" name="edit-ID-user" value="">
-                                <input type="hidden" id="edit-date-reclamation" name="edit-date-reclamation" value="">
-                                <input type="hidden" id="edit-status-reclamation" name="edit-status-reclamation" value="">
+                                <input type="hidden" id="edit-date-response" name="edit-date-response" value="">
                             </tr>
                             <tr>
-                                <td><label for="new-reclamation-text">new reclamation</label></td>
+                                <td><label for="new-response-text">new response</label></td>
                                 <td>
-                                    <textarea id="new-reclamation-text" name="new-reclamation-text" class="reclamation-text"></textarea>
+                                    <textarea id="new-response-text" name="new-response-text" class="response-text"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -139,16 +135,15 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <form id="AddForm" onsubmit="event.preventDefault(); addType();">
                         <table>
                             <tr>
-                                <td><label for="reclamation-text">Reclamation text</label></td>
+                                <td><label for="response-text">Response text</label></td>
                                 <td>
-                                    <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
+                                    <textarea id="response-text" name="response-text" class="response-text"></textarea>
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
-                                </td>
-                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
                             </tr>
@@ -169,7 +164,7 @@ require_once "../../model/Reclamation/reclamationC.php";
 
         function Delete(id) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reclamation/reclamation_delete.php", true);
+            xhttp.open("POST", "../../controller/Reponse/reponse_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -194,7 +189,7 @@ require_once "../../model/Reclamation/reclamationC.php";
         }
 
         function addType() {
-            var Text = document.getElementById("reclamation-text");
+            var Text = document.getElementById("reponse-text");
 
             if (Text.value === "" || Text.value.length > 20) {
                 alert("Text should not be empty and should not exceed 20 characters.");
@@ -207,7 +202,7 @@ require_once "../../model/Reclamation/reclamationC.php";
 
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reclamation/reclamation_create.php", true);
+            xhttp.open("POST", "../../controller/Reponse/reponse_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -232,23 +227,23 @@ require_once "../../model/Reclamation/reclamationC.php";
             modal.style.display = "block";
 
 
-            document.getElementById("edit-ID-reclamation").value = id;
-            document.getElementById("edit-date-reclamation").value = date;
-            document.getElementById("edit-status-reclamation").value = status;
+            document.getElementById("edit-ID-reponse").value = id;
+            document.getElementById("edit-text-reponse").value = date;
+            document.getElementById("edit-date-reponse").value = status;
 
 
         }
 
         function editType() {
 
-            var id = document.getElementById("edit-ID-reclamation").value;
+            var id = document.getElementById("edit-ID-reponse").value;
 
 
-            var text = document.getElementById("new-reclamation-text");
+            var text = document.getElementById("new-reponse-text");
 
-            var date = document.getElementById("edit-date-reclamation").value;
+            var date = document.getElementById("edit-date-reponse").value;
 
-            var status = document.getElementById("edit-status-reclamation").value;
+         
 
 
 
@@ -264,7 +259,7 @@ require_once "../../model/Reclamation/reclamationC.php";
 
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reclamation/reclamation_update.php", true);
+            xhttp.open("POST", "../../controller/Reponse/reponse_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {

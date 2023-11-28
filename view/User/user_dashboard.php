@@ -19,7 +19,7 @@ require_once "../../model/User/userC.php";
             <nav class="navbar">
                 <ul>
                     <li>
-                        <a href="#" class="logo">
+                        <a href="../index.html" class="logo">
                             <img src="../../assets/images/logo.png" alt="">
                             <span class="nav-item">Dashboard</span>
                         </a>
@@ -32,7 +32,7 @@ require_once "../../model/User/userC.php";
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
                         </a></li>
-                    <li><a href="../User/user_dashboard.php">
+                    <li><a href="user_dashboard.php">
                             <i class="fas fa-users"></i>
                             <span class="nav-item">Users</span>
                         </a></li>
@@ -44,23 +44,23 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-database"></i>
                             <span class="nav-item">Project</span>
                         </a></li>
-                    <li><a href="../Reclamation/dashboard_reclamation.php">
+                    <li><a href="dashboard_reclamation.php">
                             <i class="fa fa-exclamation-triangle"></i>
                             <span class="nav-item">Reclamation</span>
                         </a></li>
-                    <li><a href="dashboard_type.php">
+                    <li><a href="#">
                             <i class="fa fa-envelope-open"></i>
                             <span class="nav-item">Response</span>
                         </a></li>
-                    <li><a href="dashboard_type.php">
+                    <li><a href="#">
                             <i class="fa fa-comments"></i>
                             <span class="nav-item">Feedback</span>
                         </a></li>
-                    <li><a href="">
-                            <i class="fas fa-cog"></i>
-                            <span class="nav-item">Settings</span>
+                    <li><a href="../Category/dashboard_category.php">
+                            <i class="fa fa-archive"></i>
+                            <span class="nav-item">Category</span>
                         </a></li>
-                    <li><a href="" class="logout">
+                    <li><a href="#" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>
@@ -75,7 +75,7 @@ require_once "../../model/User/userC.php";
                             <?php
                             $user = new UserCRUD();
                             $users = $user->getAllUsers();
-                            if (!empty($users) && (is_iterable($users))) {
+                            if (!empty($users)) {
                                 echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th></tr>";
                                 foreach ($users as $user) {
                                     echo "<tr>";
@@ -88,8 +88,8 @@ require_once "../../model/User/userC.php";
                                     echo "<td>" . htmlspecialchars($user['Country']) . "</td>";
                                     echo "<td>" . htmlspecialchars($user['Role']) . "</td>";
                                     echo "<td>";
-                                    echo "<button onclick=\"openEditUserModal('" . $user['ID_USER'] . "', '" . $user['First_Name'] . "', '" . $user['Last_Name'] . "', '" . $user['Email'] . "', '" . $user['Phone_number'] . "')\">Edit</button>";
-                                    echo "<button onclick=\"deleteUser(" . $user['ID_USER'] . ")\">Delete</button>";
+                                    echo "<button onclick='openEditUserModal(\"{$user['ID_USER']}\", \"{$user['First_Name']}\", \"{$user['Last_Name']}\", \"{$user['Email']}\", \"{$user['Phone_number']}\", \"{$user['Password']}\", \"{$user['Birthdate']}\", \"{$user['Country']}\", \"{$user['Role']}\")'>Edit</button>";
+                                    echo "<button onclick='deleteUser(\"{$user['ID_USER']}\")'>Delete</button>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -98,7 +98,7 @@ require_once "../../model/User/userC.php";
                             }
                             ?>
                         </table>
-                        <a onclick="openAddUserModal()">Add User</a>
+                        <button onclick="openAddUserModal()">Add User</button>
                     </div>
                 </div>
             </section>
@@ -106,9 +106,9 @@ require_once "../../model/User/userC.php";
                 <div class="modal-content">
                     <span class="close" onclick="closeEditModal()">&times;</span>
                     <div class="container">
-                        <form id="editForm" method="post" onsubmit="event.preventDefault(); editUser();">
+                        <form id="editForm" onsubmit="event.preventDefault(); editUser();">
                             <table>
-                                <input type="hidden" id="edit-ID_USER" name="ID_USER">
+                                <input type="hidden" id="edit-id-user" name="ID_USER">
                                 <tr>
                                     <td><label for="edit-First_Name">First Name</label></td>
                                     <td><input type="text" id="edit-First_Name" name="First_Name"></td>
@@ -137,27 +137,25 @@ require_once "../../model/User/userC.php";
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="Edit-country">Country</label>
-                                        <select name="Country" id="Edit-country">
-                                            <option value="">Country</option>
-                                            <option value="Country 1">Country 1</option>
-                                            <option value="Country 2">Country 2</option>
+                                        <label for="country">Country</label>
+                                        <select name="country" id="edit-country">
+                                            <option value="Country1">Country 1</option>
+                                            <option value="Country2">Country 2</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label for="Edit-role">Role</label>
-                                        <select name="Role" id="Edit-role">
-                                            <option value="">Role</option>
-                                            <option value="Admin">Organisation</option>
-                                            <option value="User">User</option>
+                                        <label for="edit-role">Role</label>
+                                        <select name="Role" id="edit-role">
+                                            <option value="0">Admin</option>
+                                            <option value="1">Organisation</option>
+                                            <option value="2">User</option>
                                         </select>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td> </td>
                                     <td>
                                         <input type="submit" value="Save Changes" id="button_save">
                                     </td>
@@ -205,9 +203,8 @@ require_once "../../model/User/userC.php";
                                     <td>
                                         <label for="add-country">Country</label>
                                         <select name="Country" id="add-country">
-                                            <option value="">Country</option>
-                                            <option value="Country 1">Country 1</option>
-                                            <option value="Country 2">Country 2</option>
+                                            <option value="Country1">Country 1</option>
+                                            <option value="Country2">Country 2</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -215,14 +212,13 @@ require_once "../../model/User/userC.php";
                                     <td>
                                         <label for="add-role">Role</label>
                                         <select name="Role" id="add-role">
-                                            <option value="">Role</option>
-                                            <option value="Admin">Organisation</option>
-                                            <option value="User">User</option>
+                                            <option value="0">Admin</option>
+                                            <option value="1">Organisation</option>
+                                            <option value="2">User</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
                                     <td>
                                         <input type="submit" value="Create" id="button_create">
                                     </td>
@@ -245,7 +241,7 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function () {
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             location.reload();
                         }
@@ -253,85 +249,113 @@ require_once "../../model/User/userC.php";
                     xhttp.send("First_Name=" + encodeURIComponent(firstName) + "&Last_Name=" + encodeURIComponent(lastName) + "&Email=" + encodeURIComponent(email) + "&Password=" + encodeURIComponent(password) + "&Phone_number=" + encodeURIComponent(phoneNumber) + "&Birthdate=" + encodeURIComponent(birthdate) + "&Country=" + encodeURIComponent(country) + "&Role=" + encodeURIComponent(role));
                 }
 
-                function editUser() {
-                    var id = document.getElementById("edit-ID_USER");
-                    var firstName = document.getElementById("edit-First_Name");
-                    var lastName = document.getElementById("edit-Last_Name");
-                    var email = document.getElementById("edit-Email");
-                    var password = document.getElementById("edit-Password");
-                    var phoneNumber = document.getElementById("edit-Phone_number");
-                    var birthdate = document.getElementById("edit-Birthdate");
-                    var country = document.getElementById("edit-Country");
-                    var role = document.getElementById("edit-Role");
-
-                    if (id && firstName && lastName && email && password && phoneNumber && birthdate && country && role) {
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.open("POST", "../../controller/User/userUpdate.php", true);
-                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
-                                closeEditModal();
-                                location.reload();
-                            }
-                        };
-                        xhttp.send("id=" + encodeURIComponent(id.value) + "&firstName=" + encodeURIComponent(firstName.value) + "&lastName=" + encodeURIComponent(lastName.value) + "&email=" + encodeURIComponent(email.value) + "&phoneNumber=" + encodeURIComponent(phoneNumber.value) + "&country=" + encodeURIComponent(country.value) + "&role=" + encodeURIComponent(role.value));
-                    } else {
-                        console.log('One or more elements do not exist');
-                    }
-                }
                 function deleteUser(id) {
-                    var confirmation = confirm('Are you sure you want to delete user with ID ' + id + '?');
-                    if (confirmation) {
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.open("POST", "../../controller/User/userDelete.php", true);
-                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xhttp.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
+                    if (confirm("Are you sure you want to delete this user?")) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", '../../controller/User/userDelete.php', true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function() {
+                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                console.log('user deleted');
                                 location.reload();
                             }
-                        };
-                        xhttp.send("id=" + id);
+                        }
+                        xhr.send("id=" + id);
                     }
                 }
+
+
+                function editUser() {
+                    var id = document.getElementById('edit-id-user'); // ID: edit-id-user
+                    var firstName = document.getElementById('edit-First_Name'); // ID: edit-First_Name
+                    var lastName = document.getElementById('edit-Last_Name'); // ID: edit-Last_Name
+                    var email = document.getElementById('edit-Email'); // ID: edit-Email
+                    var phoneNumber = document.getElementById('edit-Phone_number'); // ID: edit-Phone_number
+                    var password = document.getElementById('edit-Password'); // ID: edit-Password
+                    var birthdate = document.getElementById('edit-Birthdate'); // ID: edit-Birthdate
+                    var country = document.getElementById('edit-country'); // ID: edit-country
+                    var role = document.getElementById('edit-role');
+
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", "../../controller/User/userUpdate.php", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            closeEditModal();
+                            location.reload();
+                        }
+                    };
+                    xhttp.send("id=" + encodeURIComponent(id.value) +
+                        "&firstName=" + encodeURIComponent(firstName.value) +
+                        "&lastName=" + encodeURIComponent(lastName.value) +
+                        "&email=" + encodeURIComponent(email.value) +
+                        "&password=" + encodeURIComponent(password.value) +
+                        "&phoneNumber=" + encodeURIComponent(phoneNumber.value) +
+                        "&birthdate=" + encodeURIComponent(birthdate.value) +
+                        "&country=" + encodeURIComponent(country.value) +
+                        "&role=" + encodeURIComponent(role.value));
+
+                }
+
+
                 var modal = document.getElementById("editModal");
                 var span = document.getElementsByClassName("close")[0];
 
 
-                span.onclick = function () {
+                span.onclick = function() {
                     modal.style.display = "none";
                 };
 
-                window.onclick = function (event) {
+                window.onclick = function(event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }
                 };
 
-                function openEditUserModal(id, firstName, lastName, email, phoneNumber) {
-                    console.log('Function called');
-                    var modal = document.getElementById("editModal");
-                    var elements = ['edit-First_Name', 'edit-Last_Name', 'edit-Email', 'edit-Phone_number', 'edit-ID_USER'];
-                    var values = [firstName, lastName, email, phoneNumber, id];
 
-                    for (var i = 0; i < elements.length; i++) {
-                        var element = document.getElementById(elements[i]);
-                        if (element) {
-                            element.value = values[i];
-                        } else {
-                            console.error('Element with id ' + elements[i] + ' not found');
+                function openEditUserModal(userID, firstName, lastName, email, phoneNumber, password, birthdate, country, role) {
+                    var modal = document.getElementById("editModal");
+                    var id = document.getElementById('edit-id-user'); // ID: edit-id-user
+                    var firstNameElem = document.getElementById('edit-First_Name'); // ID: edit-First_Name
+                    var lastNameElem = document.getElementById('edit-Last_Name'); // ID: edit-Last_Name
+                    var emailElem = document.getElementById('edit-Email'); // ID: edit-Email
+                    var phoneNumberElem = document.getElementById('edit-Phone_number'); // ID: edit-Phone_number
+                    var passwordElem = document.getElementById('edit-Password'); // ID: edit-Password
+                    var birthdateElem = document.getElementById('edit-Birthdate'); // ID: edit-Birthdate
+                    var countryElem = document.getElementById('edit-country'); // ID: edit-country
+                    var roleElem = document.getElementById('edit-role'); // ID: edit-role
+
+
+                    id.value = userID;
+                    firstNameElem.value = firstName;
+                    lastNameElem.value = lastName;
+                    emailElem.value = email;
+                    phoneNumberElem.value = phoneNumber;
+                    passwordElem.value = password;
+                    birthdateElem.value = birthdate;
+
+                    for (var i = 0; i < countryElem.options.length; i++) {
+                        if (countryElem.options[i].value == country) {
+                            countryElem.options[i].selected = true;
+                            break;
                         }
                     }
-
-                    if (modal) {
-                        modal.style.display = "block";
-                    } else {
-                        console.error('Modal not found');
+                    for (var i = 0; i < roleElem.options.length; i++) {
+                        if (roleElem.options[i].value == role) {
+                            roleElem.options[i].selected = true;
+                            break;
+                        }
                     }
+                    modal.style.display = "block";
+                    console.log(id.value, firstNameElem.value, lastNameElem.value, emailElem.value, phoneNumberElem.value, passwordElem.value, birthdateElem.value, countryElem.value, roleElem.value)
+
                 }
+
                 function closeEditModal() {
                     var modal = document.getElementById("editModal");
                     modal.style.display = "none";
                 }
+
                 function openAddUserModal() {
                     var modal = document.getElementById("addModal");
                     document.getElementById('add-First_Name').value = '';
@@ -340,6 +364,7 @@ require_once "../../model/User/userC.php";
                     document.getElementById('add-Phone_number').value = '';
                     addModal.style.display = "block";
                 }
+
                 function closeAddModal() {
                     var modal = document.getElementById("addModal");
                     if (modal) {
@@ -348,8 +373,6 @@ require_once "../../model/User/userC.php";
                         console.error("Modal element not found or is null");
                     }
                 }
-
-
             </script>
     </body>
 

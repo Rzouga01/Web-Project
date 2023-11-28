@@ -1,8 +1,8 @@
 <?php
 
 
-require '../../database/connect.php';
-require '../../model/Type/type_class.php';
+require_once '../../database/connect.php';
+require_once '../../model/Type/type_class.php';
 
 
 class TypeC
