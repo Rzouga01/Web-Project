@@ -32,7 +32,7 @@ require_once "../../model/Reponse/reponseC.php";
                         <span class="nav-item">Profile</span>
                     </a></li>
                 <li><a href="">
-                        <i class="fas fa-users"></i>
+                        <i class="../User/dashboard_user.php"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
                 <li><a href="../Type/dashboard_type.php">

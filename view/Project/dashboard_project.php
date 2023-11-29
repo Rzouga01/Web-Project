@@ -32,7 +32,7 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="../User/user_dashboard.php">
+                <li><a href="../User/dashboard_user.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
