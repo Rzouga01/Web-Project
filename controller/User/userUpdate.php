@@ -19,4 +19,3 @@ $userCRUD->update_user($user);
 
 header('Location: ../../view/User/dashboard_user.php');
 exit;
-?>

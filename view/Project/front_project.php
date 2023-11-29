@@ -38,7 +38,7 @@ require_once "../../controller/Project/ProjectC.php";
 
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="index.html"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+                <a class="navbar-brand" href="../../index.html"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
@@ -50,19 +50,11 @@ require_once "../../controller/Project/ProjectC.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="#Home">Home</a>
+                                <a class="nav-link me-4" href="../../index.html">Home</a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="#about">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="#events">Events</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="#latest-stories">Stories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+                                <a class="nav-link me-4" href="../../Type/dashboard_type.php">Dashboard</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
@@ -96,42 +88,57 @@ require_once "../../controller/Project/ProjectC.php";
     <section id="Home" class="padding-large jarallax">
         <div class="container">
             <div class="row">
-                <div>
-                    <table>
+                <div class="col-md-6 offset-md-3">
+                    <header class="text-center my-5">
+                        <span class="text-muted">Donate</span>
+                        <h2><strong>Our Projects</strong></h2>
+                    </header>
+                </div>
+                <div class="col-md-12">
+                    <table class="table-project">
                         <?php
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th></tr>";
+                            echo "<tr><th>Name</th><th>Description</th><th >Start Date</th><th>Goal</th><th>Collected</th><th class='percentage-header' >Percentage</th><th>Organization</th><th>Type</th></tr>";
                             foreach ($projects as $project) {
 
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($project['ID_Project']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
-                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
                         ?>
+                                <td id="start_date" class="start-date">
+                                    <?php echo htmlspecialchars($project['start_date']); ?>
+                                </td>
+
+                                <?php
+                                echo "<td>" . htmlspecialchars($project['Goal']) . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . " " . '<span class="currency">TND</span>' . "</td>";
+                                ?>
 
                                 <td class="progress-bar-container">
-                                    <div class="bar">
-                                        <div class="full-bar">
-                                            <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%; ;"></div>
-                                        </div>
-                                        <p id="number"><?php echo number_format($project['Percentage'], 2);; ?>%</p>
+                                    <div class="full-bar">
+                                        <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%;"></div>
+                                        <p class="percentage-number"><?php echo number_format($project['Percentage'], 2); ?>%</p>
                                     </div>
                                 </td>
 
-
                         <?php
+                                $db = config::getConnexion();
 
-                                echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
-                                echo "<td>";
+                                $r = "SELECT * FROM organization WHERE ID_Org=" . $project['ID_Org'] . "";
+                                $org = $db->query($r);
+                                $org = $org->fetch();
+                                echo "<td>" . htmlspecialchars($org['Org_name']) . "</td>";
 
-                                echo "</td>";
+
+                                $r = "SELECT Type_name FROM type WHERE ID_Type=" . $project['ID_Type'] . "";
+                                $type = $db->query($r);
+
+                                $type_name = $type->fetch();
+                                echo "<td>" . htmlspecialchars($type_name['Type_name']) . "</td>";
+
                                 echo "</tr>";
                             }
                         } else {

@@ -13,11 +13,33 @@
 
 :root {
   --accent-color: #F4BE37;
+  /* Gold/Yellow */
   --secondary-color: #E2EAF1;
+  /* Light Blue/Gray */
   --dark-color: #092035;
+  /* Dark Blue */
+  --grey-color: #E2EAF1;
+  /* Light Blue/Gray */
   --body-text-color: #7C8990;
+  /* Dark Gray */
   --light-text-color: #9CA5AD;
+  /* Light Gray */
   --link-color: #092035;
+  /* Dark Blue */
+
+  /* Additional colors */
+  --green-color: #2ECC71;
+  /* Green */
+  --red-color: #E74C3C;
+  /* Red */
+  --purple-color: #9B59B6;
+  /* Purple */
+  --orange-color: #E67E22;
+  /* Orange */
+  --cyan-color: #3498DB;
+  /* Cyan/Blue */
+  --pink-color: #FF6B81;
+  /* Pink */
 }
 
 body {
