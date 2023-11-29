@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
     <link rel="stylesheet" href="user.css">
-
 </head>
 
 <body>
@@ -60,17 +59,24 @@
             </div>
         </div>
     </div>
+    
     <script>
 
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
         const container = document.getElementById('container');
+        const hash = window.location.hash;
         signUpButton.addEventListener('click', () => {
             container.classList.add("right-panel-active");
         });
         signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
         });
+        if (hash === '#signin') {
+        container.classList.remove("right-panel-active");
+    } else if (hash === '#signup') {
+        container.classList.add("right-panel-active");
+    }
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault();
 

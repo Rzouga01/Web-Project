@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
 require_once '../../database/connect.php';
 require_once '../../controller/User/user.php';
 require_once '../../model/User/userC.php'; 
@@ -18,7 +20,11 @@ if (
     $role = $_POST["Role"];
     $userObject = new UserClass($firstName, $lastName, $email, $phoneNumber, $password, $birthdate, $country, $role);
     $user->create_user($userObject);
-    header('Location: ../../view/User/dashboard_user.php');
+
+    $_SESSION['user_id'] = $newUserId; 
+    $_SESSION['username'] = $email; 
+
+    header('Location: ../../view/index.html');
     exit;
 } else {
     echo "Invalid data received.";
