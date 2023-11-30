@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$isLoggedIn = isset($_SESSION['username']);
+
+if ($isLoggedIn) {
+	$username = $_SESSION['username'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,15 +93,27 @@
 											href="#scrollspyHeading5">Products</a></li>
 								</ul>
 							</li>
-							<li class="nav-item">
-								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
-							</li>
+							<?php if ($isLoggedIn) { ?>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<?php echo $username; ?>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+									</ul>
+								</li>
+							<?php } else { ?>
+								<li class="nav-item">
+									<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+								</li>
+							<?php } ?>
 						</ul>
-
 					</div>
+
 				</div>
 
 			</div>
