@@ -1,12 +1,12 @@
 <?php
-require_once 'reponse.php'; // Assuming this is your Response class definition
-require_once '../../model/Reponse/reponseC.php'; // Assuming this is your ResponseC class definition
+require_once 'reponse.php';
+require_once '../../model/Reponse/reponseC.php';
 
-// Assuming $_POST['ID_Reclamation'] and $_POST['text'] are set
-$RepC = new ResponseC(); // Corrected to use ResponseC instead of Response
-$Rep = new Response($_POST['ID_Reclamation'], $_POST['text']); // Assuming Response is your entity class
 
-$result = $RepC->ajouterResponse($Rep); // Corrected to use $RepC instead of $Rep
+$RepC = new ResponseC();
+$Rep = new Response($_POST['ID_Reclamation'], $_POST['text']);
+
+$result = $RepC->ajouterResponse($Rep);
 
 echo $result;
 
