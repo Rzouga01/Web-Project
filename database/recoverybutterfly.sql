@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 10:49 PM
+-- Generation Time: Nov 30, 2023 at 09:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -101,7 +101,7 @@ CREATE TABLE `organization` (
 --
 
 INSERT INTO `organization` (`ID_USER`, `ID_Org`, `Org_name`, `Org_description`) VALUES
-(1, 1, 'gdfg', 'fdgfdgdf');
+(1, 1, 'Unicef', 'fdgfdgdf');
 
 -- --------------------------------------------------------
 
@@ -168,8 +168,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`ID_Project`, `Project_name`, `Project_description`, `start_date`, `Goal`, `Current_amount`, `Percentage`, `ID_Org`, `ID_Type`) VALUES
-(20, 'zaea', 'eazeaze', '2023-12-07', 100, 75, 75, 1, 1),
-(21, 'azeza', 'aeraer', '2023-12-05', 50, 10, 20, 1, 1);
+(25, 'Schools', 'School', '2023-12-01', 64, 5, 7.8125, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -185,6 +184,13 @@ CREATE TABLE `reclamation_tab` (
   `Reclamation_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `reclamation_tab`
+--
+
+INSERT INTO `reclamation_tab` (`ID_Reclamation`, `ID_User`, `Reclamation_text`, `Reclamation_date`, `Reclamation_status`) VALUES
+(9, 2, 'aa', '2023-11-30', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -193,7 +199,7 @@ CREATE TABLE `reclamation_tab` (
 
 CREATE TABLE `response` (
   `ID_Response` int(11) NOT NULL,
-  `#ID_Reclamation` int(11) NOT NULL,
+  `ID_Reclamation` int(11) NOT NULL,
   `Response_text` varchar(50) NOT NULL,
   `Response_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -215,8 +221,7 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`ID_Type`, `Type_name`, `Type_description`) VALUES
-(1, 'Education', 'Educational Projects'),
-(2, 'Healthcare', 'Healthcare Projects');
+(4, 'Education', 'Education');
 
 -- --------------------------------------------------------
 
@@ -242,7 +247,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID_USER`, `First_Name`, `Last_Name`, `Password`, `Phone_number`, `Birthdate`, `Country`, `Email`, `Role`) VALUES
 (1, 'aer', 'earae', 'earae', 321312, '2023-11-01', 'aezea', 'eazeaze', 1),
-(2, 'aa', 'aze', '', 0, '2023-11-24', '', 'atfastr@gmail.com', 0);
+(2, 'aa', 'aze', '', 0, '2023-11-24', '', 'atfastr@gmail.com', 0),
+(5, 'tttttt', 'azeaze', 'ttttt', 0, '2023-11-28', 'Country2', 'azeaze', 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +344,7 @@ ALTER TABLE `reclamation_tab`
 --
 ALTER TABLE `response`
   ADD PRIMARY KEY (`ID_Response`),
-  ADD KEY `#ID_Reclamation` (`#ID_Reclamation`);
+  ADD KEY `#ID_Reclamation` (`ID_Reclamation`);
 
 --
 -- Indexes for table `type`
@@ -416,13 +422,13 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `reclamation_tab`
 --
 ALTER TABLE `reclamation_tab`
-  MODIFY `ID_Reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_Reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `response`
@@ -434,13 +440,13 @@ ALTER TABLE `response`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `ID_Type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `volunteer`
@@ -508,7 +514,7 @@ ALTER TABLE `reclamation_tab`
 -- Constraints for table `response`
 --
 ALTER TABLE `response`
-  ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`#ID_Reclamation`) REFERENCES `reclamation_tab` (`ID_Reclamation`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`ID_Reclamation`) REFERENCES `reclamation_tab` (`ID_Reclamation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `volunteer`

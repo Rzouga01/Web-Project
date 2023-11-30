@@ -7,13 +7,13 @@ class ResponseC
 {
     public function ajouterResponse($response)
     {
-        $sql = "INSERT TO response (#ID_Reclamation,Response_text,Response_date)
-        VALUES(:#ID_Reclamation , :Response_text , :Response_date) ";
+        $sql = "INSERT INTO response (`#ID_Reclamation`,Response_text,Response_date)
+        VALUES(:ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                '#ID_Reclamation' => $response->getID_Reclamation(),
+                'ID_Reclamation' => $response->getID_reclamation(),
                 'Response_text' => $response->getResponse_text(),
                 'Response_date' => $response->getResponse_date(),
             ]);
@@ -24,11 +24,11 @@ class ResponseC
 
     function afficherResponse($ID_response)
     {
-        $sql = "SELECT * FROM response WHERE ID_Response = $ID_response";
+        $sql = "SELECT * FROM response WHERE ID_Response = :ID_Response";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
-            $query->execute();
+            $query->execute(['ID_Response' => $ID_response]);
             $response = $query->fetch();
             return $response;
         } catch (Exception $e) {
@@ -38,11 +38,11 @@ class ResponseC
 
     function supprimerResponse($ID_response)
     {
-        $sql = "DELETE FROM response WHERE ID_Response = $ID_response";
+        $sql = "DELETE FROM response WHERE ID_Response = :ID_Response";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         try {
-            $req->execute();
+            $req->execute(['ID_Response' => $ID_response]);
         } catch (Exception $e) {
             die('Erreur:' . $e->getMessage());
         }
@@ -54,12 +54,12 @@ class ResponseC
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE response SET 
-                    Response_text = :Respone_text, 
-                    Response_date = :Response_date, 
-                WHERE ID_Response= :ID_Response'
+                    Response_text = :Response_text, 
+                    Response_date = :Response_date 
+                WHERE ID_Response = :ID_Response'
             );
             $query->execute([
-                'ID_response' => $ID_Response,
+                'ID_Response' => $ID_Response,
                 'Response_text' => $Response_text,
                 'Response_date' => $Response_date,
             ]);
@@ -68,7 +68,6 @@ class ResponseC
         }
     }
 
-    //cette fonction permet d'afficher la liste des reponses dans la base de données
     function listResponse()
     {
         $conn = Config::getConnexion();
