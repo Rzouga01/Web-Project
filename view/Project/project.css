@@ -10,3 +10,13 @@
   height: 100%;
   background: linear-gradient(to right, #32CD32, #00BFFF);
 }
+
+
+.table th:hover {
+  cursor: pointer;
+}
+
+.sortable-header {
+  cursor: pointer;
+  position: relative;
+}

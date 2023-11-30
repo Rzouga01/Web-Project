@@ -11,7 +11,70 @@ require_once "../../controller/Type/TypeC.php";
     <title>Dashboard</title>
     <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+
     <link rel="stylesheet" href="project.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const headers = document.querySelectorAll("th");
+            headers.forEach(header => {
+                header.addEventListener("click", () => sortTable(header.cellIndex));
+                header.classList.add("sortable-header");
+            });
+
+            let currentSort = {
+                column: -1,
+                order: 1
+            };
+
+            function sortTable(column) {
+                const table = document.querySelector(".table");
+                const rows = Array.from(table.rows).slice(1); // Exclude header row
+                const isNumeric = column === 5 || column === 6; // Assuming 3rd, 5th, and 6th columns are numeric
+
+                rows.sort((row1, row2) => {
+                    const value1 = row1.cells[column].textContent.trim();
+                    const value2 = row2.cells[column].textContent.trim();
+
+                    if (isNumeric) {
+                        return parseFloat(value1) - parseFloat(value2);
+                    } else {
+                        return value1.localeCompare(value2);
+                    }
+                });
+
+                if (currentSort.column === column) {
+                    currentSort.order *= -1;
+                } else {
+                    currentSort.column = column;
+                    currentSort.order = 1;
+                }
+
+                // Toggle sorting order class
+                const header = document.querySelectorAll("th")[column];
+                const currentOrder = currentSort.order === 1 ? "asc" : "desc";
+
+                // Remove sorting classes from all headers
+                document.querySelectorAll("th").forEach(th => {
+                    th.classList.remove("asc", "desc");
+                });
+
+                // Toggle sorting order class
+                header.classList.add(currentOrder);
+
+                // Remove existing rows
+                while (table.rows.length > 1) {
+                    table.deleteRow(1);
+                }
+
+                // Append sorted rows
+                const sortedRows = currentSort.order === 1 ? rows : rows.reverse();
+                sortedRows.forEach(row => {
+                    table.appendChild(row);
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -75,11 +138,37 @@ require_once "../../controller/Type/TypeC.php";
                     <table class="table table-bordered">
                         <?php
 
+
+                        function echoHeader($columnName, $index, $initialSort = false)
+                        {
+
+                            $sortClass = $initialSort ? 'sortable-header asc' : 'sortable-header';
+                            $iconClass = 'fa fa-sort';
+
+
+                            echo "<th onclick='sortTable($index)' class='$sortClass'>";
+                            echo "$columnName <i class='fa $iconClass' aria-hidden='true'></i>";
+                            echo "</th>";
+                        }
+
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Start Date</th><th>Goal</th><th>Current Amount</th><th>Percentage</th><th>Organization ID</th><th>Type ID</th><th>Actions</th></tr>";
+                            echo "<tr>";
+                            echoHeader("ID", 0, true); // Initial sort on ID column
+                            echoHeader("Name", 1);
+                            echoHeader("Description", 2);
+                            echoHeader("Start Date", 3);
+                            echoHeader("Goal", 4);
+                            echoHeader("Current Amount", 5);
+                            echoHeader("Percentage", 6);
+                            echoHeader("Organization ID", 7);
+                            echoHeader("Type ID", 8);
+                            echo "<th>Actions</th>";
+                            echo "</tr>";
+
+
                             foreach ($projects as $project) {
 
                                 echo "<tr>";
