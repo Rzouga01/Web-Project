@@ -73,9 +73,6 @@ if ($isLoggedIn) {
 							<li class="nav-item">
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
-							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
 									role="button" aria-expanded="false">More</a>
@@ -101,6 +98,9 @@ if ($isLoggedIn) {
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
 										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+										<li class="nav-item">
+											<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+										</li>
 									</ul>
 								</li>
 							<?php } else { ?>
