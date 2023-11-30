@@ -80,7 +80,7 @@ require_once "../../model/Reponse/reponseC.php";
                             foreach ($responses as $response) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($response['ID_Response']) . "</td>";
-                                echo "<td>" . htmlspecialchars($response['ID_Reclamation']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['#ID_Reclamation']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
