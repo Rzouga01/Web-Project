@@ -30,7 +30,7 @@ require "../../controller/Category/categoryC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Profile</span>
                     </a></li>
-                <li><a href="../User/user_dashboard.php">
+                <li><a href="../User/dashboard_user.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
@@ -46,7 +46,7 @@ require "../../controller/Category/categoryC.php";
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Reponse/dashboard_reponse.php">
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>

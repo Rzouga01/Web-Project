@@ -1,19 +1,15 @@
 <?php
-require 'reponse.php';
+require_once 'reponse.php';
+require_once '../../model/Reponse/reponseC.php';
 
 
+$RepC = new ResponseC();
+$Rep = new Response($_POST['ID_Reclamation'], $_POST['text']);
 
-
-
-$RepC = new Response(1, $_POST['text']);
-
-$Rep = new ResponseC();
-
-$result = $Rep->ajouterResponse($RepC);
+$result = $RepC->ajouterResponse($Rep);
 
 echo $result;
 
-
-
 header('Location: ../../View/Reponse/dashboard_reponse.php');
+
 exit;

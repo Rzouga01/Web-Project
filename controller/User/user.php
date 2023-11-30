@@ -6,25 +6,18 @@ class UserCRUD
 {
     public function create_user($user)
     {
-     $cnx = Config::getConnexion();
-    $insert = $cnx->prepare("INSERT INTO user (First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $result = $insert->execute([
-        $user->getFirst_Name(),
-        $user->getLast_Name(),
-        $user->getPassword(),
-        $user->getPhone_number(),
-        $user->getBirthdate(),
-        $user->getCountry(),
-        $user->getEmail(),
-        $user->getRole()
-    ]);
-    $user->setID_USER($cnx->lastInsertId());
-
-        if (!$result) {
-            error_log(print_r($insert->errorInfo(), true));
-            return "Error creating user";
-        }
-        return "User created successfully";
+        $cnx = Config::getConnexion();
+        $insert = $cnx->prepare("INSERT INTO user (First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insert->execute([
+            $user->getFirst_Name(),
+            $user->getLast_Name(),
+            $user->getPassword(),
+            $user->getPhone_number(),
+            $user->getBirthdate(),
+            $user->getCountry(),
+            $user->getEmail(),
+            $user->getRole()
+        ]);
     }
 
     public function getAllUsers()
@@ -33,28 +26,6 @@ class UserCRUD
         $select = $cnx->prepare("SELECT * FROM user");
         $select->execute();
         $users = $select->fetchAll(PDO::FETCH_ASSOC);
-        return $users;
-    }
-
-    public function read_users()
-    {
-        $cnx = Config::getConnexion();
-        $users = [];
-        $select = $cnx->query("SELECT * FROM user");
-        foreach ($select as $row) {
-            $user = [
-                'ID_USER' => $row['ID_USER'],
-                'First_Name' => $row['First_Name'],
-                'Last_Name' => $row['Last_Name'],
-                'Password' => $row['Password'],
-                'Phone_number' => $row['Phone_number'],
-                'Birthdate' => $row['Birthdate'],
-                'Country' => $row['Country'],
-                'Email' => $row['Email'],
-                'Role' => $row['Role']
-            ];
-            $users[] = $user;
-        }
         return $users;
     }
 
@@ -73,16 +44,14 @@ class UserCRUD
             $user->getRole(),
             $user->getID_USER()
         ]);
-        return $query->rowCount() > 0 ? "User updated successfully" : "Error updating user";
     }
-    
+
     public function delete_user($id)
     {
         $cnx = Config::getConnexion();
         $delete = $cnx->prepare("DELETE FROM user WHERE ID_USER = ?");
         $delete->execute([$id]);
-        return $delete->rowCount() > 0 ? "User deleted successfully" : "Error deleting user";
     }
-  
-  
+
+
 }

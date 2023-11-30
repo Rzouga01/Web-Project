@@ -32,7 +32,7 @@ require_once "../../model/User/userC.php";
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
                         </a></li>
-                    <li><a href="user_dashboard.php">
+                    <li><a href="dashboard_user.php">
                             <i class="fas fa-users"></i>
                             <span class="nav-item">Users</span>
                         </a></li>
@@ -44,11 +44,11 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-database"></i>
                             <span class="nav-item">Project</span>
                         </a></li>
-                    <li><a href="dashboard_reclamation.php">
+                    <li><a href="../Reclamation/dashboard_reclamation.php">
                             <i class="fa fa-exclamation-triangle"></i>
                             <span class="nav-item">Reclamation</span>
                         </a></li>
-                    <li><a href="#">
+                    <li><a href="../Reponse/dashboard_reponse.php">
                             <i class="fa fa-envelope-open"></i>
                             <span class="nav-item">Response</span>
                         </a></li>
@@ -266,21 +266,21 @@ require_once "../../model/User/userC.php";
 
 
                 function editUser() {
-                    var id = document.getElementById('edit-id-user'); // ID: edit-id-user
-                    var firstName = document.getElementById('edit-First_Name'); // ID: edit-First_Name
-                    var lastName = document.getElementById('edit-Last_Name'); // ID: edit-Last_Name
-                    var email = document.getElementById('edit-Email'); // ID: edit-Email
-                    var phoneNumber = document.getElementById('edit-Phone_number'); // ID: edit-Phone_number
-                    var password = document.getElementById('edit-Password'); // ID: edit-Password
-                    var birthdate = document.getElementById('edit-Birthdate'); // ID: edit-Birthdate
-                    var country = document.getElementById('edit-country'); // ID: edit-country
+                    var id = document.getElementById('edit-id-user');
+                    var firstName = document.getElementById('edit-First_Name');
+                    var lastName = document.getElementById('edit-Last_Name');
+                    var email = document.getElementById('edit-Email');
+                    var phoneNumber = document.getElementById('edit-Phone_number');
+                    var password = document.getElementById('edit-Password');
+                    var birthdate = document.getElementById('edit-Birthdate');
+                    var country = document.getElementById('edit-country');
                     var role = document.getElementById('edit-role');
 
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
+                        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                             closeEditModal();
                             location.reload();
                         }
@@ -294,7 +294,7 @@ require_once "../../model/User/userC.php";
                         "&birthdate=" + encodeURIComponent(birthdate.value) +
                         "&country=" + encodeURIComponent(country.value) +
                         "&role=" + encodeURIComponent(role.value));
-
+                    console.log(id.value, firstName.value, lastName.value, email.value, phoneNumber.value, password.value, birthdate.value, country.value, role.value);
                 }
 
 
@@ -315,15 +315,15 @@ require_once "../../model/User/userC.php";
 
                 function openEditUserModal(userID, firstName, lastName, email, phoneNumber, password, birthdate, country, role) {
                     var modal = document.getElementById("editModal");
-                    var id = document.getElementById('edit-id-user'); // ID: edit-id-user
-                    var firstNameElem = document.getElementById('edit-First_Name'); // ID: edit-First_Name
-                    var lastNameElem = document.getElementById('edit-Last_Name'); // ID: edit-Last_Name
-                    var emailElem = document.getElementById('edit-Email'); // ID: edit-Email
-                    var phoneNumberElem = document.getElementById('edit-Phone_number'); // ID: edit-Phone_number
-                    var passwordElem = document.getElementById('edit-Password'); // ID: edit-Password
-                    var birthdateElem = document.getElementById('edit-Birthdate'); // ID: edit-Birthdate
-                    var countryElem = document.getElementById('edit-country'); // ID: edit-country
-                    var roleElem = document.getElementById('edit-role'); // ID: edit-role
+                    var id = document.getElementById('edit-id-user');
+                    var firstNameElem = document.getElementById('edit-First_Name');
+                    var lastNameElem = document.getElementById('edit-Last_Name');
+                    var emailElem = document.getElementById('edit-Email');
+                    var phoneNumberElem = document.getElementById('edit-Phone_number');
+                    var passwordElem = document.getElementById('edit-Password');
+                    var birthdateElem = document.getElementById('edit-Birthdate');
+                    var countryElem = document.getElementById('edit-country');
+                    var roleElem = document.getElementById('edit-role');
 
 
                     id.value = userID;

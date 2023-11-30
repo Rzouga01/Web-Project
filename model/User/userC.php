@@ -9,12 +9,11 @@ class UserClass
     private $Phone_number;
     private $Birthdate;
     private $Country;
-
     private $Role;
 
-    public function __construct($ID_USER, $First_Name, $Last_Name, $Email, $Phone_number, $Password, $Birthdate, $Country, $Role)
+    public function __construct($First_Name, $Last_Name, $Email, $Phone_number, $Password, $Birthdate, $Country, $Role)
     {
-        $this->ID_USER = $ID_USER;
+    
         $this->First_Name = $First_Name;
         $this->Last_Name = $Last_Name;
         $this->Email = $Email;
@@ -24,14 +23,8 @@ class UserClass
         $this->Country = $Country;
         $this->Role = $Role;
     }
-    //getters
-    public function getID_USER()
-    {
+    public function getID_USER() {
         return $this->ID_USER;
-    }
-    public function setID_USER($ID_USER)
-    {
-        $this->ID_USER = $ID_USER;
     }
 
     public function getFirst_Name()
@@ -73,5 +66,7 @@ class UserClass
     {
         return $this->Role;
     }
-
+    public function setID_USER($ID_USER) {
+        $this->ID_USER = $ID_USER;
+    }
 }

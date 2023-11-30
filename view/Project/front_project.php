@@ -5,7 +5,7 @@ require_once "../../controller/Project/ProjectC.php";
 ?>
 
 <head>
-    <title>RecoveryButterfly</title>
+    <title>Our Projects</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -113,8 +113,8 @@ require_once "../../controller/Project/ProjectC.php";
                                 </td>
 
                                 <?php
-                                echo "<td>" . htmlspecialchars($project['Goal']) . " " . '<span class="currency">TND</span>' . "</td>";
-                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td>" . number_format(htmlspecialchars($project['Goal']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td>" . number_format(htmlspecialchars($project['Current_amount']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
                                 ?>
 
                                 <td class="progress-bar-container">

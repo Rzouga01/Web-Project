@@ -101,6 +101,9 @@ class ProjectC
             $goal = $project->getGoal();
             $current_amount = $project->getCurrent_amount();
             $percentage = $project->getPercentage();
+            if ($percentage > 100) {
+                $percentage = 100;
+            }
             $org_id = $project->getOrg_id();
             $type_id = $project->getType_id();
             $sql = "UPDATE project SET Project_name=:name, Project_description=:description, start_date=:start_date, Goal=:goal, Current_amount=:current_amount, Percentage=:percentage, ID_Org=:org_id, ID_Type=:type_id WHERE ID_Project=:id";

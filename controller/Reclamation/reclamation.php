@@ -1,7 +1,7 @@
 <?php
 
-require '../../database/connect.php';
-require '../../model/Reclamation/reclamationC.php';
+require_once '../../database/connect.php';
+require_once '../../model/Reclamation/reclamationC.php';
 
 class ReclamationC
 {
