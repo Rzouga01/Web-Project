@@ -249,11 +249,15 @@ require_once "../../controller/Type/TypeC.php";
                                         <?php
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
-                                        foreach ($types as $type) {
-                                            if ($type == $types[0])
-                                                echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
-                                            else
-                                                echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                        if (empty($types)) {
+                                            echo "<option value='-1' disabled>No Types found</option>";
+                                        } else {
+                                            foreach ($types as $type) {
+                                                if ($type == $types[0])
+                                                    echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
+                                                else
+                                                    echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                            }
                                         }
                                         ?>
                                     </select>
@@ -316,11 +320,15 @@ require_once "../../controller/Type/TypeC.php";
                                         <?php
                                         $typeC = new TypeC();
                                         $types = $typeC->read_type();
-                                        foreach ($types as $type) {
-                                            if ($type == $types[0])
-                                                echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
-                                            else
-                                                echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                        if (empty($types)) {
+                                            echo "<option value='-1' disabled>No Types found</option>";
+                                        } else {
+                                            foreach ($types as $type) {
+                                                if ($type == $types[0])
+                                                    echo "<option value='" . $type['ID_Type'] . "' selected>" . $type['Type_name'] . "</option>";
+                                                else
+                                                    echo "<option value='" . $type['ID_Type'] . "'>" . $type['Type_name'] . "</option>";
+                                            }
                                         }
                                         ?>
                                     </select>
