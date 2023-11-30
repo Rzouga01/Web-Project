@@ -97,10 +97,10 @@ if ($isLoggedIn) {
 										<?php echo $username; ?>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
 										<li class="nav-item">
 											<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
 										</li>
+										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
 									</ul>
 								</li>
 							<?php } else { ?>
