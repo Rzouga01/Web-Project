@@ -3,50 +3,54 @@
 require_once '../../database/connect.php';
 require '../../model/Reponse/reponseC.php';
 
-class ResponseC{
-    public function ajouterResponse($response){
+class ResponseC
+{
+    public function ajouterResponse($response)
+    {
         $sql = "INSERT TO response (#ID_Reclamation,Response_text,Response_date)
         VALUES(:#ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
-        try{
+        try {
             $query = $db->prepare($sql);
             $query->execute([
-                '#ID_Reclamation'=>$response->getID_Reclamation(),
-                'Response_text'=>$response->getResponse_text(),
-                'Response_date'=>$response->getResponse_date(),
+                '#ID_Reclamation' => $response->getID_Reclamation(),
+                'Response_text' => $response->getResponse_text(),
+                'Response_date' => $response->getResponse_date(),
             ]);
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             echo 'Erreur: ' . $e->getMessage();
         }
     }
 
-    function afficherResponse($ID_response){
+    function afficherResponse($ID_response)
+    {
         $sql = "SELECT * FROM response WHERE ID_Response = $ID_response";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
-            $query -> execute();
+            $query->execute();
             $response = $query->fetch();
             return $response;
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             die('Erreur:' . $e->getMessage());
         }
     }
 
-    function supprimerResponse($ID_response){
+    function supprimerResponse($ID_response)
+    {
         $sql = "DELETE FROM response WHERE ID_Response = $ID_response";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        try{
+        try {
             $req->execute();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             die('Erreur:' . $e->getMessage());
         }
     }
 
-    function modifierResponse($ID_Response,$Response_text,$Response_date)
+    function modifierResponse($ID_Response, $Response_text, $Response_date)
     {
-        try{
+        try {
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE response SET 
@@ -55,18 +59,18 @@ class ResponseC{
                 WHERE ID_Response= :ID_Response'
             );
             $query->execute([
-                'ID_response' => $ID_response,
+                'ID_response' => $ID_Response,
                 'Response_text' => $Response_text,
                 'Response_date' => $Response_date,
             ]);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $e->getMessage();
-    }
+        }
     }
 
-     //cette fonction permet d'afficher la liste des reponses dans la base de données
-     function listResponse()
-     {
+    //cette fonction permet d'afficher la liste des reponses dans la base de données
+    function listResponse()
+    {
         $conn = Config::getConnexion();
         $Reps = [];
 
@@ -83,10 +87,5 @@ class ResponseC{
         }
 
         return $Reps;
-     }
+    }
 }
-
-
-
-
-?>
