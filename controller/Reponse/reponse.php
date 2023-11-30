@@ -1,14 +1,14 @@
 <?php
 
 require_once '../../database/connect.php';
-require '../../model/Reponse/reponseC.php';
+require_once '../../model/Reponse/reponseC.php';
 
 class ResponseC
 {
     public function ajouterResponse($response)
     {
-        $sql = "INSERT TO response (#ID_Reclamation,Response_text,Response_date)
-        VALUES(:#ID_Reclamation , :Response_text , :Response_date) ";
+        $sql = "INSERT TO response (ID_Reclamation,Response_text,Response_date)
+        VALUES(:ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -78,7 +78,7 @@ class ResponseC
         foreach ($r as $row) {
             $Rep = [
                 'ID_Response' => $row['ID_Response'],
-                'ID_Reclamation' => $row['ID_Reclamation'],
+                '#ID_Reclamation' => $row['#ID_Reclamation'],
                 'Response_text' => $row['Response_text'],
                 'Response_date' => $row['Response_date'],
             ];

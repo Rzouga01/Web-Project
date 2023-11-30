@@ -2,8 +2,9 @@
 <html lang="en">
 
 <?php
-require "../../controller/Reponse/reponse.php";
+require_once "../../controller/Reponse/reponse.php";
 require_once "../../model/Reponse/reponseC.php";
+require_once "../../controller/Reclamation/reclamation.php";
 ?>
 
 <head>
@@ -80,11 +81,11 @@ require_once "../../model/Reponse/reponseC.php";
                             foreach ($responses as $response) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($response['ID_Response']) . "</td>";
-                                echo "<td>" . htmlspecialchars($response['#ID_Reclamation']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['ID_Reclamation']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . ")\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' ".$response['ID_Reclamation'].")\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $response['ID_Response'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -118,6 +119,25 @@ require_once "../../model/Reponse/reponseC.php";
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    <label for ="reclamation">Reclamation </label>
+                                </td>
+                                <td>
+                                    <select name = "reclamation" id="reclamation">
+                                        <?php
+                                            $reclamation = new ReclamationC();
+                                            $reclamations = $reclamation->listReclamation();
+                                            foreach ($reclamations as $r){
+                                                echo '<option value = " '.$r['ID_Reclamation'] . '">'.$r['Reclamation_text'].'</option>';
+                                            }
+                                        ?>
+                                    </select>  
+                                </td>
+                            </tr>
+                            <tr>
+                            <td>
+                                    <input type="submit" value="Create" id="button_create">
+                                </td>
                                 <td></td>
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
@@ -141,9 +161,27 @@ require_once "../../model/Reponse/reponseC.php";
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>
+                                    <label for ="reclamation">Reclamation </label>
+                                </td>
+                                <td>
+                                    <select name = "reclamation" id="reclamation">
+                                        <?php
+                                            $reclamation = new ReclamationC();
+                                            $reclamations = $reclamation->listReclamation();
+                                            foreach ($reclamations as $r){
+                                                echo '<option value = " '.$r['ID_Reclamation'] . '">'.$r['Reclamation_text'].'</option>';
+                                            }
+                                        ?>
+                                    </select>  
+                                </td>
+                            </tr>
+                            <tr>
+                                
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
+                                </td>
+                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
                             </tr>
@@ -190,6 +228,7 @@ require_once "../../model/Reponse/reponseC.php";
 
         function addType() {
             var Text = document.getElementById("reponse-text");
+            var ID_Reclamation = document.getElementById("reclamation");
 
             if (Text.value === "" || Text.value.length > 20) {
                 alert("Text should not be empty and should not exceed 20 characters.");
@@ -210,7 +249,8 @@ require_once "../../model/Reponse/reponseC.php";
                     location.reload();
                 }
             };
-            xhttp.send("text=" + encodeURIComponent(Text.value));
+          
+            xhttp.send("text=" + encodeURIComponent(Text.value) + "&ID_Reclamation=" + encodeURIComponent(ID_Reclamation.value));
         }
 
 
