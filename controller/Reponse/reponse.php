@@ -7,7 +7,7 @@ class ResponseC
 {
     public function ajouterResponse($response)
     {
-        $sql = "INSERT TO response (#ID_Reclamation,Response_text,Response_date)
+        $sql = "INSERT INTO response (`#ID_Reclamation`,Response_text,Response_date)
         VALUES(:#ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
         try {
