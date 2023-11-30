@@ -1,6 +1,6 @@
 <?php
 require_once 'reponse.php'; // Assuming this is your Response class definition
-require_once 'reponseC.php'; // Assuming this is your ResponseC class definition
+require_once '../../model/Reponse/reponseC.php'; // Assuming this is your ResponseC class definition
 
 // Assuming $_POST['ID_Reclamation'] and $_POST['text'] are set
 $RepC = new ResponseC(); // Corrected to use ResponseC instead of Response
@@ -11,5 +11,5 @@ $result = $RepC->ajouterResponse($Rep); // Corrected to use $RepC instead of $Re
 echo $result;
 
 header('Location: ../../View/Reponse/dashboard_reponse.php');
-#aaa
+
 exit;

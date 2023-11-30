@@ -165,7 +165,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                                     <label for ="reclamation">Reclamation </label>
                                 </td>
                                 <td>
-                                    <select name = "reclamation" id="reclamation">
+                                    <select name = "reclamation" id="reclamation-create">
                                         <?php
                                             $reclamation = new ReclamationC();
                                             $reclamations = $reclamation->listReclamation();
@@ -227,8 +227,8 @@ require_once "../../controller/Reclamation/reclamation.php";
         }
 
         function addType() {
-            var Text = document.getElementById("reponse-text");
-            var ID_Reclamation = document.getElementById("reclamation");
+            var Text = document.getElementById("response-text");
+            var ID_Reclamation = document.getElementById("reclamation-create");
 
             if (Text.value === "" || Text.value.length > 20) {
                 alert("Text should not be empty and should not exceed 20 characters.");
