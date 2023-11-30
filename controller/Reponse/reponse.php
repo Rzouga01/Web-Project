@@ -13,7 +13,7 @@ class ResponseC
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                '#ID_Reclamation' => $response->getID_Reclamation(),
+                'ID_Reclamation' => $response->getID_Reclamation(),
                 'Response_text' => $response->getResponse_text(),
                 'Response_date' => $response->getResponse_date(),
             ]);
@@ -68,7 +68,6 @@ class ResponseC
         }
     }
 
-    //cette fonction permet d'afficher la liste des reponses dans la base de données
     function listResponse()
     {
         $conn = Config::getConnexion();
@@ -79,7 +78,7 @@ class ResponseC
         foreach ($r as $row) {
             $Rep = [
                 'ID_Response' => $row['ID_Response'],
-                '#ID_Reclamation' => $row['#ID_Reclamation'],
+                'ID_Reclamation' => $row['ID_Reclamation'],
                 'Response_text' => $row['Response_text'],
                 'Response_date' => $row['Response_date'],
             ];
