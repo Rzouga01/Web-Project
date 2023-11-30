@@ -5,7 +5,7 @@ require_once 'reponse.php';
 
 
 
-$RepC = new Response(1, $_POST['text']);
+$RepC = new Response($_POST['ID_Reclamation'], $_POST['text']);
 
 $Rep = new ResponseC();
 
