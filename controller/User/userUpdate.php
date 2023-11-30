@@ -1,23 +1,21 @@
 <?php
 require_once '../../controller/User/user.php'; 
 require_once '../../model/User/userC.php'; 
+$id = $_POST['id'];
+$firstName = $_POST['firstName'];
+$lastName = $_POST['lastName'];
+$email = $_POST['email'];
+$phoneNumber = $_POST['phoneNumber'];
+$password = $_POST['password'];
+$birthdate = $_POST['birthdate'];
+$country = $_POST['country'];
+$role = $_POST['role'];
 
-$user = new UserCRUD();
+$user = new UserClass($firstName, $lastName, $email, $phoneNumber, $password, $birthdate, $country, $role);
+$user->setID_USER($id); 
 
-$firstName = $_POST["First_Name"];
-$lastName = $_POST["Last_Name"];
-$email = $_POST["Email"];
-$phoneNumber = $_POST["Phone_number"];
-$password = $_POST["Password"];
-$birthdate = $_POST["Birthdate"];
-$country = $_POST["Country"];
-$role = $_POST["Role"];
-$id = $_POST["ID_USER"]; 
+$userCRUD = new UserCRUD();
+$userCRUD->update_user($user);
 
-$userObject = new UserClass($id, $firstName, $lastName, $email, $phoneNumber, $password, $birthdate, $country, $role); 
-$result = $user->update_user($userObject);
-
-echo $result;
 header('Location: ../../view/User/dashboard_user.php');
 exit;
-?>
