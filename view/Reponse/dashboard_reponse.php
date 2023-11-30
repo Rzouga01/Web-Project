@@ -81,11 +81,11 @@ require_once "../../controller/Reclamation/reclamation.php";
                             foreach ($responses as $response) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($response['ID_Response']) . "</td>";
-                                echo "<td>" . htmlspecialchars($response['ID_Reclamation']) . "</td>";
+                                echo "<td>" . htmlspecialchars($response['#ID_Reclamation']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' ".$response['ID_Reclamation'].")\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' ".$response['#ID_Reclamation'].")\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $response['ID_Response'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
