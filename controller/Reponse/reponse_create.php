@@ -11,4 +11,5 @@ $result = $RepC->ajouterResponse($Rep); // Corrected to use $RepC instead of $Re
 echo $result;
 
 header('Location: ../../View/Reponse/dashboard_reponse.php');
+#aaa
 exit;
