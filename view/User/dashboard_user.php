@@ -36,35 +36,35 @@ require_once "../../model/User/userC.php";
                             <i class="fas fa-users"></i>
                             <span class="nav-item">Users</span>
                         </a></li>
-                        <li><a href="../Type/dashboard_type.php">
-                        <i class="fa fa-list"></i>
-                        <span class="nav-item">Types</span>
-                    </a></li>
-                <li><a href="../Project/dashboard_project.php">
-                        <i class="fa fa-database"></i>
-                        <span class="nav-item">Project</span>
-                    </a></li>
-                <li><a href="../Reclamation/dashboard_reclamation.php">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        <span class="nav-item">Reclamation</span>
-                    </a></li>
-                <li><a href="../Reponse/dashboard_reponse.php">
-                        <i class="fa fa-envelope-open"></i>
-                        <span class="nav-item">Response</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
-                    </a></li>
-                <li><a href="../Category/dashboard_category.php">
-                        <i class="fa fa-archive"></i>
-                        <span class="nav-item">Category</span>
-                    </a></li>
-                <li><a href="#" class="logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="nav-item">Log out</span>
-                    </a></li>
-            </ul>
+                    <li><a href="../Type/dashboard_type.php">
+                            <i class="fa fa-list"></i>
+                            <span class="nav-item">Types</span>
+                        </a></li>
+                    <li><a href="../Project/dashboard_project.php">
+                            <i class="fa fa-database"></i>
+                            <span class="nav-item">Project</span>
+                        </a></li>
+                    <li><a href="../Reclamation/dashboard_reclamation.php">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            <span class="nav-item">Reclamation</span>
+                        </a></li>
+                    <li><a href="../Reponse/dashboard_reponse.php">
+                            <i class="fa fa-envelope-open"></i>
+                            <span class="nav-item">Response</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="fa fa-comments"></i>
+                            <span class="nav-item">Feedback</span>
+                        </a></li>
+                    <li><a href="../Category/dashboard_category.php">
+                            <i class="fa fa-archive"></i>
+                            <span class="nav-item">Category</span>
+                        </a></li>
+                    <li><a href="#" class="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-item">Log out</span>
+                        </a></li>
+                </ul>
             </nav>
             <section class="main">
                 <div class="users">
@@ -266,14 +266,14 @@ require_once "../../model/User/userC.php";
 
 
                 function editUser() {
-                    var id = document.getElementById('edit-id-user'); 
-                    var firstName = document.getElementById('edit-First_Name'); 
+                    var id = document.getElementById('edit-id-user');
+                    var firstName = document.getElementById('edit-First_Name');
                     var lastName = document.getElementById('edit-Last_Name');
-                    var email = document.getElementById('edit-Email'); 
-                    var phoneNumber = document.getElementById('edit-Phone_number'); 
-                    var password = document.getElementById('edit-Password'); 
+                    var email = document.getElementById('edit-Email');
+                    var phoneNumber = document.getElementById('edit-Phone_number');
+                    var password = document.getElementById('edit-Password');
                     var birthdate = document.getElementById('edit-Birthdate');
-                    var country = document.getElementById('edit-country'); 
+                    var country = document.getElementById('edit-country');
                     var role = document.getElementById('edit-role');
 
                     var xhttp = new XMLHttpRequest();
@@ -294,7 +294,7 @@ require_once "../../model/User/userC.php";
                         "&birthdate=" + encodeURIComponent(birthdate.value) +
                         "&country=" + encodeURIComponent(country.value) +
                         "&role=" + encodeURIComponent(role.value));
-                        console.log(id.value, firstName.value, lastName.value, email.value, phoneNumber.value, password.value, birthdate.value, country.value, role.value);
+                    console.log(id.value, firstName.value, lastName.value, email.value, phoneNumber.value, password.value, birthdate.value, country.value, role.value);
                 }
 
 
@@ -315,15 +315,15 @@ require_once "../../model/User/userC.php";
 
                 function openEditUserModal(userID, firstName, lastName, email, phoneNumber, password, birthdate, country, role) {
                     var modal = document.getElementById("editModal");
-                    var id = document.getElementById('edit-id-user'); 
+                    var id = document.getElementById('edit-id-user');
                     var firstNameElem = document.getElementById('edit-First_Name');
-                    var lastNameElem = document.getElementById('edit-Last_Name'); 
-                    var emailElem = document.getElementById('edit-Email'); 
-                    var phoneNumberElem = document.getElementById('edit-Phone_number'); 
-                    var passwordElem = document.getElementById('edit-Password'); 
-                    var birthdateElem = document.getElementById('edit-Birthdate'); 
-                    var countryElem = document.getElementById('edit-country'); 
-                    var roleElem = document.getElementById('edit-role'); 
+                    var lastNameElem = document.getElementById('edit-Last_Name');
+                    var emailElem = document.getElementById('edit-Email');
+                    var phoneNumberElem = document.getElementById('edit-Phone_number');
+                    var passwordElem = document.getElementById('edit-Password');
+                    var birthdateElem = document.getElementById('edit-Birthdate');
+                    var countryElem = document.getElementById('edit-country');
+                    var roleElem = document.getElementById('edit-role');
 
 
                     id.value = userID;
