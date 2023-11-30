@@ -7,13 +7,13 @@ class ResponseC
 {
     public function ajouterResponse($response)
     {
-        $sql = "INSERT TO response (#ID_Reclamation,Response_text,Response_date)
-        VALUES(:#ID_Reclamation , :Response_text , :Response_date) ";
+        $sql = "INSERT INTO response ( `#ID_Reclamation`,Response_text,Response_date)
+        VALUES(:ID_Reclamation , :Response_text , :Response_date) ";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                '#ID_Reclamation' => $response->getID_Reclamation(),
+                'ID_Reclamation' => $response->getID_reclamation(),
                 'Response_text' => $response->getResponse_text(),
                 'Response_date' => $response->getResponse_date(),
             ]);
