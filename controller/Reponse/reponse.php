@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../database/connect.php';
-require '../../model/Reponse/reponseC.php';
+require_once '../../model/Reponse/reponseC.php';
 
 class ResponseC
 {

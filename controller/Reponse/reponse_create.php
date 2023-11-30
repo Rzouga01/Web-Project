@@ -1,5 +1,5 @@
 <?php
-require 'reponse.php';
+require_once 'reponse.php';
 
 
 

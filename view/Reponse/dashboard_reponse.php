@@ -2,8 +2,9 @@
 <html lang="en">
 
 <?php
-require "../../controller/Reponse/reponse.php";
+require_once "../../controller/Reponse/reponse.php";
 require_once "../../model/Reponse/reponseC.php";
+require_once "../../controller/Reclamation/reclamation.php";
 ?>
 
 <head>
@@ -141,9 +142,27 @@ require_once "../../model/Reponse/reponseC.php";
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>
+                                    <label for ="reclamation">Reclamation </label>
+                                </td>
+                                <td>
+                                    <select name = "reclamation" id="reclamation">
+                                        <?php
+                                            $reclamation = new ReclamationC();
+                                            $reclamations = $reclamation->listReclamation();
+                                            foreach ($reclamations as $r){
+                                                echo '<option value = " '.$r['ID_Reclamation'] . '">'.$r['Reclamation_text'].'</option>';
+                                            }
+                                        ?>
+                                    </select>  
+                                </td>
+                            </tr>
+                            <tr>
+                                
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
+                                </td>
+                                <td>
                                     <input type="reset" value="Reset">
                                 </td>
                             </tr>
