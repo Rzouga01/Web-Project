@@ -68,7 +68,6 @@ class ResponseC
         }
     }
 
-    //cette fonction permet d'afficher la liste des reponses dans la base de données
     function listResponse()
     {
         $conn = Config::getConnexion();
