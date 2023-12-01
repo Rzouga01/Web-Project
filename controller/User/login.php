@@ -22,12 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $userData['id'];
             $_SESSION['username'] = $userData['Email'];
             $_SESSION['password'] = $userData['Password'];
+            $_SESSION['firstName'] = $userData["First_Name"];
+            $_SESSION['lastName'] = $userData["Last_Name"];
             header('Location: ../../view/index.php');
             exit;
         } else {
             echo "<script>alert('Invalid email or password!'); window.location.href='../../view/User/user.html#signin';</script>";
         }
-    } else {
+    } else {    
         echo "<script>alert('Please provide both email and password!'); window.location.href='../../view/User/user.html#signin';</script>";
     }
 } else {

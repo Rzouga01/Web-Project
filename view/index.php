@@ -5,6 +5,8 @@ $isLoggedIn = isset($_SESSION['username']);
 
 if ($isLoggedIn) {
 	$username = $_SESSION['username'];
+	$firstName=$_SESSION['firstName'];
+	$lastName=$_SESSION['lastName'];
 }
 
 ?>
@@ -94,7 +96,7 @@ if ($isLoggedIn) {
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
 										data-bs-toggle="dropdown" aria-expanded="false">
-										<?php echo $username; ?>
+										<?php echo $firstName . ' ' . $lastName; ?>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
 										<li class="nav-item">
