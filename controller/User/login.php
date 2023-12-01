@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["email"]) && isset($_POST["password"])) {
         $email = $_POST["email"];
+        $password=$_POST["password"];
         $userData = $user->getUserByEmail($email);
         
         if ($userData == null) {
@@ -17,10 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        if (isset($userData)&&$userData['Email']==$email) {
+        if (isset($userData)&&$userData['Email']==$email&&$userData['Password']==$password) {
             $_SESSION['user_id'] = $userData['id'];
             $_SESSION['username'] = $userData['Email'];
-            $_SESSION['password'] = $userData['password'];
+            $_SESSION['password'] = $userData['Password'];
             header('Location: ../../view/index.php');
             exit;
         } else {
