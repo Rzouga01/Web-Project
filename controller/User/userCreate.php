@@ -25,6 +25,8 @@ if (
     $_SESSION['user_id'] = $UserId;
     $_SESSION['username'] = $email;
     $_SESSION['password']= $password;
+    $_SESSION['firstName'] = $firstName;
+    $_SESSION['lastName'] = $lastName;
 
     header('Location: ../../view/index.php'); 
     exit;
