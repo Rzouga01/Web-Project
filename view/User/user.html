@@ -37,10 +37,10 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="../../controller/User/login.php" method="post" id="signin-form">
                 <h1>Sign in</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" name="email" id="email" placeholder="Email" />
+                <input type="password" name="password"id="password"placeholder="Password" />
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
@@ -91,7 +91,7 @@
 
             if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
                 alert('Please fill out all required fields.');
-                return;
+                return; 
             }
 
             var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
