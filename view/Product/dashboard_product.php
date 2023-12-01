@@ -2,7 +2,8 @@
 <html lang="en">
 
 <?php
-require "../../controller/Product/productC.php";
+require_once "../../controller/Product/productC.php";
+require_once "../../controller/Category/categoryC.php"
 ?>
 
 <head>
@@ -133,6 +134,22 @@ require "../../controller/Product/productC.php";
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    <label for="select-product-update">Category</label>
+                                </td>
+                                <td>
+                                <select name="select-product-update" id="select-product-update">
+                                <?php
+                            $category = new CategoryC();
+                        $categories = $category->read();
+                        foreach ($categories as $category) {
+                            echo "<option value='".$category['ID_Category'].">" . htmlspecialchars($category['Category_name']) . "</option>";
+                        }
+                        ?>
+                        </td>
+                        </select>
+                            </tr>
+                            <tr>
                                 <td></td>
                                 <td><input type="submit" value="Update" id="button_update"></td>
                                 <td><input type="reset" value="Reset"></td>
@@ -159,6 +176,22 @@ require "../../controller/Product/productC.php";
                                 <td>
                                     <textarea id="type-description" name="type-description" class="description"></textarea>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="select-product">Category</label>
+                                </td>
+                                <td>
+                                <select name="select-product" id="select-product">
+                                <?php
+                            $category = new CategoryC();
+                        $categories = $category->read();
+                        foreach ($categories as $category) {
+                            echo "<option value='".$category['ID_Category'].">" . htmlspecialchars($category['Category_name']) . "</option>";
+                        }
+                        ?>
+                        </td>
+                        </select>
                             </tr>
                             <tr>
                                 <td>

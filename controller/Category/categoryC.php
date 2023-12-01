@@ -1,7 +1,7 @@
 <?php
 
-require "../../database/connect.php";
-require  "../../model/Category/category_class.php";
+require_once "../../database/connect.php";
+require_once  "../../model/Category/category_class.php";
 
 class categoryC
 {
