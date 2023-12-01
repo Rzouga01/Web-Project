@@ -46,7 +46,7 @@ if ($isLoggedIn) {
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.html"><img src="../assets/images/logo.png" class="logo"
+				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo"
 						id="logo-img" /><span id="logo-text">Recovery<span
 							id="logo-text-color">Butterfly</span></span></a>
 
