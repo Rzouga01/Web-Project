@@ -50,7 +50,7 @@ require_once "../../controller/Project/ProjectC.php";
 
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="../../index.php"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+                <a class="navbar-brand" href="../index.php"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
@@ -62,7 +62,7 @@ require_once "../../controller/Project/ProjectC.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="../../index.php">Home</a>
+                                <a class="nav-link me-4" href="../../index.html">Home</a>
                             </li>
 
                             <li class="nav-item">
