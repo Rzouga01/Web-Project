@@ -62,7 +62,7 @@ require_once "../../controller/Project/ProjectC.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="../../index.html">Home</a>
+                                <a class="nav-link me-4" href="../../index.php">Home</a>
                             </li>
 
                             <li class="nav-item">
