@@ -30,7 +30,7 @@ require_once "../../controller/Type/TypeC.php";
             function sortTable(column) {
                 const table = document.querySelector(".table");
                 const rows = Array.from(table.rows).slice(1); // Exclude header row
-                const isNumeric = column === 5 || column === 6; // Assuming 3rd, 5th, and 6th columns are numeric
+                const isNumeric = column === 5 || column === 6;
 
                 rows.sort((row1, row2) => {
                     const value1 = row1.cells[column].textContent.trim();
