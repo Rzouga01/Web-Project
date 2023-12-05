@@ -45,10 +45,11 @@ class productC
     {
         $conn = Config::getConnexion();
 
-        $testSql = "SELECT * FROM product WHERE UPPER(Product_name) = UPPER(:name) AND UPPER(Product_description) = UPPER(:description)";
+        $testSql = "SELECT * FROM product WHERE UPPER(Product_name) = UPPER(:name) AND UPPER(Product_description) = UPPER(:description)" ;
         $testStmt = $conn->prepare($testSql);
         $testStmt->bindParam(':name', $name, PDO::PARAM_STR);
         $testStmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $testStmt->bindParam('', $price, PDO::PARAM_STR);
 
         $testStmt->execute();
 

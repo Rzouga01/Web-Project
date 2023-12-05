@@ -11,6 +11,32 @@ require_once "../../controller/Category/categoryC.php"
     <title>Dashboard</title>
     <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 
 <body>
@@ -340,6 +366,33 @@ require_once "../../controller/Category/categoryC.php"
 </body>
 
 </html>
+</script>
+
+
+<!-- Scroll-to-Top Button -->
+<button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
+
+<script>
+    // Function to scroll to the top of the page
+    function scrollToTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
+
+    // Show/hide the button based on scroll position
+    window.onscroll = function() {
+        showScrollButton();
+    };
+
+    function showScrollButton() {
+        var btn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
 </script>
 
 </body>
