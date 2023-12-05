@@ -18,6 +18,7 @@ class UserCRUD
             $user->getEmail(),
             $user->getRole()
         ]);
+        return $cnx->lastInsertId();
     }
 
     public function getAllUsers()
@@ -28,7 +29,6 @@ class UserCRUD
         $users = $select->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-
     public function update_user($user)
     {
         $cnx = Config::getConnexion();
@@ -53,5 +53,13 @@ class UserCRUD
         $delete->execute([$id]);
     }
 
-
+    public function getUserByEmail($email)
+    {
+        $cnx = Config::getConnexion();
+        $select = $cnx->prepare("SELECT * FROM user WHERE Email = ?");
+        $select->execute([$email]);
+        $user = $select->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    }
+    
 }

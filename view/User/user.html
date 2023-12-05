@@ -37,10 +37,10 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="../../controller/User/login.php" method="post" id="signin-form">
                 <h1>Sign in</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" name="email" id="email" placeholder="Email" />
+                <input type="password" name="password"id="password"placeholder="Password" />
                 <a href="#">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
@@ -77,41 +77,52 @@
     } else if (hash === '#signup') {
         container.classList.add("right-panel-active");
     }
-        document.getElementById('signup-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+       
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-            var firstName = document.getElementById('First_Name').value;
-            var lastName = document.getElementById('Last_Name').value;
-            var email = document.getElementById('Email').value;
-            var phoneNumber = document.getElementById('Phone_number').value;
-            var password = document.getElementById('Password').value;
-            var birthdate = document.getElementById('Birthdate').value;
-            var country = document.getElementById('Country').value;
-            var role = document.getElementById('Role').value;
+    var firstName = document.getElementById('First_Name').value;
+    var lastName = document.getElementById('Last_Name').value;
+    var email = document.getElementById('Email').value;
+    var phoneNumber = document.getElementById('Phone_number').value;
+    var password = document.getElementById('Password').value;
+    var birthdate = document.getElementById('Birthdate').value;
+    var country = document.getElementById('Country').value;
+    var role = document.getElementById('Role').value;
 
-            if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
-                alert('Please fill out all required fields.');
-                return;
-            }
+    if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
+        alert('Please fill out all fields.');
+        return;
+    }
 
-            var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
+    if (!firstName) {
+        alert('Please fill out the First Name field.');
+        return; 
+    }
 
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
-            }
+    if (!lastName) {
+        alert('Please fill out the Last Name field.');
+        return; 
+    }
 
-            if (isNaN(phoneNumber)) {
-                alert('Please enter a valid phone number.');
-                return;
-            }
+    var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
 
-            this.submit();
-        });
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return;
+    }
+
+    if (isNaN(phoneNumber)) {
+        alert('Please enter a valid phone number.');
+        return;
+    }
+
+    this.submit();
+});
 
     </script>
 </body>

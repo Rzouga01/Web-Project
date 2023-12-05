@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$isLoggedIn = isset($_SESSION['username']);
+
+if ($isLoggedIn) {
+	$username = $_SESSION['username'];
+	$firstName=$_SESSION['firstName'];
+	$lastName=$_SESSION['lastName'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +46,7 @@
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.html"><img src="../assets/images/logo.png" class="logo"
+				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo"
 						id="logo-img" /><span id="logo-text">Recovery<span
 							id="logo-text-color">Butterfly</span></span></a>
 
@@ -63,9 +75,6 @@
 							<li class="nav-item">
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
-							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
 									role="button" aria-expanded="false">More</a>
@@ -83,15 +92,30 @@
 											href="#scrollspyHeading5">Products</a></li>
 								</ul>
 							</li>
-							<li class="nav-item">
-								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
-							</li>
+							<?php if ($isLoggedIn) { ?>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<?php echo $firstName . ' ' . $lastName; ?>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+										<li class="nav-item">
+											<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+										</li>
+										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+									</ul>
+								</li>
+							<?php } else { ?>
+								<li class="nav-item">
+									<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+								</li>
+							<?php } ?>
 						</ul>
-
 					</div>
+
 				</div>
 
 			</div>
