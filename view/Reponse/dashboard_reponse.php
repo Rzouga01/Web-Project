@@ -268,8 +268,9 @@ require_once "../../controller/Reclamation/reclamation.php";
 
 
             document.getElementById("edit-ID-reponse").value = id;
-            document.getElementById("edit-text-reponse").value = date;
-            document.getElementById("edit-date-reponse").value = status;
+            document.getElementById("edit-text-reponse").value = text;
+            document.getElementById("edit-date-reponse").value = date;
+            
 
 
         }
@@ -277,10 +278,8 @@ require_once "../../controller/Reclamation/reclamation.php";
         function editType() {
 
             var id = document.getElementById("edit-ID-reponse").value;
-
-
-            var text = document.getElementById("new-reponse-text");
-
+            var ID_Reclamation = document.getElementById("reclamation-update").value;
+            var text = document.getElementById("new-reponse-text").value;
             var date = document.getElementById("edit-date-reponse").value;
 
 
@@ -307,7 +306,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                     location.reload();
                 }
             };
-            xhttp.send("id=" + encodeURIComponent(id) + "&text=" + encodeURIComponent(text.value) + "&date=" + encodeURIComponent(date) + "&status=" + encodeURIComponent(status));;
+            xhttp.send("id=" + encodeURIComponent(id) + "&text=" + encodeURIComponent(text) + "&date=" + encodeURIComponent(date) + "&ID_Reclamation=" + encodeURIComponent(ID_Reclamation));
         }
     </script>
 
