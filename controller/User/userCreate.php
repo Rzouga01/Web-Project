@@ -27,7 +27,10 @@ if (
     $_SESSION['password']= $password;
     $_SESSION['firstName'] = $firstName;
     $_SESSION['lastName'] = $lastName;
-
+    $_SESSION['phoneNumber'] = $phoneNumber;
+    $_SESSION['birthdate'] = $birthdate;
+    $_SESSION['country'] = $country;
+    $_SESSION['role'] = $role;
     header('Location: ../../view/index.php'); 
     exit;
 } else {
