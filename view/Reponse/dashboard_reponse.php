@@ -60,6 +60,10 @@ require_once "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
+                <li><a href="../Product/dashboard_product.php">
+                        <i class="fa fa-archive"></i>
+                        <span class="nav-item">Product</span>
+                    </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
@@ -85,7 +89,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                                 echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' ".$response['#ID_Reclamation'].")\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' " . $response['#ID_Reclamation'] . ")\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $response['ID_Response'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -120,22 +124,22 @@ require_once "../../controller/Reclamation/reclamation.php";
                             </tr>
                             <tr>
                                 <td>
-                                    <label for ="reclamation">Reclamation </label>
+                                    <label for="reclamation">Reclamation </label>
                                 </td>
                                 <td>
-                                    <select name = "reclamation" id="reclamation">
+                                    <select name="reclamation" id="reclamation">
                                         <?php
-                                            $reclamation = new ReclamationC();
-                                            $reclamations = $reclamation->listReclamation();
-                                            foreach ($reclamations as $r){
-                                                echo '<option value = " '.$r['ID_Reclamation'] . '">'.$r['Reclamation_text'].'</option>';
-                                            }
+                                        $reclamation = new ReclamationC();
+                                        $reclamations = $reclamation->listReclamation();
+                                        foreach ($reclamations as $r) {
+                                            echo '<option value = " ' . $r['ID_Reclamation'] . '">' . $r['Reclamation_text'] . '</option>';
+                                        }
                                         ?>
-                                    </select>  
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
-                            <td>
+                                <td>
                                     <input type="submit" value="Create" id="button_create">
                                 </td>
                                 <td></td>
@@ -162,22 +166,22 @@ require_once "../../controller/Reclamation/reclamation.php";
                             </tr>
                             <tr>
                                 <td>
-                                    <label for ="reclamation">Reclamation </label>
+                                    <label for="reclamation">Reclamation </label>
                                 </td>
                                 <td>
-                                    <select name = "reclamation" id="reclamation-create">
+                                    <select name="reclamation" id="reclamation-create">
                                         <?php
-                                            $reclamation = new ReclamationC();
-                                            $reclamations = $reclamation->listReclamation();
-                                            foreach ($reclamations as $r){
-                                                echo '<option value = " '.$r['ID_Reclamation'] . '">'.$r['Reclamation_text'].'</option>';
-                                            }
+                                        $reclamation = new ReclamationC();
+                                        $reclamations = $reclamation->listReclamation();
+                                        foreach ($reclamations as $r) {
+                                            echo '<option value = " ' . $r['ID_Reclamation'] . '">' . $r['Reclamation_text'] . '</option>';
+                                        }
                                         ?>
-                                    </select>  
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
-                                
+
                                 <td>
                                     <input type="submit" value="Create" id="button_create">
                                 </td>
@@ -249,7 +253,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                     location.reload();
                 }
             };
-          
+
             xhttp.send("text=" + encodeURIComponent(Text.value) + "&ID_Reclamation=" + encodeURIComponent(ID_Reclamation.value));
         }
 

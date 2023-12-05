@@ -123,6 +123,10 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
+                <li><a href="../Product/dashboard_product.php">
+                        <i class="fa fa-archive"></i>
+                        <span class="nav-item">Product</span>
+                    </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>

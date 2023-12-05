@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once 'productC.php';
 require_once '../../model/Product/product_class.php';
@@ -6,18 +6,23 @@ require_once '../../model/Product/product_class.php';
 $ProductC = new productC();
 
 
-if (isset($_POST['type-name'],
-          $_POST['type-description'],
-        
-        $_POST['type-price'])) {
-    $name = $_POST['type-name'];
-    $price = $_POST['type-price'];
-    $description = $_POST['type-description'];
+if (isset(
+  $_POST['name'],
+  $_POST['description'],
+  $_POST['price'],
+  $_POST['image'],
+  $_POST['category']
+)) {
+  $name = $_POST['name'];
+  $price = $_POST['price'];
+  $description = $_POST['description'];
+  $image = $_POST['image'];
+  $category = $_POST['category'];
 
 
 
 
-  $result = $ProductC->create($id, $name, $price, $description);
+  $result = $ProductC->create($name, $price, $description, $image, $category);
 
 
   echo $result;
