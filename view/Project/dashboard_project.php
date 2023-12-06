@@ -208,19 +208,22 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
+                                echo "</table>";
                             }
                         } else {
-                            echo "<tr><td colspan='9'>No Projects found</td></tr>";
+
+                            echo "<h7>No Projects found</h7>";
+                            echo "</table>";
                         }
 
 
 
 
                         ?>
-                    </table>
-                    <button onclick="create()">Add a Project</button>
-                    <button onclick="exportToExcel()">Export to Excel</button>
-                    <button onclick="exportToPDF()">Export to PDF</button>
+
+                        <button onclick="create()">Add a Project</button>
+                        <button onclick="exportToExcel()">Export to Excel</button>
+                        <button onclick="exportToPDF()">Export to PDF</button>
                 </div>
             </div>
 
