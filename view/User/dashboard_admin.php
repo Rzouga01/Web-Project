@@ -67,10 +67,15 @@ require_once "../../model/User/userC.php";
                     <div class="card">
                         <i class="fas fa-users"></i>
                         <h3>Users list</h3>
+                        <button onclick="openAddUserModal()" style="float: right;"><i class="fa fa-plus"></i></button>
+                        <button style="float: right; margin-right: 10px;"><i class="fa fa-search"></i></button>
                         <table class="table table-bordered">
                             <?php
-                            $user = new UserCRUD();
-                            $users = $user->getAllUsers();
+                            $userCRUD = new UserCRUD();
+                            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $result = $userCRUD->getAllUsers($page);
+                            $users = $result['users'];
+                            $total_pages = $result['total_pages'];
                             usort($users, function ($a, $b) {
                                 return $a['Status'] - $b['Status'];
                             });
@@ -114,7 +119,25 @@ require_once "../../model/User/userC.php";
                             }
                             ?>
                         </table>
-                        <button onclick="openAddUserModal()">Add User</button>
+                        <div class="pagination">
+                            <?php
+                            if($page > 1) {
+                                echo "<a href='?page=".($page - 1)."'>❮ Previous</a>";
+                            }
+
+                            for($i = 1; $i <= $total_pages; $i++) {
+                                if($i == $page) {
+                                    echo "<a href='?page=$i' class='active'>$i</a>";
+                                } else {
+                                    echo "<a href='?page=$i'>$i</a>";
+                                }
+                            }
+
+                            if($page < $total_pages) {
+                                echo "<a href='?page=".($page + 1)."'>Next ❯</a>";
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </section>

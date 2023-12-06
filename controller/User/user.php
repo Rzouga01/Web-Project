@@ -19,12 +19,21 @@ class UserCRUD {
         return $cnx->lastInsertId();
     }
 
-    public function getAllUsers() {
+    public function getAllUsers($page = 1, $records_per_page = 6) {
         $cnx = Config::getConnexion();
-        $select = $cnx->prepare("SELECT * FROM user");
-        $select->execute();
-        $users = $select->fetchAll(PDO::FETCH_ASSOC);
-        return $users;
+        $offset = ($page - 1) * $records_per_page;
+    
+        $stmt = $cnx->prepare("SELECT COUNT(*) FROM user");
+        $stmt->execute();
+        $total_records = $stmt->fetchColumn();
+        $total_pages = ceil($total_records / $records_per_page);
+    
+        $stmt = $cnx->prepare("SELECT * FROM user ORDER BY ID_USER LIMIT :limit OFFSET :offset");
+        $stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return ['users' => $users, 'total_pages' => $total_pages];
     }
     public function update_user($user) {
         $cnx = Config::getConnexion();

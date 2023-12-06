@@ -138,7 +138,7 @@ a:not(.logo):hover {
   width: 70px;
 
   height: 70px;
-  top: 10px;  
+  top: 10px;
   left: 10px;
 }
 
@@ -157,8 +157,37 @@ a:not(.logo):hover {
   text-transform: capitalize;
 
 }
+
 .banned {
   background-color: red;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #CCCCCC;
+}
+
+.pagination a.active {
+  background-color: #F4BE37;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
 }
 
 /* Modal Styles */
