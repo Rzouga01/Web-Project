@@ -69,6 +69,15 @@ require_once "../../model/User/userC.php";
                         <h3>Users list</h3>
                         <button onclick="openAddUserModal()" style="float: right;"><i class="fa fa-plus"></i></button>
                         <button style="float: right; margin-right: 10px;"><i class="fa fa-search"></i></button>
+                        <div style="float: right; margin-right: 10px;">
+                            <button onclick="toggleSortMenu()">
+                                <i class="fa fa-sort"></i> Sort
+                            </button>
+                            <div id="sortOptions" class="sort-options">
+                                <a onclick="">ID</a>
+                                <a onclick="">First Name</a>
+                            </div>
+                        </div>
                         <table class="table table-bordered">
                             <?php
                             $userCRUD = new UserCRUD();
@@ -538,6 +547,14 @@ require_once "../../model/User/userC.php";
                         modal.style.display = "none";
                     } else {
                         console.error("Modal element not found or is null");
+                    }
+                }
+                function toggleSortMenu() {
+                    var sortOptions = document.getElementById('sortOptions');
+                    if (sortOptions.style.display === 'block') {
+                        sortOptions.style.display = 'none';
+                    } else {
+                        sortOptions.style.display = 'block';
                     }
                 }
             </script>
