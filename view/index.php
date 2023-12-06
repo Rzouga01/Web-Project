@@ -2,11 +2,12 @@
 session_start();
 
 $isLoggedIn = isset($_SESSION['username']);
+$isAdmin = $_SESSION['role'] == '0';
 
-if ($isLoggedIn) {
+if($isLoggedIn) {
 	$username = $_SESSION['username'];
-	$firstName=$_SESSION['firstName'];
-	$lastName=$_SESSION['lastName'];
+	$firstName = $_SESSION['firstName'];
+	$lastName = $_SESSION['lastName'];
 }
 
 ?>
@@ -91,16 +92,19 @@ if ($isLoggedIn) {
 									<li><a href="styles.html" class="dropdown-item"
 											href="#scrollspyHeading5">Products</a></li>
 								</ul>
-							</li>
-							<?php if ($isLoggedIn) { ?>
+								<?php if($isLoggedIn) { ?>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
 										data-bs-toggle="dropdown" aria-expanded="false">
-										<?php echo $firstName . ' ' . $lastName; ?>
+										<?php echo $firstName.' '.$lastName; ?>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
 										<li class="nav-item">
-											<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+											<?php if($isAdmin) { ?>
+												<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
+											<?php } else { ?>
+												<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
+											<?php } ?>
 										</li>
 										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
 									</ul>

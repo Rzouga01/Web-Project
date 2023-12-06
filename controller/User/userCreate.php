@@ -18,6 +18,10 @@ if (
     $birthdate = $_POST["Birthdate"];
     $country = $_POST["Country"];
     $role = $_POST["Role"];
+    if ($user->emailExists($email)) {
+        echo "<script>alert('A user with this email already exists.'); window.location.href='../../view/User/user.html#signup';</script>";
+        exit;
+    }
     $userObject = new UserClass($firstName, $lastName, $email, $phoneNumber, $password, $birthdate, $country, $role);
 
     $UserId = $user->create_user($userObject);
