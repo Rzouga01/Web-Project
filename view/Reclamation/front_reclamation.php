@@ -131,7 +131,7 @@ require_once "../../controller/Reclamation/reclamation_create.php";
             }
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reclamation/reclamation_create.php", true);
+            xhttp.open("POST", "../../controller/Reclamation/front_reclamation_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
