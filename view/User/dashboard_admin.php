@@ -67,8 +67,8 @@ require_once "../../model/User/userC.php";
                     <div class="card">
                         <i class="fas fa-users"></i>
                         <h3>Users list</h3>
-                        <button onclick="openAddUserModal()" style="float: right;"><i class="fa fa-plus"></i></button>
-                        <button style="float: right; margin-right: 10px;"><i class="fa fa-search"></i></button>
+                        <button onclick="openAddUserModal()" style="float: right;"><i class="fa fa-plus"></i> Add</button>
+                        <button style="float: right; margin-right: 10px;"><i class="fa fa-search"></i> Search</button>
                         <div style="float: right; margin-right: 10px;">
                             <button onclick="toggleSortMenu()">
                                 <i class="fa fa-sort"></i> Sort
