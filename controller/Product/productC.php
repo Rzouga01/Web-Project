@@ -73,7 +73,7 @@ class productC
         }
     }
 
-    function update($id, $newName, $newDescription, $newPrice)
+    function update($id, $newName, $newDescription, $newPrice,$newimage,$newcategory)
     {
         $conn = Config::getConnexion();
 
@@ -87,11 +87,13 @@ class productC
             echo "<script>alert('Type Does Not Exist');</script>";
         } else {
             // Use placeholders and bind parameters to prevent SQL injection
-            $updateSql = "UPDATE product SET Product_name = :newName, Product_description = :newDescription, Product_price =  :newPrice WHERE ID_Product = :id";
+            $updateSql = "UPDATE product SET Product_name = :newName,image_link = :newimage,Product_description = :newDescription,ID_Category = newcategory, Product_price =  :newPrice WHERE ID_Product = :id";
             $updateStatement = $conn->prepare($updateSql);
             $updateStatement->bindParam(':newName', $newName);
             $updateStatement->bindParam(':newDescription', $newDescription);
+            $updateStatement->bindparam(':newimage', $newimage);
             $updateStatement->bindParam(':newPrice', $newPrice);
+            $updateStatement->bindParam(':newcategory', $newcategory);
 
             $updateStatement->bindParam(':id', $id);
 
