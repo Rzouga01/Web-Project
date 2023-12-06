@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once '../../model/User/userC.php';
 
     $user = new UserCRUD();
-
     if (isset($_POST["email"]) && isset($_POST["password"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
@@ -19,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if (isset($userData) && $userData['Email'] == $email && $userData['Password'] == $password) {
-            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['user_id'] = $userData['ID_USER'];
             $_SESSION['username'] = $userData['Email'];
             $_SESSION['password'] = $userData['Password'];
             $_SESSION['firstName'] = $userData["First_Name"];
@@ -29,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['country'] = $userData["Country"];
             $_SESSION['role'] = $userData["Role"];
             header('Location: ../../view/index.php');
+            
             exit;
-        } else {
+        } else  {
             echo "<script>alert('Invalid email or password!'); window.location.href='../../view/User/user.html#signin';</script>";
         }
     } else {

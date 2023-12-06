@@ -32,7 +32,7 @@ class UserCRUD
     public function update_user($user)
     {
         $cnx = Config::getConnexion();
-        $query = $cnx->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Email = ?, Phone_number = ?, Password = ?, Birthdate = ?, Country = ?, Role = ? WHERE ID_USER = ?");
+        $query = $cnx->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Email = ?, Phone_number = ?, Password = ?, Birthdate = ?, Country = ? WHERE ID_USER = ?");
         $query->execute([
             $user->getFirst_Name(),
             $user->getLast_Name(),
@@ -41,7 +41,6 @@ class UserCRUD
             $user->getPassword(),
             $user->getBirthdate(),
             $user->getCountry(),
-            $user->getRole(),
             $user->getID_USER()
         ]);
     }
@@ -61,5 +60,22 @@ class UserCRUD
         $user = $select->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
-    
+    public function getUserById($id)
+{
+    $cnx = Config::getConnexion();
+    $select = $cnx->prepare("SELECT * FROM user WHERE ID_USER = ?");
+    $select->execute([$id]);
+    $user = $select->fetch(PDO::FETCH_ASSOC);
+    return $user;
+}
+public function emailExists($email) {
+    $cnx = Config::getConnexion();
+    $select = $cnx->prepare("SELECT * FROM user WHERE Email = ?");
+    $select->execute([$email]);
+    $user = $select->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        return true;
+    }
+    return false;
+}
 }
