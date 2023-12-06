@@ -9,7 +9,6 @@ $phoneNumber = $_POST['phoneNumber'];
 $password = $_POST['password'];
 $birthdate = $_POST['birthdate'];
 $country = $_POST['country'];
-$role = $_POST['role'];
 
 $user = new UserClass($firstName, $lastName, $email, $phoneNumber, $password, $birthdate, $country, $role);
 $user->setID_USER($id); 

@@ -29,11 +29,7 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                <li><a href="">
-                        <i class="fas fa-user"></i>
-                        <span class="nav-item">Profile</span>
-                    </a></li>
-                <li><a href="../User/user_dashboard.php">
+                <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>

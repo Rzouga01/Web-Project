@@ -2,10 +2,8 @@
 require_once "../../database/connect.php";
 require_once '../../model/User/userC.php';
 
-class UserCRUD
-{
-    public function create_user($user)
-    {
+class UserCRUD {
+    public function create_user($user) {
         $cnx = Config::getConnexion();
         $insert = $cnx->prepare("INSERT INTO user (First_Name, Last_Name, Password, Phone_number, Birthdate, Country, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $insert->execute([
@@ -21,18 +19,16 @@ class UserCRUD
         return $cnx->lastInsertId();
     }
 
-    public function getAllUsers()
-    {
+    public function getAllUsers() {
         $cnx = Config::getConnexion();
         $select = $cnx->prepare("SELECT * FROM user");
         $select->execute();
         $users = $select->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-    public function update_user($user)
-    {
+    public function update_user($user) {
         $cnx = Config::getConnexion();
-        $query = $cnx->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Email = ?, Phone_number = ?, Password = ?, Birthdate = ?, Country = ?, Role = ? WHERE ID_USER = ?");
+        $query = $cnx->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Email = ?, Phone_number = ?, Password = ?, Birthdate = ?, Country = ? WHERE ID_USER = ?");
         $query->execute([
             $user->getFirst_Name(),
             $user->getLast_Name(),
@@ -41,25 +37,56 @@ class UserCRUD
             $user->getPassword(),
             $user->getBirthdate(),
             $user->getCountry(),
-            $user->getRole(),
             $user->getID_USER()
         ]);
     }
 
-    public function delete_user($id)
-    {
+    public function delete_user($id) {
         $cnx = Config::getConnexion();
         $delete = $cnx->prepare("DELETE FROM user WHERE ID_USER = ?");
         $delete->execute([$id]);
     }
 
-    public function getUserByEmail($email)
-    {
+    public function getUserByEmail($email) {
         $cnx = Config::getConnexion();
         $select = $cnx->prepare("SELECT * FROM user WHERE Email = ?");
         $select->execute([$email]);
         $user = $select->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
-    
+    public function getUserById($id) {
+        $cnx = Config::getConnexion();
+        $select = $cnx->prepare("SELECT * FROM user WHERE ID_USER = ?");
+        $select->execute([$id]);
+        $user = $select->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    }
+    public function emailExists($email) {
+        $cnx = Config::getConnexion();
+        $select = $cnx->prepare("SELECT * FROM user WHERE Email = ?");
+        $select->execute([$email]);
+        $user = $select->fetch(PDO::FETCH_ASSOC);
+        if($user) {
+            return true;
+        }
+        return false;
+    }
+    public function banUser($id) {
+        $cnx = Config::getConnexion();
+        $update = $cnx->prepare("UPDATE user SET status='1' WHERE ID_USER = ?");
+        $update->execute([$id]);
+        if($update->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+    public function unbanUser($id) {
+        $cnx = Config::getConnexion();
+        $update = $cnx->prepare("UPDATE user SET status='0' WHERE ID_USER = ?");
+        $update->execute([$id]);
+        if($update->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
 }
