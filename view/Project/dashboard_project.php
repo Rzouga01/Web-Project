@@ -11,9 +11,17 @@ require_once "../../controller/Type/TypeC.php";
     <title>Dashboard</title>
     <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-
     <link rel="stylesheet" href="project.css">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const headers = document.querySelectorAll("th");
@@ -21,6 +29,7 @@ require_once "../../controller/Type/TypeC.php";
                 header.addEventListener("click", () => sortTable(header.cellIndex));
                 header.classList.add("sortable-header");
             });
+
 
             let currentSort = {
                 column: -1,
@@ -135,7 +144,7 @@ require_once "../../controller/Type/TypeC.php";
                 <div class="card">
                     <i class="fa fa-database"></i>
                     <h3>Projects List</h3>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="table-project">
                         <?php
 
 
@@ -177,7 +186,7 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['start_date']) . "</td>";
                                 echo "<td>" . htmlspecialchars($project['Goal']) . "</td>";
-                                echo  "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
+                                echo "<td>" . htmlspecialchars($project['Current_amount']) . "</td>";
                         ?>
                                 <td class="progress-bar-container">
                                     <div class="full-bar">
@@ -197,11 +206,17 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
+                            echo "<tr><td colspan='9'>No Projects found</td></tr>";
                         }
+
+
+
+
                         ?>
                     </table>
                     <button onclick="create()">Add a Project</button>
+                    <button onclick="exportToExcel()">Export to Excel</button>
+                    <button onclick="exportToPDF()">Export to PDF</button>
                 </div>
             </div>
 
@@ -359,6 +374,57 @@ require_once "../../controller/Type/TypeC.php";
         </div>
     </div>
     <script>
+        function exportToExcel() {
+            console.log('Exporting to Excel...');
+
+            if (typeof XLSX !== 'undefined') {
+                const table = document.getElementById('table-project');
+                console.log('Table:', table);
+
+                try {
+                    const ws = XLSX.utils.table_to_sheet(table);
+                    console.log('Worksheet:', ws);
+                    const wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, 'Projects List');
+                    XLSX.writeFile(wb, 'table_data.xlsx');
+                } catch (error) {
+                    console.error('Error exporting to Excel:', error);
+                }
+            } else {
+                console.error('XLSX library is not defined. Make sure it is loaded.');
+            }
+        }
+
+
+        window.jsPDF = window.jspdf.jsPDF;
+
+        function exportToPDF() {
+            var tableElement = document.getElementById('table-project');
+            var title = 'Projects List';
+
+            html2canvas(tableElement, {
+                useCORS: true,
+                scale: 2,
+                logging: true
+            }).then(function(canvas) {
+                var pdf = new jsPDF('landscape', 'mm', 'a4', true);
+
+                var pdfWidth = pdf.internal.pageSize.getWidth();
+
+                pdf.setFontSize(18);
+                var titleWidth = pdf.getStringUnitWidth(title) * pdf.getFontSize() / pdf.internal.scaleFactor;
+                pdf.text(title, (pdfWidth - titleWidth) / 2, 15);
+
+                var imgData = canvas.toDataURL('image/png');
+
+                pdf.addImage(imgData, 'PNG', 10, 25, pdfWidth - 20, 0);
+
+                pdf.save('table_data.pdf');
+            });
+        }
+
+
+
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -378,8 +444,6 @@ require_once "../../controller/Type/TypeC.php";
             };
             xhttp.send("id=" + id);
         }
-
-
 
 
 
@@ -495,15 +559,10 @@ require_once "../../controller/Type/TypeC.php";
 
 
 
-
-
-
         function closeEditModal() {
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
         }
-
-
 
 
         function openEditModal(id, name, description, date, current, goal, type, organization) {
@@ -543,9 +602,6 @@ require_once "../../controller/Type/TypeC.php";
                 }
             }
         }
-
-
-
 
 
         function edit() {

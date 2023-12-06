@@ -15,5 +15,5 @@ echo $result;
 
 
 
-header('Location: ../../View/Reclamation/dashboard_reclamation.php');
+
 exit;

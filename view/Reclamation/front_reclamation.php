@@ -13,11 +13,12 @@ if ($isLoggedIn) {
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once "../../controller/Project/ProjectC.php";
+require_once "../../controller/Reclamation/reclamation.php";
+require_once "../../controller/Reclamation/reclamation_create.php";
 ?>
 
 <head>
-    <title>Our Projects</title>
+    <title>Reclamtion Form</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,7 +63,7 @@ require_once "../../controller/Project/ProjectC.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="../../index.php">Home</a>
+                                <a class="nav-link me-4" href="../../index.html">Home</a>
                             </li>
 
                             <li class="nav-item">
@@ -71,11 +72,11 @@ require_once "../../controller/Project/ProjectC.php";
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="../view/Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="../view//Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
                                     </li>
                                     <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
                                     </li>
-                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                                    <li><a href="../view/Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
                                     <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
                                     <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                                 </ul>
@@ -109,75 +110,43 @@ require_once "../../controller/Project/ProjectC.php";
 
         </nav>
     </header>
+    <div class="container">
+        <header>
+            <h1>Reclamation Form</h1>
+        </header>
+        <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
+            <label for="reclamation-text">Your reclamation :</label>
+            <textarea id="reclamation-text" name="reclamation-text" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Submit Reclamation</button>
+        </form>
+    </div>
+    <script>
+        function submitReclamation() {
+        var text = document.getElementById("reclamation-text").value;
+
+            if (text.trim() === "") {
+                alert("Please enter your reclamation.");
+                return;
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "../../controller/Reclamation/front_reclamation_create.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert("Réclamation soumise avec succès!");
+                    
+                }
+            };
+            xhttp.send("text=" + encodeURIComponent(text));
+        }
+    </script>
 
 
-    <section id="Home" class="padding-large jarallax">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <header class="text-center my-5">
-                        <span class="text-muted">Donate</span>
-                        <h2><strong>Our Projects</strong></h2>
-                    </header>
-                </div>
-                <div class="col-md-12">
-                    <table class="table-project">
-                        <?php
-                        $projectC = new ProjectC();
-                        $projects = $projectC->read_project();
-
-                        if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
-                            echo "<tr><th>Name</th><th>Description</th><th >Start Date</th><th>Goal</th><th>Collected</th><th class='percentage-header' >Percentage</th><th>Organization</th><th>Type</th></tr>";
-                            foreach ($projects as $project) {
-
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
-                        ?>
-                                <td id="start_date" class="start-date">
-                                    <?php echo htmlspecialchars($project['start_date']); ?>
-                                </td>
-
-                                <?php
-                                echo "<td>" . number_format(htmlspecialchars($project['Goal']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
-                                echo "<td>" . number_format(htmlspecialchars($project['Current_amount']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
-                                ?>
-
-                                <td class="progress-bar-container">
-                                    <div class="full-bar">
-                                        <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%;"></div>
-                                        <p class="percentage-number"><?php echo number_format($project['Percentage'], 2); ?>%</p>
-                                    </div>
-                                </td>
-
-                        <?php
-                                $db = config::getConnexion();
-
-                                $r = "SELECT * FROM organization WHERE ID_Org=" . $project['ID_Org'] . "";
-                                $org = $db->query($r);
-                                $org = $org->fetch();
-                                echo "<td>" . htmlspecialchars($org['Org_name']) . "</td>";
 
 
-                                $r = "SELECT Type_name FROM type WHERE ID_Type=" . $project['ID_Type'] . "";
-                                $type = $db->query($r);
-
-                                $type_name = $type->fetch();
-                                echo "<td>" . htmlspecialchars($type_name['Type_name']) . "</td>";
-
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
-                        }
-                        ?>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
+    
 
     <footer class="padding-large text-white bg-dark">
         <div class="container">
