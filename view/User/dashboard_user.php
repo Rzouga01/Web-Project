@@ -61,6 +61,10 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-archive"></i>
                             <span class="nav-item">Category</span>
                         </a></li>
+                    <li><a href="../Product/dashboard_product.php">
+                            <i class="fa fa-archive"></i>
+                            <span class="nav-item">Product</span>
+                        </a></li>
                     <li><a href="../../controller/User/logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
@@ -75,26 +79,24 @@ require_once "../../model/User/userC.php";
                         <table class="table table-bordered">
                             <?php
                             $user = new UserCRUD();
-                           
+
                             if (!empty($user)) {
                                 echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th></tr>";
-                                
-                                    echo "<tr>";
 
-                                    echo "<td>" . htmlspecialchars($_SESSION['firstName']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['lastName']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['username']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['phoneNumber']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['birthdate']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['country']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($_SESSION['role']) . "</td>";
-                                    echo "<td>";
-                                    echo "<button onclick='openEditUserModal(\"{$_SESSION['user_id']}\", \"{$_SESSION['firstName']}\", \"{$_SESSION['lastName']}\", \"{$_SESSION['username']}\", \"{$_SESSION['phoneNumber']}\", \"{$_SESSION['password']}\", \"{$_SESSION['birthdate']}\", \"{$_SESSION['country']}\", \"{$_SESSION['role']}\")'>Edit</button>";
-                                    echo "<button onclick='deleteUser(\"{$_SESSION['user_id']}\")'>Delete</button>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                
-                    
+                                echo "<tr>";
+
+                                echo "<td>" . htmlspecialchars($_SESSION['firstName']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['lastName']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['username']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['phoneNumber']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['birthdate']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['country']) . "</td>";
+                                echo "<td>" . htmlspecialchars($_SESSION['role']) . "</td>";
+                                echo "<td>";
+                                echo "<button onclick='openEditUserModal(\"{$_SESSION['user_id']}\", \"{$_SESSION['firstName']}\", \"{$_SESSION['lastName']}\", \"{$_SESSION['username']}\", \"{$_SESSION['phoneNumber']}\", \"{$_SESSION['password']}\", \"{$_SESSION['birthdate']}\", \"{$_SESSION['country']}\", \"{$_SESSION['role']}\")'>Edit</button>";
+                                echo "<button onclick='deleteUser(\"{$_SESSION['user_id']}\")'>Delete</button>";
+                                echo "</td>";
+                                echo "</tr>";
                             }
                             ?>
                         </table>
@@ -172,7 +174,7 @@ require_once "../../model/User/userC.php";
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", '../../controller/User/userDelete.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.onreadystatechange = function () {
+                        xhr.onreadystatechange = function() {
                             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                                 console.log('user deleted');
                                 location.reload();
@@ -196,7 +198,7 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function () {
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                             closeEditModal();
                             location.reload();
@@ -217,11 +219,11 @@ require_once "../../model/User/userC.php";
                 var modal = document.getElementById("editModal");
                 var span = document.getElementsByClassName("close")[0];
 
-                span.onclick = function () {
+                span.onclick = function() {
                     modal.style.display = "none";
                 };
 
-                window.onclick = function (event) {
+                window.onclick = function(event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }

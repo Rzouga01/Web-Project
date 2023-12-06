@@ -17,10 +17,12 @@ class productC
                 'ID_Product' => $row['ID_Product'],
                 'Product_name' => $row['Product_name'],
                 'Product_price' => $row['Product_price'],
-                'Product_description' => $row['Product_description']
+                'image_link' => $row['image_link'],
+                'Product_description' => $row['Product_description'],
+                'ID_Category' => $row['ID_Category']
             ];
             $products[] = $product;
-        }                   
+        }
 
         return $products;
     }
@@ -41,25 +43,27 @@ class productC
         }
     }
 
-    function create($id, $name, $price, $description)
+    function create($name, $price, $description, $image, $category)
     {
         $conn = Config::getConnexion();
 
-        $testSql = "SELECT * FROM product WHERE UPPER(Product_name) = UPPER(:name) AND UPPER(Product_description) = UPPER(:description)" ;
+        $testSql = "SELECT * FROM product WHERE UPPER(Product_name) = UPPER(:name)";
         $testStmt = $conn->prepare($testSql);
         $testStmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $testStmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $testStmt->bindParam('', $price, PDO::PARAM_STR);
 
         $testStmt->execute();
 
         if ($testStmt->rowCount() > 0) {
             return "Type already exists";
         } else {
-            $insertSql = "INSERT INTO product (Product_name, Product_description, Product_price) VALUES (:name, :description)";
+            $insertSql = "INSERT INTO product (Product_name, Product_price, Product_description, image_link, ID_Category) VALUES (:name, :price, :description, :image, :category)";
             $insertStmt = $conn->prepare($insertSql);
             $insertStmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $insertStmt->bindParam(':price', $price, PDO::PARAM_STR);
             $insertStmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $insertStmt->bindParam(':image', $image, PDO::PARAM_STR);
+            $insertStmt->bindParam(':category', $category, PDO::PARAM_STR);
+
 
             if ($insertStmt->execute()) {
                 return "Product created successfully";
