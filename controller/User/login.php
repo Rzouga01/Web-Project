@@ -18,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if (isset($userData) && $userData['Email'] == $email && $userData['Password'] == $password) {
+            if ($userData['Status'] == 1) {
+                echo "<script>alert('This account is banned and cannot log in.'); window.location.href='../../view/User/user.html#signin';</script>";
+                exit;
+            }
             $_SESSION['user_id'] = $userData['ID_USER'];
             $_SESSION['username'] = $userData['Email'];
             $_SESSION['password'] = $userData['Password'];

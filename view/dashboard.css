@@ -157,7 +157,9 @@ a:not(.logo):hover {
   text-transform: capitalize;
 
 }
-
+.banned {
+  background-color: red;
+}
 
 /* Modal Styles */
 .modal {

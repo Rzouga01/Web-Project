@@ -71,10 +71,14 @@ require_once "../../model/User/userC.php";
                             <?php
                             $user = new UserCRUD();
                             $users = $user->getAllUsers();
+                            usort($users, function ($a, $b) {
+                                return $a['Status'] - $b['Status'];
+                            });
                             if(!empty($users)) {
-                                echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th></tr>";
+                                echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th><th>Status</th><th>Action</th></tr>";
                                 foreach($users as $user) {
-                                    echo "<tr>";
+                                    $class = $user['Status'] == 1 ? 'banned' : '';
+                                    echo "<tr class='{$class}'>";
                                     echo "<td>".htmlspecialchars($user['ID_USER'])."</td>";
                                     echo "<td>".htmlspecialchars($user['First_Name'])."</td>";
                                     echo "<td>".htmlspecialchars($user['Last_Name'])."</td>";
@@ -93,18 +97,20 @@ require_once "../../model/User/userC.php";
                                         case 2:
                                             echo "Organisation";
                                             break;
-                                        default:
-                                            echo "Unknown";
                                     }
                                     echo "</td>";
+                                    echo "<td class='{$class}'>";
+                                    echo $user['Status'] == 1 ? 'Banned' : 'Active';
+                                    echo "</td>";
                                     echo "<td>";
-                                    echo "<button>Block</button>";
-                                    echo "<button onclick='deleteUser(\"{$user['ID_USER']}\")'>Delete</button>";
+                                    if($user['Status'] == 1) {
+                                        echo "<button onclick='unbanUser(\"{$user['ID_USER']}\")'>Unban </button>";
+                                    } else {
+                                        echo "<button onclick='banUser(\"{$user['ID_USER']}\")'>Ban </button>";
+                                    }
                                     echo "</td>";
                                     echo "</tr>";
                                 }
-                            } else {
-                                echo "<tr><td colspan='4'>No Users found </td></tr>";
                             }
                             ?>
                         </table>
@@ -416,7 +422,7 @@ require_once "../../model/User/userC.php";
                                     <td>
                                         <label for="add-role">Role</label>
                                         <select name="Role" id="add-role">
-                                        <option selected disabled></option>
+                                            <option selected disabled></option>
                                             <option value="0">Admin</option>
                                             <option value="1">Organisation</option>
                                             <option value="2">User</option>
@@ -467,6 +473,31 @@ require_once "../../model/User/userC.php";
                         }
                         xhr.send("id=" + id);
                     }
+                }
+
+                function banUser(id) {
+                    if (confirm("Are you sure you want to ban this user?")) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", '../../controller/User/userBan.php', true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                location.reload();
+                            }
+                        };
+                        xhr.send("id=" + encodeURIComponent(id));
+                    }
+                }
+                function unbanUser(id) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", '../../controller/User/userUnban.php', true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            location.reload();
+                        }
+                    };
+                    xhr.send("id=" + encodeURIComponent(id));
                 }
 
                 function openAddUserModal() {
