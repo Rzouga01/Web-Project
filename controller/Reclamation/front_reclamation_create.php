@@ -5,7 +5,7 @@ require_once 'reclamation.php';
 
 
 
-$RecC = new Reclamation(2, $_POST['text']);
+$RecC = new Reclamation(6, $_POST['text']);
 
 $Rec = new ReclamationC();
 
