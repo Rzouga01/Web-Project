@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 09:33 PM
+-- Generation Time: Dec 06, 2023 at 04:45 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -145,6 +145,13 @@ CREATE TABLE `product` (
   `ID_Category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`ID_Product`, `Product_name`, `Product_price`, `Product_description`, `image_link`, `ID_Category`) VALUES
+(2, 'test', 5, 'test desc ', 'test_image.png', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -168,7 +175,8 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`ID_Project`, `Project_name`, `Project_description`, `start_date`, `Goal`, `Current_amount`, `Percentage`, `ID_Org`, `ID_Type`) VALUES
-(25, 'Schools', 'School', '2023-12-01', 64, 5, 7.8125, 1, 4);
+(25, 'Schools', 'School', '2023-12-01', 64, 5, 7.8125, 1, 4),
+(26, 'zeaze', 'azezeaz', '2023-12-27', 110, 50, 45.4545, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -199,7 +207,7 @@ INSERT INTO `reclamation_tab` (`ID_Reclamation`, `ID_User`, `Reclamation_text`, 
 
 CREATE TABLE `response` (
   `ID_Response` int(11) NOT NULL,
-  `ID_Reclamation` int(11) NOT NULL,
+  `#ID_Reclamation` int(11) NOT NULL,
   `Response_text` varchar(50) NOT NULL,
   `Response_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -247,7 +255,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID_USER`, `First_Name`, `Last_Name`, `Password`, `Phone_number`, `Birthdate`, `Country`, `Email`, `Role`) VALUES
 (1, 'aer', 'earae', 'earae', 321312, '2023-11-01', 'aezea', 'eazeaze', 1),
-(2, 'aa', 'aze', '', 0, '2023-11-24', '', 'atfastr@gmail.com', 0),
+(2, 'aa', 'aze', '', 0, '2023-11-24', '', '1@gmail.com', 0),
 (5, 'tttttt', 'azeaze', 'ttttt', 0, '2023-11-28', 'Country2', 'azeaze', 1);
 
 -- --------------------------------------------------------
@@ -344,7 +352,7 @@ ALTER TABLE `reclamation_tab`
 --
 ALTER TABLE `response`
   ADD PRIMARY KEY (`ID_Response`),
-  ADD KEY `#ID_Reclamation` (`ID_Reclamation`);
+  ADD KEY `#ID_Reclamation` (`#ID_Reclamation`);
 
 --
 -- Indexes for table `type`
@@ -416,13 +424,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID_Product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `reclamation_tab`
@@ -514,7 +522,7 @@ ALTER TABLE `reclamation_tab`
 -- Constraints for table `response`
 --
 ALTER TABLE `response`
-  ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`ID_Reclamation`) REFERENCES `reclamation_tab` (`ID_Reclamation`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`#ID_Reclamation`) REFERENCES `reclamation_tab` (`ID_Reclamation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `volunteer`
