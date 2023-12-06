@@ -110,3 +110,7 @@ td {
     margin-right: 10px;
     color: #E74C3C;
 }
+
+td[colspan="9"] {
+    text-align: center;
+}

@@ -210,7 +210,7 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No Projects found</td></tr>";
+                            echo "<tr><td colspan='9'>No Projects found</td></tr>";
                         }
 
 
