@@ -2,12 +2,13 @@
 session_start();
 
 $isLoggedIn = isset($_SESSION['username']);
-$isAdmin = $_SESSION['role'] == '0';
+
 
 if($isLoggedIn) {
 	$username = $_SESSION['username'];
 	$firstName = $_SESSION['firstName'];
 	$lastName = $_SESSION['lastName'];
+	$isAdmin = $_SESSION['role'] == '0';	
 }
 
 ?>

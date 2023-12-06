@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2023 at 04:45 PM
+-- Generation Time: Dec 06, 2023 at 07:04 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -96,13 +96,6 @@ CREATE TABLE `organization` (
   `Org_description` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `organization`
---
-
-INSERT INTO `organization` (`ID_USER`, `ID_Org`, `Org_name`, `Org_description`) VALUES
-(1, 1, 'Unicef', 'fdgfdgdf');
-
 -- --------------------------------------------------------
 
 --
@@ -170,14 +163,6 @@ CREATE TABLE `project` (
   `ID_Type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `project`
---
-
-INSERT INTO `project` (`ID_Project`, `Project_name`, `Project_description`, `start_date`, `Goal`, `Current_amount`, `Percentage`, `ID_Org`, `ID_Type`) VALUES
-(25, 'Schools', 'School', '2023-12-01', 64, 5, 7.8125, 1, 4),
-(26, 'zeaze', 'azezeaz', '2023-12-27', 110, 50, 45.4545, 1, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -191,13 +176,6 @@ CREATE TABLE `reclamation_tab` (
   `Reclamation_date` date NOT NULL,
   `Reclamation_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `reclamation_tab`
---
-
-INSERT INTO `reclamation_tab` (`ID_Reclamation`, `ID_User`, `Reclamation_text`, `Reclamation_date`, `Reclamation_status`) VALUES
-(9, 2, 'aa', '2023-11-30', 0);
 
 -- --------------------------------------------------------
 
@@ -246,17 +224,9 @@ CREATE TABLE `user` (
   `Birthdate` date NOT NULL,
   `Country` varchar(20) NOT NULL,
   `Email` varchar(20) NOT NULL,
-  `Role` int(11) NOT NULL
+  `Role` int(11) NOT NULL,
+  `Status` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`ID_USER`, `First_Name`, `Last_Name`, `Password`, `Phone_number`, `Birthdate`, `Country`, `Email`, `Role`) VALUES
-(1, 'aer', 'earae', 'earae', 321312, '2023-11-01', 'aezea', 'eazeaze', 1),
-(2, 'aa', 'aze', '', 0, '2023-11-24', '', '1@gmail.com', 0),
-(5, 'tttttt', 'azeaze', 'ttttt', 0, '2023-11-28', 'Country2', 'azeaze', 1);
 
 -- --------------------------------------------------------
 
