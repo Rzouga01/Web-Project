@@ -12,6 +12,7 @@ require_once "../../controller/Category/categoryC.php"
     <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+    <link rel="stylesheet" href="product.css">
 
 </head>
 
@@ -20,12 +21,12 @@ require_once "../../controller/Category/categoryC.php"
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="../index.html" class="logo">
+                    <a href="../index.php" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
                 </li>
-                <li><a href="../index.html">
+                <li><a href="../index.php">
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
@@ -84,10 +85,10 @@ require_once "../../controller/Category/categoryC.php"
                                 echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($product['Product_price']) . "</td>";
                                 echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
-                                echo "<td><img src='../image/" . htmlspecialchars($product['image_link']) . "' alt='Image not found'></td>";
+                                echo "<td><img class='dash-img' src='images/" . htmlspecialchars($product['image_link']) . "' alt='Image not found'></td>";
                                 echo "<td>" . htmlspecialchars($product['ID_Category']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $product['ID_Product'] . ", '" . $product['Product_name'] . "', '"  . "', '" . $product['Product_price'] . "')\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $product['ID_Product'] . ", '" . $product['Product_name'] . "', '" . $product['Product_description'] . "', '" . $product['Product_price'] . "', '" . $product['image_link'] . "', '" . $product['ID_Category'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $product['ID_Product'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -116,7 +117,11 @@ require_once "../../controller/Category/categoryC.php"
                                 <td><input type="text" id="new-type-name" name="new-type-name"></td>
                             </tr>
                             <tr>
-                                <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
+                                <td><label for="new-type-img">New Image</label></td>
+                                <td><input type="text" id="new-type-img" name="new-type-img"></td>
+                            </tr>
+
+                            <tr>
                                 <td><label for="new-type-price">New Price</label></td>
                                 <td><input type="text" id="new-type-price" name="new-type-price"></td>
                             </tr>
@@ -135,8 +140,8 @@ require_once "../../controller/Category/categoryC.php"
                                         <?php
                                         $category = new CategoryC();
                                         $categories = $category->read();
-                                        foreach ($categories as $category) {
-                                            echo "<option value='" . $category['ID_Category'] . ">" . htmlspecialchars($category['Category_name']) . "</option>";
+                                        foreach ($categories as $categoryItem) {
+                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
                                         }
                                         ?>
                                 </td>
@@ -188,8 +193,8 @@ require_once "../../controller/Category/categoryC.php"
                                         <?php
                                         $category = new CategoryC();
                                         $categories = $category->read();
-                                        foreach ($categories as $category) {
-                                            echo "<option value='" . $category['ID_Category'] . ">" . htmlspecialchars($category['Category_name']) . "</option>";
+                                        foreach ($categories as $categoryItem) {
+                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
                                         }
                                         ?>
                                 </td>
@@ -205,10 +210,13 @@ require_once "../../controller/Category/categoryC.php"
                             </tr>
                         </table>
                     </form>
+
+
                 </div>
             </div>
         </div>
     </div>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
     <script>
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
@@ -324,45 +332,54 @@ require_once "../../controller/Category/categoryC.php"
             modal.style.display = "none";
         }
 
-        function openEditModal(id, name, description, price) {
+        function openEditModal(id, name, description, price, image, category) {
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
-
             document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
-            var existingTypePrice = price;
+            document.getElementById("new-type-name").value = name;
+            document.getElementById("new-type-description").value = description;
+            document.getElementById("new-type-price").value = price;
 
+            var productcategory = document.getElementById("select-product-update");
+            for (var i = 0; i < productcategory.options.length; i++) {
+                if (productcategory.options[i].value == category) {
+                    productcategory.options[i].selected = true;
+                    break;
+                }
+            }
 
+            document.getElementById("new-type-img").value = image;
         }
 
         function editType() {
-
             var id = document.getElementById("edit-type-id").value;
+            var productName = document.getElementById("new-type-name");
+            var productDescription = document.getElementById("new-type-description");
+            var productPrice = document.getElementById("new-type-price");
+            var productImage = document.getElementById("new-type-img");
+            var productCategory = document.getElementById("select-product-update");
 
-            var typeName = document.getElementById("new-type-name");
-            var typeDescription = document.getElementById("new-type-description");
-            var typePrice = document.getElementById("new-type-price");
-
-
-
-            if (typeDescription.value === "" || typeDescription.value.length > 20) {
+            // Validate productDescription and productName
+            if (productDescription.value === "" || productDescription.value.length > 20) {
                 alert("Product Description should not be empty and should not exceed 20 characters.");
-                typeDescription.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                productDescription.style.border = "1px solid red";
+                return;
             } else {
-                typeDescription.style.border = "1px solid green";
+                productDescription.style.border = "1px solid green";
             }
 
-            if (typeName.value === "" || typeName.value.length > 20) {
+            if (productName.value === "" || productName.value.length > 20) {
                 alert("Product Name should not be empty and should not exceed 20 characters.");
-                typeName.style.border = "1px solid red";
-                return; // Exit the function if conditions are not met
+                productName.style.border = "1px solid red";
+                return;
             } else {
-                typeName.style.border = "1px solid green";
+                productName.style.border = "1px solid green";
             }
 
+            // ... (rest of your code)
+
+            // Use the correct variable names in the send method
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -372,8 +389,32 @@ require_once "../../controller/Category/categoryC.php"
                     location.reload();
                 }
             };
-            xhttp.send("name=" + encodeURIComponent(name.value) + "&price=" + encodeURIComponent(price.value) + "&description=" + encodeURIComponent(desc.value) + "&image=" + encodeURIComponent(image.value) + "&category=" + encodeURIComponent(category.value));
+            xhttp.send("id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(productName.value) + "&price=" + encodeURIComponent(productPrice.value) + "&description=" + encodeURIComponent(productDescription.value) + "&image=" + encodeURIComponent(productImage.value) + "&category=" + encodeURIComponent(productCategory.value));
+        }
 
+
+
+
+
+        // Function to scroll to the top of the page
+        function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        }
+
+        // Show/hide the button based on scroll position
+        window.onscroll = function() {
+            showScrollButton();
+        };
+
+        function showScrollButton() {
+            var btn = document.getElementById("scrollToTopBtn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
         }
     </script>
 
