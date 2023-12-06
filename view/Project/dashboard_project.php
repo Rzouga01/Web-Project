@@ -381,7 +381,6 @@ require_once "../../controller/Type/TypeC.php";
         function exportToExcel() {
             console.log('Exporting to Excel...');
 
-            // Check if XLSX object is defined
             if (typeof XLSX !== 'undefined') {
                 const table = document.getElementById('table-project');
                 console.log('Table:', table);
@@ -412,20 +411,17 @@ require_once "../../controller/Type/TypeC.php";
                 scale: 2,
                 logging: true
             }).then(function(canvas) {
-                var pdf = new jsPDF('landscape', 'mm', 'a4', true); // Set orientation to landscape and high resolution
+                var pdf = new jsPDF('landscape', 'mm', 'a4', true);
 
-                // Calculate the width of the PDF
                 var pdfWidth = pdf.internal.pageSize.getWidth();
 
-                // Add title at the center
                 pdf.setFontSize(18);
                 var titleWidth = pdf.getStringUnitWidth(title) * pdf.getFontSize() / pdf.internal.scaleFactor;
                 pdf.text(title, (pdfWidth - titleWidth) / 2, 15);
 
                 var imgData = canvas.toDataURL('image/png');
 
-                // Add image with higher resolution
-                pdf.addImage(imgData, 'PNG', 10, 25, pdfWidth - 20, 0); // Adjust width and height as needed
+                pdf.addImage(imgData, 'PNG', 10, 25, pdfWidth - 20, 0);
 
                 pdf.save('table_data.pdf');
             });
