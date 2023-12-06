@@ -271,9 +271,9 @@ require_once "../../controller/Reclamation/reclamation.php";
             modal.style.display = "block";
 
 
-            document.getElementById("edit-ID-reponse").value = id;
-            document.getElementById("edit-text-reponse").value = text;
-            document.getElementById("edit-date-reponse").value = date;
+            document.getElementById("edit-ID-response").value = id;
+            document.getElementById("edit-response-text").value = text;
+            document.getElementById("edit-response-date").value = date;
             
 
 
@@ -281,10 +281,10 @@ require_once "../../controller/Reclamation/reclamation.php";
 
         function editType() {
 
-            var id = document.getElementById("edit-ID-reponse").value;
+            var id = document.getElementById("edit-ID-response").value;
             var ID_Reclamation = document.getElementById("reclamation-update").value;
-            var text = document.getElementById("new-reponse-text").value;
-            var date = document.getElementById("edit-date-reponse").value;
+            var text = document.getElementById("new-response-text").value;
+            var date = document.getElementById("edit-response-date").value;
 
 
 
