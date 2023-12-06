@@ -84,8 +84,8 @@ if ($isLoggedIn) {
 									</li>
 									<li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
 									</li>
-									<li><a href="contact.html" class="dropdown-item"
-											href="#scrollspyHeading5">Reclamtion</a></li>
+									<li><a href="../view/Reclamation/front_reclamation.php" class="dropdown-item"
+											href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
 									<li><a href="single-post.html" class="dropdown-item"
 											href="#scrollspyHeading5">Response</a></li>
 									<li><a href="styles.html" class="dropdown-item"

@@ -1,5 +1,5 @@
 <?php
-require 'reclamation.php';
+require_once 'reclamation.php';
 
 
 
