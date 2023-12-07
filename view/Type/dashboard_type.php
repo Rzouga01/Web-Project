@@ -111,8 +111,8 @@ require "../../controller/Type/typeC.php";
 
                         if (!empty($types) && (is_iterable($types) || is_object($types))) {
                             echo '<tr>
-                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
-                            <td> <input type="text" id="search-input" placeholder="Search"></td>
+                            <td colspan="4" id="searchBar"><button id="search" onclick="search()"><i class="fa fa-search"></i></button>
+                            <input  type="text" id="search-input" placeholder="Search"></td>
                         </tr>';
                             echo "<tr>";
                             echoHeader("ID", 0, true);
