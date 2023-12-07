@@ -22,6 +22,8 @@ require_once "../../controller/Type/TypeC.php";
 
 
 
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const headers = document.querySelectorAll("th");
@@ -38,7 +40,7 @@ require_once "../../controller/Type/TypeC.php";
 
             function sortTable(column) {
                 const table = document.querySelector(".table");
-                const rows = Array.from(table.rows).slice(1); // Exclude header row
+                const rows = Array.from(table.rows).slice(1);
                 const isNumeric = column === 5 || column === 6;
 
                 rows.sort((row1, row2) => {
@@ -145,6 +147,12 @@ require_once "../../controller/Type/TypeC.php";
                     <i class="fa fa-database"></i>
                     <h3>Projects List</h3>
                     <table class="table table-bordered" id="table-project">
+                        <tr>
+                            <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
+
+
+                        </tr>
                         <?php
 
 
@@ -165,7 +173,7 @@ require_once "../../controller/Type/TypeC.php";
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
                             echo "<tr>";
-                            echoHeader("ID", 0, true); // Initial sort on ID column
+                            echoHeader("ID", 0, true);
                             echoHeader("Name", 1);
                             echoHeader("Description", 2);
                             echoHeader("Start Date", 3);
@@ -388,6 +396,34 @@ require_once "../../controller/Type/TypeC.php";
         </div>
     </div>
     <script>
+        function search() {
+
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("table-project");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+
+        }
+
+
+
+
+
+
         function exportToExcel() {
             console.log('Exporting to Excel...');
 
