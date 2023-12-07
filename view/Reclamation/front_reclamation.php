@@ -14,7 +14,7 @@ if ($isLoggedIn) {
 <html lang="en">
 <?php
 require_once "../../controller/Reclamation/reclamation.php";
-require_once "../../controller/Reclamation/reclamation_create.php";
+
 ?>
 
 <head>

@@ -84,7 +84,7 @@ require_once "../../controller/Project/ProjectC.php";
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="../view/Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
                                     </li>
                                     <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
                                     </li>
