@@ -73,7 +73,13 @@ require_once "../../model/Reclamation/reclamationC.php";
                 <div class="card">
                     <i class="fa fa-list"></i>
                     <h3>reclamation list</h3>
-                    <table class="table table-bordered">
+                    <table id="reclamation-table" class="table table-bordered">
+                    <tr>
+                            <td colspan="2"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
+
+
+                        </tr>
                         <?php
                         $reclamation = new ReclamationC();
                         $reclamations = $reclamation->listReclamation();
@@ -161,6 +167,26 @@ require_once "../../model/Reclamation/reclamationC.php";
         </div>
     </div>
     <script>
+        function search() {
+
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("reclamation-table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
