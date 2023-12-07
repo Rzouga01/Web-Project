@@ -199,7 +199,7 @@ a:not(.logo):hover {
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   border-radius: 8px;
   background-color: #fff;
   overflow: hidden;
@@ -220,9 +220,7 @@ a:not(.logo):hover {
 .modal-content input[type="date"],
 .modal-content textarea,
 .modal-content select {
-  width: calc(50% - 20px);
-  padding: 10px;
-  margin: 8px 0;
+  width: calc(80% - 20px);
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
