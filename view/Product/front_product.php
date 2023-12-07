@@ -13,7 +13,7 @@ if ($isLoggedIn) {
 <!DOCTYPE html>
 <html lang="en">
 <?php
-require_once "../../controller/Product/ProductC.php"; // Assuming you have a Product controller
+require_once "../../controller/Product/productC.php"; // Assuming you have a Product controller
 ?>
 
 <head>

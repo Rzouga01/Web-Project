@@ -204,7 +204,7 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
-                                echo "</table>";
+                               
                             }
                         } else {
 
@@ -216,6 +216,8 @@ require_once "../../controller/Type/TypeC.php";
 
 
                         ?>
+                        </table>
+
 
                         <button onclick="create()">Add a Project</button>
                         <button onclick="exportToExcel()">Export to Excel</button>
