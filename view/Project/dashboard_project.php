@@ -172,8 +172,8 @@ require_once "../../controller/Type/TypeC.php";
                             echoHeader("Goal", 4);
                             echoHeader("Current Amount", 5);
                             echoHeader("Percentage", 6);
-                            echoHeader("Organization ID", 7);
-                            echoHeader("Type ID", 8);
+                            echoHeader("Organization", 7);
+                            echoHeader("Type", 8);
                             echo "<th>Actions</th>";
                             echo "</tr>";
 
@@ -196,9 +196,20 @@ require_once "../../controller/Type/TypeC.php";
                                 </td>
 
                         <?php
+                                $db = config::getConnexion();
 
-                                echo "<td>" . htmlspecialchars($project['ID_Org']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['ID_Type']) . "</td>";
+                                $r = "SELECT * FROM organization WHERE ID_Org=" . $project['ID_Org'] . "";
+                                $org = $db->query($r);
+                                $org = $org->fetch();
+
+                                $r = "SELECT Type_name FROM type WHERE ID_Type=" . $project['ID_Type'] . "";
+                                $type = $db->query($r);
+
+                                $type_name = $type->fetch();
+
+
+                                echo "<td>" . htmlspecialchars($org['Org_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($type_name['Type_name']) . "</td>";
                                 echo "<td>";
                                 echo "<button onclick=\"openEditModal(" . $project['ID_Project'] . ", '" . $project['Project_name'] . "', '" . $project['Project_description'] . "', '" . $project['start_date'] .  "', '" . $project['Current_amount'] . "', '" . $project['Goal'] . "', '" .  $project['ID_Type'] . "', '" .  $project['ID_Org'] . "')\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
