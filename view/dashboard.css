@@ -280,6 +280,7 @@ button:hover {
   transition: 0.5s;
 
 }
+
 .sort-dropdown {
   position: relative;
   display: inline-block;
@@ -304,13 +305,14 @@ button:hover {
   border: none;
   background-color: #fff;
   text-decoration: none;
-  color: #333; 
+  color: #333;
   cursor: pointer;
 }
 
 .sort-options a:hover {
   background-color: #CCCCCC;
 }
+
 .close {
   position: absolute;
   top: 10px;
