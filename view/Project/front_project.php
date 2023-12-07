@@ -136,14 +136,15 @@ require_once "../../controller/Project/ProjectC.php";
                 <div class="col-md-12">
 
                     <table id="table-project" class="table-project">
-                        <tr>
-                            <td colspan="8"><input type="text" id="search-input" placeholder="Search by Name"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
-                        </tr>
+
                         <?php
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
+                            echo '<tr>
+                            <td colspan="8"><input type="text" id="search-input" placeholder="Search by Name"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
+                        </tr>';
                             echo "<tr><th>Name</th><th>Description</th><th >Start Date</th><th>Goal</th><th>Collected</th><th class='percentage-header' >Percentage</th><th>Organization</th><th>Type</th></tr>";
                             foreach ($projects as $project) {
 

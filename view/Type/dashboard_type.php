@@ -91,10 +91,7 @@ require "../../controller/Type/typeC.php";
                     <i class="fa fa-list"></i>
                     <h3>Types List</h3>
                     <table class="table table-bordered" id="type-table">
-                        <tr>
-                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
-                            <td> <input type="text" id="search-input" placeholder="Search"></td>
-                        </tr>
+
                         <?php
 
                         function echoHeader($columnName, $index, $initialSort = false)
@@ -113,6 +110,10 @@ require "../../controller/Type/typeC.php";
                         $types = $Type->read_type();
 
                         if (!empty($types) && (is_iterable($types) || is_object($types))) {
+                            echo '<tr>
+                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td> <input type="text" id="search-input" placeholder="Search"></td>
+                        </tr>';
                             echo "<tr>";
                             echoHeader("ID", 0, true);
                             echoHeader("Name", 1);

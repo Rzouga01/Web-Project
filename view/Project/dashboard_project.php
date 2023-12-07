@@ -151,10 +151,7 @@ require_once "../../controller/Type/TypeC.php";
                     <i class="fa fa-database"></i>
                     <h3>Projects List</h3>
                     <table class="table table-bordered" id="table-project">
-                        <tr>
-                            <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
-                            <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
-                        </tr>
+
                         <?php
 
 
@@ -174,6 +171,10 @@ require_once "../../controller/Type/TypeC.php";
                         $projects = $projectC->read_project();
 
                         if (!empty($projects) && (is_iterable($projects) || is_object($projects))) {
+                            echo '<tr>
+                            <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
+                            <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
+                        </tr>';
                             echo "<tr>";
                             echoHeader("ID", 0, true);
                             echoHeader("Name", 1);
