@@ -80,8 +80,6 @@ nav {
   visibility: hidden;
 }
 
-
-
 .navbar:hover .nav-item {
   visibility: visible;
 }
@@ -218,53 +216,26 @@ a:not(.logo):hover {
 .modal-content input[type="date"],
 .modal-content textarea,
 .modal-content select {
-  margin-left: -10px;
-  width: 100%;
+  margin-left: -10px; 
+  width: calc(100% - 20px);
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
   border: 1px solid #CCCCCC;
 }
 
-
-.modal-content input[type="date"],
-select {
-  text-align: center;
-
-}
-
 .modal-content label {
-  margin-right: -10px;
+  margin-right: -10px; 
   display: inline-block;
   width: 150px;
   font-weight: bold;
   padding: 10px;
 }
-
-.modal-content input,
-select,
-textarea {
-  display: inline-block;
-  position: relative;
-  left: 100px;
-  width: 150px;
-  padding: 10px;
-}
-
-
+  
 .modal-content input[type="submit"] {
   width: calc(100%);
   background-color: var(--accent-color);
   color: white;
-  padding: 12px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.modal-content input[type="reset"] {
-  width: calc(100%);
-  color: black;
   padding: 12px 0;
   border: none;
   border-radius: 4px;
@@ -287,7 +258,6 @@ button:hover {
   transition: 0.5s;
 
 }
-
 .sort-dropdown {
   position: relative;
   display: inline-block;
@@ -312,14 +282,13 @@ button:hover {
   border: none;
   background-color: #fff;
   text-decoration: none;
-  color: #333;
+  color: #333; 
   cursor: pointer;
 }
 
 .sort-options a:hover {
   background-color: #CCCCCC;
 }
-
 .close {
   position: absolute;
   top: 10px;
@@ -331,11 +300,3 @@ button:hover {
 
 
 
-textarea {
-  resize: none;
-}
-
-.table td {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-}

@@ -83,7 +83,7 @@ if ($isLoggedIn) {
 									</li>
 									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item" href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
 									<li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-									<li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+									<li><a href="Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>
 							<li class="nav-item dropdown">
