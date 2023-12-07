@@ -204,7 +204,6 @@ require_once "../../controller/Type/TypeC.php";
 
                                 $r = "SELECT Type_name FROM type WHERE ID_Type=" . $project['ID_Type'] . "";
                                 $type = $db->query($r);
-
                                 $type_name = $type->fetch();
 
 

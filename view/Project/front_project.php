@@ -64,11 +64,7 @@ require_once "../../controller/Project/ProjectC.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="../../index.php">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="../../Type/dashboard_type.php">Dashboard</a>
+                                <a class="nav-link me-4" href="../index.php">Home</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
@@ -89,17 +85,17 @@ require_once "../../controller/Project/ProjectC.php";
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                         <li class="nav-item">
-                                            <a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+                                            <a class="nav-link me-4" href="../Type/dashboard_type.php">Dashboard</a>
                                         </li>
                                         <li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
                                     </ul>
                                 </li>
                             <?php } else { ?>
                                 <li class="nav-item">
-                                    <a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+                                    <a class="btn btn-primary btn-lg rounded-pill" href="../User/user.html#signup">Join Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-4" href="User/user.html#signin">Login</a>
+                                    <a class="nav-link me-4" href="../User/user.html#signin">Login</a>
                                 </li>
                             <?php } ?>
                         </ul>
