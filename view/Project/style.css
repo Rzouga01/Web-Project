@@ -29,6 +29,8 @@
     /* Pink */
 }
 
+
+
 section {
     padding: 50px 0;
     display: flex;
@@ -42,6 +44,7 @@ section {
     margin-bottom: 50px;
     text-align: center;
     white-space: nowrap;
+
 }
 
 .full-bar {
@@ -79,7 +82,7 @@ section {
     width: 100%;
 }
 
-.table-project td:hover {
+.table-element:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: transform 0.2s ease;
@@ -113,4 +116,29 @@ td {
 
 td[colspan="9"] {
     text-align: center;
+}
+
+#search {
+    float: right;
+    margin-bottom: 20px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--body-text-color);
+    margin-right: 10px;
+
+}
+
+#search-input {
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    float: right;
+    border: none;
+    border-bottom: 1px solid var(--body-text-color);
+}
+
+#search-input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--accent-color);
 }

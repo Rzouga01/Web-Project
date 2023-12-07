@@ -10,7 +10,22 @@ require "../../controller/Type/typeC.php";
     <title>Dashboard</title>
     <link rel="stylesheet" href="../dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="type.css">
+
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const searchInput = document.getElementById("search-input");
+
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    search();
+                }
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -75,13 +90,37 @@ require "../../controller/Type/typeC.php";
                 <div class="card">
                     <i class="fa fa-list"></i>
                     <h3>Types List</h3>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="type-table">
+                        <tr>
+                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td> <input type="text" id="search-input" placeholder="Search"></td>
+                        </tr>
                         <?php
+
+                        function echoHeader($columnName, $index, $initialSort = false)
+                        {
+
+                            $sortClass = $initialSort ? 'sortable-header asc' : 'sortable-header';
+                            $iconClass = '';
+
+
+                            echo "<th onclick='sortTable($index)' class='$sortClass'>";
+                            echo "$columnName <i class='fa $iconClass' aria-hidden='true'></i>";
+                            echo "</th>";
+                        }
+
                         $Type = new TypeC();
                         $types = $Type->read_type();
 
                         if (!empty($types) && (is_iterable($types) || is_object($types))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr>";
+                            echo "<tr>";
+                            echoHeader("ID", 0, true);
+                            echoHeader("Name", 1);
+                            echoHeader("Description", 2);
+                            echo "<th>Actions</th>";
+                            echo "</tr>";
+
+
                             foreach ($types as $type) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($type['ID_Type']) . "</td>";
@@ -166,6 +205,32 @@ require "../../controller/Type/typeC.php";
         </div>
     </div>
     <script>
+        function search() {
+
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("type-table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+
+        }
+
+
+
+
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
