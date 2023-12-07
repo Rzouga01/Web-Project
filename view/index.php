@@ -4,11 +4,11 @@ session_start();
 $isLoggedIn = isset($_SESSION['username']);
 
 
-if($isLoggedIn) {
+if ($isLoggedIn) {
 	$username = $_SESSION['username'];
 	$firstName = $_SESSION['firstName'];
 	$lastName = $_SESSION['lastName'];
-	$isAdmin = $_SESSION['role'] == '0';	
+	$isAdmin = $_SESSION['role'] == '0';
 }
 
 ?>
@@ -33,6 +33,9 @@ if($isLoggedIn) {
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 	<script src="js/modernizr.js"></script>
+
+	<link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
@@ -48,20 +51,14 @@ if($isLoggedIn) {
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo"
-						id="logo-img" /><span id="logo-text">Recovery<span
-							id="logo-text-color">Butterfly</span></span></a>
+				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
-				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2"
-					aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
+				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
-					aria-labelledby="offcanvasNavbar2Label">
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
 					<div class="offcanvas-header">
 						<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-							aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
@@ -78,46 +75,40 @@ if($isLoggedIn) {
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
-									role="button" aria-expanded="false">More</a>
+								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
-									<li><a href="../view//Project/front_project.php" class="dropdown-item"
-											href="#scrollspyHeading3">Projects</a>
+									<li><a href="../view//Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
 									</li>
 									<li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
 									</li>
-									<li><a href="../view/Reclamation/front_reclamation.php" class="dropdown-item"
-											href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
-									<li><a href="single-post.html" class="dropdown-item"
-											href="#scrollspyHeading5">Response</a></li>
-									<li><a href="styles.html" class="dropdown-item"
-											href="#scrollspyHeading5">Products</a></li>
+									<li><a href="../view/Reclamation/front_reclamation.php" class="dropdown-item" href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
+									<li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
+									<li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
 								</ul>
-								<?php if($isLoggedIn) { ?>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										<?php echo $firstName.' '.$lastName; ?>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-										<li class="nav-item">
-											<?php if($isAdmin) { ?>
-												<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
-											<?php } else { ?>
-												<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
-											<?php } ?>
-										</li>
-										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
-									</ul>
-								</li>
-							<?php } else { ?>
-								<li class="nav-item">
-									<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link me-4" href="User/user.html#signin">Login</a>
-								</li>
-							<?php } ?>
+								<?php if ($isLoggedIn) { ?>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<?php echo $firstName . ' ' . $lastName; ?>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+									<li class="nav-item">
+										<?php if ($isAdmin) { ?>
+											<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
+										<?php } else { ?>
+											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
+										<?php } ?>
+									</li>
+									<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+								</ul>
+							</li>
+						<?php } else { ?>
+							<li class="nav-item">
+								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+							</li>
+						<?php } ?>
 						</ul>
 					</div>
 
@@ -193,8 +184,7 @@ if($isLoggedIn) {
 						<cite class="mb-5">UNICEF/ILO joint publication</cite>
 					</blockquote>
 				</div>
-				<div class="col-md-6"
-					style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
+				<div class="col-md-6" style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
 				</div>
 			</div>
 		</div>
@@ -358,31 +348,27 @@ if($isLoggedIn) {
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories"
-								class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories" class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">How To Wear Your 501 Jeans For Every Occasion</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories"
-								class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories" class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
-								class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
-								class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>

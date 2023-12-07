@@ -35,6 +35,8 @@ require_once "../../controller/Project/ProjectC.php";
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/modernizr.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">

@@ -36,6 +36,8 @@ require_once "../../controller/Reclamation/reclamation_create.php";
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/modernizr.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
@@ -123,7 +125,7 @@ require_once "../../controller/Reclamation/reclamation_create.php";
     </div>
     <script>
         function submitReclamation() {
-        var text = document.getElementById("reclamation-text").value;
+            var text = document.getElementById("reclamation-text").value;
 
             if (text.trim() === "") {
                 alert("Please enter your reclamation.");
@@ -133,10 +135,10 @@ require_once "../../controller/Reclamation/reclamation_create.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reclamation/front_reclamation_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function () {
+            xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     alert("Réclamation soumise avec succès!");
-                    
+
                 }
             };
             xhttp.send("text=" + encodeURIComponent(text));
@@ -146,7 +148,7 @@ require_once "../../controller/Reclamation/reclamation_create.php";
 
 
 
-    
+
 
     <footer class="padding-large text-white bg-dark">
         <div class="container">

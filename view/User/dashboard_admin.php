@@ -12,6 +12,7 @@ require_once "../../model/User/userC.php";
         <title>Dashboard</title>
         <link rel="stylesheet" href="../dashboard.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     </head>
 
     <body>
@@ -88,20 +89,20 @@ require_once "../../model/User/userC.php";
                             usort($users, function ($a, $b) {
                                 return $a['Status'] - $b['Status'];
                             });
-                            if(!empty($users)) {
+                            if (!empty($users)) {
                                 echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th><th>Status</th><th>Action</th></tr>";
-                                foreach($users as $user) {
+                                foreach ($users as $user) {
                                     $class = $user['Status'] == 1 ? 'banned' : '';
                                     echo "<tr class='{$class}'>";
-                                    echo "<td>".htmlspecialchars($user['ID_USER'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['First_Name'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['Last_Name'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['Email'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['Phone_number'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['Birthdate'])."</td>";
-                                    echo "<td>".htmlspecialchars($user['Country'])."</td>";
+                                    echo "<td>" . htmlspecialchars($user['ID_USER']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['First_Name']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['Last_Name']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['Email']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['Phone_number']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['Birthdate']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($user['Country']) . "</td>";
                                     echo "<td>";
-                                    switch($user['Role']) {
+                                    switch ($user['Role']) {
                                         case 0:
                                             echo "Admin";
                                             break;
@@ -117,7 +118,7 @@ require_once "../../model/User/userC.php";
                                     echo $user['Status'] == 1 ? 'Banned' : 'Active';
                                     echo "</td>";
                                     echo "<td>";
-                                    if($user['Status'] == 1) {
+                                    if ($user['Status'] == 1) {
                                         echo "<button onclick='unbanUser(\"{$user['ID_USER']}\")'>Unban </button>";
                                     } else {
                                         echo "<button onclick='banUser(\"{$user['ID_USER']}\")'>Ban </button>";
@@ -130,20 +131,20 @@ require_once "../../model/User/userC.php";
                         </table>
                         <div class="pagination">
                             <?php
-                            if($page > 1) {
-                                echo "<a href='?page=".($page - 1)."'>❮ Previous</a>";
+                            if ($page > 1) {
+                                echo "<a href='?page=" . ($page - 1) . "'>❮ Previous</a>";
                             }
 
-                            for($i = 1; $i <= $total_pages; $i++) {
-                                if($i == $page) {
+                            for ($i = 1; $i <= $total_pages; $i++) {
+                                if ($i == $page) {
                                     echo "<a href='?page=$i' class='active'>$i</a>";
                                 } else {
                                     echo "<a href='?page=$i'>$i</a>";
                                 }
                             }
 
-                            if($page < $total_pages) {
-                                echo "<a href='?page=".($page + 1)."'>Next ❯</a>";
+                            if ($page < $total_pages) {
+                                echo "<a href='?page=" . ($page + 1) . "'>Next ❯</a>";
                             }
                             ?>
                         </div>
@@ -484,7 +485,7 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function () {
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             location.reload();
                         }
@@ -497,7 +498,7 @@ require_once "../../model/User/userC.php";
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", '../../controller/User/userDelete.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.onreadystatechange = function () {
+                        xhr.onreadystatechange = function() {
                             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                                 console.log('user deleted');
                                 location.reload();
@@ -512,7 +513,7 @@ require_once "../../model/User/userC.php";
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", '../../controller/User/userBan.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.onreadystatechange = function () {
+                        xhr.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 location.reload();
                             }
@@ -520,11 +521,12 @@ require_once "../../model/User/userC.php";
                         xhr.send("id=" + encodeURIComponent(id));
                     }
                 }
+
                 function unbanUser(id) {
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", '../../controller/User/userUnban.php', true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
+                    xhr.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             location.reload();
                         }
@@ -549,6 +551,7 @@ require_once "../../model/User/userC.php";
                         console.error("Modal element not found or is null");
                     }
                 }
+
                 function toggleSortMenu() {
                     var sortOptions = document.getElementById('sortOptions');
                     if (sortOptions.style.display === 'block') {

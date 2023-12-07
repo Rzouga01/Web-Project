@@ -13,7 +13,7 @@ require_once "../../controller/Type/TypeC.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="project.css">
 
-
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -204,7 +204,6 @@ require_once "../../controller/Type/TypeC.php";
                                 echo "<button onclick=\"confirmDelete(" . $project['ID_Project'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
-                               
                             }
                         } else {
 
@@ -216,12 +215,12 @@ require_once "../../controller/Type/TypeC.php";
 
 
                         ?>
-                        </table>
+                    </table>
 
 
-                        <button onclick="create()">Add a Project</button>
-                        <button onclick="exportToExcel()">Export to Excel</button>
-                        <button onclick="exportToPDF()">Export to PDF</button>
+                    <button onclick="create()">Add a Project</button>
+                    <button onclick="exportToExcel()">Export to Excel</button>
+                    <button onclick="exportToPDF()">Export to PDF</button>
                 </div>
             </div>
 

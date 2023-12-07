@@ -14,6 +14,8 @@ require_once "../../controller/Category/categoryC.php"
 
     <link rel="stylesheet" href="product.css">
 
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+
 </head>
 
 <body>

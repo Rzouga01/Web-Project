@@ -18,7 +18,7 @@ require_once "../../controller/Product/productC.php"; // Assuming you have a Pro
 
 <head>
     <title>Our Products</title>
-
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     <!-- ... (rest of the head section remains unchanged) ... -->
 
 </head>
