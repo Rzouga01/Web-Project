@@ -42,10 +42,10 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                <li><a href="">
-                        <i class="fas fa-user"></i>
-                        <span class="nav-item">Profile</span>
-                    </a></li>
+                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-item">Profile</span>
+                        </a></li>
                 <li><a href="../User/dashboard_user.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
