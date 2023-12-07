@@ -1,0 +1,116 @@
+:root {
+    --accent-color: #F4BE37;
+    /* Gold/Yellow */
+    --secondary-color: #E2EAF1;
+    /* Light Blue/Gray */
+    --dark-color: #092035;
+    /* Dark Blue */
+    --grey-color: #E2EAF1;
+    /* Light Blue/Gray */
+    --body-text-color: #7C8990;
+    /* Dark Gray */
+    --light-text-color: #9CA5AD;
+    /* Light Gray */
+    --link-color: #092035;
+    /* Dark Blue */
+
+    /* Additional colors */
+    --green-color: #2ECC71;
+    /* Green */
+    --red-color: #E74C3C;
+    /* Red */
+    --purple-color: #9B59B6;
+    /* Purple */
+    --orange-color: #E67E22;
+    /* Orange */
+    --cyan-color: #3498DB;
+    /* Cyan/Blue */
+    --pink-color: #FF6B81;
+    /* Pink */
+}
+
+section {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-project {
+    width: 100%;
+    margin-bottom: 50px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.full-bar {
+    width: 500px;
+    height: 75px;
+    background-color: #E2EAF1;
+    margin-top: 10px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(to right, #092035, #9CA5AD);
+}
+
+.progress-bar-container {
+    position: relative;
+}
+
+.percentage-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #F4BE37;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.table-project tr {
+    border-bottom: 1px solid #E2EAF1;
+    width: 100%;
+}
+
+.table-project td:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+    font-weight: bold;
+}
+
+.percentage-header {
+    text-align: center;
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+.start-date {
+    white-space: nowrap;
+}
+
+
+.start-date span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.currency {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #E74C3C;
+}
+
+td[colspan="9"] {
+    text-align: center;
+}

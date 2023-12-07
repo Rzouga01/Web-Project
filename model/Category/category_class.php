@@ -1,30 +1,28 @@
-
 <?php
 
-class Type
+class Category
 {
     private $name;
     private $description;
 
-
-    function __construct($name, $description)
+    public function __construct($name, $description)
     {
         $this->name = $name;
         $this->description = $description;
     }
-    function getName()
+    public function getName()
     {
         return $this->name;
     }
-    function getDescription()
+    public function getDescription()
     {
         return $this->description;
     }
-    function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
-    function setDescription($description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
