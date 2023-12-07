@@ -12,7 +12,7 @@ require_once "../../model/User/userC.php";
         <meta charset="UTF-8" />
         <title>Dashboard</title>
         <link rel="stylesheet" href="..\dashboard.css" />
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     </head>
@@ -86,7 +86,8 @@ require_once "../../model/User/userC.php";
                  '<?php echo $_SESSION['role']; ?>'
     )" class="btn btn-info">Edit</button>
 
-                                    <button onclick="deleteUser('<?php echo $_SESSION['user_id']; ?>');" class="btn btn-danger">Delete</button>
+                                    <button onclick="deleteUser('<?php echo $_SESSION['user_id']; ?>');"
+                                        class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         </table>
@@ -393,7 +394,8 @@ require_once "../../model/User/userC.php";
                                     <td>
                                         <input type="submit" value="Save Changes" id="button_save">
                                     </td>
-                                    <td>> <input type="button" value="Discard Changes" id="button_discard" onclick="closeEditModal()"></td>
+                                    <td>> <input type="button" value="Discard Changes" id="button_discard"
+                                            onclick="closeEditModal()"></td>
                                 </tr>
                             </table>
                         </form>
@@ -407,7 +409,7 @@ require_once "../../model/User/userC.php";
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", '../../controller/User/userDelete.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.onreadystatechange = function() {
+                        xhr.onreadystatechange = function () {
                             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                                 console.log('user deleted');
                                 window.location.href = '../../controller/User/logout.php';
@@ -430,7 +432,7 @@ require_once "../../model/User/userC.php";
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function() {
+                    xhttp.onreadystatechange = function () {
                         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                             closeEditModal();
                             location.reload();
@@ -450,11 +452,11 @@ require_once "../../model/User/userC.php";
                 var modal = document.getElementById("editModal");
                 var span = document.getElementsByClassName("close")[0];
 
-                span.onclick = function() {
+                span.onclick = function () {
                     modal.style.display = "none";
                 };
 
-                window.onclick = function(event) {
+                window.onclick = function (event) {
                     if (event.target == modal) {
                         modal.style.display = "none";
                     }
