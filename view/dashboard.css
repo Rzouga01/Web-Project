@@ -219,7 +219,7 @@ a:not(.logo):hover {
 .modal-content textarea,
 .modal-content select {
   margin-left: -10px; 
-  width: calc(100% - 20px);
+  width: 170px;
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;

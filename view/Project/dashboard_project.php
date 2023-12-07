@@ -100,6 +100,12 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
+                    <li>
+                        <a href="../User/dashboard_admin.php?showProfile=true">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-item">Profile</span>
+                        </a>
+                    </li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -146,8 +152,6 @@ require_once "../../controller/Type/TypeC.php";
                     <h3>Projects List</h3>
                     <table class="table table-bordered" id="table-project">
                         <?php
-
-
                         function echoHeader($columnName, $index, $initialSort = false)
                         {
 
@@ -210,10 +214,6 @@ require_once "../../controller/Type/TypeC.php";
                             echo "<h7>No Projects found</h7>";
                             echo "</table>";
                         }
-
-
-
-
                         ?>
                     </table>
 
