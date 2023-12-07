@@ -245,8 +245,9 @@ require "../../controller/Category/categoryC.php";
 
 
             document.getElementById("edit-type-id").value = id;
-            var existingTypeName = name;
-            var existingTypeDescription = description;
+            document.getElementById("new-type-name").value = name;
+            document.getElementById("new-type-description").value =description;
+        
 
 
         }
@@ -255,24 +256,24 @@ require "../../controller/Category/categoryC.php";
 
             var id = document.getElementById("edit-type-id").value;
 
-            var typeName = document.getElementById("new-type-name");
-            var typeDescription = document.getElementById("new-type-description");
+            var categoryName = document.getElementById("new-type-name");
+            var categoryDescription = document.getElementById("new-type-description");
 
 
-            if (typeDescription.value === "" || typeDescription.value.length > 20) {
+            if (categoryDescription.value === "" || categoryDescription.value.length > 20) {
                 alert("Category Description should not be empty and should not exceed 20 characters.");
-                typeDescription.style.border = "1px solid red";
+                categoryDescription.style.border = "1px solid red";
                 return; // Exit the function if conditions are not met
             } else {
-                typeDescription.style.border = "1px solid green";
+                categoryDescription.style.border = "1px solid green";
             }
 
-            if (typeName.value === "" || typeName.value.length > 20) {
+            if (categoryName.value === "" || categoryName.value.length > 20) {
                 alert("Category Name should not be empty and should not exceed 20 characters.");
-                typeName.style.border = "1px solid red";
+                categoryName.style.border = "1px solid red";
                 return; // Exit the function if conditions are not met
             } else {
-                typeName.style.border = "1px solid green";
+                categoryName.style.border = "1px solid green";
             }
 
             var xhttp = new XMLHttpRequest();

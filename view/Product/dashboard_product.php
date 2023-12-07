@@ -25,8 +25,8 @@ require_once "../../controller/Category/categoryC.php"
 
         #scrollToTopBtn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background-color: #333;
             color: white;
             border: none;
@@ -104,13 +104,18 @@ require_once "../../controller/Category/categoryC.php"
                 <div class="card">
                     <i class="fa fa-archive"></i>
                     <h3>Product List</h3>
-                    <table class="table table-bordered">
+                    <table id="product-tab" class="table table-bordered">
+                    <tr>
+                            <td colspan="1"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="6"> <input type="text" id="search-input" placeholder="Search"></td>
+
+                        </tr>
                         <?php
                         $product = new ProductC();
                         $products = $product->read();
 
                         if (!empty($products) && (is_iterable($products) || is_object($products))) {
-                            echo "<tr><th>ID</th><th>Name</th><th>Price</th><th>Description</th><th>Image</th><th>Category ID</th></tr>";
+                            echo "<tr><th>ID</th><th>Name</th><th>Price</th><th>Description</th><th>Image</th><th>Category ID</th><th>Actions</th></tr>";
                             foreach ($products as $product) {
 
 
@@ -252,6 +257,29 @@ require_once "../../controller/Category/categoryC.php"
     </div>
     <button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
     <script>
+         function search() {
+
+searchBar = document.getElementById("search-input");
+filter = searchBar.value.toUpperCase();
+table = document.getElementById("product-tab");
+tr = table.getElementsByTagName("tr");
+
+for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+
+
+}
+
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -451,7 +479,7 @@ require_once "../../controller/Category/categoryC.php"
             }
         }
     </script>
-<button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
+<button id="scrollToTopBtn" onclick="scrollToTop()">up</button>
 
 <script>
     // Function to scroll to the top of the page
