@@ -152,7 +152,7 @@ require_once "../../controller/Type/TypeC.php";
                     <h3>Projects List</h3>
                     <table class="table table-bordered" id="table-project">
                         <tr>
-                            <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
                             <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
                         </tr>
                         <?php

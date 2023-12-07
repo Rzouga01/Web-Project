@@ -137,7 +137,7 @@ require_once "../../controller/Project/ProjectC.php";
 
                     <table id="table-project" class="table-project">
                         <tr>
-                            <td colspan="8"><input type="text" id="search-input" placeholder="Search by Name"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="8"><input type="text" id="search-input" placeholder="Search by Name"><button id="search" onclick="search()"><i class="fa fa-search"></i></button> </td>
                         </tr>
                         <?php
                         $projectC = new ProjectC();
@@ -151,12 +151,12 @@ require_once "../../controller/Project/ProjectC.php";
                                 echo "<td class='table-element'>" . htmlspecialchars($project['Project_name']) . "</td>";
                                 echo "<td class='table-element'>" . htmlspecialchars($project['Project_description']) . "</td>";
                         ?>
-                                <td id="start_date" class="start-date">
+                                <td id="start_date" class="start-date table-element">
                                     <?php echo htmlspecialchars($project['start_date']); ?>
                                 </td>
 
                                 <?php
-                                echo "<td class='table-element'>" . number_format(htmlspecialchars($project['Goal']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td class='table-element'>" . number_format(htmlspecialchars($project['Goal']), 0, ',', ',') . " " . '<span class="currency">TND</span>' . "</td>";
                                 echo "<td class='table-element'>" . number_format(htmlspecialchars($project['Current_amount']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
                                 ?>
 
@@ -181,7 +181,7 @@ require_once "../../controller/Project/ProjectC.php";
 
                                 $type_name = $type->fetch();
                                 echo "<td class='table-element'>" . htmlspecialchars($type_name['Type_name']) . "</td>";
-
+                                echo "<td class='table-element'><a href='donate.php?id=" . $project['ID_Project'] . "' class='btn btn-primary'>Donate</a></td>";
                                 echo "</tr>";
                             }
                         } else {

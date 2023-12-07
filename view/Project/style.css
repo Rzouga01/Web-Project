@@ -31,21 +31,19 @@
 
 
 
-section {
-    padding: 50px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .table-project {
     width: 100%;
+    margin: 0 auto;
     margin-bottom: 50px;
     text-align: center;
-    white-space: nowrap;
-
+    text-wrap: nowrap;
 }
+
+
+
+
 
 .full-bar {
     width: 500px;
@@ -84,9 +82,9 @@ section {
 
 .table-element:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.02);
     transition: transform 0.2s ease;
-    font-weight: bold;
+
 }
 
 .percentage-header {
@@ -120,22 +118,33 @@ td[colspan="9"] {
 
 #search {
     float: right;
-    margin-bottom: 20px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
-    border: 1px solid var(--body-text-color);
+    border: 1px solid var(--dark-color);
     margin-right: 10px;
+    background-color: var(--dark-color);
+    color: var(--secondary-color);
+    padding: auto;
+
+}
+
+#search:hover {
+    cursor: pointer;
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--dark-color);
+    transition: 0.2s ease;
+
 
 }
 
 #search-input {
     width: 300px;
     height: 30px;
-    border-radius: 5px;
     float: right;
     border: none;
-    border-bottom: 1px solid var(--body-text-color);
+    border-bottom: 1px solid var(--dark-color);
 }
 
 #search-input:focus {
