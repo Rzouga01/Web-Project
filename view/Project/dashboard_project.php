@@ -26,6 +26,17 @@ require_once "../../controller/Type/TypeC.php";
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
+            const searchInput = document.getElementById("search-input");
+
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+
+                    search();
+                }
+            });
+
+
             const headers = document.querySelectorAll("th");
             headers.forEach(header => {
                 header.addEventListener("click", () => sortTable(header.cellIndex));
@@ -40,50 +51,43 @@ require_once "../../controller/Type/TypeC.php";
 
             function sortTable(column) {
                 const table = document.querySelector(".table");
-                const rows = Array.from(table.rows).slice(1);
+                const rows = Array.from(table.rows).slice(2); // Skip the first two rows
+
                 const isNumeric = column === 5 || column === 6;
+
+                const sortOrder = currentSort.column === column ? -currentSort.order : 1;
 
                 rows.sort((row1, row2) => {
                     const value1 = row1.cells[column].textContent.trim();
                     const value2 = row2.cells[column].textContent.trim();
 
-                    if (isNumeric) {
-                        return parseFloat(value1) - parseFloat(value2);
-                    } else {
-                        return value1.localeCompare(value2);
-                    }
+                    const numValue1 = isNumeric ? parseFloat(value1) : value1;
+                    const numValue2 = isNumeric ? parseFloat(value2) : value2;
+
+                    if (numValue1 < numValue2) return -sortOrder;
+                    if (numValue1 > numValue2) return sortOrder;
+                    return 0;
                 });
 
-                if (currentSort.column === column) {
-                    currentSort.order *= -1;
-                } else {
-                    currentSort.column = column;
-                    currentSort.order = 1;
-                }
+                currentSort.column = column;
+                currentSort.order = sortOrder;
 
-                // Toggle sorting order class
-                const header = document.querySelectorAll("th")[column];
-                const currentOrder = currentSort.order === 1 ? "asc" : "desc";
-
-                // Remove sorting classes from all headers
-                document.querySelectorAll("th").forEach(th => {
+                const headers = document.querySelectorAll("th");
+                headers.forEach(th => {
                     th.classList.remove("asc", "desc");
                 });
+                headers[column].classList.add(sortOrder === 1 ? "asc" : "desc");
 
-                // Toggle sorting order class
-                header.classList.add(currentOrder);
-
-                // Remove existing rows
-                while (table.rows.length > 1) {
-                    table.deleteRow(1);
+                while (table.rows.length > 2) {
+                    table.deleteRow(2);
                 }
 
-                // Append sorted rows
-                const sortedRows = currentSort.order === 1 ? rows : rows.reverse();
-                sortedRows.forEach(row => {
-                    table.appendChild(row);
+                rows.forEach(row => {
+                    const clonedRow = row.cloneNode(true);
+                    table.appendChild(clonedRow);
                 });
             }
+
         });
     </script>
 </head>
@@ -150,8 +154,6 @@ require_once "../../controller/Type/TypeC.php";
                         <tr>
                             <td colspan="8"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
                             <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
-
-
                         </tr>
                         <?php
 
@@ -404,7 +406,7 @@ require_once "../../controller/Type/TypeC.php";
             tr = table.getElementsByTagName("tr");
 
             for (i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -428,11 +430,23 @@ require_once "../../controller/Type/TypeC.php";
             console.log('Exporting to Excel...');
 
             if (typeof XLSX !== 'undefined') {
-                const table = document.getElementById('table-project');
-                console.log('Table:', table);
+                const originalTable = document.getElementById('table-project');
+                console.log('Table:', originalTable);
 
                 try {
-                    const ws = XLSX.utils.table_to_sheet(table);
+
+                    const tableCopy = originalTable.cloneNode(true);
+                    tableCopy.deleteRow(0);
+
+                    const headerCells = tableCopy.rows[0].cells;
+                    const actionsIndex = Array.from(headerCells).findIndex(cell => cell.textContent.trim() === 'Actions');
+                    if (actionsIndex !== -1) {
+                        Array.from(tableCopy.rows).forEach(row => {
+                            row.deleteCell(actionsIndex);
+                        });
+                    }
+
+                    const ws = XLSX.utils.table_to_sheet(tableCopy);
                     console.log('Worksheet:', ws);
                     const wb = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(wb, ws, 'Projects List');
@@ -472,6 +486,9 @@ require_once "../../controller/Type/TypeC.php";
                 pdf.save('table_data.pdf');
             });
         }
+
+
+
 
 
 

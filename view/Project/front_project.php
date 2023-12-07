@@ -33,10 +33,25 @@ require_once "../../controller/Project/ProjectC.php";
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="../js/modernizr.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const searchInput = document.getElementById("search-input");
+
+            searchInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    search();
+                }
+            });
+        });
+    </script>
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
@@ -119,7 +134,11 @@ require_once "../../controller/Project/ProjectC.php";
                     </header>
                 </div>
                 <div class="col-md-12">
-                    <table class="table-project">
+
+                    <table id="table-project" class="table-project">
+                        <tr>
+                            <td colspan="8"><input type="text" id="search-input" placeholder="Search by Name"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                        </tr>
                         <?php
                         $projectC = new ProjectC();
                         $projects = $projectC->read_project();
@@ -129,22 +148,22 @@ require_once "../../controller/Project/ProjectC.php";
                             foreach ($projects as $project) {
 
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($project['Project_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($project['Project_description']) . "</td>";
+                                echo "<td class='table-element'>" . htmlspecialchars($project['Project_name']) . "</td>";
+                                echo "<td class='table-element'>" . htmlspecialchars($project['Project_description']) . "</td>";
                         ?>
                                 <td id="start_date" class="start-date">
                                     <?php echo htmlspecialchars($project['start_date']); ?>
                                 </td>
 
                                 <?php
-                                echo "<td>" . number_format(htmlspecialchars($project['Goal']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
-                                echo "<td>" . number_format(htmlspecialchars($project['Current_amount']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td class='table-element'>" . number_format(htmlspecialchars($project['Goal']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td class='table-element'>" . number_format(htmlspecialchars($project['Current_amount']), 0, '', ' ') . " " . '<span class="currency">TND</span>' . "</td>";
                                 ?>
 
-                                <td class="progress-bar-container">
+                                <td class="progress-bar-container table-element">
                                     <div class="full-bar">
                                         <div class="progress-bar" style="width: <?php echo htmlspecialchars($project['Percentage']) ?>%;"></div>
-                                        <p class="percentage-number"><?php echo number_format($project['Percentage'], 2); ?>%</p>
+                                        <p class="percentage-number "><?php echo number_format($project['Percentage'], 2); ?>%</p>
                                     </div>
                                 </td>
 
@@ -154,14 +173,14 @@ require_once "../../controller/Project/ProjectC.php";
                                 $r = "SELECT * FROM organization WHERE ID_Org=" . $project['ID_Org'] . "";
                                 $org = $db->query($r);
                                 $org = $org->fetch();
-                                echo "<td>" . htmlspecialchars($org['Org_name']) . "</td>";
+                                echo "<td class='table-element'>" . htmlspecialchars($org['Org_name']) . "</td>";
 
 
                                 $r = "SELECT Type_name FROM type WHERE ID_Type=" . $project['ID_Type'] . "";
                                 $type = $db->query($r);
 
                                 $type_name = $type->fetch();
-                                echo "<td>" . htmlspecialchars($type_name['Type_name']) . "</td>";
+                                echo "<td class='table-element'>" . htmlspecialchars($type_name['Type_name']) . "</td>";
 
                                 echo "</tr>";
                             }
@@ -227,6 +246,30 @@ require_once "../../controller/Project/ProjectC.php";
 
         </div>
     </footer>
+    <script>
+        function search() {
+
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("table-project");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+
+        }
+    </script>
 
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>

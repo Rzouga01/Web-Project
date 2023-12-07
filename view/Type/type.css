@@ -1,0 +1,13 @@
+#search {
+    float: right;
+    display: block;
+
+}
+
+#search-input {
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    float: right;
+}
