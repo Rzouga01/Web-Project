@@ -218,16 +218,23 @@ a:not(.logo):hover {
 .modal-content input[type="date"],
 .modal-content textarea,
 .modal-content select {
-  margin-left: -10px; 
-  width: calc(100% - 20px);
+  margin-left: -10px;
+  width: 100%;
   display: inline-block;
   border-radius: 4px;
   box-sizing: border-box;
   border: 1px solid #CCCCCC;
 }
 
+
+.modal-content input[type="date"],
+select {
+  text-align: center;
+
+}
+
 .modal-content label {
-  margin-right: -10px; 
+  margin-right: -10px;
   display: inline-block;
   width: 150px;
   font-weight: bold;
@@ -244,7 +251,7 @@ textarea {
   padding: 10px;
 }
 
-  
+
 .modal-content input[type="submit"] {
   width: calc(100%);
   background-color: var(--accent-color);
