@@ -12,6 +12,7 @@ require_once "../../model/User/userC.php";
         <meta charset="UTF-8" />
         <title>Dashboard</title>
         <link rel="stylesheet" href="..\dashboard.css" />
+        <link rel="stylesheet" href="style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     </head>
