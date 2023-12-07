@@ -79,7 +79,7 @@ require_once "../../controller/Project/ProjectC.php";
                                     </li>
                                     <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
                                     <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-                                    <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+                                    <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                                 </ul>
                             </li>
                             <?php if ($isLoggedIn) { ?>

@@ -47,8 +47,8 @@ require_once "../../controller/Product/productC.php"; // Assuming you have a Pro
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
-                                echo "<td>" . number_format(htmlspecialchars($product['Price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
-                                echo "<td><img src='" . htmlspecialchars($product['Image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
+                                echo "<td>" . number_format(htmlspecialchars($product['Product_price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td><img src='" . htmlspecialchars($product['image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
 
                                 // Assuming you have a Category table and a foreign key in the Product table
                                 $r = "SELECT Category_name FROM category WHERE ID_Category=" . $product['ID_Category'] . "";
