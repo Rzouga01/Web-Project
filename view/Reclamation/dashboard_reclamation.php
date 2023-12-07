@@ -75,8 +75,8 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <h3>reclamation list</h3>
                     <table id="reclamation-table" class="table table-bordered">
                     <tr>
-                            <td colspan="2"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
-                            <td colspan="2"> <input type="text" id="search-input" placeholder="Search"></td>
+                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                            <td colspan="3"> <input type="text" id="search-input" placeholder="Search"></td>
 
 
                         </tr>
