@@ -15,11 +15,37 @@ require_once "../../controller/Category/categoryC.php"
     <link rel="stylesheet" href="product.css">
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #555;
+        }
+    </style>
 
 </head>
 
 <body>
     <div class="container">
+        
         <nav class="navbar">
             <ul>
                 <li>
@@ -56,6 +82,12 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
+
+                    <li><a href="dashboard_category.php">
+                        <i class="fa fa-archive"></i>
+                        <span class="nav-item">Category</span>
+                    </a></li>
+
                 <li><a href="dashboard_product.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
@@ -419,6 +451,32 @@ require_once "../../controller/Category/categoryC.php"
             }
         }
     </script>
+<button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
+
+<script>
+    // Function to scroll to the top of the page
+    function scrollToTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
+
+    // Show/hide the button based on scroll position
+    window.onscroll = function() {
+        showScrollButton();
+    };
+
+    function showScrollButton() {
+        var btn = document.getElementById("scrollToTopBtn");
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+</script>
+
+
 
 </body>
 
