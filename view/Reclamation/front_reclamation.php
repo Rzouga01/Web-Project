@@ -35,7 +35,7 @@ require_once "../../controller/Reclamation/reclamation.php";
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/modernizr.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reclamation.css">
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
 </head>
@@ -117,11 +117,30 @@ require_once "../../controller/Reclamation/reclamation.php";
             <h1>Reclamation Form</h1>
         </header>
         <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
-            <label for="reclamation-text">Your reclamation :</label>
-            <textarea id="reclamation-text" name="reclamation-text" rows="4" cols="50"></textarea>
-            <br>
-            <button type="submit">Submit Reclamation</button>
+        <table>
+           
+            
+            
+            <tr>
+                <td>
+                    <label for="reclamation-text">Your reclamation :</label>   
+                </td>
+
+                <td>
+                <textarea id="reclamation-text" name="reclamation-text" rows="10" cols="50"></textarea>
+                </td>
+            
+            </tr>
+
+            <tr>
+                <td>
+                <input type="submit"value ="Submit Reclamation">
+                </td>
+            </tr>
+                            
+        </table>
         </form>
+            
     </div>
     <script>
         function submitReclamation() {
