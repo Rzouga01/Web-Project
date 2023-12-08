@@ -41,6 +41,7 @@ require_once "../../controller/Reclamation/reclamation.php";
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
+
     <div id="overlayer">
         <span class="loader">
             <div class="dot dot-1"></div>
@@ -68,9 +69,6 @@ require_once "../../controller/Reclamation/reclamation.php";
                                 <a class="nav-link me-4" href="../../index.html">Home</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="../../Type/dashboard_type.php">Dashboard</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
@@ -125,7 +123,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                 </td>
 
                 <td>
-                <textarea id="reclamation-text" name="reclamation-text" rows="10" cols="50"></textarea>
+                <textarea id="reclamation-text" name="reclamation-text" rows="5" cols="20"></textarea>
                 </td>
             
             </tr>
