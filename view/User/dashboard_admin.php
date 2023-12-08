@@ -77,18 +77,29 @@ require_once "../../model/User/userC.php";
                     <div class="card">
                         <i class="fas fa-users"></i>
                         <h3>Users list</h3>
-                        <button onclick="openAddUserModal()" style="float: right;"><i class="fa fa-plus"></i>
-                            Add</button>
-                        <button style="float: right; margin-right: 10px;"><i class="fa fa-search"></i> Search</button>
-                        <div style="float: right; margin-right: 10px;">
-                            <button onclick="toggleSortMenu()">
-                                <i class="fa fa-sort"></i> Sort
+                        <div class="actions-container">
+                            <button onclick="openAddUserModal()" style="float: right;">
+                                <i class="fa fa-plus"></i> Add
                             </button>
-                            <div id="sortOptions" class="sort-options">
-                                <a onclick="">ID</a>
-                                <a onclick="">First Name</a>
+
+                            <div class="search-container">
+                                <i class="fa fa-search"></i> <input type="text" class="search-input" id="searchInput"
+                                    placeholder="Search..." oninput="search()">
+                            </div>
+
+
+                            <div style="float: right; margin-right: 10px;">
+                                <button onclick="toggleSortMenu()">
+                                    <i class="fa fa-sort"></i> Sort
+                                </button>
+                                <div id="sortOptions" class="sort-options">
+                                    <a onclick="sortByID()">ID</a>
+                                    <a onclick="sortByFirstName()">First Name</a>
+
+                                </div>
                             </div>
                         </div>
+
                         <table class="table table-bordered">
                             <?php
                             $userCRUD = new UserCRUD();
@@ -769,6 +780,95 @@ require_once "../../model/User/userC.php";
                         showProfile();
                     }
                 });
+                function toggleSearchInput() {
+                    var input = document.querySelector('.search-input');
+                    input.classList.toggle('show-input');
+
+                    if (input.classList.contains('show-input')) {
+                        input.focus();
+                    } else {
+                        input.value = '';
+                        search();
+                    }
+                }
+
+                function search() {
+                    var searchBar = document.querySelector('.search-input');
+                    var filter = searchBar.value.toUpperCase();
+                    var table = document.querySelector('.table');
+                    var tr = table.getElementsByTagName("tr");
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var td = tr[i].getElementsByTagName("td");
+
+
+                        var rowText = "";
+                        for (var j = 1; j < td.length; j++) {
+                            rowText += td[j].textContent || td[j].innerText;
+                        }
+
+                        if (rowText.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+
+                function sortByID() {
+                    var table, rows, switching, i, x, y, shouldSwitch;
+                    table = document.querySelector('.table');
+                    switching = true;
+
+                    while (switching) {
+                        switching = false;
+                        rows = table.rows;
+
+                        for (i = 1; i < (rows.length - 1); i++) {
+                            shouldSwitch = false;
+                            x = rows[i].getElementsByTagName("td")[0];
+                            y = rows[i + 1].getElementsByTagName("td")[0];
+
+                            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+
+                        if (shouldSwitch) {
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                        }
+                    }
+                }
+
+                function sortByFirstName() {
+                    var table, rows, switching, i, x, y, shouldSwitch;
+                    table = document.querySelector('.table');
+                    switching = true;
+
+                    while (switching) {
+                        switching = false;
+                        rows = table.rows;
+
+                        for (i = 1; i < (rows.length - 1); i++) {
+                            shouldSwitch = false;
+                            x = rows[i].getElementsByTagName("td")[1];
+                            y = rows[i + 1].getElementsByTagName("td")[1];
+
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+
+                        if (shouldSwitch) {
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                        }
+                    }
+                }
+
 
             </script>
     </body>

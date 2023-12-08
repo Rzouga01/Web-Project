@@ -218,7 +218,7 @@ a:not(.logo):hover {
 .modal-content input[type="date"],
 .modal-content textarea,
 .modal-content select {
-  margin-left: -10px; 
+  margin-left: -10px;
   width: 170px;
   display: inline-block;
   border-radius: 4px;
@@ -227,7 +227,7 @@ a:not(.logo):hover {
 }
 
 .modal-content label {
-  margin-right: -10px; 
+  margin-right: -10px;
   display: inline-block;
   width: 150px;
   font-weight: bold;
@@ -244,7 +244,7 @@ textarea {
   padding: 10px;
 }
 
-  
+
 .modal-content input[type="submit"] {
   width: calc(100%);
   background-color: var(--accent-color);
@@ -313,6 +313,26 @@ button:hover {
   background-color: #CCCCCC;
 }
 
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.actions-container button,
+.actions-container div {
+  margin-left: 5px;
+ 
+}
+
+
 .close {
   position: absolute;
   top: 10px;
@@ -321,7 +341,6 @@ button:hover {
   color: var(--dark-color);
   font-size: 20px;
 }
-
 
 
 textarea {
