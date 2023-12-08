@@ -118,8 +118,6 @@ require_once "../../controller/Reclamation/reclamation.php";
         </header>
         <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
         <table>
-           
-            
             
             <tr>
                 <td>

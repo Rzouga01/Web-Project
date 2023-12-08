@@ -58,13 +58,17 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-envelope-open"></i>
                             <span class="nav-item">Response</span>
                         </a></li>
-                    <li><a href="#">
+                    <li><a href="#"> 
                             <i class="fa fa-comments"></i>
                             <span class="nav-item">Feedback</span>
                         </a></li>
                     <li><a href="../Category/dashboard_category.php">
                             <i class="fa fa-archive"></i>
                             <span class="nav-item">Category</span>
+                        </a></li>
+                    <li><a href="../Product/dashboard_product.php">
+                            <i class="fa fa-archive"></i>
+                            <span class="nav-item">Product</span>
                         </a></li>
                     <li><a href="../../controller/User/logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
@@ -87,7 +91,6 @@ require_once "../../model/User/userC.php";
                                     placeholder="Search..." oninput="search()">
                             </div>
 
-
                             <div style="float: right; margin-right: 10px;">
                                 <button onclick="toggleSortMenu()">
                                     <i class="fa fa-sort"></i> Sort
@@ -95,7 +98,6 @@ require_once "../../model/User/userC.php";
                                 <div id="sortOptions" class="sort-options">
                                     <a onclick="sortByID()">ID</a>
                                     <a onclick="sortByFirstName()">First Name</a>
-
                                 </div>
                             </div>
                         </div>
@@ -766,7 +768,7 @@ require_once "../../model/User/userC.php";
                     }
                 }
 
-                function showProfile() {
+                function showProfile() {    
                     var mainSection = document.getElementById("main-section");
                     var profileSection = document.getElementById("profile-section");
                     mainSection.style.display = "none";
