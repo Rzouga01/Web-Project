@@ -44,8 +44,9 @@
             </form>
         </div>
         <div class="form-container forgot-password-container" style="display: none;">
-            <form action="../../controller/User/forgot_password.php" method="post" id="forgot-password-form">
+            <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
                 <h1>Forgot Password</h1>
+                <div id="message"></div>
                 <input type="email" name="mail" id="mail" placeholder="Email" />
                 <input type="submit" value="Reset Password">
             </form>
@@ -133,6 +134,23 @@
             }
 
             this.submit();
+        });
+        document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('../../controller/User/forgotPwd.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+
+                    document.getElementById('message').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
 
     </script>
