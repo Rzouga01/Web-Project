@@ -1,0 +1,36 @@
+.full-bar {
+  width: 300px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #32CD32, #00BFFF);
+}
+
+
+.table th:hover {
+  cursor: pointer;
+}
+
+.sortable-header {
+  cursor: pointer;
+  position: relative;
+}
+
+#search {
+  float: right;
+  display: block;
+
+}
+
+#search-input {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  float: right;
+}

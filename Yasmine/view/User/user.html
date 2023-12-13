@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" href="user.css">
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
+                <h1>Create Account</h1>
+                <input class="signup-form-elements" type="text" name="First_Name" id="First_Name"
+                    placeholder="First Name">
+                <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
+                <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
+                <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number"
+                    placeholder="Phone Number">
+                <input class="signup-form-elements" type="password" name="Password" id="Password"
+                    placeholder="Password">
+                <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
+                <div class="select">
+                    <select class="signup-form-elements" name="Country" id="Country">
+
+                    </select>
+                    <select class="signup-form-elements" name="Role" id="Role">
+                        <option selected disabled>Role</option>
+                        <option value="1">Organisation</option>
+                        <option value="2">User</option>
+                    </select>
+                </div>
+                <input type="submit" value="Sign up">
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="../../controller/User/login.php" method="post" id="signin-form">
+                <h1>Sign in</h1>
+                <input type="email" name="email" id="email" placeholder="Email" />
+                <input type="password" name="password" id="password" placeholder="Password" />
+                <a href="" onclick=" showForgotPasswordForm()">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="form-container forgot-password-container" style="display: none;">
+            <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
+                <h1>Forgot Password</h1>
+                <div id="message"></div>
+                <input type="email" name="mail" id="mail" placeholder="Email" />
+                <input type="submit" value="Reset Password">
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Welcome !</h1>
+                    <p>Get started by entering your details below. Let's begin this journey together!</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+        const hash = window.location.hash;
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+        if (hash === '#signin') {
+            container.classList.remove("right-panel-active");
+        } else if (hash === '#signup') {
+            container.classList.add("right-panel-active");
+        }
+        function showForgotPasswordForm() {
+            event.preventDefault();
+            document.querySelector('.sign-in-container').style.display = 'none';
+            document.querySelector('.sign-up-container').style.display = 'none';
+            document.querySelector('.forgot-password-container').style.display = 'block';
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var firstName = document.getElementById('First_Name').value;
+            var lastName = document.getElementById('Last_Name').value;
+            var email = document.getElementById('Email').value;
+            var phoneNumber = document.getElementById('Phone_number').value;
+            var password = document.getElementById('Password').value;
+            var birthdate = document.getElementById('Birthdate').value;
+            var country = document.getElementById('Country').value;
+            var role = document.getElementById('Role').value;
+
+            if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            if (!firstName) {
+                alert('Please fill out the First Name field.');
+                return;
+            }
+
+            if (!lastName) {
+                alert('Please fill out the Last Name field.');
+                return;
+            }
+
+            var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+
+            if (isNaN(phoneNumber)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+
+            this.submit();
+        });
+        document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('../../controller/User/forgotPwd.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+
+                    document.getElementById('message').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+    </script>
+</body>
+
+</html>
