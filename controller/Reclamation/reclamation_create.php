@@ -3,9 +3,9 @@ require_once 'reclamation.php';
 
 
 
+session_start();
 
-
-$RecC = new Reclamation(6, $_POST['text']);
+$RecC = new Reclamation($_SESSION["user_id"], $_POST['text']);
 
 $Rec = new ReclamationC();
 
