@@ -129,7 +129,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                                 </td>
 
                                 <td>
-                                    <textarea id="reclamation-text" name="reclamation-text" rows="5" cols="20"></textarea>
+                                    <textarea id="reclamation-text" name="reclamation-text" rows="10" cols="30"></textarea>
                                 </td>
 
                             </tr>
