@@ -118,7 +118,7 @@ require_once "../../database/connect.php";
                 <div class="col-md-6 offset-md-3">
                     <header class="text-center my-5">
                         <span class="text-muted">View</span>
-                        <h2><strong>Our Products/strong></h2>
+                        <h2><strong>Our Products</strong></h2>
                     </header>
                 </div>
                 <div class="col-md-12">

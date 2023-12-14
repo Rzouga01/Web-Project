@@ -141,24 +141,7 @@ require_once "../../controller/Category/categoryC.php"
                         }
                         ?>
                     </table>
-                    <div class="pagging">
-                            <?php
-                            if ($page > 1) {
-                                echo "<a href='?page=" . ($page - 1) . "'>❮ avant</a>";
-                            }
-
-                            for ($i = 1; $i <= $total_pages; $i++) {
-                                if ($i == $page) {
-                                    echo "<a href='?page=$i' class='active'>$i</a>";
-                                } else {
-                                    echo "<a href='?page=$i'>$i</a>";
-                                }
-                            }
-
-                            if ($page < $total_pages) {
-                                echo "<a href='?page=" . ($page + 1) . "'>apres ❯</a>";
-                            }
-                            ?>
+                    
                         </div>
                     <button onclick="createType()">Add a Product</button>
                 </div>
