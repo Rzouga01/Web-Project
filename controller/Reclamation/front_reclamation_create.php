@@ -6,7 +6,7 @@ session_start();
 
 
 
-$RecC = new Reclamation($_SESSION["user_ID"], $_POST['text']);
+$RecC = new Reclamation($_SESSION['user_id'], $_POST['text']);
 
 $Rec = new ReclamationC();
 

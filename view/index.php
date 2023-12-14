@@ -1,8 +1,16 @@
 <?php
+include '../controller/Event/EventC.php';
+require_once '../model/Event/Event.php';
+include '../controller/Event/ParticipationC.php';
+require_once '../model/Event/Participation.php';
+$eventC = new EventC();
+if (isset($_REQUEST['search-btn'])) {
+	$listevents = $eventC->searchform($_POST['search']);
+} else
+	$listevents = $eventC->Afficher();
 session_start();
 
 $isLoggedIn = isset($_SESSION['username']);
-
 
 if ($isLoggedIn) {
 	$username = $_SESSION['username'];
@@ -79,9 +87,6 @@ if ($isLoggedIn) {
 								<ul class="dropdown-menu dropdown-menu-dark">
 									<li><a href="Project/front_project.php" class="dropdown-item">Projects</a>
 									</li>
-
-									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
-									<li><a href="single-post.html" class="dropdown-item">Response</a></li>
 									<li><a href="Product/front_product.php" class="dropdown-item">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>
@@ -97,6 +102,9 @@ if ($isLoggedIn) {
 											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
 										<?php } ?>
 									</li>
+									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a>
+									</li>
+									<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
 									<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
 								</ul>
 							</li>
@@ -133,9 +141,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="0">
 						<div class="card-body">
 							<h3>Sponsor a child</h3>
-							<p>Nibh urna, nunc molestie mi id lorem. Dui egestas non dum ut risus augue. Arcu eget a
-								donec turpis. </p>
-							<a href="#">Learn more</a>
+
+							<p>Brighten a child's future by sponsoring education, nourishment, and hope. Your support breaks the cycle of poverty, empowering children to thrive. Join us in making a lasting impact and creating a brighter tomorrow!</p>
+
 						</div>
 					</div>
 				</div>
@@ -143,8 +151,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="300">
 						<div class="card-body">
 							<h3>Make Donation</h3>
-							<p>Quisque montes, convallis lectus massa, in enim ut. Eu consequat at dolor tempor. </p>
-							<a href="#">Learn more</a>
+
+							<p>Empower change effortlessly with our user-friendly platform. Whether you're passionate about disaster relief, community projects, or global initiatives, your donation reaches where it's needed most. Join us in making the world a better place!</p>
+
 						</div>
 					</div>
 				</div>
@@ -152,9 +161,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="600">
 						<div class="card-body">
 							<h3>Start a fundraiser</h3>
-							<p>Lacus vitae mauris morbi molestie vulputate per. Metus sollicitudin urna orci sapien
-								mattis netus lacus.</p>
-							<a href="#">Learn more</a>
+
+							<p>Turn your passion into action with us, addressing local or global needs. Join us as a catalyst for positive change, making a lasting impact on the issues that matter most to you and your communities.</p>
+
 						</div>
 					</div>
 				</div>
@@ -246,34 +255,22 @@ if ($isLoggedIn) {
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
 					<header class="text-center my-5">
-						<span class="text-muted">know more</span>
-						<h2><strong>About Help Children Organization</strong></h2>
+						<span class="text-muted">know more About</span>
+						<h2><strong>Recovery<span style="color: #F4BE37;">Butterfly</span></strong></h2>
 					</header>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="300">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="600">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="900">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
+				<center>
+					<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="300">
+						<p>Discover the mission of <em>Recovery Butterfly</em>, a charity symbolizing resilience and hope. Join us in the narrative of healing, where every story reflects the strength within us. Your support transforms lives and shapes a brighter future.</p>
+
+					</div>
+				</center>
+
 			</div>
 		</div>
 	</section>
-
 	<section id="events" class="padding-large">
 		<div class="container">
 			<div class="row">
@@ -284,97 +281,86 @@ if ($isLoggedIn) {
 					</header>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8">
-					<ol class="list-group list-group-flush" data-aos="fade-zoom-in">
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Sat, Sep 25</span>
+			<center>
+				<div class="search-container">
+					<form method="POST">
+						<input type="text" class="search-bar" name="search" placeholder="Search...">
+
+						<button name="search-btn" type="submit" class="search-btn">Search</button>
+					</form>
+				</div>
+			</center>
+			<br>
+			<div class="col-md-12">
+				<div class="filters-content">
+					<div class="row grid">
+						<?php $events_per_page = 3; // set number of films per page
+						$total_events = count($listevents);
+						$total_pages = ceil($total_events / $events_per_page);
+						$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+						$start = ($page - 1) * $events_per_page;
+						$events_on_page = array_slice($listevents, $start, $events_per_page);
+						foreach ($events_on_page as $key) { ?>
+							<div class="col-lg-4 col-md-4 all des">
+								<div class="product-item">
+									<a href="DetailsEvent.php"><img src="../assets/images/event.png" width="150" height="200" alt=""></a>
+									<div class="down-content">
+										<a href="">
+											<h4>
+												<?php echo $key['Event_name'] ?>
+											</h4>
+										</a>
+										<h6>type :
+											<?php echo $key['Event_type'] ?>
+										</h6>
+										<p>
+											<?php echo $key['Event_description'] ?>
+										</p>
+
+										<span>
+											<?php echo $key['Event_date'] ?>
+										</span>
+										<br>
+
+										<?php $partC = new ParticipationC();
+										$currentDateTime = new DateTime();
+										$check = $partC->Check(1, $key['ID_Event']);
+										$eventDateTime = DateTime::createFromFormat('Y-m-d', $key['Event_date']);
+
+
+										if ($eventDateTime < $currentDateTime) { ?>
+											<span>Event already finished</span>
+										<?php } else if ($check == 0) { ?>
+											<a class="btn btn-primary btn-lg rounded-pill" href="participer.php?id=<?php echo $key['ID_Event'] ?>">Participer</a>
+										<?php } else { ?>
+											<span>You have already participated </span>
+
+										<?php } ?>
+									</div>
+								</div>
 							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">September Low-Cost Clinic</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Fri, Oct 01</span>
-							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">October Free Clinic</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Fri, Oct 02</span>
-							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">Monthly Dental Checkup</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-					</ol>
+						<?php } ?>
+
+					</div>
+					<center>
+						<div class="pagination-container">
+
+							<ul class="pagination">
+								<?php
+								// display pagination links
+								for ($i = 1; $i <= $total_pages; $i++) {
+									$active = ($i == $page) ? "active" : "";
+									echo "<li><a class='pagination-link $active' href='Event/Frontend/ListEvents.php?page=$i'>$i</a></li>";
+								}
+								?>
+							</ul>
+						</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="latest-stories" class="pt-5 pb-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 offset-md-3">
-					<header class="text-center my-5">
-						<span class="text-muted">Read our</span>
-						<h2><strong>News & Stories</strong></h2>
-					</header>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row justify-content-evenly">
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in">
-							<img src="../assets/images/post-thumb-1.jpg" alt="stories" class="lgpostImg">
-						</a>
-					</figure>
-					<a href="single-post.html" class="post-title">Take Your Jeans From Sunday Brunch To A Monday Work
-						Meeting</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories" class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">How To Wear Your 501 Jeans For Every Occasion</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories" class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-			</div>
-		</div>
-	</section>
+
 
 	<section id="donate" class="cta jarallax padding-large text-white">
 		<div class="container">
@@ -383,8 +369,7 @@ if ($isLoggedIn) {
 				<div class="section-title justify-content-between col-md-5 mt-5">
 					<header>
 						<h2><strong>Sponsor a Child</strong></h2>
-						<p class="text-white">Nibh urna, nunc molestie mi id lorem. Dui egestas non adipiscing interdum
-							ut risus augue. Arcu eget a donec turpis. </p>
+						<p style="color: white;">Brighten a child's future by sponsoring education, nourishment, and hope. Your support breaks the cycle of poverty, empowering children to thrive. Join us in making a lasting impact and creating a brighter tomorrow!</p>
 					</header>
 					<button class="btn btn-primary btn-lg rounded-pill">Donate</button>
 				</div>
@@ -394,56 +379,20 @@ if ($isLoggedIn) {
 		<img src="../assets/images/banner.jpg" class="jarallax-img" />
 	</section>
 
+
 	<footer class="padding-large text-white bg-dark">
-		<div class="container">
-			<div class="row">
+		<center>
+			<div class="container">
+				<div class="row">
 
-				<div class="col-12 col-md-6">
-					<span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span>
+					<div>
+						<span id="logo-text" style="font-size: 70px;">&copy Recovery<span id="logo-text-color">Butterfly</span></span>
+					</div>
 
-					<ul class="justify-content-start list-unstyled d-flex">
-						<li><a href="#" class="nav-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-						<li><a href="#" class="nav-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-						<li><a href="#" class="nav-link"><ion-icon name="logo-skype"></ion-icon></a></li>
-						<li><a href="#" class="nav-link"><ion-icon name="logo-pinterest"></ion-icon></a></li>
-						<li><a href="#" class="nav-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
-					</ul>
 				</div>
-
-				<div class="col-4 col-md-2">
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Facebook</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Twitter</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Instagram</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pinterest</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">YouTube</a></li>
-					</ul>
-				</div>
-
-				<div class="col-4 col-md-2">
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-					</ul>
-				</div>
-
-				<div class="col-4 col-md-2">
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-					</ul>
-				</div>
-			</div>
-
-
-		</div>
+		</center>
 	</footer>
+
 
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>

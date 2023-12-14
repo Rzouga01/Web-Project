@@ -28,14 +28,14 @@ if (
 
     $_SESSION['user_id'] = $UserId;
     $_SESSION['username'] = $email;
-    $_SESSION['password']= $password;
+    $_SESSION['password'] = $password;
     $_SESSION['firstName'] = $firstName;
     $_SESSION['lastName'] = $lastName;
     $_SESSION['phoneNumber'] = $phoneNumber;
     $_SESSION['birthdate'] = $birthdate;
     $_SESSION['country'] = $country;
     $_SESSION['role'] = $role;
-    header('Location: ../../view/index.php'); 
+    header('Location: ../../view/User/user.html?showVerifyMessage=true#signup');
     exit;
 } else {
     echo "Invalid data received.";

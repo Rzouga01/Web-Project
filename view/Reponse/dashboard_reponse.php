@@ -58,6 +58,10 @@ require_once "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
+                    <li><a href="../Event/Backend/back.php">
+                            <i class="fa fa-comments"></i>
+                            <span class="nav-item">Event</span>
+                        </a></li>
                 <li><a href="../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
@@ -91,7 +95,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                                 echo "<td>" . htmlspecialchars($response['Response_text']) . "</td>";
                                 echo "<td>" . htmlspecialchars($response['Response_date']) . "</td>";
                                 echo "<td>";
-                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "','" . $response['Response_date'] . " ',' " . $response['#ID_Reclamation'] . ")\">Edit</button>";
+                                echo "<button onclick=\"openEditModal(" . $response['ID_Response'] . ", '" . $response['Response_text'] . "',' " . $response['#ID_Reclamation'] . ")\">Edit</button>";
                                 echo "<button onclick=\"confirmDelete(" . $response['ID_Response'] . ")\">Delete</button>";
                                 echo "</td>";
                                 echo "</tr>";
@@ -116,10 +120,9 @@ require_once "../../controller/Reclamation/reclamation.php";
                             <tr>
                                 <input type="hidden" id="edit-ID-response" name="edit-ID-response" value="">
                                 <input type="hidden" id="edit-ID-reclamation" name="edit-ID-reclamation" value="">
-                                <input type="hidden" id="edit-date-response" name="edit-date-response" value="">
                             </tr>
                             <tr>
-                                <td><label for="new-response-text">new response</label></td>
+                                <td><label for="new-response-text">New Response</label></td>
                                 <td>
                                     <textarea id="new-response-text" name="new-response-text" class="response-text"></textarea>
                                 </td>
@@ -129,7 +132,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                                     <label for="reclamation">Reclamation </label>
                                 </td>
                                 <td>
-                                    <select name="reclamation" id="reclamation">
+                                    <select name="reclamation" id="reclamation-new">
                                         <?php
                                         $reclamation = new ReclamationC();
                                         $reclamations = $reclamation->listReclamation();
@@ -268,14 +271,15 @@ require_once "../../controller/Reclamation/reclamation.php";
             modal.style.display = "none";
         }
 
-        function openEditModal(id, text, date, status) {
+        function openEditModal(id, text, id_reclamation) {
             var modal = document.getElementById("editModal");
             modal.style.display = "block";
 
 
             document.getElementById("edit-ID-response").value = id;
             document.getElementById("edit-response-text").value = text;
-            document.getElementById("edit-response-date").value = date;
+            console.log(text);
+
 
 
 
@@ -283,10 +287,10 @@ require_once "../../controller/Reclamation/reclamation.php";
 
         function editType() {
 
-            var id = document.getElementById("edit-ID-response").value;
-            var ID_Reclamation = document.getElementById("reclamation-update").value;
-            var text = document.getElementById("new-response-text").value;
-            var date = document.getElementById("edit-response-date").value;
+            var id = document.getElementById("edit-ID-response");
+            var ID_Reclamation = document.getElementById("reclamation-update");
+            var text = document.getElementById("new-response-text");
+
 
 
 
@@ -312,7 +316,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                     location.reload();
                 }
             };
-            xhttp.send("id=" + encodeURIComponent(id) + "&text=" + encodeURIComponent(text) + "&date=" + encodeURIComponent(date) + "&ID_Reclamation=" + encodeURIComponent(ID_Reclamation));
+            xhttp.send("id=" + encodeURIComponent(id.value) + "&text=" + encodeURIComponent(text.value) + "&ID_Reclamation=" + encodeURIComponent(ID_Reclamation.value));
         }
     </script>
 

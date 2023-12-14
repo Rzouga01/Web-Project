@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+/* Pallet #FFFF #474747 #F4A271 #88A7BF #FFC857 */
+
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px #eee;
+    margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #eee;
+    box-shadow: 0 0 5px #474747;
+    transition: 0.5s;
+}
+
+.description {
+    resize: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+
+
+}
