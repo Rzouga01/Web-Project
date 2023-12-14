@@ -75,7 +75,7 @@ if (
                                        A New Project has been created, please check it out.
                                      
                                     </p>
-                                    Project Name :<b>' . $_POST['project-name'] . '</b><br>Project Description :<b>' . $_POST['project-description'] . '</b><br>
+                                    <h1>Project Name :<b>' . $_POST['project-name'] . '</b><br>Project Description :<b>' . $_POST['project-description'] . '</b></h1>
                                     <a href="http://localhost/Web-Project/view/Project/front_project.php" 
                                         style="background:#F4BE37;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Check it out</a>
                                 </td>
