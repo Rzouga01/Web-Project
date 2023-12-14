@@ -84,13 +84,11 @@ require_once "../../controller/Project/ProjectC.php";
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="front_project.php" class="dropdown-item">Projects</a>
                                     </li>
-                                    <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
-                                    </li>
-                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
-                                    <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-                                    <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+                                    <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
+                                    <li><a href="single-post.html" class="dropdown-item">Response</a></li>
+                                    <li><a href="../Product/front_product.php" class="dropdown-item">Products</a></li>
                                 </ul>
                             </li>
                             <?php if ($isLoggedIn) { ?>

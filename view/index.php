@@ -79,11 +79,10 @@ if ($isLoggedIn) {
 								<ul class="dropdown-menu dropdown-menu-dark">
 									<li><a href="Project/front_project.php" class="dropdown-item">Projects</a>
 									</li>
-									<li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
-									</li>
-									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item" href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
-									<li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-									<li><a href="Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+
+									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
+									<li><a href="single-post.html" class="dropdown-item">Response</a></li>
+									<li><a href="Product/front_product.php" class="dropdown-item">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>
 							<li class="nav-item dropdown">
