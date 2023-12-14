@@ -59,20 +59,14 @@ if ($isLoggedIn) {
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo"
-						id="logo-img" /><span id="logo-text">Recovery<span
-							id="logo-text-color">Butterfly</span></span></a>
+				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
-				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2"
-					aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
+				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
-					aria-labelledby="offcanvasNavbar2Label">
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
 					<div class="offcanvas-header">
 						<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-							aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
@@ -89,41 +83,39 @@ if ($isLoggedIn) {
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
-									role="button" aria-expanded="false">More</a>
+								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
 									<li><a href="Project/front_project.php" class="dropdown-item">Projects</a>
 									</li>
 									<li><a href="Product/front_product.php" class="dropdown-item">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										<?php echo $firstName . ' ' . $lastName; ?>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-										<li class="nav-item">
-											<?php if ($isAdmin) { ?>
-												<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
-											<?php } else { ?>
-												<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
-											<?php } ?>
-										</li>
-										<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a>
-										</li>
-										<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
-										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
-									</ul>
-								</li>
-							<?php } else { ?>
-								<li class="nav-item">
-									<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link me-4" href="User/user.html#signin">Login</a>
-								</li>
-							<?php } ?>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<?php echo $firstName . ' ' . $lastName; ?>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+									<li class="nav-item">
+										<?php if ($isAdmin) { ?>
+											<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
+										<?php } else { ?>
+											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
+										<?php } ?>
+									</li>
+									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a>
+									</li>
+									<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
+									<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+								</ul>
+							</li>
+						<?php } else { ?>
+							<li class="nav-item">
+								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+							</li>
+						<?php } ?>
 						</ul>
 					</div>
 
@@ -149,9 +141,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="0">
 						<div class="card-body">
 							<h3>Sponsor a child</h3>
-							<p>Nibh urna, nunc molestie mi id lorem. Dui egestas non dum ut risus augue. Arcu eget a
-								donec turpis. </p>
-							<a href="#">Learn more</a>
+
+							<p>Brighten a child's future by sponsoring education, nourishment, and hope. Your support breaks the cycle of poverty, empowering children to thrive. Join us in making a lasting impact and creating a brighter tomorrow!</p>
+
 						</div>
 					</div>
 				</div>
@@ -159,8 +151,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="300">
 						<div class="card-body">
 							<h3>Make Donation</h3>
-							<p>Quisque montes, convallis lectus massa, in enim ut. Eu consequat at dolor tempor. </p>
-							<a href="#">Learn more</a>
+
+							<p>Empower change effortlessly with our user-friendly platform. Whether you're passionate about disaster relief, community projects, or global initiatives, your donation reaches where it's needed most. Join us in making the world a better place!</p>
+
 						</div>
 					</div>
 				</div>
@@ -168,9 +161,9 @@ if ($isLoggedIn) {
 					<div class="card card-dark" data-aos="fade-up" data-aos-delay="600">
 						<div class="card-body">
 							<h3>Start a fundraiser</h3>
-							<p>Lacus vitae mauris morbi molestie vulputate per. Metus sollicitudin urna orci sapien
-								mattis netus lacus.</p>
-							<a href="#">Learn more</a>
+
+							<p>Turn your passion into action with us, addressing local or global needs. Join us as a catalyst for positive change, making a lasting impact on the issues that matter most to you and your communities.</p>
+
 						</div>
 					</div>
 				</div>
@@ -199,8 +192,7 @@ if ($isLoggedIn) {
 						<cite class="mb-5">UNICEF/ILO joint publication</cite>
 					</blockquote>
 				</div>
-				<div class="col-md-6"
-					style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
+				<div class="col-md-6" style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
 				</div>
 			</div>
 		</div>
@@ -263,30 +255,19 @@ if ($isLoggedIn) {
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
 					<header class="text-center my-5">
-						<span class="text-muted">know more</span>
-						<h2><strong>About Help Children Organization</strong></h2>
+						<span class="text-muted">know more About</span>
+						<h2><strong>Recovery<span style="color: #F4BE37;">Butterfly</span></strong></h2>
 					</header>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="300">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="600">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
-				<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="900">
-					<h3>About HCO</h3>
-					<p>Lacus vitae mauris morbi molestie vulputate lorem semper. Metus sollicitudin urna orci sapien
-						mattis netus lacus.</p>
-					<a href="#" class="btn-link">Read more</a>
-				</div>
+				<center>
+					<div class="col-md-4" data-aos="fade-zoom-in" data-aos-delay="300">
+						<p>Discover the mission of <em>Recovery Butterfly</em>, a charity symbolizing resilience and hope. Join us in the narrative of healing, where every story reflects the strength within us. Your support transforms lives and shapes a brighter future.</p>
+
+					</div>
+				</center>
+
 			</div>
 		</div>
 	</section>
@@ -322,8 +303,7 @@ if ($isLoggedIn) {
 						foreach ($events_on_page as $key) { ?>
 							<div class="col-lg-4 col-md-4 all des">
 								<div class="product-item">
-									<a href="DetailsEvent.php"><img src="../assets/images/event.png" width="150" height="200"
-											alt=""></a>
+									<a href="DetailsEvent.php"><img src="../assets/images/event.png" width="150" height="200" alt=""></a>
 									<div class="down-content">
 										<a href="">
 											<h4>
@@ -351,10 +331,9 @@ if ($isLoggedIn) {
 										if ($eventDateTime < $currentDateTime) { ?>
 											<span>Event already finished</span>
 										<?php } else if ($check == 0) { ?>
-												<a class="btn btn-primary btn-lg rounded-pill"
-													href="participer.php?id=<?php echo $key['ID_Event'] ?>">Participer</a>
+											<a class="btn btn-primary btn-lg rounded-pill" href="participer.php?id=<?php echo $key['ID_Event'] ?>">Participer</a>
 										<?php } else { ?>
-												<span>You have already participated </span>
+											<span>You have already participated </span>
 
 										<?php } ?>
 									</div>
@@ -381,62 +360,7 @@ if ($isLoggedIn) {
 		</div>
 	</section>
 
-	<section id="latest-stories" class="pt-5 pb-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 offset-md-3">
-					<header class="text-center my-5">
-						<span class="text-muted">Read our</span>
-						<h2><strong>News & Stories</strong></h2>
-					</header>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row justify-content-evenly">
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in">
-							<img src="../assets/images/post-thumb-1.jpg" alt="stories" class="lgpostImg">
-						</a>
-					</figure>
-					<a href="single-post.html" class="post-title">Take Your Jeans From Sunday Brunch To A Monday Work
-						Meeting</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories"
-								class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">How To Wear Your 501 Jeans For Every Occasion</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories"
-								class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
-								class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-				<div class="post-item col">
-					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
-								class="lgpostImg"></a>
-					</figure>
-					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
-						Good</a>
-				</div>
-			</div>
-		</div>
-	</section>
+
 
 	<section id="donate" class="cta jarallax padding-large text-white">
 		<div class="container">
@@ -445,8 +369,7 @@ if ($isLoggedIn) {
 				<div class="section-title justify-content-between col-md-5 mt-5">
 					<header>
 						<h2><strong>Sponsor a Child</strong></h2>
-						<p class="text-white">Nibh urna, nunc molestie mi id lorem. Dui egestas non adipiscing interdum
-							ut risus augue. Arcu eget a donec turpis. </p>
+						<p style="color: white;">Brighten a child's future by sponsoring education, nourishment, and hope. Your support breaks the cycle of poverty, empowering children to thrive. Join us in making a lasting impact and creating a brighter tomorrow!</p>
 					</header>
 					<button class="btn btn-primary btn-lg rounded-pill">Donate</button>
 				</div>
@@ -479,16 +402,6 @@ if ($isLoggedIn) {
 						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Instagram</a></li>
 						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pinterest</a></li>
 						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">YouTube</a></li>
-					</ul>
-				</div>
-
-				<div class="col-4 col-md-2">
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-						<li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
 					</ul>
 				</div>
 
