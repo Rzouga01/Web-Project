@@ -81,7 +81,7 @@ if ($isLoggedIn) {
 									</li>
 
 									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
-									<li><a href="single-post.html" class="dropdown-item">Response</a></li>
+									<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
 									<li><a href="Product/front_product.php" class="dropdown-item">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>

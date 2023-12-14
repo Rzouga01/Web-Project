@@ -1,6 +1,6 @@
 <?php
 require_once 'reponse.php';
-require_once '../../model/Reponse/reponseC.php';
+
 
 session_start();
 
