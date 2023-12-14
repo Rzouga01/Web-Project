@@ -66,7 +66,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
                     </a></li>
-                <li><a href="#" class="logout">
+                <li><a href="../../controller/User/logout.php" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
                     </a></li>
