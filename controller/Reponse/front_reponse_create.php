@@ -4,7 +4,7 @@ require_once 'reponse.php';
 session_start();
 
 
-$Rep = new Response($_POST['ID_Reclamation'],$_SESSION["user_ID"], $_POST['text']);
+$Rep = new Response($_POST['ID_Reclamation'], $_POST['text']);
 
 $RepC = new ResponseC();
 

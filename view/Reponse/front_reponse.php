@@ -14,6 +14,9 @@ if ($isLoggedIn) {
 <html lang="en">
 <?php
 require_once "../../controller/Reponse/reponse.php";
+require_once "../../controller/Reponse/reponse.php";
+require_once "../../model/Reponse/reponseC.php";
+require_once "../../controller/Reclamation/reclamation.php";
 
 ?>
 
@@ -120,50 +123,46 @@ require_once "../../controller/Reponse/reponse.php";
                 </div>
                 <div class="col-md-12">
 
-                    <form id="responseForm" onsubmit="event.preventDefault(); submitResponse();">
-                        <table class="table">
 
+                    <table class="table">
+
+                        <thead>
                             <tr>
-                                <td>
-                                    <label for="response-text">Your Response :</label>
-                                </td>
-
-                                <td>
-                                    <textarea id="response-text" name="response-text" rows="10" cols="30"></textarea>
-                                </td>
+                                <th scope="col">Reclamation</th>
+                                <th scope="col">Response</th>
+                                <th scope="col">Date</th>
 
                             </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $db = config::getConnexion();
+                            $r = "SELECT * FROM reclamation_tab, response where reclamation_tab.ID_User =" . $_SESSION['user_id'] . " AND reclamation_tab.ID_Reclamation  = response.`#ID_Reclamation`";
 
-                            
+                            $res = $db->query($r);
+                            if ($res->rowCount() == 0) {
+                                echo "<tr><td colspan='3'>No response yet</td></tr>";
+                            } else {
+                                while ($row = $res->fetch()) {
+                            ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $row['ID_Response']; ?></th>
+                                        <td><?php echo $row['Response_text']; ?></td>
+                                        <td><?php echo $row['Response_date']; ?></td>
+                                    </tr>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
 
-                        </table>
+                    </table>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-    <script>
-        function submitResponse() {
-            var text = document.getElementById("response-text").value;
 
-            if (text.trim() === "") {
-                alert("Please enter your response.");
-                return;
-            }
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reponse/front_reponse_create.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert("Reponse soumise avec succès!");
-                    window.location.href = "../index.php";
-
-                }
-            };
-            xhttp.send("text=" + encodeURIComponent(text));
-        }
-    </script>
 
 
 

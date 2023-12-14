@@ -48,22 +48,20 @@ class ResponseC
         }
     }
 
-    function modifierResponse($ID_Response, $Response_text, $Response_date)
+    function modifierResponse($ID_Response, $Response_text, $ID_Reclamation)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE response SET 
-                    ID_Reclamation= :ID_Reclamation
+                    `#ID_Reclamation`= :ID_Reclamation
                     Response_text = :Response_text
-                    Response_date = :Response_date 
                 WHERE ID_Response = :ID_Response'
             );
             $query->execute([
                 'ID_Response' => $ID_Response,
-                'ID_Reclamation' => $ID_Reclamation,
                 'Response_text' => $Response_text,
-                'Response_date' => $Response_date,
+                'ID_Reclamation' => $ID_Reclamation
             ]);
         } catch (Exception $e) {
             $e->getMessage();
