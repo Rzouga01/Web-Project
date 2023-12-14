@@ -142,28 +142,7 @@ require_once "../../controller/Reponse/reponse.php";
             </div>
         </div>
     </section>
-    <script>
-        function submitResponse() {
-            var text = document.getElementById("response-text").value;
-
-            if (text.trim() === "") {
-                alert("Please enter your response.");
-                return;
-            }
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../../controller/Reponse/front_reponse_create.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert("Reponse soumise avec succès!");
-                    window.location.href = "../index.php";
-
-                }
-            };
-            xhttp.send("text=" + encodeURIComponent(text));
-        }
-    </script>
+    
 
 
 
