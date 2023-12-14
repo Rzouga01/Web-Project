@@ -29,6 +29,10 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -74,7 +78,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <i class="fa fa-list"></i>
                     <h3>reclamation list</h3>
                     <table id="reclamation-table" class="table table-bordered">
-                    <tr>
+                        <tr>
                             <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
                             <td colspan="3"> <input type="text" id="search-input" placeholder="Search"></td>
 
@@ -186,7 +190,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                 }
             }
         }
-        
+
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
