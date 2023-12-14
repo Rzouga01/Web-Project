@@ -14,6 +14,7 @@ if ($isLoggedIn) {
 <html lang="en">
 <?php
 require_once "../../controller/Product/productC.php"; // Assuming you have a Product controller
+require_once "../../database/connect.php";
 ?>
 
 
@@ -27,7 +28,7 @@ require_once "../../controller/Product/productC.php"; // Assuming you have a Pro
     <meta name="author" content="TemplatesJungle">
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link href="../plugins/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
