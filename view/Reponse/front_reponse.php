@@ -74,12 +74,9 @@ require_once "../../controller/Reclamation/reclamation.php";
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="../Project/front_project.php" class="dropdown-item">Projects</a>
                                     </li>
-                                    <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
-                                    </li>
-                                    <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
-                                    <li><a href="../Reponse/front_reponse.php" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
+
                                     <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                                 </ul>
                             </li>
@@ -92,6 +89,8 @@ require_once "../../controller/Reclamation/reclamation.php";
                                         <li class="nav-item">
                                             <a class="nav-link me-4" href="../Type/dashboard_type.php">Dashboard</a>
                                         </li>
+                                        <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                                        <li><a href="../Reponse/front_reponse.php" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
                                         <li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
                                     </ul>
                                 </li>
@@ -169,19 +168,19 @@ require_once "../../controller/Reclamation/reclamation.php";
 
 
 
-   
-	<footer class="padding-large text-white bg-dark">
-		<center>
-			<div class="container">
-				<div class="row">
 
-					<div>
-						<span id="logo-text" style="font-size: 70px;">&copy Recovery<span id="logo-text-color">Butterfly</span></span>
-					</div>
+    <footer class="padding-large text-white bg-dark">
+        <center>
+            <div class="container">
+                <div class="row">
 
-				</div>
-		</center>
-	</footer>
+                    <div>
+                        <span id="logo-text" style="font-size: 70px;">&copy Recovery<span id="logo-text-color">Butterfly</span></span>
+                    </div>
+
+                </div>
+        </center>
+    </footer>
 
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
