@@ -411,6 +411,7 @@ require_once "../../controller/Type/TypeC.php";
                                             echo "<option value='-1' disabled>No Organizations found</option>";
                                         } else {
                                             foreach ($orgs as $org) {
+                                                
                                                 echo '<option value="' . $org["ID_Org"] . '">' . htmlspecialchars($org["Org_name"]) . '</option>';
                                             }
                                         }
