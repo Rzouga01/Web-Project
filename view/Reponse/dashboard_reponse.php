@@ -51,10 +51,7 @@ require_once "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="#">
-                        <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
-                    </a></li>
+              
                     <li><a href="../Event/Backend/back.php">
                             <i class="fa fa-comments"></i>
                             <span class="nav-item">Event</span>
