@@ -122,34 +122,35 @@ require_once "../../database/connect.php";
                     </header>
                 </div>
                 <div class="col-md-12">
-                    <?php
+                    <table class="table table-striped table-bordered">
+                        <?php
 
-                    $db = config::getConnexion();
-                    $productC = new ProductC(); // Assuming you have a Product controller
-                    $products = $productC->read();
+                        $db = config::getConnexion();
+                        $productC = new ProductC(); // Assuming you have a Product controller
+                        $products = $productC->read();
 
-                    if (!empty($products) && (is_iterable($products) || is_object($products))) {
-                        echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Image</th><th>Category</th></tr>";
-                        foreach ($products as $product) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
-                            echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
-                            echo "<td>" . number_format(htmlspecialchars($product['Product_price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
-                            echo "<td><img src='images/" . htmlspecialchars($product['image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
+                        if (!empty($products) && (is_iterable($products) || is_object($products))) {
+                            echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Image</th><th>Category</th></tr>";
+                            foreach ($products as $product) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
+                                echo "<td>" . number_format(htmlspecialchars($product['Product_price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
+                                echo "<td><img src='images/" . htmlspecialchars($product['image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
 
-                            // Assuming you have a Category table and a foreign key in the Product table
-                            $r = "SELECT Category_name FROM category WHERE ID_Category=" . $product['ID_Category'] . "";
-                            $category = $db->query($r);
-                            $category_name = $category->fetch();
+                                // Assuming you have a Category table and a foreign key in the Product table
+                                $r = "SELECT Category_name FROM category WHERE ID_Category=" . $product['ID_Category'] . "";
+                                $category = $db->query($r);
+                                $category_name = $category->fetch();
 
-                            echo "<td>" . htmlspecialchars($category_name["Category_name"]) . "</td>";
+                                echo "<td>" . htmlspecialchars($category_name["Category_name"]) . "</td>";
 
-                            echo "</tr>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4'>No Products found</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='4'>No Products found</td></tr>";
-                    }
-                    ?>
+                        ?>
                     </table>
                 </div>
             </div>
