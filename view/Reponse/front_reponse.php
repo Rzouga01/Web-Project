@@ -140,15 +140,18 @@ require_once "../../controller/Reclamation/reclamation.php";
                             $r = "SELECT * FROM reclamation_tab, response where reclamation_tab.ID_User =" . $_SESSION['user_id'] . " AND reclamation_tab.ID_Reclamation  = response.`#ID_Reclamation`";
 
                             $res = $db->query($r);
-
-                            while ($row = $res->fetch()) {
+                            if ($res->rowCount() == 0) {
+                                echo "<tr><td colspan='3'>No response yet</td></tr>";
+                            } else {
+                                while ($row = $res->fetch()) {
                             ?>
-                                <tr>
-                                    <th scope="row"><?php echo $row['ID_Response']; ?></th>
-                                    <td><?php echo $row['Response_text']; ?></td>
-                                    <td><?php echo $row['Response_date']; ?></td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row"><?php echo $row['ID_Response']; ?></th>
+                                        <td><?php echo $row['Response_text']; ?></td>
+                                        <td><?php echo $row['Response_date']; ?></td>
+                                    </tr>
                             <?php
+                                }
                             }
                             ?>
                         </tbody>
