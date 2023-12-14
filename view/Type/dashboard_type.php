@@ -14,11 +14,11 @@ require "../../controller/Type/typeC.php";
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
 
             const searchInput = document.getElementById("search-input");
 
-            searchInput.addEventListener("keydown", function(event) {
+            searchInput.addEventListener("keydown", function (event) {
                 if (event.key === "Enter") {
                     search();
                 }
@@ -79,7 +79,11 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
                     </a></li>
-                <li><a href="../../controller/User/logout.php" class="logout">
+                <li><a href="../Donation/showDonation.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Donation</span>
+                    </a></li>
+                <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
                     </a></li>
@@ -162,7 +166,8 @@ require "../../controller/Type/typeC.php";
                             <tr>
                                 <td><label for="new-type-description">New Description</label></td>
                                 <td>
-                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
+                                    <textarea id="new-type-description" name="new-type-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -190,7 +195,8 @@ require "../../controller/Type/typeC.php";
                             <tr>
                                 <td><label for="type-description">Type Description</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                    <textarea id="type-description" name="type-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -246,7 +252,7 @@ require "../../controller/Type/typeC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Type/type_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -291,7 +297,7 @@ require "../../controller/Type/typeC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Type/type_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -350,7 +356,7 @@ require "../../controller/Type/typeC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Type/type_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();

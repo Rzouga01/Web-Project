@@ -368,7 +368,7 @@ if ($isLoggedIn) {
 						<h2><strong>Sponsor a Child</strong></h2>
 						<p style="color: white;">Brighten a child's future by sponsoring education, nourishment, and hope. Your support breaks the cycle of poverty, empowering children to thrive. Join us in making a lasting impact and creating a brighter tomorrow!</p>
 					</header>
-					<button class="btn btn-primary btn-lg rounded-pill">Donate</button>
+					<a href="./Donation/front_donation.php" class="btn btn-primary btn-lg rounded-pill">Donate</a>
 				</div>
 
 			</div>

@@ -39,6 +39,10 @@ require_once "../../model/User/userC.php";
                             <i class="fa fa-envelope-open"></i>
                             <span class="nav-item">Messages</span>
                         </a></li>
+                    <li><a href="../Donation/showDonation.php">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-item">Donation</span>
+                        </a></li>
                     <li><a href="../../controller/User/logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
