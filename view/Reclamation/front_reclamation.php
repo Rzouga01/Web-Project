@@ -75,8 +75,8 @@ require_once "../../controller/Reclamation/reclamation.php";
                                     </li>
                                     <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
                                     </li>
-                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
-                                    <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
+                                    <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                                    <li><a href="../Reponse/front_reponse.php" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
                                     <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                                 </ul>
                             </li>
