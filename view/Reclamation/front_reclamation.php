@@ -35,12 +35,13 @@ require_once "../../controller/Reclamation/reclamation.php";
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../js/modernizr.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reclamation.css">
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
+
     <div id="overlayer">
         <span class="loader">
             <div class="dot dot-1"></div>
@@ -68,9 +69,6 @@ require_once "../../controller/Reclamation/reclamation.php";
                                 <a class="nav-link me-4" href="../../index.html">Home</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link me-4" href="../../Type/dashboard_type.php">Dashboard</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
@@ -117,11 +115,28 @@ require_once "../../controller/Reclamation/reclamation.php";
             <h1>Reclamation Form</h1>
         </header>
         <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
-            <label for="reclamation-text">Your reclamation :</label>
-            <textarea id="reclamation-text" name="reclamation-text" rows="4" cols="50"></textarea>
-            <br>
-            <button type="submit">Submit Reclamation</button>
+        <table>
+            
+            <tr>
+                <td>
+                    <label for="reclamation-text">Your reclamation :</label>   
+                </td>
+
+                <td>
+                <textarea id="reclamation-text" name="reclamation-text" rows="5" cols="20"></textarea>
+                </td>
+            
+            </tr>
+
+            <tr>
+                <td>
+                <input type="submit"value ="Submit Reclamation">
+                </td>
+            </tr>
+                            
+        </table>
         </form>
+            
     </div>
     <script>
         function submitReclamation() {

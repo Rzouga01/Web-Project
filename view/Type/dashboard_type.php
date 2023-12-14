@@ -42,11 +42,11 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                <li><a href="">
-                        <i class="fas fa-user"></i>
-                        <span class="nav-item">Profile</span>
-                    </a></li>
-                <li><a href="../User/dashboard_user.php">
+                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-item">Profile</span>
+                        </a></li>
+                <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
                     </a></li>
@@ -111,8 +111,8 @@ require "../../controller/Type/typeC.php";
 
                         if (!empty($types) && (is_iterable($types) || is_object($types))) {
                             echo '<tr>
-                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
-                            <td> <input type="text" id="search-input" placeholder="Search"></td>
+                            <td colspan="4" id="searchBar"><button id="search" onclick="search()"><i class="fa fa-search"></i></button>
+                            <input  type="text" id="search-input" placeholder="Search"></td>
                         </tr>';
                             echo "<tr>";
                             echoHeader("ID", 0, true);

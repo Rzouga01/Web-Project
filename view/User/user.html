@@ -5,9 +5,27 @@
     <meta charset="UTF-8">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
     <link rel="stylesheet" href="user.css">
+    <title>Welcome</title>
+    <script>
+        var captchaVerified = false;
+
+        function successCallBack(token) {
+            captchaVerified = true;
+            document.getElementById('captchaError').innerHTML = '';
+        }
+        function onLoadCallBack() {
+            grecaptcha.render('divRecaptcha', {
+                sitekey: '6Lc7XjEpAAAAALvcF8JdM3x2L8_i3ZlZNOvVn5xn',
+                callback: successCallBack,
+            })
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallBack&render=explicit" async defer></script>
+
 </head>
 
 <body>
+    <div class="notification" id="notification"></div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
@@ -66,7 +84,8 @@
                         <option value="Canada">Canada</option>
                         <option value="Cape Verde">Cape Verde</option>
                         <option value="Cayman Islands">Cayman Islands</option>
-                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Central African Republic">Central African Republic
+                        </option>
                         <option value="Chad">Chad</option>
                         <option value="Chile">Chile</option>
                         <option value="China">China</option>
@@ -75,7 +94,8 @@
                         <option value="Colombia">Colombia</option>
                         <option value="Comoros">Comoros</option>
                         <option value="Congo">Congo</option>
-                        <option value="Congo, The Democratic Republic of The">Congo, The Democratic
+                        <option value="Congo, The Democratic Republic of The">Congo, The
+                            Democratic
                             Republic of The</option>
                         <option value="Cook Islands">Cook Islands</option>
                         <option value="Costa Rica">Costa Rica</option>
@@ -122,9 +142,11 @@
                         <option value="Guinea-bissau">Guinea-bissau</option>
                         <option value="Guyana">Guyana</option>
                         <option value="Haiti">Haiti</option>
-                        <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald
+                        <option value="Heard Island and Mcdonald Islands">Heard Island and
+                            Mcdonald
                             Islands</option>
-                        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)
+                        <option value="Holy See (Vatican City State)">Holy See (Vatican City
+                            State)
                         </option>
                         <option value="Honduras">Honduras</option>
                         <option value="Hong Kong">Hong Kong</option>
@@ -132,7 +154,8 @@
                         <option value="Iceland">Iceland</option>
                         <option value="India">India</option>
                         <option value="Indonesia">Indonesia</option>
-                        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of
+                        </option>
                         <option value="Iraq">Iraq</option>
                         <option value="Ireland">Ireland</option>
                         <option value="Isle of Man">Isle of Man</option>
@@ -161,7 +184,8 @@
                         <option value="Lithuania">Lithuania</option>
                         <option value="Luxembourg">Luxembourg</option>
                         <option value="Macao">Macao</option>
-                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The
+                        <option value="Macedonia, The Former Yugoslav Republic of">Macedonia,
+                            The
                             Former Yugoslav Republic of</option>
                         <option value="Madagascar">Madagascar</option>
                         <option value="Malawi">Malawi</option>
@@ -175,7 +199,8 @@
                         <option value="Mauritius">Mauritius</option>
                         <option value="Mayotte">Mayotte</option>
                         <option value="Mexico">Mexico</option>
-                        <option value="Micronesia, Federated States of">Micronesia, Federated States
+                        <option value="Micronesia, Federated States of">Micronesia, Federated
+                            States
                             of</option>
                         <option value="Moldova, Republic of">Moldova, Republic of</option>
                         <option value="Monaco">Monaco</option>
@@ -197,7 +222,8 @@
                         <option value="Nigeria">Nigeria</option>
                         <option value="Niue">Niue</option>
                         <option value="Norfolk Island">Norfolk Island</option>
-                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="Northern Mariana Islands">Northern Mariana Islands
+                        </option>
                         <option value="Norway">Norway</option>
                         <option value="Oman">Oman</option>
                         <option value="Pakistan">Pakistan</option>
@@ -221,7 +247,8 @@
                         <option value="Saint Helena">Saint Helena</option>
                         <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
                         <option value="Saint Lucia">Saint Lucia</option>
-                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon
+                        </option>
                         <option value="Saint Vincent and The Grenadines">Saint Vincent and The
                             Grenadines</option>
                         <option value="Samoa">Samoa</option>
@@ -238,7 +265,8 @@
                         <option value="Solomon Islands">Solomon Islands</option>
                         <option value="Somalia">Somalia</option>
                         <option value="South Africa">South Africa</option>
-                        <option value="South Georgia and The South Sandwich Islands">South Georgia
+                        <option value="South Georgia and The South Sandwich Islands">South
+                            Georgia
                             and The South Sandwich Islands</option>
                         <option value="Spain">Spain</option>
                         <option value="Sri Lanka">Sri Lanka</option>
@@ -251,7 +279,8 @@
                         <option value="Syrian Arab Republic">Syrian Arab Republic</option>
                         <option value="Taiwan">Taiwan</option>
                         <option value="Tajikistan">Tajikistan</option>
-                        <option value="Tanzania, United Republic of">Tanzania, United Republic of
+                        <option value="Tanzania, United Republic of">Tanzania, United Republic
+                            of
                         </option>
                         <option value="Thailand">Thailand</option>
                         <option value="Timor-leste">Timor-leste</option>
@@ -262,7 +291,8 @@
                         <option value="Tunisia">Tunisia</option>
                         <option value="Turkey">Turkey</option>
                         <option value="Turkmenistan">Turkmenistan</option>
-                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                        <option value="Turks and Caicos Islands">Turks and Caicos Islands
+                        </option>
                         <option value="Tuvalu">Tuvalu</option>
                         <option value="Uganda">Uganda</option>
                         <option value="Ukraine">Ukraine</option>
@@ -290,6 +320,8 @@
                         <option value="2">User</option>
                     </select>
                 </div>
+                <div id="divRecaptcha" class="g-recaptcha"></div>
+                <div id="captchaError" style="color: red;"></div>
                 <input type="submit" value="Sign up">
             </form>
         </div>
@@ -298,8 +330,20 @@
                 <h1>Sign in</h1>
                 <input type="email" name="email" id="email" placeholder="Email" />
                 <input type="password" name="password" id="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
+                <a onclick=" showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
                 <button>Sign In</button>
+            </form>
+        </div>
+        <div class="form-container forgot-password-container" style="display: none;">
+            <div class="back-to-login">
+                <a href="#" id="backToLogin">
+                    <i class="fas fa-arrow-left arrow-icon"></i>
+                </a>
+            </div>
+            <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
+                <h1>Forgot Password</h1>
+                <input type="email" name="mail" id="mail" placeholder="Email" />
+                <input type="submit" value="Reset Password">
             </form>
         </div>
         <div class="overlay-container">
@@ -316,24 +360,43 @@
             </div>
         </div>
     </div>
-
     <script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+const hash = window.location.hash;
 
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-        const hash = window.location.hash;
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-        if (hash === '#signin') {
-            container.classList.remove("right-panel-active");
-        } else if (hash === '#signup') {
-            container.classList.add("right-panel-active");
-        }
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+    document.querySelector('.sign-up-container').style.display = 'block'; 
+    document.querySelector('.forgot-password-container').style.display = 'none'; 
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+    document.querySelector('.sign-in-container').style.display = 'block'; 
+});
+
+if (hash === '#signin') {
+    container.classList.remove("right-panel-active");
+    document.querySelector('.sign-in-container').style.display = 'block'; 
+} else if (hash === '#signup') {
+    container.classList.add("right-panel-active");
+}
+
+function showForgotPasswordForm() {
+    event.preventDefault();
+    document.querySelector('.sign-in-container').style.display = 'none';
+    document.querySelector('.sign-up-container').style.display = 'none';
+    document.querySelector('.forgot-password-container').style.display = 'block';
+}
+
+document.getElementById('backToLogin').addEventListener('click', function (event) {
+    event.preventDefault();
+    document.querySelector('.forgot-password-container').style.display = 'none';
+    document.querySelector('.sign-in-container').style.display = 'block';
+    document.querySelector('.sign-up-container').style.display = 'none';
+});
 
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -377,9 +440,40 @@
                 alert('Please enter a valid phone number.');
                 return;
             }
+            if (!captchaVerified) {
+                document.getElementById('captchaError').innerHTML = 'Please verify the reCAPTCHA before submitting the form.';
+                return false;
+            }
+            return true;
 
             this.submit();
         });
+        document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('../../controller/User/forgotPwd.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    displayNotification(data, '#b9deb9', 10000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        function displayNotification(message, color, duration) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.backgroundColor = color;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
 
     </script>
 </body>
