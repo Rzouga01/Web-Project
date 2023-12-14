@@ -673,3 +673,73 @@ section header .text-muted {
 .offcanvas.show {
   background-color: var(--dark-color);
 }
+.search-container {
+  position: relative;
+}
+
+.search-bar {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: #aaa;
+}
+
+.search-bar:focus + .search-icon,
+.search-bar:valid + .search-icon {
+  color: #333;
+}
+
+.search-bar:focus,
+.search-bar:valid {
+  border: 2px solid #FAD02C;
+}
+
+.search-btn {
+  background-color: #FAD02C;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #2980b9;
+}
+ul.pagination {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+
+ul.pagination li {
+  display: inline-block;
+}
+
+ul.pagination li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+  background-color: #8B0000;
+}
+
+ul.pagination li a.active {
+  background-color: #666;
+}

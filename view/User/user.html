@@ -370,10 +370,21 @@
     <script>
         window.onload = function () {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('showVerifyMessage') === 'true') {
-                showVerifyMessage();
+            const showVerifyMessageParam = urlParams.get('showVerifyMessage');
+            console.log('showVerifyMessage:', showVerifyMessageParam);
+
+            const verificationMessage = document.querySelector('.Verification-message');
+            if (verificationMessage && showVerifyMessageParam === 'true') {
+                console.log('showVerifyMessage is true');
+                verificationMessage.style.display = 'block';
+                document.querySelector('.sign-in-container').style.display = 'none';
+                document.querySelector('.sign-up-container').style.display = 'none';
+            } else {
+                console.log('Verification message not found or showVerifyMessage is not true');
             }
         }
+
+
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
         const container = document.getElementById('container');
@@ -403,12 +414,8 @@
             document.querySelector('.sign-up-container').style.display = 'none';
             document.querySelector('.forgot-password-container').style.display = 'block';
         }
-        function showVerifyMessage() {
-            console.log('mrigl');
-            document.querySelector('.sign-in-container').style.display = 'none';
-            document.querySelector('.sign-up-container').style.display = 'none';
-            document.querySelector('.Verification-message').style.display = 'block';
-        }
+
+
 
         document.getElementById('backToLogin').addEventListener('click', function (event) {
             event.preventDefault();

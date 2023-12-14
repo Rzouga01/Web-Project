@@ -4,7 +4,7 @@
 <?php
 require_once "../../controller/Product/productC.php";
 require_once "../../controller/Category/categoryC.php"
-?>
+    ?>
 
 <head>
     <meta charset="UTF-8" />
@@ -45,7 +45,7 @@ require_once "../../controller/Category/categoryC.php"
 
 <body>
     <div class="container">
-        
+
         <nav class="navbar">
             <ul>
                 <li>
@@ -58,10 +58,10 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -86,12 +86,14 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
-
-                    <li><a href="dashboard_category.php">
+                <li><a href="../Event/Backend/back.php">
+                        <i class="fa fa-comments"></i>
+                        <span class="nav-item">Event</span>
+                    </a></li>
+                <li><a href="dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
-
                 <li><a href="dashboard_product.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
@@ -109,8 +111,9 @@ require_once "../../controller/Category/categoryC.php"
                     <i class="fa fa-archive"></i>
                     <h3>Product List</h3>
                     <table id="product-tab" class="table table-bordered">
-                    <tr>
-                            <td colspan="1"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                        <tr>
+                            <td colspan="1"><button id="search" onclick="search()"><i class="fa fa-search"></i>
+                                    Search</button> </td>
                             <td colspan="6"> <input type="text" id="search-input" placeholder="Search"></td>
 
                         </tr>
@@ -141,150 +144,152 @@ require_once "../../controller/Category/categoryC.php"
                         }
                         ?>
                     </table>
-                    
-                        </div>
-                    <button onclick="createType()">Add a Product</button>
+
                 </div>
+                <button onclick="createType()">Add a Product</button>
             </div>
+    </div>
 
-        </section>
-
-
-        <div id="editModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" onclick="closeEditModal()">&times;</span>
-                <div class="container">
-                    <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
-                        <table>
-                            <tr>
-                                <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
-                                <td><label for="new-type-name">New Name</label></td>
-                                <td><input type="text" id="new-type-name" name="new-type-name"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="new-type-img">New Image</label></td>
-                                <td><input type="text" id="new-type-img" name="new-type-img"></td>
-                            </tr>
-
-                            <tr>
-                                <td><label for="new-type-price">New Price</label></td>
-                                <td><input type="text" id="new-type-price" name="new-type-price"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="new-type-description">New Description</label></td>
-                                <td>
-                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="select-product-update">Category</label>
-                                </td>
-                                <td>
-                                    <select name="select-product-update" id="select-product-update">
-                                        <?php
-                                        $category = new CategoryC();
-                                        $categories = $category->read();
-                                        foreach ($categories as $categoryItem) {
-                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
-                                        }
-                                        ?>
-                                </td>
-                                </select>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="submit" value="Update" id="button_update"></td>
-                                <td><input type="reset" value="Reset"></td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Add Modal -->
-        <div id="AddModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" onclick="closeAddModal()">&times;</span>
-                <div class="container">
-                    <form id="AddForm" onsubmit="event.preventDefault(); addType();">
-                        <table>
-                            <tr>
-                                <td><label for="product-name">Product Name</label></td>
-                                <td><input type="text" id="product-name" name="product-name"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-description">Product Description</label></td>
-                                <td>
-                                    <textarea id="product-description" name="product-description" class="description"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-image">Product Image</label></td>
-                                <td><input type="text" id="product-image" name="product-image"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-price">Product Price</label></td>
-                                <td><input type="number" id="product-price" name="product-price"></td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <label for="select-product">Category</label>
-                                </td>
-                                <td>
-                                    <select name="select-product" id="select-product">
-                                        <?php
-                                        $category = new CategoryC();
-                                        $categories = $category->read();
-                                        foreach ($categories as $categoryItem) {
-                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
-                                        }
-                                        ?>
-                                </td>
-                                </select>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Create" id="button_create">
-                                </td>
-                                <td>
-                                    <input type="reset" value="Reset">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+    </section>
 
 
-                </div>
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <div class="container">
+                <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
+                    <table>
+                        <tr>
+                            <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
+                            <td><label for="new-type-name">New Name</label></td>
+                            <td><input type="text" id="new-type-name" name="new-type-name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="new-type-img">New Image</label></td>
+                            <td><input type="text" id="new-type-img" name="new-type-img"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="new-type-price">New Price</label></td>
+                            <td><input type="text" id="new-type-price" name="new-type-price"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="new-type-description">New Description</label></td>
+                            <td>
+                                <textarea id="new-type-description" name="new-type-description"
+                                    class="description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="select-product-update">Category</label>
+                            </td>
+                            <td>
+                                <select name="select-product-update" id="select-product-update">
+                                    <?php
+                                    $category = new CategoryC();
+                                    $categories = $category->read();
+                                    foreach ($categories as $categoryItem) {
+                                        echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
+                                    }
+                                    ?>
+                            </td>
+                            </select>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Update" id="button_update"></td>
+                            <td><input type="reset" value="Reset"></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
+
+    <!-- Add Modal -->
+    <div id="AddModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <div class="container">
+                <form id="AddForm" onsubmit="event.preventDefault(); addType();">
+                    <table>
+                        <tr>
+                            <td><label for="product-name">Product Name</label></td>
+                            <td><input type="text" id="product-name" name="product-name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-description">Product Description</label></td>
+                            <td>
+                                <textarea id="product-description" name="product-description"
+                                    class="description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-image">Product Image</label></td>
+                            <td><input type="text" id="product-image" name="product-image"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-price">Product Price</label></td>
+                            <td><input type="number" id="product-price" name="product-price"></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="select-product">Category</label>
+                            </td>
+                            <td>
+                                <select name="select-product" id="select-product">
+                                    <?php
+                                    $category = new CategoryC();
+                                    $categories = $category->read();
+                                    foreach ($categories as $categoryItem) {
+                                        echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
+                                    }
+                                    ?>
+                            </td>
+                            </select>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Create" id="button_create">
+                            </td>
+                            <td>
+                                <input type="reset" value="Reset">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
     <button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
     <script>
-         function search() {
+        function search() {
 
-searchBar = document.getElementById("search-input");
-filter = searchBar.value.toUpperCase();
-table = document.getElementById("product-tab");
-tr = table.getElementsByTagName("tr");
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("product-tab");
+            tr = table.getElementsByTagName("tr");
 
-for (i = 1; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+
         }
-    }
-}
-
-
-
-}
 
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
@@ -298,7 +303,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -381,7 +386,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -451,7 +456,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();
@@ -471,7 +476,7 @@ for (i = 1; i < tr.length; i++) {
         }
 
         // Show/hide the button based on scroll position
-        window.onscroll = function() {
+        window.onscroll = function () {
             showScrollButton();
         };
 
@@ -485,30 +490,30 @@ for (i = 1; i < tr.length; i++) {
             }
         }
     </script>
-<button id="scrollToTopBtn" onclick="scrollToTop()">up</button>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">up</button>
 
-<script>
-    // Function to scroll to the top of the page
-    function scrollToTop() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-    }
-
-    // Show/hide the button based on scroll position
-    window.onscroll = function() {
-        showScrollButton();
-    };
-
-    function showScrollButton() {
-        var btn = document.getElementById("scrollToTopBtn");
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            btn.style.display = "block";
-        } else {
-            btn.style.display = "none";
+    <script>
+        // Function to scroll to the top of the page
+        function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
         }
-    }
-</script>
+
+        // Show/hide the button based on scroll position
+        window.onscroll = function () {
+            showScrollButton();
+        };
+
+        function showScrollButton() {
+            var btn = document.getElementById("scrollToTopBtn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+    </script>
 
 
 

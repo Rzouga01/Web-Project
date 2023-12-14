@@ -1,8 +1,16 @@
 <?php
+include '../controller/Event/EventC.php';
+require_once '../model/Event/Event.php';
+include '../controller/Event/ParticipationC.php';
+require_once '../model/Event/Participation.php';
+$eventC = new EventC();
+if (isset($_REQUEST['search-btn'])) {
+	$listevents = $eventC->searchform($_POST['search']);
+} else
+	$listevents = $eventC->Afficher();
 session_start();
 
 $isLoggedIn = isset($_SESSION['username']);
-
 
 if ($isLoggedIn) {
 	$username = $_SESSION['username'];
@@ -51,14 +59,20 @@ if ($isLoggedIn) {
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo"
+						id="logo-img" /><span id="logo-text">Recovery<span
+							id="logo-text-color">Butterfly</span></span></a>
 
-				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
+				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2"
+					aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
+					aria-labelledby="offcanvasNavbar2Label">
 					<div class="offcanvas-header">
 						<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+							aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
@@ -75,39 +89,41 @@ if ($isLoggedIn) {
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
+									role="button" aria-expanded="false">More</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
 									<li><a href="Project/front_project.php" class="dropdown-item">Projects</a>
 									</li>
-
-									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
-									<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
 									<li><a href="Product/front_product.php" class="dropdown-item">Products</a></li>
 								</ul>
 								<?php if ($isLoggedIn) { ?>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<?php echo $firstName . ' ' . $lastName; ?>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-									<li class="nav-item">
-										<?php if ($isAdmin) { ?>
-											<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
-										<?php } else { ?>
-											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
-										<?php } ?>
-									</li>
-									<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
-								</ul>
-							</li>
-						<?php } else { ?>
-							<li class="nav-item">
-								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
-							</li>
-						<?php } ?>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<?php echo $firstName . ' ' . $lastName; ?>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+										<li class="nav-item">
+											<?php if ($isAdmin) { ?>
+												<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
+											<?php } else { ?>
+												<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
+											<?php } ?>
+										</li>
+										<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a>
+										</li>
+										<li><a href="Reponse/front_reponse.php" class="dropdown-item">Response</a></li>
+										<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+									</ul>
+								</li>
+							<?php } else { ?>
+								<li class="nav-item">
+									<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+								</li>
+							<?php } ?>
 						</ul>
 					</div>
 
@@ -183,7 +199,8 @@ if ($isLoggedIn) {
 						<cite class="mb-5">UNICEF/ILO joint publication</cite>
 					</blockquote>
 				</div>
-				<div class="col-md-6" style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
+				<div class="col-md-6"
+					style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
 				</div>
 			</div>
 		</div>
@@ -273,7 +290,6 @@ if ($isLoggedIn) {
 			</div>
 		</div>
 	</section>
-
 	<section id="events" class="padding-large">
 		<div class="container">
 			<div class="row">
@@ -284,40 +300,82 @@ if ($isLoggedIn) {
 					</header>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-8">
-					<ol class="list-group list-group-flush" data-aos="fade-zoom-in">
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Sat, Sep 25</span>
+			<center>
+				<div class="search-container">
+					<form method="POST">
+						<input type="text" class="search-bar" name="search" placeholder="Search...">
+
+						<button name="search-btn" type="submit" class="search-btn">Search</button>
+					</form>
+				</div>
+			</center>
+			<br>
+			<div class="col-md-12">
+				<div class="filters-content">
+					<div class="row grid">
+						<?php $events_per_page = 3; // set number of films per page
+						$total_events = count($listevents);
+						$total_pages = ceil($total_events / $events_per_page);
+						$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+						$start = ($page - 1) * $events_per_page;
+						$events_on_page = array_slice($listevents, $start, $events_per_page);
+						foreach ($events_on_page as $key) { ?>
+							<div class="col-lg-4 col-md-4 all des">
+								<div class="product-item">
+									<a href="DetailsEvent.php"><img src="../assets/images/event.png" width="150" height="200"
+											alt=""></a>
+									<div class="down-content">
+										<a href="">
+											<h4>
+												<?php echo $key['Event_name'] ?>
+											</h4>
+										</a>
+										<h6>type :
+											<?php echo $key['Event_type'] ?>
+										</h6>
+										<p>
+											<?php echo $key['Event_description'] ?>
+										</p>
+
+										<span>
+											<?php echo $key['Event_date'] ?>
+										</span>
+										<br>
+
+										<?php $partC = new ParticipationC();
+										$currentDateTime = new DateTime();
+										$check = $partC->Check(1, $key['ID_Event']);
+										$eventDateTime = DateTime::createFromFormat('Y-m-d', $key['Event_date']);
+
+
+										if ($eventDateTime < $currentDateTime) { ?>
+											<span>Event already finished</span>
+										<?php } else if ($check == 0) { ?>
+												<a class="btn btn-primary btn-lg rounded-pill"
+													href="participer.php?id=<?php echo $key['ID_Event'] ?>">Participer</a>
+										<?php } else { ?>
+												<span>You have already participated </span>
+
+										<?php } ?>
+									</div>
+								</div>
 							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">September Low-Cost Clinic</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Fri, Oct 01</span>
-							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">October Free Clinic</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-start py-4">
-							<div class="ms-2 me-5 text-uppercase">
-								<span>Fri, Oct 02</span>
-							</div>
-							<div class="ms-2 me-auto">
-								<div class="fw-bold">Monthly Dental Checkup</div>
-								<span class="text-muted">Help Children Save Lives</span>
-							</div>
-							<a href="#" class="btn btn-primary rounded-pill">Learn more</a>
-						</li>
-					</ol>
+						<?php } ?>
+
+					</div>
+					<center>
+						<div class="pagination-container">
+
+							<ul class="pagination">
+								<?php
+								// display pagination links
+								for ($i = 1; $i <= $total_pages; $i++) {
+									$active = ($i == $page) ? "active" : "";
+									echo "<li><a class='pagination-link $active' href='Event/Frontend/ListEvents.php?page=$i'>$i</a></li>";
+								}
+								?>
+							</ul>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -347,27 +405,31 @@ if ($isLoggedIn) {
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">How To Wear Your 501 Jeans For Every Occasion</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
