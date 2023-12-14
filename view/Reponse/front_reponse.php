@@ -169,56 +169,19 @@ require_once "../../controller/Reclamation/reclamation.php";
 
 
 
-    <footer class="padding-large text-white bg-dark">
-        <div class="container">
-            <div class="row">
+   
+	<footer class="padding-large text-white bg-dark">
+		<center>
+			<div class="container">
+				<div class="row">
 
-                <div class="col-12 col-md-6">
-                    <span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span>
+					<div>
+						<span id="logo-text" style="font-size: 70px;">&copy Recovery<span id="logo-text-color">Butterfly</span></span>
+					</div>
 
-                    <ul class="justify-content-start list-unstyled d-flex">
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-skype"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-pinterest"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Facebook</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Twitter</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Instagram</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pinterest</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">YouTube</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-    </footer>
+				</div>
+		</center>
+	</footer>
 
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
