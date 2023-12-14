@@ -33,7 +33,7 @@ if (
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'rzouga.psn@gmail.com';
+        $mail->Username = '';
         $mail->Password = 'tunj vicd hkrz ydxe';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
