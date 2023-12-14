@@ -161,6 +161,7 @@ require_once "../../controller/Reclamation/reclamation.php";
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     alert("Réclamation soumise avec succès!");
+                    window.location.href = "../index.php";
 
                 }
             };

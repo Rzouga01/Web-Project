@@ -15,6 +15,6 @@ $result = $Rec->ajouterReclamation($RecC);
 echo $result;
 
 
-header('Location: ../../View/index.php');
+header('Location: http://localhost/Web-Project/view/index.php');
 
 exit;
