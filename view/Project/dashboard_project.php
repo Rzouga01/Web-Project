@@ -157,8 +157,6 @@ require_once "../../controller/Type/TypeC.php";
                     <table class="table table-bordered" id="table-project">
 
                         <?php
-
-
                         function echoHeader($columnName, $index, $initialSort = false)
                         {
 
@@ -243,12 +241,7 @@ require_once "../../controller/Type/TypeC.php";
                         } else {
                             echo '<button onclick="create()">Add a Project</button>';
                         }
-
-
-
                         ?>
-
-
                 </div>
             </div>
 
