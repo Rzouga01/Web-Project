@@ -20,6 +20,7 @@ require_once "../../database/connect.php";
 
 <head>
     <title>Our Products</title>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,19 +29,20 @@ require_once "../../database/connect.php";
     <meta name="author" content="TemplatesJungle">
     <link rel="stylesheet" type="text/css" href="../css/vendor.css">
     <link href="../plugins/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="../js/modernizr.js"></script>
 
 
     <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     <!-- ... (rest of the head section remains unchanged) ... -->
 
-    <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
     <div id="overlayer">
         <span class="loader">
             <div class="dot dot-1"></div>
@@ -107,48 +109,47 @@ require_once "../../database/connect.php";
             </div>
 
         </nav>
+    </header>
 
-</head>
-
-<body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
-    <!-- ... (rest of the body section remains unchanged) ... -->
 
     <section id="Home" class="padding-large jarallax">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <header class="text-center my-5">
-                        <span class="text-muted">Explore</span>
-                        <h2><strong>Our Products</strong></h2>
+                        <span class="text-muted">View</span>
+                        <h2><strong>Our Products/strong></h2>
                     </header>
                 </div>
                 <div class="col-md-12">
-                    <table class="table-product"> <!-- Change the class to differentiate from project table -->
-                        <?php
-                        $productC = new ProductC(); // Assuming you have a Product controller
-                        $products = $productC->read();
+                    <?php
 
-                        if (!empty($products) && (is_iterable($products) || is_object($products))) {
-                            echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Image</th><th>Category</th></tr>";
-                            foreach ($products as $product) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
-                                echo "<td>" . number_format(htmlspecialchars($product['Product_price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
-                                echo "<td><img src='" . htmlspecialchars($product['image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
+                    $db = config::getConnexion();
+                    $productC = new ProductC(); // Assuming you have a Product controller
+                    $products = $productC->read();
 
-                                // Assuming you have a Category table and a foreign key in the Product table
-                                $r = "SELECT Category_name FROM category WHERE ID_Category=" . $product['ID_Category'] . "";
-                                $category = $db->query($r);
-                                $category_name = $category->fetch();
-                                echo "<td>" . htmlspecialchars($category_name['Category_name']) . "</td>";
+                    if (!empty($products) && (is_iterable($products) || is_object($products))) {
+                        echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Image</th><th>Category</th></tr>";
+                        foreach ($products as $product) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($product['Product_name']) . "</td>";
+                            echo "<td>" . htmlspecialchars($product['Product_description']) . "</td>";
+                            echo "<td>" . number_format(htmlspecialchars($product['Product_price']), 2) . " " . '<span class="currency">TND</span>' . "</td>";
+                            echo "<td><img src='images/" . htmlspecialchars($product['image_link']) . "' alt='Product Image' style='max-width: 100px; max-height: 100px;'></td>";
 
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>No Products found</td></tr>";
+                            // Assuming you have a Category table and a foreign key in the Product table
+                            $r = "SELECT Category_name FROM category WHERE ID_Category=" . $product['ID_Category'] . "";
+                            $category = $db->query($r);
+                            $category_name = $category->fetch();
+
+                            echo "<td>" . htmlspecialchars($category_name["Category_name"]) . "</td>";
+
+                            echo "</tr>";
                         }
-                        ?>
+                    } else {
+                        echo "<tr><td colspan='4'>No Products found</td></tr>";
+                    }
+                    ?>
                     </table>
                 </div>
             </div>
