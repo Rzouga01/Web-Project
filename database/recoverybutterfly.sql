@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2023 at 07:04 PM
+-- Generation Time: Dec 14, 2023 at 04:13 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -96,6 +96,13 @@ CREATE TABLE `organization` (
   `Org_description` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `organization`
+--
+
+INSERT INTO `organization` (`ID_USER`, `ID_Org`, `Org_name`, `Org_description`) VALUES
+(7, 2, 'Asa', 'Organisation');
+
 -- --------------------------------------------------------
 
 --
@@ -163,6 +170,14 @@ CREATE TABLE `project` (
   `ID_Type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`ID_Project`, `Project_name`, `Project_description`, `start_date`, `Goal`, `Current_amount`, `Percentage`, `ID_Org`, `ID_Type`) VALUES
+(1, 'asa', 'proj', '2024-01-03', 1000, 0, 0, 2, 4),
+(29, 'asa', 'proj', '2024-01-03', 1000, 0, 0, 2, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -222,11 +237,31 @@ CREATE TABLE `user` (
   `Password` varchar(20) NOT NULL,
   `Phone_number` int(8) NOT NULL,
   `Birthdate` date NOT NULL,
-  `Country` varchar(20) NOT NULL,
-  `Email` varchar(20) NOT NULL,
+  `Country` varchar(40) NOT NULL,
+  `Email` varchar(40) NOT NULL,
   `Role` int(11) NOT NULL,
-  `Status` int(11) DEFAULT 0
+  `Status` int(11) DEFAULT 0,
+  `Banned` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID_USER`, `First_Name`, `Last_Name`, `Password`, `Phone_number`, `Birthdate`, `Country`, `Email`, `Role`, `Status`, `Banned`) VALUES
+(6, 'Admin', 'Admin', '', 0, '2023-12-08', 'Norway', 'admin@admin.org', 0, 0, 0),
+(7, 'Emma', 'Chen', 'emmapass', 135792468, '1994-06-25', 'China', 'emma@example.com', 1, 0, 0),
+(8, 'Noah', 'Wang', 'noahpass', 246813579, '1991-11-08', 'Japan', 'noah@example.com', 1, 0, 0),
+(9, 'Mia', 'Liu', 'miapass', 987654321, '1998-04-17', 'Singapore', 'mia@example.com', 1, 0, 0),
+(10, 'William', 'Zhang', 'williampass', 123450987, '1993-09-30', 'Malaysia', 'william@example.com', 1, 0, 0),
+(11, 'Isabella', 'Li', 'isabellapass', 987001234, '1995-12-12', 'India', 'isabella@example.com', 1, 0, 0),
+(12, 'Emma', 'Lopez', 'emmapass', 111000111, '1994-06-18', 'Mexico', 'emma@example.com', 1, 0, 0),
+(13, 'Noah', 'Chen', 'noahpass', 222000222, '1998-02-22', 'China', 'noah@example.com', 1, 0, 0),
+(14, 'Isabella', 'Wong', 'isabellapass', 333000333, '1987-09-30', 'Singapore', 'isabella@example.com', 1, 0, 0),
+(15, 'William', 'Gonzalez', 'williampass', 444000444, '1993-04-14', 'Brazil', 'william@example.com', 1, 0, 0),
+(16, 'Mia', 'Kaur', 'miapass', 555000555, '1985-11-08', 'India', 'mia@example.com', 1, 0, 0),
+(20, 'Abd Razek', 'Nakhli', 'rzouga0000', 56562952, '2023-12-14', 'Tunisia', 'rzouga2002.arn@gmail.com', 2, 0, 0),
+(21, 'rzouga', 'rzouga', '12341234', 56562952, '2023-12-14', 'Albania', 'rzouga@gmail.com', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -376,7 +411,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `organization`
 --
 ALTER TABLE `organization`
-  MODIFY `ID_Org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `participants`
@@ -400,7 +435,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `reclamation_tab`
@@ -424,7 +459,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `volunteer`

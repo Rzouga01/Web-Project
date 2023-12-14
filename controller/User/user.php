@@ -82,7 +82,7 @@ class UserCRUD {
     }
     public function banUser($id) {
         $cnx = Config::getConnexion();
-        $update = $cnx->prepare("UPDATE user SET status='1' WHERE ID_USER = ?");
+        $update = $cnx->prepare("UPDATE user SET Banned='1' WHERE ID_USER = ?");
         $update->execute([$id]);
         if($update->rowCount() > 0) {
             return true;
@@ -91,7 +91,7 @@ class UserCRUD {
     }
     public function unbanUser($id) {
         $cnx = Config::getConnexion();
-        $update = $cnx->prepare("UPDATE user SET status='0' WHERE ID_USER = ?");
+        $update = $cnx->prepare("UPDATE user SET Banned='0' WHERE ID_USER = ?");
         $update->execute([$id]);
         if($update->rowCount() > 0) {
             return true;
