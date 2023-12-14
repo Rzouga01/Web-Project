@@ -79,9 +79,6 @@ if ($isLoggedIn) {
 							<li class="nav-item">
 								<a class="nav-link me-4" href="#events">Events</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link me-4" href="#latest-stories">Stories</a>
-							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
