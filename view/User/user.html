@@ -27,6 +27,7 @@
 <body>
     <div class="notification" id="notification"></div>
     <div class="container" id="container">
+
         <div class="form-container sign-up-container">
             <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
                 <h1>Create Account</h1>
@@ -324,6 +325,12 @@
                 <div id="captchaError" style="color: red;"></div>
                 <input type="submit" value="Sign up">
             </form>
+            <div class="form-container Verification-message" id="verifyMessage" style="display: none;">
+                <p>Your account registration is complete.
+                    We've just sent a verification email to the address you provided.
+                    Simply check your inbox and follow the instructions to activate your account.
+                    If you don't see the email right away, kindly look in your spam or junk folder.</p>
+            </div>
         </div>
         <div class="form-container sign-in-container">
             <form action="../../controller/User/login.php" method="post" id="signin-form">
@@ -361,42 +368,54 @@
         </div>
     </div>
     <script>
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
-const hash = window.location.hash;
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('showVerifyMessage') === 'true') {
+                showVerifyMessage();
+            }
+        }
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+        const hash = window.location.hash;
 
-signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-    document.querySelector('.sign-up-container').style.display = 'block'; 
-    document.querySelector('.forgot-password-container').style.display = 'none'; 
-});
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+            document.querySelector('.sign-up-container').style.display = 'block';
+            document.querySelector('.forgot-password-container').style.display = 'none';
+        });
 
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-    document.querySelector('.sign-in-container').style.display = 'block'; 
-});
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'block';
+        });
 
-if (hash === '#signin') {
-    container.classList.remove("right-panel-active");
-    document.querySelector('.sign-in-container').style.display = 'block'; 
-} else if (hash === '#signup') {
-    container.classList.add("right-panel-active");
-}
+        if (hash === '#signin') {
+            container.classList.remove("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'block';
+        } else if (hash === '#signup') {
+            container.classList.add("right-panel-active");
+        }
 
-function showForgotPasswordForm() {
-    event.preventDefault();
-    document.querySelector('.sign-in-container').style.display = 'none';
-    document.querySelector('.sign-up-container').style.display = 'none';
-    document.querySelector('.forgot-password-container').style.display = 'block';
-}
+        function showForgotPasswordForm() {
+            event.preventDefault();
+            document.querySelector('.sign-in-container').style.display = 'none';
+            document.querySelector('.sign-up-container').style.display = 'none';
+            document.querySelector('.forgot-password-container').style.display = 'block';
+        }
+        function showVerifyMessage() {
+            console.log('mrigl');
+            document.querySelector('.sign-in-container').style.display = 'none';
+            document.querySelector('.sign-up-container').style.display = 'none';
+            document.querySelector('.Verification-message').style.display = 'block';
+        }
 
-document.getElementById('backToLogin').addEventListener('click', function (event) {
-    event.preventDefault();
-    document.querySelector('.forgot-password-container').style.display = 'none';
-    document.querySelector('.sign-in-container').style.display = 'block';
-    document.querySelector('.sign-up-container').style.display = 'none';
-});
+        document.getElementById('backToLogin').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.querySelector('.forgot-password-container').style.display = 'none';
+            document.querySelector('.sign-in-container').style.display = 'block';
+            document.querySelector('.sign-up-container').style.display = 'none';
+        });
 
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -442,10 +461,8 @@ document.getElementById('backToLogin').addEventListener('click', function (event
             }
             if (!captchaVerified) {
                 document.getElementById('captchaError').innerHTML = 'Please verify the reCAPTCHA before submitting the form.';
-                return false;
+                return;
             }
-            return true;
-
             this.submit();
         });
         document.getElementById('forgot-password-form').addEventListener('submit', function (event) {

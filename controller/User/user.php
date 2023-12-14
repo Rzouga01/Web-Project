@@ -98,4 +98,13 @@ class UserCRUD {
         }
         return false;
     }
+    public function verifyUser($id) {
+        $cnx = Config::getConnexion();
+        $update = $cnx->prepare("UPDATE user SET Status='1' WHERE ID_USER = ?");
+        $update->execute([$id]);
+        if($update->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
 }
