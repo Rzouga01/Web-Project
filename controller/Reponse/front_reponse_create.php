@@ -1,10 +1,12 @@
 <?php
 require_once 'reponse.php';
 
+session_start();
 
+
+$Rep = new Response($_POST['ID_Reclamation'],$_SESSION["user_ID"], $_POST['text']);
 
 $RepC = new ResponseC();
-$Rep = new Response($_POST['ID_Reclamation'], $_POST['text']);
 
 $result = $RepC->ajouterResponse($Rep);
 
