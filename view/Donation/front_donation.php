@@ -60,19 +60,14 @@ $projectC = new projectC();
 
       <div class="container-fluid">
 
-        <a class="navbar-brand" href="../index.php"><img src="../../assets/images/logo.png" class="logo"
-            id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+        <a class="navbar-brand" href="../index.php"><img src="../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon
-            name="menu-outline"></ion-icon></button>
+        <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
-          aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-              aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
@@ -84,25 +79,21 @@ $projectC = new projectC();
                 <a class="nav-link me-4" href="../Type/dashboard_type.php">Dashboard</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                  aria-expanded="false">More</a>
+                <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a href="./Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
                   </li>
                   <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
                   </li>
-                  <li><a href="./Reclamation/front_reclamation.php" class="dropdown-item"
-                      href="#scrollspyHeading5">Reclamtion</a></li>
+                  <li><a href="./Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
                   <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
                   <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
-                  <li><a href="front_donation.php" class="dropdown-item"
-                      href="#scrollspyHeading5">Donations</a></li>
+                  <li><a href="front_donation.php" class="dropdown-item" href="#scrollspyHeading5">Donations</a></li>
                 </ul>
               </li>
               <?php if ($isLoggedIn) { ?>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?php echo $firstName . ' ' . $lastName; ?>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
@@ -142,15 +133,11 @@ $projectC = new projectC();
       <header>
         <h1>Donate</h1>
       </header>
-      <form id="donationForm" method="POST" action="../../controller/Donation/ajoutDonation.php"
-        onsubmit="event.preventDefault(); submitDonation();">
+      <form id="donationForm" method="POST" action="../../controller/Donation/ajoutDonation.php" onsubmit="event.preventDefault(); submitDonation();">
         <table>
           <tr>
             <td>
-              <label for="id_user">ID User:</label>
-            </td>
-            <td>
-              <input type="text" id="id_user" name="id_user">
+              <?php echo '<input type="hidden" id="id_user" name="id_user" value="' . $_SESSION['user_id'] . '">' ?>
             </td>
           </tr>
           <tr>
@@ -199,7 +186,7 @@ $projectC = new projectC();
 
           var xhttp = new XMLHttpRequest();
           xhttp.open("POST", "../../controller/Donation/ajoutDonation.php", true);
-          xhttp.onreadystatechange = function () {
+          xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               alert("Donation submitted successfully!");
               window.location.href = "../index.php";
