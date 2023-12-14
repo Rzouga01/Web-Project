@@ -11,7 +11,7 @@
 
         function successCallBack(token) {
             captchaVerified = true;
-            document.getElementById('captchaError').innerHTML = ''; 
+            document.getElementById('captchaError').innerHTML = '';
         }
         function onLoadCallBack() {
             grecaptcha.render('divRecaptcha', {
@@ -21,6 +21,7 @@
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallBack&render=explicit" async defer></script>
+
 </head>
 
 <body>
@@ -329,11 +330,16 @@
                 <h1>Sign in</h1>
                 <input type="email" name="email" id="email" placeholder="Email" />
                 <input type="password" name="password" id="password" placeholder="Password" />
-                <a onclick=" showForgotPasswordForm()">Forgot your password?</a>
+                <a onclick=" showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
         </div>
         <div class="form-container forgot-password-container" style="display: none;">
+            <div class="back-to-login">
+                <a href="#" id="backToLogin">
+                    <i class="fas fa-arrow-left arrow-icon"></i>
+                </a>
+            </div>
             <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
                 <h1>Forgot Password</h1>
                 <input type="email" name="mail" id="mail" placeholder="Email" />
@@ -355,28 +361,42 @@
         </div>
     </div>
     <script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+const hash = window.location.hash;
 
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-        const hash = window.location.hash;
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-        if (hash === '#signin') {
-            container.classList.remove("right-panel-active");
-        } else if (hash === '#signup') {
-            container.classList.add("right-panel-active");
-        }
-        function showForgotPasswordForm() {
-            event.preventDefault();
-            document.querySelector('.sign-in-container').style.display = 'none';
-            document.querySelector('.sign-up-container').style.display = 'none';
-            document.querySelector('.forgot-password-container').style.display = 'block';
-        }
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+    document.querySelector('.sign-up-container').style.display = 'block'; 
+    document.querySelector('.forgot-password-container').style.display = 'none'; 
+});
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+    document.querySelector('.sign-in-container').style.display = 'block'; 
+});
+
+if (hash === '#signin') {
+    container.classList.remove("right-panel-active");
+    document.querySelector('.sign-in-container').style.display = 'block'; 
+} else if (hash === '#signup') {
+    container.classList.add("right-panel-active");
+}
+
+function showForgotPasswordForm() {
+    event.preventDefault();
+    document.querySelector('.sign-in-container').style.display = 'none';
+    document.querySelector('.sign-up-container').style.display = 'none';
+    document.querySelector('.forgot-password-container').style.display = 'block';
+}
+
+document.getElementById('backToLogin').addEventListener('click', function (event) {
+    event.preventDefault();
+    document.querySelector('.forgot-password-container').style.display = 'none';
+    document.querySelector('.sign-in-container').style.display = 'block';
+    document.querySelector('.sign-up-container').style.display = 'none';
+});
 
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault();
