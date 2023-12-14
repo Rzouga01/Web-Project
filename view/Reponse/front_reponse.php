@@ -134,11 +134,7 @@ require_once "../../controller/Reponse/reponse.php";
 
                             </tr>
 
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Submit Response">
-                                </td>
-                            </tr>
+                            
 
                         </table>
                     </form>
