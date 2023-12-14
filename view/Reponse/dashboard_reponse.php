@@ -62,6 +62,10 @@ require_once "../../controller/Reclamation/reclamation.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
                     </a></li>
+                <li><a href="../Donation/showDonation.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Donation</span>
+                    </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
@@ -117,7 +121,8 @@ require_once "../../controller/Reclamation/reclamation.php";
                             <tr>
                                 <td><label for="new-response-text">new response</label></td>
                                 <td>
-                                    <textarea id="new-response-text" name="new-response-text" class="response-text"></textarea>
+                                    <textarea id="new-response-text" name="new-response-text"
+                                        class="response-text"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -206,7 +211,7 @@ require_once "../../controller/Reclamation/reclamation.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reponse/reponse_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -245,7 +250,7 @@ require_once "../../controller/Reclamation/reclamation.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reponse/reponse_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -302,7 +307,7 @@ require_once "../../controller/Reclamation/reclamation.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reponse/reponse_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();

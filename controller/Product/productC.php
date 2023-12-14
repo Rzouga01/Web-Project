@@ -1,7 +1,7 @@
 <?php
 
-require "../../database/connect.php";
-require  "../../model/Product/product_class.php";
+require_once "../../database/connect.php";
+require_once  "../../model/Product/product_class.php";
 
 class productC
 {

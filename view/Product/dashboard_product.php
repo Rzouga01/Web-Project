@@ -4,7 +4,7 @@
 <?php
 require_once "../../controller/Product/productC.php";
 require_once "../../controller/Category/categoryC.php"
-?>
+    ?>
 
 <head>
     <meta charset="UTF-8" />
@@ -45,7 +45,7 @@ require_once "../../controller/Category/categoryC.php"
 
 <body>
     <div class="container">
-        
+
         <nav class="navbar">
             <ul>
                 <li>
@@ -58,10 +58,10 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -87,7 +87,7 @@ require_once "../../controller/Category/categoryC.php"
                         <span class="nav-item">Feedback</span>
                     </a></li>
 
-                    <li><a href="dashboard_category.php">
+                <li><a href="dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
@@ -95,6 +95,10 @@ require_once "../../controller/Category/categoryC.php"
                 <li><a href="dashboard_product.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
+                    </a></li>
+                <li><a href="../Donation/showDonation.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Donation</span>
                     </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
@@ -109,8 +113,9 @@ require_once "../../controller/Category/categoryC.php"
                     <i class="fa fa-archive"></i>
                     <h3>Product List</h3>
                     <table id="product-tab" class="table table-bordered">
-                    <tr>
-                            <td colspan="1"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                        <tr>
+                            <td colspan="1"><button id="search" onclick="search()"><i class="fa fa-search"></i>
+                                    Search</button> </td>
                             <td colspan="6"> <input type="text" id="search-input" placeholder="Search"></td>
 
                         </tr>
@@ -171,7 +176,8 @@ require_once "../../controller/Category/categoryC.php"
                             <tr>
                                 <td><label for="new-type-description">New Description</label></td>
                                 <td>
-                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
+                                    <textarea id="new-type-description" name="new-type-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -215,7 +221,8 @@ require_once "../../controller/Category/categoryC.php"
                             <tr>
                                 <td><label for="product-description">Product Description</label></td>
                                 <td>
-                                    <textarea id="product-description" name="product-description" class="description"></textarea>
+                                    <textarea id="product-description" name="product-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -261,28 +268,28 @@ require_once "../../controller/Category/categoryC.php"
     </div>
     <button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
     <script>
-         function search() {
+        function search() {
 
-searchBar = document.getElementById("search-input");
-filter = searchBar.value.toUpperCase();
-table = document.getElementById("product-tab");
-tr = table.getElementsByTagName("tr");
+            searchBar = document.getElementById("search-input");
+            filter = searchBar.value.toUpperCase();
+            table = document.getElementById("product-tab");
+            tr = table.getElementsByTagName("tr");
 
-for (i = 1; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+
+
         }
-    }
-}
-
-
-
-}
 
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
@@ -296,7 +303,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -379,7 +386,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -449,7 +456,7 @@ for (i = 1; i < tr.length; i++) {
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Product/product_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();
@@ -469,7 +476,7 @@ for (i = 1; i < tr.length; i++) {
         }
 
         // Show/hide the button based on scroll position
-        window.onscroll = function() {
+        window.onscroll = function () {
             showScrollButton();
         };
 
@@ -483,30 +490,30 @@ for (i = 1; i < tr.length; i++) {
             }
         }
     </script>
-<button id="scrollToTopBtn" onclick="scrollToTop()">up</button>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">up</button>
 
-<script>
-    // Function to scroll to the top of the page
-    function scrollToTop() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-    }
-
-    // Show/hide the button based on scroll position
-    window.onscroll = function() {
-        showScrollButton();
-    };
-
-    function showScrollButton() {
-        var btn = document.getElementById("scrollToTopBtn");
-
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            btn.style.display = "block";
-        } else {
-            btn.style.display = "none";
+    <script>
+        // Function to scroll to the top of the page
+        function scrollToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
         }
-    }
-</script>
+
+        // Show/hide the button based on scroll position
+        window.onscroll = function () {
+            showScrollButton();
+        };
+
+        function showScrollButton() {
+            var btn = document.getElementById("scrollToTopBtn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+    </script>
 
 
 

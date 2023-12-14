@@ -61,6 +61,10 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
                     </a></li>
+                <li><a href="../Donation/showDonation.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Donation</span>
+                    </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
@@ -74,8 +78,9 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <i class="fa fa-list"></i>
                     <h3>reclamation list</h3>
                     <table id="reclamation-table" class="table table-bordered">
-                    <tr>
-                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
+                        <tr>
+                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i>
+                                    Search</button> </td>
                             <td colspan="3"> <input type="text" id="search-input" placeholder="Search"></td>
 
 
@@ -121,12 +126,14 @@ require_once "../../model/Reclamation/reclamationC.php";
                                 <input type="hidden" id="edit-ID-reclamation" name="edit-ID-reclamation" value="">
                                 <input type="hidden" id="edit-ID-user" name="edit-ID-user" value="">
                                 <input type="hidden" id="edit-date-reclamation" name="edit-date-reclamation" value="">
-                                <input type="hidden" id="edit-status-reclamation" name="edit-status-reclamation" value="">
+                                <input type="hidden" id="edit-status-reclamation" name="edit-status-reclamation"
+                                    value="">
                             </tr>
                             <tr>
                                 <td><label for="new-reclamation-text">new reclamation</label></td>
                                 <td>
-                                    <textarea id="new-reclamation-text" name="new-reclamation-text" class="reclamation-text"></textarea>
+                                    <textarea id="new-reclamation-text" name="new-reclamation-text"
+                                        class="reclamation-text"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -149,7 +156,8 @@ require_once "../../model/Reclamation/reclamationC.php";
                             <tr>
                                 <td><label for="reclamation-text">Reclamation text</label></td>
                                 <td>
-                                    <textarea id="reclamation-text" name="reclamation-text" class="reclamation-text"></textarea>
+                                    <textarea id="reclamation-text" name="reclamation-text"
+                                        class="reclamation-text"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -186,7 +194,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                 }
             }
         }
-        
+
         function confirmDelete(id) {
             var userConfirmed = confirm('Are you sure you want to delete type with ID ' + id + '?');
             if (userConfirmed) {
@@ -199,7 +207,7 @@ require_once "../../model/Reclamation/reclamationC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reclamation/reclamation_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -237,7 +245,7 @@ require_once "../../model/Reclamation/reclamationC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reclamation/reclamation_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -294,7 +302,7 @@ require_once "../../model/Reclamation/reclamationC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Reclamation/reclamation_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();

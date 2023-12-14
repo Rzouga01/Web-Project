@@ -27,10 +27,10 @@ require "../../controller/Category/categoryC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -62,6 +62,10 @@ require "../../controller/Category/categoryC.php";
                 <li><a href="../Product/dashboard_product.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
+                    </a></li>
+                <li><a href="../Donation/showDonation.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Donation</span>
                     </a></li>
                 <li><a href="#" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
@@ -120,7 +124,8 @@ require "../../controller/Category/categoryC.php";
                             <tr>
                                 <td><label for="new-type-description">New Description</label></td>
                                 <td>
-                                    <textarea id="new-type-description" name="new-type-description" class="description"></textarea>
+                                    <textarea id="new-type-description" name="new-type-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -148,7 +153,8 @@ require "../../controller/Category/categoryC.php";
                             <tr>
                                 <td><label for="type-description">Category Description</label></td>
                                 <td>
-                                    <textarea id="type-description" name="type-description" class="description"></textarea>
+                                    <textarea id="type-description" name="type-description"
+                                        class="description"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -179,7 +185,7 @@ require "../../controller/Category/categoryC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Category/category_delete.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     location.reload();
                 }
@@ -224,7 +230,7 @@ require "../../controller/Category/categoryC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Category/category_create.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeAddModal();
                     location.reload();
@@ -250,8 +256,8 @@ require "../../controller/Category/categoryC.php";
 
             document.getElementById("edit-type-id").value = id;
             document.getElementById("new-type-name").value = name;
-            document.getElementById("new-type-description").value =description;
-        
+            document.getElementById("new-type-description").value = description;
+
 
 
         }
@@ -283,7 +289,7 @@ require "../../controller/Category/categoryC.php";
             var xhttp = new XMLHttpRequest();
             xhttp.open("POST", "../../controller/Category/category_update.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     closeEditModal();
                     location.reload();

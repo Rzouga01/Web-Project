@@ -1,7 +1,7 @@
 <?php
 
-require '../../database/connect.php';
-require '../../model/Project/project_class.php';
+require_once '../../database/connect.php';
+require_once '../../model/Project/project_class.php';
 
 class ProjectC
 {
@@ -94,7 +94,6 @@ class ProjectC
         try {
             $conn = Config::getConnexion();
 
-            $id = $id;
             $name = $project->getProject_name();
             $description = $project->getProject_description();
             $start_date = $project->getStart_date();

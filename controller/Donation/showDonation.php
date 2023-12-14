@@ -1,15 +1,8 @@
 <?php
-session_start();
+require_once('../controller/DonationC.php');
 
-$isLoggedIn = isset($_SESSION['username']);
-
-
-if ($isLoggedIn) {
-	$username = $_SESSION['username'];
-	$firstName = $_SESSION['firstName'];
-	$lastName = $_SESSION['lastName'];
-	$isAdmin = $_SESSION['role'] == '0';
-}
+$donC = new DonationC();
+$donations = $donC->showDonation();
 
 ?>
 <!DOCTYPE html>
@@ -33,9 +26,6 @@ if ($isLoggedIn) {
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 	<script src="js/modernizr.js"></script>
-
-	<link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
-
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
@@ -51,14 +41,20 @@ if ($isLoggedIn) {
 
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="index.php"><img src="../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+				<a class="navbar-brand" href="index.html"><img src="../assets/images/logo.png" class="logo"
+						id="logo-img" /><span id="logo-text">Recovery<span
+							id="logo-text-color">Butterfly</span></span></a>
 
-				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
+				<button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2"
+					aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
-				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
+					aria-labelledby="offcanvasNavbar2Label">
 					<div class="offcanvas-header">
 						<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+							aria-label="Close"></button>
 					</div>
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
@@ -74,45 +70,34 @@ if ($isLoggedIn) {
 							<li class="nav-item">
 								<a class="nav-link me-4" href="#latest-stories">Stories</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+								<a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#"
+									role="button" aria-expanded="false">More</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
-									<li><a href="Project/front_project.php" class="dropdown-item">Projects</a>
-									</li>
+									<li><a href="about.html" class="dropdown-item"
+											href="#scrollspyHeading3">Projects</a></li>
 									<li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
 									</li>
-									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item" href="../view/Reclamation/front_reclamation.php">Reclamtion</a></li>
-									<li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-									<li><a href="Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
-									<li><a href="Donation/front_donation.php" class="dropdown-item" href="#scrollspyHeading5">Donations</a></li>
-								</ul>
-								<?php if ($isLoggedIn) { ?>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<?php echo $firstName . ' ' . $lastName; ?>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-									<li class="nav-item">
-										<?php if ($isAdmin) { ?>
-											<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
-										<?php } else { ?>
-											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
-										<?php } ?>
-									</li>
-									<li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
+									<li><a href="contact.html" class="dropdown-item"
+											href="#scrollspyHeading5">Reclamtion</a></li>
+									<li><a href="single-post.html" class="dropdown-item"
+											href="#scrollspyHeading5">Response</a></li>
+									<li><a href="styles.html" class="dropdown-item"
+											href="#scrollspyHeading5">Products</a></li>
 								</ul>
 							</li>
-						<?php } else { ?>
 							<li class="nav-item">
-								<a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+								<a class="btn btn-primary btn-lg rounded-pill" href="#">Join Us</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link me-4" href="User/user.html#signin">Login</a>
+								<a class="nav-link me-4" href="#">Login</a>
 							</li>
-						<?php } ?>
 						</ul>
-					</div>
 
+					</div>
 				</div>
 
 			</div>
@@ -124,42 +109,38 @@ if ($isLoggedIn) {
 			<div class="row">
 				<div class="col-md-7">
 					<div class="section-title my-5">
-						<h2 class="text-white display-2">Let’s make this world <em>a better place</em> for every child
+						<h2 class="text-white display-2">Your <em>Donations</em> for every child
 						</h2>
+						<a href="showDonationOrdered.php" class="btn btn-primary btn-lg rounded-pill">Show Donation Ordered</a>
+						<a href="statsDonation.php" class="btn btn-primary btn-lg rounded-pill">Show Stats</a>
+						<a class="btn btn-primary btn-lg rounded-pill" href="add.php">Add Donation</a>
 					</div>
-
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
-					<div class="card card-dark" data-aos="fade-up" data-aos-delay="0">
-						<div class="card-body">
-							<h3>Sponsor a child</h3>
-							<p>Nibh urna, nunc molestie mi id lorem. Dui egestas non dum ut risus augue. Arcu eget a
-								donec turpis. </p>
-							<a href="#">Learn more</a>
+				<?php
+				foreach ($donations as $d) {
+					?>
+					<div class="col-md-4">
+						<div class="card card-dark" data-aos="fade-up" data-aos-delay="600">
+							<div class="card-body">
+								<h3>Donation
+									<?php echo $d['reference']; ?>
+								</h3>
+								<p>Thank you mr
+									<?php echo $d['id_user']; ?> <br>for Helping project:
+									<?php echo $d['id_project']; ?>
+								</p>
+								<p>Amount:
+									<?php echo $d['amount']; ?>
+								</p>
+								<a href="updateDonation.php?ref=<?php echo $d['reference']; ?>">Update</a> <a
+									href="deleteDonation.php?ref=<?php echo $d['reference']; ?>">Delete</a>
+
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card card-dark" data-aos="fade-up" data-aos-delay="300">
-						<div class="card-body">
-							<h3>Make Donation</h3>
-							<p>Quisque montes, convallis lectus massa, in enim ut. Eu consequat at dolor tempor. </p>
-							<a href="#">Learn more</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card card-dark" data-aos="fade-up" data-aos-delay="600">
-						<div class="card-body">
-							<h3>Start a fundraiser</h3>
-							<p>Lacus vitae mauris morbi molestie vulputate per. Metus sollicitudin urna orci sapien
-								mattis netus lacus.</p>
-							<a href="#">Learn more</a>
-						</div>
-					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
 		<img src="../assets/images/banner.jpg" class="jarallax-img">
@@ -185,7 +166,8 @@ if ($isLoggedIn) {
 						<cite class="mb-5">UNICEF/ILO joint publication</cite>
 					</blockquote>
 				</div>
-				<div class="col-md-6" style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
+				<div class="col-md-6"
+					style="background: url('images/veronika-jorjobert-27w3ULIIJfI-unsplash.jpg');background-size: cover;">
 				</div>
 			</div>
 		</div>
@@ -349,27 +331,31 @@ if ($isLoggedIn) {
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-2.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">How To Wear Your 501 Jeans For Every Occasion</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-3.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
 				</div>
 				<div class="post-item col">
 					<figure class="zoom-effect">
-						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories" class="lgpostImg"></a>
+						<a href="#" class="zoom-in"><img src="../assets/images/post-thumb-4.jpg" alt="stories"
+								class="lgpostImg"></a>
 					</figure>
 					<a href="single-post.html" class="post-title">Going To The Grocery Store Has Never Looked So
 						Good</a>
@@ -388,7 +374,7 @@ if ($isLoggedIn) {
 						<p class="text-white">Nibh urna, nunc molestie mi id lorem. Dui egestas non adipiscing interdum
 							ut risus augue. Arcu eget a donec turpis. </p>
 					</header>
-					<a href="./Donation/front_donation.php" class="btn btn-primary btn-lg rounded-pill">Donate</a>
+					<button class="btn btn-primary btn-lg rounded-pill">Donate</button>
 				</div>
 
 			</div>
