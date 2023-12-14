@@ -25,7 +25,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <span class="nav-item">Dashboard</span>
                     </a>
                 </li>
-                <li><a href="../index.html">
+                <li><a href="../index.php">
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
