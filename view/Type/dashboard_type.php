@@ -42,10 +42,10 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -136,9 +136,14 @@ require "../../controller/Type/typeC.php";
                         } else {
                             echo "<tr><td colspan='4'>No types found</td></tr>";
                         }
+                        if (!empty($types)) {
+                            echo "</table>";
+                        } else {
+                            echo "</table>";
+                            echo '<button onclick="createType()">Add a Type</button>';
+                        }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Type</button>
                 </div>
             </div>
 

@@ -54,7 +54,7 @@ require_once "../../controller/Reclamation/reclamation.php";
 
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="../index.php"><img src="../../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
+                <a class="navbar-brand" href="../index.php"><img src="../../assets/images/logo.png" class="logo" id="logo-img" /><span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span></a>
 
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon name="menu-outline"></ion-icon></button>
 
@@ -66,19 +66,18 @@ require_once "../../controller/Reclamation/reclamation.php";
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="../../index.html">Home</a>
+                                <a class="nav-link me-4" href="../index.php">Home</a>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="../view//Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
                                     </li>
                                     <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
                                     </li>
-                                    <li><a href="../view/Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
                                     <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-                                    <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+                                    <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                                 </ul>
                             </li>
                             <?php if ($isLoggedIn) { ?>
@@ -88,17 +87,17 @@ require_once "../../controller/Reclamation/reclamation.php";
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                         <li class="nav-item">
-                                            <a class="nav-link me-4" href="Type/dashboard_type.php">Dashboard</a>
+                                            <a class="nav-link me-4" href="../Type/dashboard_type.php">Dashboard</a>
                                         </li>
                                         <li><a href="../controller/User/logout.php" class="dropdown-item">Logout</a></li>
                                     </ul>
                                 </li>
                             <?php } else { ?>
                                 <li class="nav-item">
-                                    <a class="btn btn-primary btn-lg rounded-pill" href="User/user.html#signup">Join Us</a>
+                                    <a class="btn btn-primary btn-lg rounded-pill" href="../User/user.html#signup">Join Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-4" href="User/user.html#signin">Login</a>
+                                    <a class="nav-link me-4" href="../User/user.html#signin">Login</a>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -110,34 +109,43 @@ require_once "../../controller/Reclamation/reclamation.php";
 
         </nav>
     </header>
-    <div class="container">
-        <header>
-            <h1>Reclamation Form</h1>
-        </header>
-        <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
-        <table>
-            
-            <tr>
-                <td>
-                    <label for="reclamation-text">Your reclamation :</label>   
-                </td>
 
-                <td>
-                <textarea id="reclamation-text" name="reclamation-text" rows="5" cols="20"></textarea>
-                </td>
-            
-            </tr>
+    <section id="Home" class="padding-large jarallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <header class="text-center my-5">
+                        <h2><strong>Reclamation</strong></h2>
+                    </header>
+                </div>
+                <div class="col-md-12">
 
-            <tr>
-                <td>
-                <input type="submit"value ="Submit Reclamation">
-                </td>
-            </tr>
-                            
-        </table>
-        </form>
-            
-    </div>
+                    <form id="reclamationForm" onsubmit="event.preventDefault(); submitReclamation();">
+                        <table class="table">
+
+                            <tr>
+                                <td>
+                                    <label for="reclamation-text">Your reclamation :</label>
+                                </td>
+
+                                <td>
+                                    <textarea id="reclamation-text" name="reclamation-text" rows="5" cols="20"></textarea>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <input type="submit" value="Submit Reclamation">
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
         function submitReclamation() {
             var text = document.getElementById("reclamation-text").value;
