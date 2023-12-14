@@ -43,17 +43,13 @@ require "../../controller/Category/categoryC.php";
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="../Category/dashboard_category.php">
+                <li><a href="../Reclamation/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
                 <li><a href="../Reponse/dashboard_reponse.php">
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
                     </a></li>
                     <li><a href="../Event/Backend/back.php">
                             <i class="fa fa-comments"></i>

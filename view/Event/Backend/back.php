@@ -57,7 +57,7 @@ $listevents = $eventC->Afficher();
                         <i class="fa fa-database"></i>
                         <span class="nav-item">Project</span>
                     </a></li>
-                <li><a href="../../Category/dashboard_category.php">
+                <li><a href="../../Reclamation/dashboard_reclamation.php">
                         <i class="fa fa-exclamation-triangle"></i>
                         <span class="nav-item">Reclamation</span>
                     </a></li>
@@ -69,7 +69,7 @@ $listevents = $eventC->Afficher();
                             <i class="fa fa-comments"></i>
                             <span class="nav-item">Event</span>
                         </a></li>
-                <li><a href="dashboard_category.php">
+                <li><a href="../../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
