@@ -70,10 +70,10 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
-                    <li><a href="../Event/Backend/back.php">
-                            <i class="fa fa-comments"></i>
-                            <span class="nav-item">Event</span>
-                        </a></li>
+                <li><a href="../Event/Backend/back.php">
+                        <i class="fa fa-comments"></i>
+                        <span class="nav-item">Event</span>
+                    </a></li>
                 <li><a href="../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
@@ -140,14 +140,10 @@ require "../../controller/Type/typeC.php";
                         } else {
                             echo "<tr><td colspan='4'>No types found</td></tr>";
                         }
-                        if (!empty($types)) {
-                            echo "</table>";
-                        } else {
-                            echo "</table>";
-                            echo '<button onclick="createType()">Add a Type</button>';
-                        }
+
                         ?>
                     </table>
+                    <button onclick="createType()">Add a Type</button>
                 </div>
             </div>
 
