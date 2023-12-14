@@ -223,3 +223,34 @@ input {
 	width: 50%;
 	z-index: 2;
 }
+.notification {
+    position: fixed;
+	top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);	
+    padding: 15px;
+    border-radius: 8px;
+	color:#ffffff;
+	background-color: #b9deb9; 
+    z-index: 9999;
+    opacity: 0;
+    animation: fade-in-out 3s ease-out forwards; 
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+}
+
+@keyframes fade-in-out {
+    0%, 100% {
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+}
+
+
+.notification.show {
+    display: block;
+    opacity: 1;
+}
+

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <div class="notification" id="notification"></div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
@@ -46,7 +47,6 @@
         <div class="form-container forgot-password-container" style="display: none;">
             <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
                 <h1>Forgot Password</h1>
-                <div id="message"></div>
                 <input type="email" name="mail" id="mail" placeholder="Email" />
                 <input type="submit" value="Reset Password">
             </form>
@@ -145,13 +145,23 @@
             })
                 .then(response => response.text())
                 .then(data => {
-
-                    document.getElementById('message').innerHTML = data;
+                    displayNotification(data, '#b9deb9', 10000);
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         });
+
+        function displayNotification(message, color, duration) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.backgroundColor = color;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
 
     </script>
 </body>
