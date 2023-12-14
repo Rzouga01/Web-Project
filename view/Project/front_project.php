@@ -84,13 +84,11 @@ require_once "../../controller/Project/ProjectC.php";
                             <li class="nav-item dropdown">
                                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a href="front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                                    <li><a href="front_project.php" class="dropdown-item">Projects</a>
                                     </li>
-                                    <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
-                                    </li>
-                                    <li><a href="contact.html" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
-                                    <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
-                                    <li><a href="../Product/front_product.php" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
+                                    <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a></li>
+                                    <li><a href="single-post.html" class="dropdown-item">Response</a></li>
+                                    <li><a href="../Product/front_product.php" class="dropdown-item">Products</a></li>
                                 </ul>
                             </li>
                             <?php if ($isLoggedIn) { ?>
@@ -198,54 +196,16 @@ require_once "../../controller/Project/ProjectC.php";
 
 
     <footer class="padding-large text-white bg-dark">
-        <div class="container">
-            <div class="row">
+        <center>
+            <div class="container">
+                <div class="row">
 
-                <div class="col-12 col-md-6">
-                    <span id="logo-text">Recovery<span id="logo-text-color">Butterfly</span></span>
+                    <div>
+                        <span id="logo-text" style="font-size: 70px;">&copy Recovery<span id="logo-text-color">Butterfly</span></span>
+                    </div>
 
-                    <ul class="justify-content-start list-unstyled d-flex">
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-skype"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-pinterest"></ion-icon></a></li>
-                        <li><a href="#" class="nav-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
-                    </ul>
                 </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Facebook</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Twitter</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Instagram</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pinterest</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">YouTube</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">About</a></li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
+        </center>
     </footer>
     <script>
         function search() {

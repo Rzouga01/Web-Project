@@ -1,7 +1,7 @@
 <?php
 
 require_once 'productC.php';
-require_once '../../model/Product/product_class.php';
+
 
 $ProductC = new productC();
 

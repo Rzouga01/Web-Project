@@ -44,6 +44,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	cursor: pointer;
 }
 
 button:active {
@@ -217,17 +218,46 @@ input {
 	transform: translateX(20%);
 }
 
-.social-container {
-	margin: 20px 0;
+.forgot-password-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+.arrow-icon {
+    font-size: 20px; 
+    vertical-align: middle;
+    margin-top: 10px; 
+	margin-bottom: 10px; 
+	margin-left: 10px; 
+}
+.notification {
+    position: fixed;
+	top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);	
+    padding: 15px;
+    border-radius: 8px;
+	color:#ffffff;
+	background-color: #b9deb9; 
+    z-index: 9999;
+    opacity: 0;
+    animation: fade-in-out 3s ease-out forwards; 
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
 }
 
-.social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
+@keyframes fade-in-out {
+    0%, 100% {
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
 }
+
+
+.notification.show {
+    display: block;
+    opacity: 1;
+}
+

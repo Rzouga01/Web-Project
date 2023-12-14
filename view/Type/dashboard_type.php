@@ -66,9 +66,10 @@ require "../../controller/Type/typeC.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="#">
+
+                <li><a href="../Event/Backend/back.php">
                         <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
+                        <span class="nav-item">Event</span>
                     </a></li>
                 <li><a href="../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
@@ -140,6 +141,7 @@ require "../../controller/Type/typeC.php";
                         } else {
                             echo "<tr><td colspan='4'>No types found</td></tr>";
                         }
+
                         ?>
                     </table>
                     <button onclick="createType()">Add a Type</button>

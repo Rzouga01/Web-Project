@@ -86,12 +86,14 @@ require_once "../../controller/Category/categoryC.php"
                         <i class="fa fa-comments"></i>
                         <span class="nav-item">Feedback</span>
                     </a></li>
-
+                <li><a href="../Event/Backend/back.php">
+                        <i class="fa fa-comments"></i>
+                        <span class="nav-item">Event</span>
+                    </a></li>
                 <li><a href="dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
                     </a></li>
-
                 <li><a href="dashboard_product.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Product</span>
@@ -146,125 +148,127 @@ require_once "../../controller/Category/categoryC.php"
                         }
                         ?>
                     </table>
-                    <button onclick="createType()">Add a Product</button>
+
                 </div>
+                <button onclick="createType()">Add a Product</button>
             </div>
+    </div>
 
-        </section>
-
-
-        <div id="editModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" onclick="closeEditModal()">&times;</span>
-                <div class="container">
-                    <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
-                        <table>
-                            <tr>
-                                <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
-                                <td><label for="new-type-name">New Name</label></td>
-                                <td><input type="text" id="new-type-name" name="new-type-name"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="new-type-img">New Image</label></td>
-                                <td><input type="text" id="new-type-img" name="new-type-img"></td>
-                            </tr>
-
-                            <tr>
-                                <td><label for="new-type-price">New Price</label></td>
-                                <td><input type="text" id="new-type-price" name="new-type-price"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="new-type-description">New Description</label></td>
-                                <td>
-                                    <textarea id="new-type-description" name="new-type-description"
-                                        class="description"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="select-product-update">Category</label>
-                                </td>
-                                <td>
-                                    <select name="select-product-update" id="select-product-update">
-                                        <?php
-                                        $category = new CategoryC();
-                                        $categories = $category->read();
-                                        foreach ($categories as $categoryItem) {
-                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
-                                        }
-                                        ?>
-                                </td>
-                                </select>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type="submit" value="Update" id="button_update"></td>
-                                <td><input type="reset" value="Reset"></td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Add Modal -->
-        <div id="AddModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" onclick="closeAddModal()">&times;</span>
-                <div class="container">
-                    <form id="AddForm" onsubmit="event.preventDefault(); addType();">
-                        <table>
-                            <tr>
-                                <td><label for="product-name">Product Name</label></td>
-                                <td><input type="text" id="product-name" name="product-name"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-description">Product Description</label></td>
-                                <td>
-                                    <textarea id="product-description" name="product-description"
-                                        class="description"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-image">Product Image</label></td>
-                                <td><input type="text" id="product-image" name="product-image"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="product-price">Product Price</label></td>
-                                <td><input type="number" id="product-price" name="product-price"></td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <label for="select-product">Category</label>
-                                </td>
-                                <td>
-                                    <select name="select-product" id="select-product">
-                                        <?php
-                                        $category = new CategoryC();
-                                        $categories = $category->read();
-                                        foreach ($categories as $categoryItem) {
-                                            echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
-                                        }
-                                        ?>
-                                </td>
-                                </select>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Create" id="button_create">
-                                </td>
-                                <td>
-                                    <input type="reset" value="Reset">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+    </section>
 
 
-                </div>
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <div class="container">
+                <form id="editForm" method="post" onsubmit="event.preventDefault();editType()">
+                    <table>
+                        <tr>
+                            <input type="hidden" id="edit-type-id" name="edit-type-id" value="">
+                            <td><label for="new-type-name">New Name</label></td>
+                            <td><input type="text" id="new-type-name" name="new-type-name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="new-type-img">New Image</label></td>
+                            <td><input type="text" id="new-type-img" name="new-type-img"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="new-type-price">New Price</label></td>
+                            <td><input type="text" id="new-type-price" name="new-type-price"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="new-type-description">New Description</label></td>
+                            <td>
+                                <textarea id="new-type-description" name="new-type-description"
+                                    class="description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="select-product-update">Category</label>
+                            </td>
+                            <td>
+                                <select name="select-product-update" id="select-product-update">
+                                    <?php
+                                    $category = new CategoryC();
+                                    $categories = $category->read();
+                                    foreach ($categories as $categoryItem) {
+                                        echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
+                                    }
+                                    ?>
+                            </td>
+                            </select>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Update" id="button_update"></td>
+                            <td><input type="reset" value="Reset"></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="AddModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <div class="container">
+                <form id="AddForm" onsubmit="event.preventDefault(); addType();">
+                    <table>
+                        <tr>
+                            <td><label for="product-name">Product Name</label></td>
+                            <td><input type="text" id="product-name" name="product-name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-description">Product Description</label></td>
+                            <td>
+                                <textarea id="product-description" name="product-description"
+                                    class="description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-image">Product Image</label></td>
+                            <td><input type="text" id="product-image" name="product-image"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-price">Product Price</label></td>
+                            <td><input type="number" id="product-price" name="product-price"></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="select-product">Category</label>
+                            </td>
+                            <td>
+                                <select name="select-product" id="select-product">
+                                    <?php
+                                    $category = new CategoryC();
+                                    $categories = $category->read();
+                                    foreach ($categories as $categoryItem) {
+                                        echo "<option value='" . $categoryItem['ID_Category'] . "'>" . htmlspecialchars($categoryItem['Category_name']) . "</option>";
+                                    }
+                                    ?>
+                            </td>
+                            </select>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Create" id="button_create">
+                            </td>
+                            <td>
+                                <input type="reset" value="Reset">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
     </div>
     <button id="scrollToTopBtn" onclick="scrollToTop()">Top</button>
     <script>

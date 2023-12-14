@@ -4,6 +4,7 @@
 <?php
 require_once "../../controller/Project/projectC.php";
 require_once "../../controller/Type/TypeC.php";
+
 ?>
 
 <head>
@@ -106,10 +107,11 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="../User/dashboard_admin.php?showProfile=true.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Profile</span>
-                        </a></li>
+
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
                         <span class="nav-item">Users</span>
@@ -130,9 +132,9 @@ require_once "../../controller/Type/TypeC.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Event/Backend/back.php">
                         <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
+                        <span class="nav-item">Event</span>
                     </a></li>
                 <li><a href="../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
@@ -157,8 +159,6 @@ require_once "../../controller/Type/TypeC.php";
                     <table class="table table-bordered" id="table-project">
 
                         <?php
-
-
                         function echoHeader($columnName, $index, $initialSort = false)
                         {
 
@@ -235,17 +235,15 @@ require_once "../../controller/Type/TypeC.php";
                             echo "<h7>No Projects found</h7>";
                             echo "</table>";
                         }
-
-
-
-
+                        if (!empty($projects)) {
+                            echo '</table>';
+                            echo ' <button onclick="create()">Add a Project</button>';
+                            echo '<button onclick="exportToExcel()">Export to Excel</button>';
+                            echo '<button onclick="exportToPDF()">Export to PDF</button>';
+                        } else {
+                            echo '<button onclick="create()">Add a Project</button>';
+                        }
                         ?>
-                    </table>
-
-
-                    <button onclick="create()">Add a Project</button>
-                    <button onclick="exportToExcel()">Export to Excel</button>
-                    <button onclick="exportToPDF()">Export to PDF</button>
                 </div>
             </div>
 
@@ -313,7 +311,21 @@ require_once "../../controller/Type/TypeC.php";
                                 </td>
                                 <td>
                                     <select name="project-organization-update" id="project-organization-update">
-                                        <option value="1" selected>Organization test</option>
+                                        <?php
+                                        $db = config::getConnexion();
+                                        $r = "SELECT * FROM organization";
+                                        $orgs = $db->query($r);
+
+                                        if ($orgs->rowCount() == 0) {
+                                            echo "<option value='-1' disabled>No Organizations found</option>";
+                                        } else {
+                                            foreach ($orgs as $org) {
+                                                echo '<option value="' . $org["ID_Org"] . '">' . htmlspecialchars($org["Org_name"]) . '</option>';
+                                            }
+                                        }
+
+
+                                        ?>
                                     </select>
                                 </td>
                             <tr>
@@ -384,9 +396,27 @@ require_once "../../controller/Type/TypeC.php";
                                 </td>
                                 <td>
                                     <select name="project-organization" id="project-organization">
-                                        <option value="1" selected>Organization test</option>
+
+
+                                        <?php
+                                        $db = config::getConnexion();
+                                        $r = "SELECT * FROM organization";
+                                        $orgs = $db->query($r);
+
+                                        if ($orgs->rowCount() == 0) {
+                                            echo "<option value='-1' disabled>No Organizations found</option>";
+                                        } else {
+                                            foreach ($orgs as $org) {
+
+                                                echo '<option value="' . $org["ID_Org"] . '">' . htmlspecialchars($org["Org_name"]) . '</option>';
+                                            }
+                                        }
+
+
+                                        ?>
                                     </select>
                                 </td>
+
                             <tr>
                                 <td>
                                     <input type="submit" value="Create" id="button_create">

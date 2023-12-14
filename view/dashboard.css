@@ -59,10 +59,12 @@ nav {
   background: #ffff;
   overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  margin-right: 100px;
 }
 
 .navbar {
   width: 70px;
+  height: 100vh;
   transition: width 0.5s;
   border-radius: 0;
   overflow: hidden;
@@ -120,6 +122,13 @@ a:not(.logo):hover {
 
 }
 
+.table.table {
+  width: 100%; 
+  height: auto;
+  top: 10px;
+  left: 10px;
+}
+
 .profile .card {
   width: 600px;
   border: 1px solid #ddd;
@@ -128,22 +137,26 @@ a:not(.logo):hover {
   padding: 20px;
   margin: 20px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 
 .profile.card h3 {
   margin-bottom: 20px;
 }
 
 .profile .card img {
-  width: 70px;
-
+  width: 70px;  
   height: 70px;
   top: 10px;
   left: 10px;
 }
 
 .users .card {
-  width: 100%;
+  width: 1500px;
+  height:auto;
   margin: 10px;
   background: #fff;
   text-align: center;
@@ -245,6 +258,7 @@ textarea {
 }
 
 
+
 .modal-content input[type="submit"] {
   width: calc(100%);
   background-color: var(--accent-color);
@@ -329,7 +343,7 @@ button:hover {
 .actions-container button,
 .actions-container div {
   margin-left: 5px;
- 
+
 }
 
 

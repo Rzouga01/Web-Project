@@ -25,9 +25,13 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <span class="nav-item">Dashboard</span>
                     </a>
                 </li>
-                <li><a href="../index.html">
+                <li><a href="../index.php">
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
+                    </a></li>
+                <li><a href="../User/dashboard_admin.php?showProfile=true.php">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
                     </a></li>
                 <li><a href="../User/dashboard_admin.php">
                         <i class="fas fa-users"></i>
@@ -49,10 +53,11 @@ require_once "../../model/Reclamation/reclamationC.php";
                         <i class="fa fa-envelope-open"></i>
                         <span class="nav-item">Response</span>
                     </a></li>
-                <li><a href="#">
-                        <i class="fa fa-comments"></i>
-                        <span class="nav-item">Feedback</span>
-                    </a></li>
+               
+                    <li><a href="../Event/Backend/back.php">
+                            <i class="fa fa-comments"></i>
+                            <span class="nav-item">Event</span>
+                        </a></li>
                 <li><a href="../Category/dashboard_category.php">
                         <i class="fa fa-archive"></i>
                         <span class="nav-item">Category</span>
@@ -79,8 +84,7 @@ require_once "../../model/Reclamation/reclamationC.php";
                     <h3>reclamation list</h3>
                     <table id="reclamation-table" class="table table-bordered">
                         <tr>
-                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i>
-                                    Search</button> </td>
+                            <td colspan="3"><button id="search" onclick="search()"><i class="fa fa-search"></i> Search</button> </td>
                             <td colspan="3"> <input type="text" id="search-input" placeholder="Search"></td>
 
 
