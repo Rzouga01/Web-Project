@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
                 var hasErrors = false;
                 var passwordRegex = /^(?=.*\d|.*\W)(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
                 var errorField = document.getElementById('Password_error');
-                
+
                 if (password.length < 8) {
                     errorField.textContent = 'Password must be at least 8 characters long.';
                     hasErrors = true;
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['token'])) {
     </html>
 
     <?php
-} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['token'])) {
+} else if ($_SERVER["REQUEST_METHOD"] == "POST" && (isset($_POST['token']) || isset($_POST['email']))) {
     $token = $_POST['token'];
     $tokenParts = explode(".", $token);
     $encodedEmail = $tokenParts[1];

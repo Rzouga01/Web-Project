@@ -12,7 +12,6 @@ require_once "../../model/User/userC.php";
         <meta charset="UTF-8" />
         <title>Dashboard</title>
         <link rel="stylesheet" href="..\dashboard.css" />
-        <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
     </head>
@@ -24,7 +23,7 @@ require_once "../../model/User/userC.php";
                     <li>
                         <a href="../index.php" class="logo">
                             <img src="../../assets/images/logo.png" alt="">
-                            <span class="nav-item">Dashboard</span>
+                            <span class="nav-item">Profile</span>
                         </a>
                     </li>
                     <li><a href="../index.php">
@@ -34,14 +33,6 @@ require_once "../../model/User/userC.php";
                     <li><a href="dashboard_user.php">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
-                        </a></li>
-                    <li><a href="../Reponse/dashboard_reponse.php">
-                            <i class="fa fa-envelope-open"></i>
-                            <span class="nav-item">Messages</span>
-                        </a></li>
-                    <li><a href="../Donation/showDonation.php">
-                            <i class="fas fa-user"></i>
-                            <span class="nav-item">Donation</span>
                         </a></li>
                     <li><a href="../../controller/User/logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
@@ -123,7 +114,6 @@ require_once "../../model/User/userC.php";
                                 </tr>
                                 <tr>
                                     <td><label for="edit-Password">Password</label></td>
-                                    <td><input type="password" id="edit-Password" name="Password"></td>
                                 </tr>
                                 <tr>
                                     <td><label for="edit-Birthdate">Birthdate</label></td>
@@ -466,14 +456,13 @@ require_once "../../model/User/userC.php";
                     }
                 };
 
-                function openEditUserModal(userID, firstName, lastName, email, phoneNumber, password, birthdate, country) {
+                function openEditUserModal(userID, firstName, lastName, email, phoneNumber, birthdate, country) {
                     var modal = document.getElementById("editModal");
                     var id = document.getElementById('edit-id-user');
                     var firstNameElem = document.getElementById('edit-First_Name');
                     var lastNameElem = document.getElementById('edit-Last_Name');
                     var emailElem = document.getElementById('edit-Email');
                     var phoneNumberElem = document.getElementById('edit-Phone_number');
-                    var passwordElem = document.getElementById('edit-Password');
                     var birthdateElem = document.getElementById('edit-Birthdate');
                     var countryElem = document.getElementById('edit-Country');
 
@@ -482,7 +471,6 @@ require_once "../../model/User/userC.php";
                     lastNameElem.value = lastName;
                     emailElem.value = email;
                     phoneNumberElem.value = phoneNumber;
-                    passwordElem.value = password;
                     birthdateElem.value = birthdate;
                     for (var i = 0; i < countryElem.options.length; i++) {
                         if (countryElem.options[i].value == country) {
@@ -492,7 +480,7 @@ require_once "../../model/User/userC.php";
                     }
 
                     modal.style.display = "block";
-                    console.log(id.value, firstNameElem.value, lastNameElem.value, emailElem.value, phoneNumberElem.value, passwordElem.value, birthdateElem.value, countryElem.value)
+                    console.log(id.value, firstNameElem.value, lastNameElem.value, emailElem.value, phoneNumberElem.value, birthdateElem.value, countryElem.value)
 
                 }
 

@@ -96,7 +96,7 @@ if ($isLoggedIn) {
 										<?php if ($isAdmin) { ?>
 											<a class="nav-link me-4" href="User/dashboard_admin.php">Dashboard</a>
 										<?php } else { ?>
-											<a class="nav-link me-4" href="User/dashboard_user.php">Dashboard</a>
+											<a class="nav-link me-4" href="User/dashboard_user.php">Profile</a>
 										<?php } ?>
 									</li>
 									<li><a href="Reclamation/front_reclamation.php" class="dropdown-item">Reclamtion</a>

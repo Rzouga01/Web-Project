@@ -117,7 +117,7 @@ a {
 }
 
 a:not(.logo):hover {
-  background-color: #F4BE37;
+  background-color: #9CA5AD;
   color: #fff;
 
 }
@@ -286,6 +286,7 @@ button {
   margin: 10px;
 
 }
+
 
 
 button:hover {
