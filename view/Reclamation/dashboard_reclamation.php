@@ -20,7 +20,7 @@ require_once "../../model/Reclamation/reclamationC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="../index.html" class="logo">
+                    <a href="../index.php" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
