@@ -81,11 +81,9 @@ $projectC = new projectC();
               <li class="nav-item dropdown">
                 <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a href="./Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
+                  <li><a href="../Project/front_project.php" class="dropdown-item" href="#scrollspyHeading3">Projects</a>
                   </li>
-                  <li><a href="blog.html" class="dropdown-item" href="#scrollspyHeading4">FeedBack</a>
-                  </li>
-                  <li><a href="./Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
+                  <li><a href="../Reclamation/front_reclamation.php" class="dropdown-item" href="#scrollspyHeading5">Reclamtion</a></li>
                   <li><a href="single-post.html" class="dropdown-item" href="#scrollspyHeading5">Response</a></li>
                   <li><a href="styles.html" class="dropdown-item" href="#scrollspyHeading5">Products</a></li>
                   <li><a href="front_donation.php" class="dropdown-item" href="#scrollspyHeading5">Donations</a></li>
