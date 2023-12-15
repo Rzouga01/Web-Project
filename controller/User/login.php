@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once '../../database/connect.php';
     require_once '../../controller/User/user.php';
     require_once '../../model/User/userC.php';
+    require_once '../../controller/User/verifyEmail.php';
 
     $user = new UserCRUD();
     if (isset($_POST["email"]) && isset($_POST["password"])) {
@@ -18,8 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if (isset($userData) && $userData['Email'] == $email && $userData['Password'] == $password) {
-            if ($userData['Status'] == 1) {
+            if ($userData['Banned'] == 1) {
                 echo "<script>alert('This account is banned and cannot log in.'); window.location.href='../../view/User/user.html#signin';</script>";
+                exit;
+            }
+            if ($userData['Status'] == 0) {
+                echo "<script>alert('Your account is not yet verified. Please check your email for the verification link. You must verify your account before you can log in.'); window.location.href='../../view/User/user.html#signin';</script>";
+                sendVerificationEmail($email);
                 exit;
             }
             $_SESSION['user_id'] = $userData['ID_USER'];

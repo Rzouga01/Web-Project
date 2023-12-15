@@ -13,7 +13,6 @@
             captchaVerified = true;
             document.getElementById('captchaError').innerHTML = '';
         }
-
         function onLoadCallBack() {
             grecaptcha.render('divRecaptcha', {
                 sitekey: '6Lc7XjEpAAAAALvcF8JdM3x2L8_i3ZlZNOvVn5xn',
@@ -22,10 +21,12 @@
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallBack&render=explicit" async defer></script>
+
 </head>
 
 <body>
-    <div class="notification" id="notification"></div>
+    <div class="notification" id="notification">
+    </div>
     <div class="notification" id="Verification-message" style="display: none;">
         <p>Your account registration is complete.
             We've just sent a verification email to the address you provided.
@@ -33,24 +34,37 @@
             If you don't see the email right away, kindly look in your spam or junk folder.</p>
     </div>
     <div class="container" id="container">
+
         <div class="form-container sign-up-container">
             <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
                 <h1>Create Account</h1>
                 <input class="signup-form-elements" type="text" name="First_Name" id="First_Name"
                     placeholder="First Name">
-                <span id="firstNameError" class="error"></span>
+                <span class="error-message" id="First_Name_error"></span>
+
                 <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
-                <span id="lastNameError" class="error"></span>
+                <span class="error-message" id="Last_Name_error"></span>
+
                 <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
-                <span id="emailError" class="error"></span>
+                <span class="error-message" id="Email_error"></span>
+
                 <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number"
                     placeholder="Phone Number">
-                <span id="phoneError" class="error"></span>
-                <input class="signup-form-elements" type="password" name="Password" id="Password"
-                    placeholder="Password">
-                <span id="passwordError" class="error"></span>
+                <span class="error-message" id="Phone_number_error"></span>
+
+                <div class="password-container">
+                    <input class="signup-form-elements" type="password" name="Password" id="Password"
+                        placeholder="Password">
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye" id="togglePassword"></i>
+                    </span>
+                </div>
+                <span class="error-message" id="Password_error"></span>
+
+
                 <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
-                <span id="birthdateError" class="error"></span>
+                <span class="error-message" id="Birthdate_error"></span>
+
                 <div class="select">
                     <select class="signup-form-elements" name="Country" id="Country">
                         <option selected disabled>Country</option>
@@ -326,24 +340,28 @@
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
-                    
+                    <span class="error-message" id="Country_error"></span>
+
                     <select class="signup-form-elements" name="Role" id="Role">
                         <option selected disabled>Role</option>
                         <option value="1">Organisation</option>
                         <option value="2">User</option>
                     </select>
+                    <span class="error-message" id="Role_error"></span>
                 </div>
+
                 <div id="divRecaptcha" class="g-recaptcha"></div>
-                <div id="captchaError" style="color: red;"></div>
+                <span class="error-message" id="captchaError"></span>
+
                 <input type="submit" value="Sign up">
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="../../controller/User/login.php" method="post" id="signin-form">
                 <h1>Sign in</h1>
-                <input type="email" name="email" id="email" placeholder="Email">
-                <input type="password" name="password" id="password" placeholder="Password">
-                <a onclick="showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
+                <input type="email" name="email" id="email" placeholder="Email" />
+                <input type="password" name="password" id="password" placeholder="Password" />
+                <a onclick=" showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
         </div>
@@ -355,7 +373,7 @@
             </div>
             <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
                 <h1>Forgot Password</h1>
-                <input type="email" name="mail" id="mail" placeholder="Email">
+                <input type="email" name="mail" id="mail" placeholder="Email" />
                 <input type="submit" value="Reset Password">
             </form>
         </div>
@@ -366,7 +384,7 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Welcome!</h1>
+                    <h1>Welcome !</h1>
                     <p>Get started by entering your details below. Let's begin this journey together!</p>
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
@@ -392,7 +410,7 @@
             const verificationMessage = document.getElementById('Verification-message');
 
             if (verificationMessage && showVerifyMessageParam === 'true') {
-                displayNotification(verificationMessage.textContent.trim());
+                displayNotification(verificationMessage.textContent.trim(), '#b9deb9');
             } else {
                 console.log('Verification message not found or showVerifyMessage is not true');
             }
@@ -438,12 +456,8 @@
             document.querySelector('.sign-up-container').style.display = 'none';
         });
 
-        window.onload = function () {
-            // Your other window.onload code here...
-        };
-
         document.getElementById('signup-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+            var hasErrors = false;
 
             var firstName = document.getElementById('First_Name').value;
             var lastName = document.getElementById('Last_Name').value;
@@ -454,67 +468,71 @@
             var country = document.getElementById('Country').value;
             var role = document.getElementById('Role').value;
 
-            var firstNameError = document.getElementById('firstNameError');
-            var lastNameError = document.getElementById('lastNameError');
-            var emailError = document.getElementById('emailError');
-            var phoneError = document.getElementById('phoneError');
-            var passwordError = document.getElementById('passwordError');
-            var birthdateError = document.getElementById('birthdateError');
-
-            // Validation logic for First Name
             if (!firstName) {
-                firstNameError.textContent = 'Please fill out the First Name field.';
-            } else {
-                firstNameError.textContent = '';
+                document.getElementById('First_Name_error').textContent = 'First Name is required.';
+                hasErrors = true;
             }
 
-            // Validation logic for Last Name
             if (!lastName) {
-                lastNameError.textContent = 'Please fill out the Last Name field.';
-            } else {
-                lastNameError.textContent = '';
+                document.getElementById('Last_Name_error').textContent = 'Last Name is required.';
+                hasErrors = true;
             }
 
-            // Validation logic for Email
             var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
             if (!emailRegex.test(email)) {
-                emailError.textContent = 'Please enter a valid email address.';
-            } else {
-                emailError.textContent = '';
+                document.getElementById('Email_error').textContent = 'Please enter a valid email address.';
+                hasErrors = true;
             }
 
-            // Validation logic for Phone Number
-            if (isNaN(phoneNumber)) {
-                phoneError.textContent = 'Please enter a valid phone number.';
-            } else {
-                phoneError.textContent = '';
+            var passwordRegex = /^(?=.*\d|.*\W)(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('Password_error').textContent = 'Password must contain at least 8 characters, including uppercase, lowercase, number, and special character.';
+                hasErrors = true;
             }
 
-            // Validation logic for Password
             if (password.length < 8) {
-                passwordError.textContent = 'Password must be at least 8 characters long.';
-            } else {
-                passwordError.textContent = '';
+                document.getElementById('Password_error').textContent = 'Password must be at least 8 characters long.';
+                hasErrors = true;
             }
 
-            // Validation logic for Birthdate (if required)
+            if (!phoneNumber) {
+                document.getElementById('Phone_number_error').textContent = 'Phone Number is required.';
+                hasErrors = true;
+            } else if (isNaN(phoneNumber)) {
+                document.getElementById('Phone_number_error').textContent = 'Please enter a valid phone number.';
+                hasErrors = true;
+            }
+
+            var currentDate = new Date();
+            var selectedDate = new Date(birthdate);
             if (!birthdate) {
-                birthdateError.textContent = 'Please select a birthdate.';
-            } else {
-                birthdateError.textContent = '';
+                document.getElementById('Birthdate_error').textContent = 'Please select a Birthdate.';
+                hasErrors = true;
+            } else if (selectedDate > currentDate) {
+                document.getElementById('Birthdate_error').textContent = 'Birthdate cannot be in the future.';
+                hasErrors = true;
             }
 
-            // Add further validation logic as needed...
+            if (country === 'Country') {
+                document.getElementById('Country_error').textContent = 'Please select a country.';
+                hasErrors = true;
+            }
 
-            // Check if captcha is verified
+            if (role === 'Role') {
+                document.getElementById('Role_error').textContent = 'Please select a role.';
+                hasErrors = true;
+            }
+
             if (!captchaVerified) {
-                document.getElementById('captchaError').innerHTML = 'Please verify the reCAPTCHA before submitting the form.';
-                return;
+                document.getElementById('captchaError').textContent = 'Please verify the reCAPTCHA before submitting the form.';
+                hasErrors = true;
             }
 
-            // Submit the form if all validations pass
-            this.submit();
+            if (hasErrors) {
+                event.preventDefault();
+            }
         });
+
 
         document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -538,6 +556,20 @@
             notification.textContent = message;
             notification.style.backgroundColor = color;
             notification.classList.add('show');
+        }
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("Password");
+            var toggleIcon = document.getElementById("togglePassword");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
         }
 
     </script>

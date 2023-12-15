@@ -114,12 +114,12 @@ require_once "../../model/User/userC.php";
                             $users = $result['users'];
                             $total_pages = $result['total_pages'];
                             usort($users, function ($a, $b) {
-                                return $a['Status'] - $b['Status'];
+                                return $a['Banned'] - $b['Banned'];
                             });
                             if (!empty($users)) {
-                                echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th><th>Status</th><th>Action</th></tr>";
+                                echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone number</th><th>Birthdate</th><th>Country</th><th>Role</th><th>Banned</th><th>Action</th></tr>";
                                 foreach ($users as $user) {
-                                    $class = $user['Status'] == 1 ? 'banned' : '';
+                                    $class = $user['Banned'] == 1 ? 'banned' : '';
                                     echo "<tr class='{$class}'>";
                                     echo "<td>" . htmlspecialchars($user['ID_USER']) . "</td>";
                                     echo "<td>" . htmlspecialchars($user['First_Name']) . "</td>";
@@ -142,10 +142,10 @@ require_once "../../model/User/userC.php";
                                     }
                                     echo "</td>";
                                     echo "<td class='{$class}'>";
-                                    echo $user['Status'] == 1 ? 'Banned' : 'Active';
+                                    echo $user['Banned'] == 1 ? 'Banned' : 'Active';
                                     echo "</td>";
                                     echo "<td>";
-                                    if ($user['Status'] == 1) {
+                                    if ($user['Banned'] == 1) {
                                         echo "<button onclick='unbanUser(\"{$user['ID_USER']}\")'>Unban </button>";
                                     } else {
                                         echo "<button onclick='banUser(\"{$user['ID_USER']}\")'>Ban </button>";
@@ -201,7 +201,7 @@ require_once "../../model/User/userC.php";
                                 echo "<td>" . htmlspecialchars($value) . "</td>";
                                 echo "</tr>";
                             }
-                        }
+                        } 
                         ?>
                         <tr>
                             <td colspan="2">
@@ -892,7 +892,7 @@ require_once "../../model/User/userC.php";
                     xhttp.open("POST", "../../controller/User/userCreate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
+                        if (this.readyState == 4 && this.Banned == 200) {
                             location.reload();
                         }
                     };
@@ -905,7 +905,7 @@ require_once "../../model/User/userC.php";
                         xhr.open("POST", '../../controller/User/userDelete.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                         xhr.onreadystatechange = function () {
-                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                            if (this.readyState === XMLHttpRequest.DONE && this.Banned === 200) {
                                 console.log('user deleted');
                                 location.reload();
                             }
@@ -920,7 +920,7 @@ require_once "../../model/User/userC.php";
                         xhr.open("POST", '../../controller/User/userBan.php', true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                         xhr.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
+                            if (this.readyState == 4 && this.Banned == 200) {
                                 location.reload();
                             }
                         };
@@ -933,7 +933,7 @@ require_once "../../model/User/userC.php";
                     xhr.open("POST", '../../controller/User/userUnban.php', true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
+                        if (this.readyState == 4 && this.Banned == 200) {
                             location.reload();
                         }
                     };
@@ -971,7 +971,7 @@ require_once "../../model/User/userC.php";
                     xhttp.open("POST", "../../controller/User/userUpdate.php", true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhttp.onreadystatechange = function () {
-                        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                        if (this.readyState == XMLHttpRequest.DONE && this.Banned == 200) {
                             closeEditModal();
                             location.reload();
                         }
