@@ -1,12 +1,31 @@
-<?php 
-require_once '../../controller/User/user.php'; 
-require_once '../../model/User/userC.php'; 
+<?php
+require_once '../../controller/User/user.php';  
+require_once '../../model/User/userC.php';
 
-$user = new UserCRUD(); 
-$result = $user->verifyUser($id); 
+if (isset($_GET['token'])) {
+    $tokenParts = explode("/", urldecode($_GET['token']));
+    
+    if(count($tokenParts) < 2) {
+        echo "Invalid token format.";
+        exit;
+    }
 
-if ($result) {
-    echo "User verified successfully.";
+    $email = base64_decode($tokenParts[1]);
+
+    $user = new UserCRUD();
+    $userObject = $user->getUserByEmail($email);
+
+    if ($userObject) {
+        if ($user->verifyUser($userObject['ID_USER'])) {
+            header('Location: ../../view/User/verified.html');
+            exit;
+        } else {
+            echo "User verification failed.";
+        }
+    } else {
+        echo "Invalid token.";
+    }
 } else {
-    echo "Failed to verify user.";
+    echo "Invalid request.";
 }
+?>

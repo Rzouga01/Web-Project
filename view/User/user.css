@@ -15,6 +15,12 @@ body {
 	margin: -20px 0 50px;
 }
 
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
 
 
 p {
@@ -100,9 +106,9 @@ input {
 		0 10px 10px rgba(0, 0, 0, 0.22);
 	position: relative;
 	overflow: hidden;
-	width: 900px;
+	width: 1200px;
 	max-width: 100%;
-	min-height: 680px;
+	min-height: 800px;
 }
 
 .form-container {
@@ -149,6 +155,24 @@ input {
 		opacity: 1;
 		z-index: 5;
 	}
+}
+
+.password-container {
+    position: relative;
+    width: 80%;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.signup-form-elements[type="password"] {
+    width: 100%;
+    padding-right: 60px;
 }
 
 .overlay-container {
@@ -260,6 +284,7 @@ input {
 		opacity: 1;
 	}
 }
+
 .notification.show {
 	display: block;
 	opacity: 1;
@@ -267,5 +292,5 @@ input {
 
 
 .closebtn:hover {
-    color: black;
+	color: black;
 }
