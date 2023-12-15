@@ -4,6 +4,7 @@ session_start();
 require_once '../../database/connect.php';
 require_once '../../controller/User/user.php';
 require_once '../../model/User/userC.php';
+require_once '../../controller/User/verifyEmail.php';
 
 $user = new UserCRUD();
 
@@ -35,8 +36,10 @@ if (
     $_SESSION['birthdate'] = $birthdate;
     $_SESSION['country'] = $country;
     $_SESSION['role'] = $role;
+    sendVerificationEmail($email);
     header('Location: ../../view/User/user.html?showVerifyMessage=true#signup');
     exit;
+
 } else {
     echo "Invalid data received.";
 }

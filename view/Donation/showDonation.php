@@ -77,25 +77,25 @@ $donations = $donC->showDonation();
 						<i class="fa fa-database"></i>
 						<span class="nav-item">Project</span>
 					</a></li>
-				<li><a href="../Product/dashboard_product.php">
+				<li><a href="../Reclamation/dashboard_reclamation.php">
 						<i class="fa fa-exclamation-triangle"></i>
 						<span class="nav-item">Reclamation</span>
 					</a></li>
-				<li><a href="#">
+				<li><a href="../Reponse/dashboard_reponse.php">
 						<i class="fa fa-envelope-open"></i>
 						<span class="nav-item">Response</span>
 					</a></li>
-				<li><a href="#">
-						<i class="fa fa-comments"></i>
-						<span class="nav-item">Feedback</span>
+					<li><a href="../Event/Backend/back.php">
+						<i class="fa fa-envelope-open"></i>
+						<span class="nav-item">Event</span>
 					</a></li>
 
-				<li><a href="dashboard_category.php">
+				<li><a href="../Category/dashboard_category.php">
 						<i class="fa fa-archive"></i>
 						<span class="nav-item">Category</span>
 					</a></li>
 
-				<li><a href="dashboard_product.php">
+				<li><a href="../Product/dashboard_product.php">
 						<i class="fa fa-archive"></i>
 						<span class="nav-item">Product</span>
 					</a></li>

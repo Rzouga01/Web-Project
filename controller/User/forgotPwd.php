@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = '';
+        $mail->Username = 'rzouga.psn@gmail.com';
         $mail->Password = 'tunj vicd hkrz ydxe';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;

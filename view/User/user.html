@@ -25,7 +25,14 @@
 </head>
 
 <body>
-    <div class="notification" id="notification"></div>
+    <div class="notification" id="notification">
+    </div>
+    <div class="notification" id="Verification-message" style="display: none;">
+        <p>Your account registration is complete.
+            We've just sent a verification email to the address you provided.
+            Simply check your inbox and follow the instructions to activate your account.
+            If you don't see the email right away, kindly look in your spam or junk folder.</p>
+    </div>
     <div class="container" id="container">
 
         <div class="form-container sign-up-container">
@@ -33,13 +40,31 @@
                 <h1>Create Account</h1>
                 <input class="signup-form-elements" type="text" name="First_Name" id="First_Name"
                     placeholder="First Name">
+                <span class="error-message" id="First_Name_error"></span>
+
                 <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
+                <span class="error-message" id="Last_Name_error"></span>
+
                 <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
+                <span class="error-message" id="Email_error"></span>
+
                 <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number"
                     placeholder="Phone Number">
-                <input class="signup-form-elements" type="password" name="Password" id="Password"
-                    placeholder="Password">
+                <span class="error-message" id="Phone_number_error"></span>
+
+                <div class="password-container">
+                    <input class="signup-form-elements" type="password" name="Password" id="Password"
+                        placeholder="Password">
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye" id="togglePassword"></i>
+                    </span>
+                </div>
+                <span class="error-message" id="Password_error"></span>
+
+
                 <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
+                <span class="error-message" id="Birthdate_error"></span>
+
                 <div class="select">
                     <select class="signup-form-elements" name="Country" id="Country">
                         <option selected disabled>Country</option>
@@ -315,22 +340,21 @@
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
+                    <span class="error-message" id="Country_error"></span>
+
                     <select class="signup-form-elements" name="Role" id="Role">
                         <option selected disabled>Role</option>
                         <option value="1">Organisation</option>
                         <option value="2">User</option>
                     </select>
+                    <span class="error-message" id="Role_error"></span>
                 </div>
+
                 <div id="divRecaptcha" class="g-recaptcha"></div>
-                <div id="captchaError" style="color: red;"></div>
+                <span class="error-message" id="captchaError"></span>
+
                 <input type="submit" value="Sign up">
             </form>
-            <div class="form-container Verification-message" id="verifyMessage" style="display: none;">
-                <p>Your account registration is complete.
-                    We've just sent a verification email to the address you provided.
-                    Simply check your inbox and follow the instructions to activate your account.
-                    If you don't see the email right away, kindly look in your spam or junk folder.</p>
-            </div>
         </div>
         <div class="form-container sign-in-container">
             <form action="../../controller/User/login.php" method="post" id="signin-form">
@@ -369,20 +393,29 @@
     </div>
     <script>
         window.onload = function () {
+
+            const redirectHappened = localStorage.getItem('redirectHappened');
+
+            if (!redirectHappened) {
+                window.history.pushState({}, "", "http://localhost/Web-project/view/User/user.html");
+                localStorage.setItem('redirectHappened', 'true');
+            } else {
+
+                localStorage.removeItem('redirectHappened');
+            }
+
+            const notification = document.querySelector('.notification');
             const urlParams = new URLSearchParams(window.location.search);
             const showVerifyMessageParam = urlParams.get('showVerifyMessage');
-            console.log('showVerifyMessage:', showVerifyMessageParam);
+            const verificationMessage = document.getElementById('Verification-message');
 
-            const verificationMessage = document.querySelector('.Verification-message');
             if (verificationMessage && showVerifyMessageParam === 'true') {
-                console.log('showVerifyMessage is true');
-                verificationMessage.style.display = 'block';
-                document.querySelector('.sign-in-container').style.display = 'none';
-                document.querySelector('.sign-up-container').style.display = 'none';
+                displayNotification(verificationMessage.textContent.trim(), '#b9deb9');
             } else {
                 console.log('Verification message not found or showVerifyMessage is not true');
             }
-        }
+
+        };
 
 
         const signUpButton = document.getElementById('signUp');
@@ -416,7 +449,6 @@
         }
 
 
-
         document.getElementById('backToLogin').addEventListener('click', function (event) {
             event.preventDefault();
             document.querySelector('.forgot-password-container').style.display = 'none';
@@ -425,7 +457,7 @@
         });
 
         document.getElementById('signup-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+            var hasErrors = false;
 
             var firstName = document.getElementById('First_Name').value;
             var lastName = document.getElementById('Last_Name').value;
@@ -436,42 +468,72 @@
             var country = document.getElementById('Country').value;
             var role = document.getElementById('Role').value;
 
-            if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
-                alert('Please fill out all fields.');
-                return;
-            }
-
             if (!firstName) {
-                alert('Please fill out the First Name field.');
-                return;
+                document.getElementById('First_Name_error').textContent = 'First Name is required.';
+                hasErrors = true;
             }
 
             if (!lastName) {
-                alert('Please fill out the Last Name field.');
-                return;
+                document.getElementById('Last_Name_error').textContent = 'Last Name is required.';
+                hasErrors = true;
             }
 
             var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
             if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
+                document.getElementById('Email_error').textContent = 'Please enter a valid email address.';
+                hasErrors = true;
+            }
+
+            var passwordRegex = /^(?=.*\d|.*\W)(?=.*[A-Z])(?=.*[a-z]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('Password_error').textContent = 'Password must contain at least 8 characters, including uppercase, lowercase, number, and special character.';
+                hasErrors = true;
             }
 
             if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
+                document.getElementById('Password_error').textContent = 'Password must be at least 8 characters long.';
+                hasErrors = true;
             }
 
-            if (isNaN(phoneNumber)) {
-                alert('Please enter a valid phone number.');
-                return;
+            if (!phoneNumber) {
+                document.getElementById('Phone_number_error').textContent = 'Phone Number is required.';
+                hasErrors = true;
+            } else if (isNaN(phoneNumber)) {
+                document.getElementById('Phone_number_error').textContent = 'Please enter a valid phone number.';
+                hasErrors = true;
             }
+
+            var currentDate = new Date();
+            var selectedDate = new Date(birthdate);
+            if (!birthdate) {
+                document.getElementById('Birthdate_error').textContent = 'Please select a Birthdate.';
+                hasErrors = true;
+            } else if (selectedDate > currentDate) {
+                document.getElementById('Birthdate_error').textContent = 'Birthdate cannot be in the future.';
+                hasErrors = true;
+            }
+
+            if (country === 'Country') {
+                document.getElementById('Country_error').textContent = 'Please select a country.';
+                hasErrors = true;
+            }
+
+            if (role === 'Role') {
+                document.getElementById('Role_error').textContent = 'Please select a role.';
+                hasErrors = true;
+            }
+
             if (!captchaVerified) {
-                document.getElementById('captchaError').innerHTML = 'Please verify the reCAPTCHA before submitting the form.';
-                return;
+                document.getElementById('captchaError').textContent = 'Please verify the reCAPTCHA before submitting the form.';
+                hasErrors = true;
             }
-            this.submit();
+
+            if (hasErrors) {
+                event.preventDefault();
+            }
         });
+
+
         document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
             event.preventDefault();
             var formData = new FormData(this);
@@ -482,21 +544,32 @@
             })
                 .then(response => response.text())
                 .then(data => {
-                    displayNotification(data, '#b9deb9', 10000);
+                    displayNotification(data, '#b9deb9');
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         });
 
-        function displayNotification(message, color, duration) {
+        function displayNotification(message, color) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.style.backgroundColor = color;
             notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, duration);
+        }
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("Password");
+            var toggleIcon = document.getElementById("togglePassword");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
         }
 
     </script>
