@@ -20,12 +20,12 @@ require_once "../../model/Reclamation/reclamationC.php";
         <nav class="navbar">
             <ul>
                 <li>
-                    <a href="../index.html" class="logo">
+                    <a href="../../index.html" class="logo">
                         <img src="../../assets/images/logo.png" alt="">
                         <span class="nav-item">Dashboard</span>
                     </a>
                 </li>
-                <li><a href="../index.php">
+                <li><a href="../../index.php">
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
