@@ -13,6 +13,7 @@
             captchaVerified = true;
             document.getElementById('captchaError').innerHTML = '';
         }
+
         function onLoadCallBack() {
             grecaptcha.render('divRecaptcha', {
                 sitekey: '6Lc7XjEpAAAAALvcF8JdM3x2L8_i3ZlZNOvVn5xn',
@@ -21,25 +22,35 @@
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onLoadCallBack&render=explicit" async defer></script>
-
 </head>
 
 <body>
     <div class="notification" id="notification"></div>
+    <div class="notification" id="Verification-message" style="display: none;">
+        <p>Your account registration is complete.
+            We've just sent a verification email to the address you provided.
+            Simply check your inbox and follow the instructions to activate your account.
+            If you don't see the email right away, kindly look in your spam or junk folder.</p>
+    </div>
     <div class="container" id="container">
-
         <div class="form-container sign-up-container">
             <form action="../../controller/User/userCreate.php" method="post" id="signup-form">
                 <h1>Create Account</h1>
                 <input class="signup-form-elements" type="text" name="First_Name" id="First_Name"
                     placeholder="First Name">
+                <span id="firstNameError" class="error"></span>
                 <input class="signup-form-elements" type="text" name="Last_Name" id="Last_Name" placeholder="Last Name">
+                <span id="lastNameError" class="error"></span>
                 <input class="signup-form-elements" type="email" name="Email" id="Email" placeholder="Email">
+                <span id="emailError" class="error"></span>
                 <input class="signup-form-elements" type="text" name="Phone_number" id="Phone_number"
                     placeholder="Phone Number">
+                <span id="phoneError" class="error"></span>
                 <input class="signup-form-elements" type="password" name="Password" id="Password"
                     placeholder="Password">
+                <span id="passwordError" class="error"></span>
                 <input class="signup-form-elements" type="date" name="Birthdate" id="Birthdate">
+                <span id="birthdateError" class="error"></span>
                 <div class="select">
                     <select class="signup-form-elements" name="Country" id="Country">
                         <option selected disabled>Country</option>
@@ -315,6 +326,7 @@
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
+                    
                     <select class="signup-form-elements" name="Role" id="Role">
                         <option selected disabled>Role</option>
                         <option value="1">Organisation</option>
@@ -325,19 +337,13 @@
                 <div id="captchaError" style="color: red;"></div>
                 <input type="submit" value="Sign up">
             </form>
-            <div class="form-container Verification-message" id="verifyMessage" style="display: none;">
-                <p>Your account registration is complete.
-                    We've just sent a verification email to the address you provided.
-                    Simply check your inbox and follow the instructions to activate your account.
-                    If you don't see the email right away, kindly look in your spam or junk folder.</p>
-            </div>
         </div>
         <div class="form-container sign-in-container">
             <form action="../../controller/User/login.php" method="post" id="signin-form">
                 <h1>Sign in</h1>
-                <input type="email" name="email" id="email" placeholder="Email" />
-                <input type="password" name="password" id="password" placeholder="Password" />
-                <a onclick=" showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <a onclick="showForgotPasswordForm()" style="cursor: pointer;">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
         </div>
@@ -349,7 +355,7 @@
             </div>
             <form action="../../controller/User/forgotPwd.php" method="post" id="forgot-password-form">
                 <h1>Forgot Password</h1>
-                <input type="email" name="mail" id="mail" placeholder="Email" />
+                <input type="email" name="mail" id="mail" placeholder="Email">
                 <input type="submit" value="Reset Password">
             </form>
         </div>
@@ -360,7 +366,7 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Welcome !</h1>
+                    <h1>Welcome!</h1>
                     <p>Get started by entering your details below. Let's begin this journey together!</p>
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
@@ -369,20 +375,29 @@
     </div>
     <script>
         window.onload = function () {
+
+            const redirectHappened = localStorage.getItem('redirectHappened');
+
+            if (!redirectHappened) {
+                window.history.pushState({}, "", "http://localhost/Web-project/view/User/user.html");
+                localStorage.setItem('redirectHappened', 'true');
+            } else {
+
+                localStorage.removeItem('redirectHappened');
+            }
+
+            const notification = document.querySelector('.notification');
             const urlParams = new URLSearchParams(window.location.search);
             const showVerifyMessageParam = urlParams.get('showVerifyMessage');
-            console.log('showVerifyMessage:', showVerifyMessageParam);
+            const verificationMessage = document.getElementById('Verification-message');
 
-            const verificationMessage = document.querySelector('.Verification-message');
             if (verificationMessage && showVerifyMessageParam === 'true') {
-                console.log('showVerifyMessage is true');
-                verificationMessage.style.display = 'block';
-                document.querySelector('.sign-in-container').style.display = 'none';
-                document.querySelector('.sign-up-container').style.display = 'none';
+                displayNotification(verificationMessage.textContent.trim());
             } else {
                 console.log('Verification message not found or showVerifyMessage is not true');
             }
-        }
+
+        };
 
 
         const signUpButton = document.getElementById('signUp');
@@ -416,13 +431,16 @@
         }
 
 
-
         document.getElementById('backToLogin').addEventListener('click', function (event) {
             event.preventDefault();
             document.querySelector('.forgot-password-container').style.display = 'none';
             document.querySelector('.sign-in-container').style.display = 'block';
             document.querySelector('.sign-up-container').style.display = 'none';
         });
+
+        window.onload = function () {
+            // Your other window.onload code here...
+        };
 
         document.getElementById('signup-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -436,42 +454,68 @@
             var country = document.getElementById('Country').value;
             var role = document.getElementById('Role').value;
 
-            if (!firstName || !lastName || !email || !phoneNumber || !password || !birthdate || !country || !role) {
-                alert('Please fill out all fields.');
-                return;
-            }
+            var firstNameError = document.getElementById('firstNameError');
+            var lastNameError = document.getElementById('lastNameError');
+            var emailError = document.getElementById('emailError');
+            var phoneError = document.getElementById('phoneError');
+            var passwordError = document.getElementById('passwordError');
+            var birthdateError = document.getElementById('birthdateError');
 
+            // Validation logic for First Name
             if (!firstName) {
-                alert('Please fill out the First Name field.');
-                return;
+                firstNameError.textContent = 'Please fill out the First Name field.';
+            } else {
+                firstNameError.textContent = '';
             }
 
+            // Validation logic for Last Name
             if (!lastName) {
-                alert('Please fill out the Last Name field.');
-                return;
+                lastNameError.textContent = 'Please fill out the Last Name field.';
+            } else {
+                lastNameError.textContent = '';
             }
 
+            // Validation logic for Email
             var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
             if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
+                emailError.textContent = 'Please enter a valid email address.';
+            } else {
+                emailError.textContent = '';
             }
 
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
-            }
-
+            // Validation logic for Phone Number
             if (isNaN(phoneNumber)) {
-                alert('Please enter a valid phone number.');
-                return;
+                phoneError.textContent = 'Please enter a valid phone number.';
+            } else {
+                phoneError.textContent = '';
             }
+
+            // Validation logic for Password
+            if (password.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // Validation logic for Birthdate (if required)
+            if (!birthdate) {
+                birthdateError.textContent = 'Please select a birthdate.';
+            } else {
+                birthdateError.textContent = '';
+            }
+
+            // Add further validation logic as needed...
+
+            // Check if captcha is verified
             if (!captchaVerified) {
                 document.getElementById('captchaError').innerHTML = 'Please verify the reCAPTCHA before submitting the form.';
                 return;
             }
+
+            // Submit the form if all validations pass
             this.submit();
         });
+
         document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
             event.preventDefault();
             var formData = new FormData(this);
@@ -482,21 +526,18 @@
             })
                 .then(response => response.text())
                 .then(data => {
-                    displayNotification(data, '#b9deb9', 10000);
+                    displayNotification(data, '#b9deb9');
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         });
 
-        function displayNotification(message, color, duration) {
+        function displayNotification(message, color) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.style.backgroundColor = color;
             notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, duration);
         }
 
     </script>

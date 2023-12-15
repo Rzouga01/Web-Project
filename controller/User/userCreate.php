@@ -35,7 +35,7 @@ if (
     $_SESSION['birthdate'] = $birthdate;
     $_SESSION['country'] = $country;
     $_SESSION['role'] = $role;
-    header('Location: ../../view/User/user.html?showVerifyMessage=true#signup');
+    header('Location: ../../view/index.php');
     exit;
 } else {
     echo "Invalid data received.";
