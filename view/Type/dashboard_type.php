@@ -83,7 +83,7 @@ require "../../controller/Type/typeC.php";
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Donation</span>
                     </a></li>
-                <li><a href="#" class="logout">
+                <li><a href="../../controller/User/logout.php" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
                     </a></li>

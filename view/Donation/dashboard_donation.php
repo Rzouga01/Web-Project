@@ -70,7 +70,7 @@ $donations = $donC->showDonationOrderd();
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Donation</span>
                     </a></li>
-                <li><a href="#" class="logout">
+                <li><a href="../../controller/User/logout.php" class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">Log out</span>
             </ul>
@@ -115,8 +115,7 @@ $donations = $donC->showDonationOrderd();
                                     <div class="form-group">
                                         <a href="showDonation.php" class="btn btn-secondary">Back</a>
                                         <button class="btn btn-danger btn-lg rounded-pill" type="submit">Delete</button>
-                                        <button class="btn btn-success btn-lg rounded-pill"
-                                            type="submit">Update</button>
+                                        <button class="btn btn-success btn-lg rounded-pill" type="submit">Update</button>
                                     </div>
                                 </form>
                             </div>
